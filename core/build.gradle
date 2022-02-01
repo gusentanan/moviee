@@ -9,12 +9,15 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.bagusmerta.moviee"
+        applicationId "com.bagusmerta.core"
         minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "String", "API_KEY", "\"e87f1caa9ba887b36d2b6613e7759f6f\""
+        buildConfigField "String", "BASE_API", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "POSTER_URL", "\"https://image.tmdb.org/t/p/w500\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,6 +37,7 @@ android {
     viewBinding {
         true
     }
+
 }
 
 apply {
@@ -41,7 +45,10 @@ apply {
 }
 
 dependencies {
-
-    implementation project(":core")
-
+    implementation libraries.okhttp3
+    implementation libraries.okhttp3Logging
+    implementation libraries.retrofit2
+    implementation libraries.retrofit2Gson
+    implementation libraries.retrofit2Rx2
+    implementation libraries.rx2Android
 }

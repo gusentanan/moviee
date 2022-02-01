@@ -1,0 +1,11 @@
+dependencies {
+    implementation libraries.kotlinCore
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.design
+    implementation supportDependencies.constraintLayout
+    testImplementation testLibraries.junit
+    androidTestImplementation testSupportDependencies.extRunner
+    androidTestImplementation testSupportDependencies.espressoCore
+    implementation libraries.koinCore
+    implementation libraries.koinAndroid
+}
