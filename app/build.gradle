@@ -44,4 +44,6 @@ dependencies {
 
     implementation project(":core")
 
+    implementation libraries.glide
+
 }

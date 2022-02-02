@@ -51,4 +51,9 @@ dependencies {
     implementation libraries.retrofit2Gson
     implementation libraries.retrofit2Rx2
     implementation libraries.rx2Android
+
+    implementation libraries.roomRuntime
+    implementation libraries.roomRxJava
+    implementation libraries.roomKtx
+    implementation libraries.roomCompiler
 }

@@ -41,7 +41,7 @@ ext {
             retrofit2Rx2         : "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion",
             okhttp3              : "com.squareup.okhttp3:okhttp:$okhttpVersion",
             okhttp3Logging       : "com.squareup.okhttp3:logging-interceptor:$okhttpVersion",
-            glide                : "com.github.bumptech.glide:$glideVersion",
+            glide                : "com.github.bumptech.glide:glide:$glideVersion",
             viewModelKtx         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
             runtimeKtx           : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
             liveDataKtx          : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",

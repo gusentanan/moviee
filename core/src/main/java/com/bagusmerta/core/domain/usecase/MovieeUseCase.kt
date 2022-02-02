@@ -1,18 +1,22 @@
 package com.bagusmerta.core.domain.usecase
 
 import com.bagusmerta.core.data.MovieeRepository
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
-import com.bagusmerta.core.utils.ResultState
+import com.bagusmerta.core.data.Resource
+import com.bagusmerta.core.domain.model.Moviee
 import io.reactivex.Flowable
 
 interface MovieeUseCase {
-    fun getAllMovies(): Flowable<ResultState<List<MovieeItemResponse>>>
+    fun getAllMovies(): Flowable<Resource<List<Moviee>>>
+    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
+
 }
 
-class MovieeUseCaseImpl(private val repository: MovieeRepository): MovieeUseCase {
+class MovieeUseCaseImpl(private val repository: MovieeRepository) : MovieeUseCase {
 
-    override fun getAllMovies(): Flowable<ResultState<List<MovieeItemResponse>>> {
-        TODO("Not yet implemented")
-    }
+    override fun getAllMovies(): Flowable<Resource<List<Moviee>>> = repository.getAllMovies()
+
+    override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> =
+        repository.getAllFavoriteMovies(isFavorite)
+
 
 }

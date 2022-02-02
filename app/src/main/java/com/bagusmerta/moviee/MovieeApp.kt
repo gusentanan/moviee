@@ -1,6 +1,7 @@
 package com.bagusmerta.moviee
 
 import android.app.Application
+import com.bagusmerta.core.di.databaseModule
 import com.bagusmerta.core.di.networkModule
 import com.bagusmerta.core.di.repositoryModule
 import org.koin.android.ext.koin.androidContext
@@ -16,6 +17,7 @@ class MovieeApp: Application() {
             androidContext(this@MovieeApp)
             modules(
                 /**  put your app module here */
+                databaseModule,
                 networkModule,
                 repositoryModule
             )

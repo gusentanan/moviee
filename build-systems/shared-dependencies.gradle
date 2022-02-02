@@ -1,4 +1,5 @@
 dependencies {
+    implementation libraries.kotlin
     implementation libraries.kotlinCore
     implementation supportDependencies.appCompat
     implementation supportDependencies.design

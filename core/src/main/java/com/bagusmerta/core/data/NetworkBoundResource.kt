@@ -1,8 +1,7 @@
 package com.bagusmerta.core.data
 
 import android.annotation.SuppressLint
-import com.bagusmerta.core.utils.ResultState
-import com.bagusmerta.core.utils.flowableIo
+import com.bagusmerta.core.utils.*
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
@@ -19,7 +18,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         @Suppress("LeakingThis")
         val dbSource = loadFromDB()
         val db = dbSource
-            .compose(flowableIo())
+            .compose(flowableTransformerIo())
             .subscribe { value ->
                 dbSource.unsubscribeOn(Schedulers.io())
                 if (shouldFetch(value)) {
@@ -47,7 +46,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
         result.onNext(Resource.Loading(null))
         val response = apiResponse
-            .compose(flowableIo())
+            .compose(flowableTransformerComputation())
             .doOnComplete {
                 mCompositeDisposable.dispose()
             }
@@ -56,7 +55,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                     is ResultState.Success -> {
                         saveCallResult(response.data)
                         val dbSource = loadFromDB()
-                        dbSource.compose(flowableIo())
+                        dbSource.compose(flowableTransformerComputation())
                             .subscribe {
                                 dbSource.unsubscribeOn(Schedulers.io())
                                 result.onNext(Resource.Success(it))
@@ -64,7 +63,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                     }
                     is ResultState.Empty -> {
                         val dbSource = loadFromDB()
-                        dbSource.compose(flowableIo())
+                        dbSource.compose(flowableTransformerComputation())
                             .subscribe {
                                 dbSource.unsubscribeOn(Schedulers.io())
                                 result.onNext(Resource.Success(it))
