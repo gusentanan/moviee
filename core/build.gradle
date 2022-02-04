@@ -1,15 +1,18 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+}
+
+apply {
+    from "../build-systems/shared-dependencies.gradle"
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.bagusmerta.core"
         minSdk 26
         targetSdk 31
         versionCode 1
@@ -19,6 +22,7 @@ android {
         buildConfigField "String", "BASE_API", "\"https://api.themoviedb.org/3/\""
         buildConfigField "String", "POSTER_URL", "\"https://image.tmdb.org/t/p/w500\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -34,26 +38,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding {
-        true
-    }
-
-}
-
-apply {
-    from "$rootDir/build-systems/shared-dependencies.gradle"
 }
 
 dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation libraries.okhttp3
     implementation libraries.okhttp3Logging
     implementation libraries.retrofit2
     implementation libraries.retrofit2Gson
     implementation libraries.retrofit2Rx2
-    implementation libraries.rx2Android
-
-    implementation libraries.roomRuntime
-    implementation libraries.roomRxJava
-    implementation libraries.roomKtx
-    implementation libraries.roomCompiler
+    kapt libraries.roomCompiler
 }

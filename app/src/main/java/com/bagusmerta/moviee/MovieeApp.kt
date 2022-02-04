@@ -4,6 +4,8 @@ import android.app.Application
 import com.bagusmerta.core.di.databaseModule
 import com.bagusmerta.core.di.networkModule
 import com.bagusmerta.core.di.repositoryModule
+import com.bagusmerta.moviee.di.useCaseModule
+import com.bagusmerta.moviee.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,7 +21,9 @@ class MovieeApp: Application() {
                 /**  put your app module here */
                 databaseModule,
                 networkModule,
-                repositoryModule
+                repositoryModule,
+                useCaseModule,
+                viewModelModule
             )
         }
     }

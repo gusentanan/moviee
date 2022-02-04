@@ -5,6 +5,10 @@ plugins {
     id 'kotlin-parcelize'
 }
 
+apply {
+    from "../build-systems/shared-dependencies.gradle"
+}
+
 android {
     compileSdk 31
 
@@ -14,8 +18,10 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -31,19 +37,19 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    viewBinding {
-        true
+    buildFeatures {
+        viewBinding true
     }
+    configurations { implementation.exclude group: 'org.jetbrains', module: 'annotations' }
 }
 
-apply {
-    from "$rootDir/build-systems/shared-dependencies.gradle"
-}
 
 dependencies {
 
     implementation project(":core")
+    implementation fileTree(dir: "libs", include: ["*.jar"])
 
-    implementation libraries.glide
-
+    implementation libraries.kotlin
+    implementation libraries.rxStream
+    kapt libraries.roomCompiler
 }

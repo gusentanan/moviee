@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">moviee</string>
+    <string name="poster_movie">poster_movie</string>
+    <string name="tv_item_exname">FILM MENEGANGKAN</string>
 </resources>

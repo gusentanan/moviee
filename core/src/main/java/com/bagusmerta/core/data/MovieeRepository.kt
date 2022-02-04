@@ -45,6 +45,7 @@ class MovieeRepositoryImpl(
 
         }.asFlowable()
 
+
     override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> {
         return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapMovieeEntityToDomain(it) }
     }

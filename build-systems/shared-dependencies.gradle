@@ -1,12 +1,26 @@
 dependencies {
-    implementation libraries.kotlin
     implementation libraries.kotlinCore
+    implementation supportDependencies.recyclerView
     implementation supportDependencies.appCompat
     implementation supportDependencies.design
     implementation supportDependencies.constraintLayout
+    implementation supportDependencies.support
     testImplementation testLibraries.junit
     androidTestImplementation testSupportDependencies.extRunner
     androidTestImplementation testSupportDependencies.espressoCore
     implementation libraries.koinCore
     implementation libraries.koinAndroid
+
+    implementation libraries.rx2Android
+    implementation libraries.roomRuntime
+    implementation libraries.roomRxJava
+    implementation libraries.roomKtx
+    androidTestImplementation testLibraries.roomTest
+
+    implementation libraries.viewModelKtx
+    implementation libraries.runtimeKtx
+    implementation libraries.liveDataKtx
+    implementation libraries.activityKtx
+    implementation libraries.glide
+    implementation supportDependencies.card
 }
