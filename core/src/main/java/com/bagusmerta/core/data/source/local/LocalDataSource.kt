@@ -17,4 +17,8 @@ class LocalDataSource(private val dao: MovieeDao) {
         data.isFavorite = isFavorite
         dao.updateFavoriteMovie(data)
     }
+
+    fun getDetailMovieData(id: Int): Flowable<MovieeEntity> = dao.getDetailMovieData(id)
+
+    fun insertDetailMovieData(data: MovieeEntity): Completable = dao.insertDetailMovieData(data)
 }

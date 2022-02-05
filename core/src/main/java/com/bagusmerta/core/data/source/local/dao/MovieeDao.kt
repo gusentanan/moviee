@@ -4,6 +4,7 @@ import androidx.room.*
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.utils.Constants.GET_ALL_FAVORITE_MOVIES
 import com.bagusmerta.core.utils.Constants.GET_ALL_MOVIES
+import com.bagusmerta.core.utils.Constants.GET_SINGLE_MOVIES
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -22,5 +23,11 @@ interface MovieeDao {
 
     @Update
     fun updateFavoriteMovie(data: MovieeEntity)
+
+    @Query(GET_SINGLE_MOVIES)
+    fun getDetailMovieData(id: Int): Flowable<MovieeEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertDetailMovieData(data: MovieeEntity): Completable
 
 }

@@ -8,6 +8,8 @@ import io.reactivex.Flowable
 interface MovieeUseCase {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
+    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean)
+    fun getDetailMoviesData(id: Int): Flowable<Resource<Moviee>>
 
 }
 
@@ -17,6 +19,10 @@ class MovieeUseCaseImpl(private val repository: MovieeRepository) : MovieeUseCas
 
     override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> =
         repository.getAllFavoriteMovies(isFavorite)
+
+    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean) = repository.setFavoriteMovies(data, isFavorite)
+
+    override fun getDetailMoviesData(id: Int): Flowable<Resource<Moviee>> = repository.getDetailMovies(id)
 
 
 }

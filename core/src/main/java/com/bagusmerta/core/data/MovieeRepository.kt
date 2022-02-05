@@ -7,13 +7,14 @@ import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.*
 import io.reactivex.Flowable
-
+import io.reactivex.Single
 
 
 interface MovieeRepository {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean)
+    fun getDetailMovies(id: Int): Flowable<Resource<Moviee>>
 }
 
 class MovieeRepositoryImpl(
@@ -25,7 +26,7 @@ class MovieeRepositoryImpl(
     override fun getAllMovies(): Flowable<Resource<List<Moviee>>> =
         object : NetworkBoundResource<List<Moviee>, List<MovieeItemResponse>>() {
             override fun loadFromDB(): Flowable<List<Moviee>> {
-                return localDataSource.getAllMovies().map { DataMapper.mapMovieeEntityToDomain(it) }
+                return localDataSource.getAllMovies().map { DataMapper.mapListMovieeEntityToDomain(it) }
             }
 
             override fun shouldFetch(data: List<Moviee>?): Boolean {
@@ -37,7 +38,7 @@ class MovieeRepositoryImpl(
             }
 
             override fun saveCallResult(data: List<MovieeItemResponse>) {
-                val movieeList = DataMapper.mapMovieeResponseToEntity(data)
+                val movieeList = DataMapper.mapListMovieeResponseToEntity(data)
                 localDataSource.insertMovieData(movieeList)
                     .compose(completeableTransformerIo())
                     .subscribe()
@@ -47,12 +48,38 @@ class MovieeRepositoryImpl(
 
 
     override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> {
-        return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapMovieeEntityToDomain(it) }
+        return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapListMovieeEntityToDomain(it) }
     }
 
     override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean) {
         val newData = DataMapper.mapMovieeDomainToEntity(data)
         localDataSource.setFavoriteMovie(newData, isFavorite)
     }
+
+    override fun getDetailMovies(id: Int): Flowable<Resource<Moviee>> =
+        object: NetworkBoundResource <Moviee, MovieeItemResponse>() {
+            override fun loadFromDB(): Flowable<Moviee> {
+                return localDataSource.getDetailMovieData(id).map {
+                    DataMapper.mapMovieeEntityToDomain(it)
+                }
+            }
+
+            override fun shouldFetch(data: Moviee?): Boolean {
+                return data == null
+            }
+
+            override fun createCall(): Flowable<ResultState<MovieeItemResponse>> {
+                return remoteDataSource.getDetailMovieData(id)
+            }
+
+            override fun saveCallResult(data: MovieeItemResponse) {
+                val newData = DataMapper.mapMovieeResponseToEntity(data)
+                localDataSource.insertDetailMovieData(newData)
+                    .compose(completeableTransformerIo())
+                    .subscribe()
+            }
+
+        }.asFlowable()
+
 
 }

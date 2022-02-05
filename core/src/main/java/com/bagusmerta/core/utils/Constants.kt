@@ -8,5 +8,6 @@ object Constants {
     const val IMAGE_URL = BuildConfig.POSTER_URL
     const val GET_ALL_MOVIES = "SELECT * FROM moviee_table"
     const val GET_ALL_FAVORITE_MOVIES = "SELECT * FROM moviee_table WHERE is_favorite = :isFavorite"
+    const val GET_SINGLE_MOVIES = "SELECT * FROM moviee_table WHERE id = :id"
 
 }

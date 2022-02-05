@@ -2,11 +2,13 @@ package com.bagusmerta.moviee.presentation.main.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.databinding.ItemSlideShowBinding
+import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.moviee.utils.loadImage
 
 class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
@@ -17,6 +19,12 @@ class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAd
         fun bind(item: Moviee){
             binding.apply {
                ivSlide.loadImage(item.backdropPath)
+
+                itemView.setOnClickListener {
+                    context.startActivity(Intent(context, DetailActivity::class.java).apply {
+                        putExtra(DetailActivity.EXTRA_MOVIEE, item.id)
+                    })
+                }
             }
         }
     }

@@ -5,7 +5,7 @@ import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.domain.model.Moviee
 
 object DataMapper {
-    fun mapMovieeResponseToEntity(data: List<MovieeItemResponse>): List<MovieeEntity> =
+    fun mapListMovieeResponseToEntity(data: List<MovieeItemResponse>): List<MovieeEntity> =
         data.map {
             MovieeEntity(
                 id = it.movieeId,
@@ -18,7 +18,20 @@ object DataMapper {
             )
         }
 
-    fun mapMovieeEntityToDomain(data: List<MovieeEntity>): List<Moviee> =
+    fun mapMovieeResponseToEntity(data: MovieeItemResponse): MovieeEntity =
+        data.let {
+            MovieeEntity(
+                id = it.movieeId,
+                title = it.movieeTitle,
+                backdropPath = it.backdropPath,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                overview = it.overview,
+                isFavorite = false
+            )
+        }
+
+    fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<Moviee> =
         data.map {
             Moviee(
                 id = it.id,
@@ -28,6 +41,19 @@ object DataMapper {
                 releaseDate = it.releaseDate,
                 overview = it.overview,
                 isFavorite = it.isFavorite
+            )
+        }
+
+    fun mapMovieeEntityToDomain(data: MovieeEntity): Moviee =
+        data.let {
+            Moviee(
+                id = it.id,
+                title = it.title,
+                backdropPath = it.backdropPath,
+                posterPath = it.posterPath,
+                releaseDate = it.releaseDate,
+                isFavorite = it.isFavorite,
+                overview = it.overview
             )
         }
 

@@ -29,4 +29,28 @@ class RemoteDataSource(private val apiService: MovieeService) {
         return res.toFlowable(BackpressureStrategy.BUFFER)
     }
 
+    @SuppressLint("CheckResult")
+    fun getDetailMovieData(id: Int): Flowable<ResultState<MovieeItemResponse>> {
+        val res = PublishSubject.create<ResultState<MovieeItemResponse>>()
+        apiService.getDetailMovies(id)
+            .compose(flowableTransformerComputation())
+            .subscribe({ response ->
+                val data = response.let {
+                    MovieeItemResponse(
+                        movieeId = it.movieeId,
+                        movieeTitle = it.movieeTitle,
+                        overview = it.overview,
+                        backdropPath = it.backdropPath,
+                        posterPath = it.posterPath,
+                        releaseDate = it.releaseDate
+                    )}
+                res.onNext(ResultState.Success(data))
+            }, { error ->
+                res.onNext(ResultState.Error(error.message.toString()))
+                Log.e("RemoteDataSource: Detail", error.toString())
+            })
+
+        return res.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.bagusmerta.core.domain.model
 
+
 data class Moviee (
     val id: Int?,
     val title: String?,
