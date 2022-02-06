@@ -1,7 +1,7 @@
 package com.bagusmerta.moviee.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.data.Resource
@@ -13,7 +13,6 @@ import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.moviee.utils.makeGone
 import com.bagusmerta.moviee.utils.makeToast
 import com.bagusmerta.moviee.utils.makeVisible
-
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

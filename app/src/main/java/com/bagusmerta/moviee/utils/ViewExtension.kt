@@ -7,7 +7,6 @@ import android.widget.Toast
 import com.bagusmerta.core.utils.Constants.IMAGE_URL
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 fun ImageView.loadImage(url: String?){
     Glide.with(context)
