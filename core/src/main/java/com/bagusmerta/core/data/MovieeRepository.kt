@@ -13,7 +13,7 @@ import io.reactivex.Single
 interface MovieeRepository {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
-    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean)
+    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
     fun getDetailMovies(id: Int): Flowable<Resource<Moviee>>
 }
 
@@ -40,7 +40,7 @@ class MovieeRepositoryImpl(
             override fun saveCallResult(data: List<MovieeItemResponse>) {
                 val movieeList = DataMapper.mapListMovieeResponseToEntity(data)
                 localDataSource.insertMovieData(movieeList)
-                    .compose(completeableTransformerIo())
+                    .compose(completableTransformerIo())
                     .subscribe()
             }
 
@@ -51,9 +51,9 @@ class MovieeRepositoryImpl(
         return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapListMovieeEntityToDomain(it) }
     }
 
-    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean) {
+    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit> {
         val newData = DataMapper.mapMovieeDomainToEntity(data)
-        localDataSource.setFavoriteMovie(newData, isFavorite)
+        return localDataSource.setFavoriteMovie(newData, isFavorite)
     }
 
     override fun getDetailMovies(id: Int): Flowable<Resource<Moviee>> =
@@ -75,7 +75,7 @@ class MovieeRepositoryImpl(
             override fun saveCallResult(data: MovieeItemResponse) {
                 val newData = DataMapper.mapMovieeResponseToEntity(data)
                 localDataSource.insertDetailMovieData(newData)
-                    .compose(completeableTransformerIo())
+                    .compose(completableTransformerIo())
                     .subscribe()
             }
 

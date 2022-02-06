@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.BannerAdapter
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
+import com.bagusmerta.moviee.utils.makeGone
+import com.bagusmerta.moviee.utils.makeToast
+import com.bagusmerta.moviee.utils.makeVisible
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,15 +38,22 @@ class MainActivity : AppCompatActivity() {
         with(mainViewModel){
             movieeList.observe(this@MainActivity){
                 when(it){
-                    is Resource.Success -> it.data?.let { it1 -> handleMovieeResult(it1) }
+                    is Resource.Success -> {
+                        binding.progressBar.makeGone()
+                        it.data?.let { res -> handleMovieeResult(res) }
+                    }
+                    is Resource.Error ->  {
+                        binding.progressBar.makeGone()
+                        handleErrorState()
+                    }
+                    is Resource.Loading -> binding.progressBar.makeVisible()
                 }
             }
         }
     }
 
-
-    private fun handleLoadingState() {
-        TODO("Not yet implemented")
+    private fun handleErrorState(){
+        this@MainActivity.makeToast(getString(R.string.error_something_wrong))
     }
 
     private fun handleMovieeResult(data: List<Moviee>) {

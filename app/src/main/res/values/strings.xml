@@ -8,4 +8,5 @@
     <string name="exp_release_date">22-01-2021</string>
     <string name="overview">Overview</string>
     <string name="share_button">Bookmark Movie</string>
+    <string name="error_something_wrong">Opps, Something Wrong!</string>
 </resources>

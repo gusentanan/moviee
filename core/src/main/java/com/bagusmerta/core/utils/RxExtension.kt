@@ -23,16 +23,16 @@ fun <T> flowableTransformerIo(): FlowableTransformer<T, T>{
     }
 }
 
-fun completeableTransformerIo(): CompletableTransformer{
+fun completableTransformerIo(): CompletableTransformer{
     return CompletableTransformer {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 }
 
-fun <T> singleTransformerIo(): SingleTransformer<T, T>{
+fun <T> singleTransformerComputation(): SingleTransformer<T, T>{
     return SingleTransformer {
-        it.subscribeOn(Schedulers.io())
+        it.subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
     }
 }
