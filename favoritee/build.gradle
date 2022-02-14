@@ -1,27 +1,23 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.dynamic-feature'
     id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
 }
 
 apply {
-    from "../build-systems/shared-dependencies.gradle"
+    from '../build-systems/shared-dependencies.gradle'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.bagusmerta.moviee"
+        applicationId "com.bagusmerta.favoritee"
         minSdk 26
         targetSdk 31
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -30,28 +26,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
     buildFeatures {
         viewBinding true
     }
-
-    configurations { implementation.exclude group: 'org.jetbrains', module: 'annotations' }
-    dynamicFeatures = [':favoritee']
 }
 
-
 dependencies {
-
+    implementation project(":app")
     implementation project(":core")
     implementation fileTree(dir: "libs", include: ["*.jar"])
-
-    implementation libraries.kotlin
     implementation libraries.rxStream
-    kapt libraries.roomCompiler
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 }

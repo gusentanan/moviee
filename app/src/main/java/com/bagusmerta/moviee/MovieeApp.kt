@@ -23,7 +23,7 @@ class MovieeApp: Application() {
                 networkModule,
                 repositoryModule,
                 useCaseModule,
-                viewModelModule
+                viewModelModule,
             )
         }
     }

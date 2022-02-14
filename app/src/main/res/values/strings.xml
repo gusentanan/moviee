@@ -9,4 +9,9 @@
     <string name="overview">Overview</string>
     <string name="share_button">Bookmark Movie</string>
     <string name="error_something_wrong">Opps, Something Wrong!</string>
+    <string name="muvi_search_movie_hint">Search Your Movies Here!</string>
+    <string name="ex_movie_title">Spiderman: No Way Home</string>
+    <string name="ex_overview_movie">spiderman vs sinister six, mutiverse and doctor strange</string>
+    <string name="favorite_menu">Favorite Menu</string>
+    <string name="title_favoritee">favoritee</string>
 </resources>
