@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="20dp"
+    android:paddingBottom="30dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -19,14 +19,34 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_fav_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:cardCornerRadius="25dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintBottom_toTopOf="@+id/cv_fav_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_fav_movie_backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@color/gray" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cv_fav_image"
                 android:layout_width="107dp"
                 android:layout_height="103dp"
                 android:layout_gravity="center"
                 app:cardCornerRadius="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/cv_fav_backdrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <ImageView
                     android:id="@+id/iv_fav_movie"
@@ -39,20 +59,32 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/tv_title_fav_movie"
+                android:id="@+id/tv_fav_movie_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="@string/ex_movie_title"
                 android:textColor="@color/black"
-                android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cv_fav_image"
-                app:layout_constraintTop_toTopOf="@id/cv_fav_image" />
+                app:layout_constraintTop_toTopOf="@id/cv_fav_image"/>
+
+            <TextView
+                android:id="@+id/tv_fav_movie_overview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:ellipsize="end"
+                android:lines="2"
+                android:textColor="@color/black"
+                android:text="@string/ex_overview_movie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cv_fav_image"
+                app:layout_constraintTop_toBottomOf="@id/tv_fav_movie_title"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

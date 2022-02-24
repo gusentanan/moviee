@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.favoritee.R
 import com.bagusmerta.favoritee.databinding.ActivityFavoriteeBinding
 import com.bagusmerta.favoritee.di.favoriteeModule
 import com.bagusmerta.moviee.utils.makeGone
@@ -22,11 +23,17 @@ class FavoriteeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setTitle(R.string.favorite_page_title)
 
         loadKoinModules(favoriteeModule)
-        handleProgressBarState(true)
         initObserverState()
         initRecyclerView()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun initRecyclerView() {
@@ -39,7 +46,7 @@ class FavoriteeActivity : AppCompatActivity() {
     private fun initObserverState() {
         favoriteeViewModel.apply {
             favoriteMovieList.observe(this@FavoriteeActivity){
-                handleProgressBarState(false)
+                handleEmptyStateResult(it)
                 handleFavoriteMovieResult(it)
             }
         }
@@ -51,9 +58,9 @@ class FavoriteeActivity : AppCompatActivity() {
         favoriteeAdapter.setFavoriteItem(items)
     }
 
-    private fun handleProgressBarState(state: Boolean) {
-        binding.progressBar.let {
-            if(state) it.makeVisible() else it.makeGone()
+    private fun handleEmptyStateResult(data: List<Moviee>){
+        binding.lottieView.root.apply {
+            if(data.isEmpty()) makeVisible() else makeGone()
         }
     }
 }

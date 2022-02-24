@@ -19,6 +19,7 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
         fun bind(item: Moviee){
             binding.apply {
                 ivPoster.loadImage(item.posterPath)
+                tvMovieName.text = item.title
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {

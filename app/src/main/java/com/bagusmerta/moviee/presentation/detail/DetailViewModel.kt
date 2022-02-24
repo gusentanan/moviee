@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val _btnState = MutableLiveData<Boolean>()
-
+    private val mCompositeDisposable = CompositeDisposable()
     val btnState: LiveData<Boolean>
         get() = _btnState
 
@@ -25,14 +25,16 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
             .subscribe({
                 _btnState.postValue(isFavorite)
             }, { error ->
-                Log.e("DetailViewModel", error.message.toString())
-            }).let(CompositeDisposable()::add)
-
+                Log.e("DetailViewModel: ", error.message.toString())
+            }).let(mCompositeDisposable::add)
     }
 
     fun getDetailMovies(id: Int): LiveData<Resource<Moviee>> {
         return LiveDataReactiveStreams.fromPublisher(useCase.getDetailMoviesData(id))
     }
 
+    override fun onCleared() {
+        mCompositeDisposable.clear()
+    }
 
 }

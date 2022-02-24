@@ -19,7 +19,9 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
         fun bind(item: Moviee){
             binding.apply {
                 ivFavMovie.loadImage(item.posterPath)
-                tvTitleFavMovie.text = item.title
+                ivFavMovieBackdrop.loadImage(item.backdropPath)
+                tvFavMovieTitle.text = item.title
+                tvFavMovieOverview.text = item.overview
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
