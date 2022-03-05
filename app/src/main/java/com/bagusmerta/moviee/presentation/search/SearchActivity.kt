@@ -1,5 +1,6 @@
 package com.bagusmerta.moviee.presentation.search
 
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -15,7 +16,10 @@ import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivitySearchBinding
 import com.bagusmerta.moviee.utils.makeGone
 import com.bagusmerta.moviee.utils.makeVisible
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.subjects.PublishSubject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeUnit
 
 class SearchActivity : AppCompatActivity() {
 
@@ -24,20 +28,26 @@ class SearchActivity : AppCompatActivity() {
     private val searchViewModel: SearchViewModel by viewModel()
     private val items = mutableListOf<Moviee>()
 
+    private val searchTextChange = PublishSubject.create<String>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initAppBar()
+        initView()
 
         initStateObserver()
         initRecyclerView()
         initSearchMenu()
     }
 
-    private fun initAppBar() {
+    private fun initView() {
         findViewById<ImageView>(R.id.btn_favorite).setOnClickListener {
             val uriFavorite = Uri.parse(Constants.URI_FAVORITE)
             startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+        }
+        binding.lottieEmptyRes.apply {
+            lottieView.setAnimation("lottie/empty_state_lottie.json")
+            lottieView.playAnimation()
         }
     }
 
@@ -47,20 +57,25 @@ class SearchActivity : AppCompatActivity() {
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String): Boolean {
-                if (query.isNotEmpty()){
-                    items.clear()
-                    searchViewModel.searchMovies(query)
-                    searchView.clearFocus()
 
-                }else{
-                    searchView.clearFocus()
-                }
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchTextChange.onComplete()
                 return true
             }
 
-            override fun onQueryTextChange(query: String?): Boolean = false
+            @SuppressLint("CheckResult")
+            override fun onQueryTextChange(query: String): Boolean {
+                searchTextChange.onNext(query)
+                searchTextChange
+                    .debounce(400, TimeUnit.MILLISECONDS)
+                    .filter{ it.isNotEmpty() && it.length >= 3 }
+                    .map { it.lowercase().trim() }
+                    .subscribeOn(AndroidSchedulers.mainThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe{ searchViewModel.searchMovies(it) }
 
+                return true
+            }
         })
     }
 
@@ -72,6 +87,9 @@ class SearchActivity : AppCompatActivity() {
             result.observe(this@SearchActivity){
                 it?.let { handleResult(it) }
             }
+            emptyState.observe(this@SearchActivity){
+                handleEmptyResult(it)
+            }
         }
     }
 
@@ -81,6 +99,13 @@ class SearchActivity : AppCompatActivity() {
             rvSearchMovies.setHasFixedSize(true)
             rvSearchMovies.adapter = searchAdapter
         }
+    }
+
+    private fun handleEmptyResult(state: Boolean){
+        binding.lottieEmptyRes.root.apply {
+            if(state) makeVisible() else makeGone()
+        }
+        searchAdapter.clearItems()
     }
 
     private fun handleResult(data: List<Moviee>){

@@ -36,5 +36,5 @@ dependencies {
     implementation project(":core")
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation libraries.rxStream
-    implementation "com.airbnb.android:lottie:4.1.0"
+    implementation libraries.lottie
 }

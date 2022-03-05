@@ -15,6 +15,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     private val _loadingState = MutableLiveData<Boolean>()
     private val _result = MutableLiveData<List<Moviee>?>()
     private val _errorState = MutableLiveData<String?>()
+    private val _emptyState = MutableLiveData<Boolean>()
     private val mCompositeDisposable = CompositeDisposable()
 
     val loadingState: LiveData<Boolean>
@@ -26,22 +27,31 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val errorState: LiveData<String?>
         get() = _errorState
 
+    val emptyState: LiveData<Boolean>
+        get() = _emptyState
+
     fun searchMovies(query: String){
         useCase.searchMovies(query)
-            .doOnSubscribe { _loadingState.postValue(true) }
-            .doAfterTerminate{ _loadingState.postValue(false) }
+            .doOnSubscribe {
+                _loadingState.postValue(true)
+                _emptyState.postValue(false)
+            }
+            .doAfterTerminate{
+                _loadingState.postValue(false)
+                mCompositeDisposable.clear()
+            }
             .subscribe({ movies ->
                 when(movies){
-                    is Resource.Success -> _result.postValue(movies.data)
-                    is Resource.Error -> _errorState.postValue(movies.message)
-                    is Resource.Loading -> _loadingState.postValue(true)
+                    is Resource.Success -> {
+                        if (movies.data.isEmpty()) _emptyState.postValue(true)
+                        _result.postValue(movies.data)
+                    }
+                    is Resource.Error -> _errorState.postValue(movies.errorMessage)
+                    is Resource.Empty -> _emptyState.postValue(true)
                 }
             }, { error ->
                 Log.e("SearchViewModel: ", error.message.toString())
             }).let(mCompositeDisposable::add)
     }
 
-    override fun onCleared() {
-        mCompositeDisposable.dispose()
-    }
 }

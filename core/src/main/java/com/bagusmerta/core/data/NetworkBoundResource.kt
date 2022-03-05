@@ -46,7 +46,6 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
         val apiResponse = createCall()
 
-        result.onNext(Resource.Loading(null))
         val response = apiResponse
             .compose(flowableTransformerIo())
             .doOnComplete {
@@ -73,7 +72,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                     }
                     is ResultState.Error -> {
                         onFetchFailed()
-                        result.onNext(Resource.Error(response.errorMessage, null))
+                        result.onNext(Resource.Error(response.errorMessage))
                     }
                 }
             }

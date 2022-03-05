@@ -67,9 +67,9 @@ class MovieeRepositoryImpl(
         val res = SingleSubject.create<Resource<List<Moviee>>>()
         val mCompositeDisposable = CompositeDisposable()
         remoteDataSource.searchMovies(query)
-            .doOnSuccess{ mCompositeDisposable.clear() }
-            .subscribe({ value ->
-                when(value){
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
                     is ResultState.Success -> {
                         val listMovie = DataMapper.mapListMovieeResponseToEntity(value.data).let {
                             DataMapper.mapListMovieeEntityToDomain(it)
@@ -77,13 +77,9 @@ class MovieeRepositoryImpl(
                         res.onSuccess(Resource.Success(listMovie))
                     }
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
-                    is ResultState.Empty -> {}
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
-            }, { error ->
-                res.onSuccess(Resource.Error(error.message.toString()))
-                Log.e("SearchMoviesRepository: ", error.toString())
-
-            }).let(mCompositeDisposable::add)
+            }.let(mCompositeDisposable::add)
 
         return res
     }

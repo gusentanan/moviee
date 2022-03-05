@@ -27,7 +27,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
 
             }, { error ->
                 res.onNext(ResultState.Error(error.message.toString()))
-                Log.e("RemoteDataSource", error.toString())
+                Log.e("RemoteDataSource -> GetAllMovies: ", error.toString())
             })
 
         return res.toFlowable(BackpressureStrategy.BUFFER)
@@ -39,12 +39,13 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.searchMovies(query)
             .compose(singleTransformerComputation())
+            .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeResponse
-                res.onSuccess(ResultState.Success(data))
+                res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
             }, { error ->
                 res.onSuccess(ResultState.Error(error.message.toString()))
-                Log.e("RemoteDataSource: Search", error.toString())
+                Log.e("RemoteDataSource -> SearchMovies: ", error.toString())
             }).let(mCompositeDisposable::add)
 
         return res

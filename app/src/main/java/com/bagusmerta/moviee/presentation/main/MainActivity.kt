@@ -53,20 +53,19 @@ class MainActivity : AppCompatActivity() {
         with(mainViewModel){
             movieeList.observe(this@MainActivity){
                 when(it){
-                    is Resource.Success -> {
-                        binding.progressBar.makeGone()
-                        it.data?.let { res -> handleMovieeResult(res) }
-                    }
-                    is Resource.Error ->  {
-                        binding.progressBar.makeGone()
-                        handleErrorState()
-                    }
-                    is Resource.Loading -> binding.progressBar.makeVisible()
+                    is Resource.Success -> handleMovieeResult(it.data)
+                    is Resource.Error -> handleErrorState()
+                    is Resource.Empty -> {}
                 }
             }
         }
     }
 
+    private fun handleLoadingState(state: Boolean){
+        binding.progressBar.apply {
+            if(state) makeVisible() else makeGone()
+        }
+    }
 
     private fun handleErrorState(){
         this@MainActivity.makeToast(getString(R.string.error_something_wrong))

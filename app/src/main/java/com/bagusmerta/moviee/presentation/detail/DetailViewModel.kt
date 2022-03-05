@@ -22,7 +22,7 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
         useCase.setFavoriteMovies(data, isFavorite)
-            .doOnSuccess { mCompositeDisposable.clear() }
+            .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({
                 _btnState.postValue(isFavorite)
             }, { error ->

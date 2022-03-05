@@ -47,4 +47,12 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
         this.items = data
         notifyDataSetChanged()
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearItems(){
+        val size = items.size
+        items.clear()
+        notifyItemRangeRemoved(0, size)
+        notifyDataSetChanged()
+    }
 }
