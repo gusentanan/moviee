@@ -23,7 +23,7 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.EXTRA_MOVIEE, item.id)
+                        putExtra(DetailActivity.MOVIEE, item)
                     })
                 }
             }

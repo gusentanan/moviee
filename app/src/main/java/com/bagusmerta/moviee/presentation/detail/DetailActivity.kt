@@ -2,22 +2,19 @@ package com.bagusmerta.moviee.presentation.detail
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.utils.loadImage
-import com.bagusmerta.moviee.utils.makeGone
 import com.bagusmerta.moviee.utils.makeToast
-import com.bagusmerta.moviee.utils.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
 
     private val binding: ActivityDetailBinding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val detailViewModel: DetailViewModel by viewModel()
-
     private var favoriteState: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,27 +32,14 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initStateObserver() {
-        val movieId = intent.getSerializableExtra(EXTRA_MOVIEE) as Int
-        detailViewModel.apply {
+        val moviee = intent.getParcelableExtra<Moviee>(MOVIEE)
+        moviee?.let { data ->
+            setDetailView(data)
+            data.isFavorite?.let { handleButtonSaveIcon(it) }
+        }
+        with(detailViewModel){
             btnState.observe(this@DetailActivity){
                 handleButtonSaveIcon(it)
-            }
-            getDetailMovies(movieId).observe(this@DetailActivity) { movie ->
-                when (movie) {
-                    is Resource.Success -> {
-                        binding.progressBar.makeGone()
-                        movie.data?.let { it ->
-                            setDetailView(it)
-                            favoriteState = it.isFavorite == true
-                        }
-                        handleButtonSaveIcon(favoriteState)
-                    }
-                    is Resource.Error -> {
-                        binding.progressBar.makeGone()
-                        handleErrorState()
-                    }
-                    is Resource.Loading -> binding.progressBar.makeVisible()
-                }
             }
         }
     }
@@ -67,6 +51,8 @@ class DetailActivity : AppCompatActivity() {
             tvTitle.text = data.title
             tvReleaseDate.text = data.releaseDate
             tvOverviewDetail.text = data.overview
+
+            favoriteState = data.isFavorite!!
 
             btnSave.setOnClickListener {
                 favoriteState = !favoriteState
@@ -90,6 +76,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     companion object{
-        const val EXTRA_MOVIEE = "extra_moviee"
+        const val MOVIEE = "moviee"
     }
 }

@@ -3,9 +3,9 @@ package com.bagusmerta.moviee.presentation.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.data.Resource
@@ -15,6 +15,7 @@ import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.BannerAdapter
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
+import com.bagusmerta.moviee.presentation.search.SearchActivity
 import com.bagusmerta.moviee.utils.makeGone
 import com.bagusmerta.moviee.utils.makeToast
 import com.bagusmerta.moviee.utils.makeVisible
@@ -31,24 +32,21 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        supportActionBar?.elevation = 0f
+        initAppBar()
 
         initStateObserver()
         initRecyclerBanner()
         initRecyclerView()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.menu_favorite){
-            val uriFavoritee = Uri.parse(URI_FAVORITE)
-            startActivity(Intent(Intent.ACTION_VIEW, uriFavoritee))
+    private fun initAppBar(){
+        findViewById<ImageView>(R.id.btn_favorite).setOnClickListener {
+            val uriFavorite = Uri.parse(URI_FAVORITE)
+            startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
         }
-        return super.onOptionsItemSelected(item)
+        findViewById<CardView>(R.id.cv_search).setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+        }
     }
 
     private fun initStateObserver() {
@@ -68,6 +66,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun handleErrorState(){
         this@MainActivity.makeToast(getString(R.string.error_something_wrong))

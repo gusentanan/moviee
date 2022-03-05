@@ -4,7 +4,7 @@ ext {
 
     mockitoCore = '3.10.0'
     espressoVersion = '3.4.0'
-    kotlinVersion = '1.5.31'
+    kotlinVersion = '1.6.10'
     coroutineVersion = "1.5.2"
     androidCoreVersion = "1.7.0"
     groovyAllVersion = "2.4.15"

@@ -25,7 +25,7 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.EXTRA_MOVIEE, item.id)
+                        putExtra(DetailActivity.MOVIEE, item)
                     })
                 }
             }

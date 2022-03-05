@@ -1,22 +1,27 @@
 package com.bagusmerta.core.data
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.bagusmerta.core.data.source.local.LocalDataSource
+import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.core.utils.DataMapper
-import com.bagusmerta.core.utils.ResultState
-import com.bagusmerta.core.utils.completableTransformerIo
+import com.bagusmerta.core.utils.*
 import io.reactivex.Flowable
+import io.reactivex.FlowableTransformer
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.subjects.PublishSubject
+import io.reactivex.subjects.SingleSubject
 
 
 interface MovieeRepository {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
-    fun getDetailMovies(id: Int): Flowable<Resource<Moviee>>
+    fun searchMovies(query: String): Single<Resource<List<Moviee>>>
 }
 
 class MovieeRepositoryImpl(
@@ -32,7 +37,7 @@ class MovieeRepositoryImpl(
             }
 
             override fun shouldFetch(data: List<Moviee>?): Boolean {
-                return data == null
+                return data == null || data.isEmpty()
             }
 
             override fun createCall(): Flowable<ResultState<List<MovieeItemResponse>>> {
@@ -58,30 +63,29 @@ class MovieeRepositoryImpl(
         return localDataSource.setFavoriteMovie(newData, isFavorite)
     }
 
-    override fun getDetailMovies(id: Int): Flowable<Resource<Moviee>> =
-        object: NetworkBoundResource <Moviee, MovieeItemResponse>() {
-            override fun loadFromDB(): Flowable<Moviee> {
-                return localDataSource.getDetailMovieData(id).map {
-                    DataMapper.mapMovieeEntityToDomain(it)
+    override fun searchMovies(query: String): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.searchMovies(query)
+            .doOnSuccess{ mCompositeDisposable.clear() }
+            .subscribe({ value ->
+                when(value){
+                    is ResultState.Success -> {
+                        val listMovie = DataMapper.mapListMovieeResponseToEntity(value.data).let {
+                            DataMapper.mapListMovieeEntityToDomain(it)
+                        }
+                        res.onSuccess(Resource.Success(listMovie))
+                    }
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> {}
                 }
-            }
+            }, { error ->
+                res.onSuccess(Resource.Error(error.message.toString()))
+                Log.e("SearchMoviesRepository: ", error.toString())
 
-            override fun shouldFetch(data: Moviee?): Boolean {
-                return data == null
-            }
+            }).let(mCompositeDisposable::add)
 
-            override fun createCall(): Flowable<ResultState<MovieeItemResponse>> {
-                return remoteDataSource.getDetailMovieData(id)
-            }
-
-            override fun saveCallResult(data: MovieeItemResponse) {
-                val newData = DataMapper.mapMovieeResponseToEntity(data)
-                localDataSource.insertDetailMovieData(newData)
-                    .compose(completableTransformerIo())
-                    .subscribe()
-            }
-
-        }.asFlowable()
-
+        return res
+    }
 
 }

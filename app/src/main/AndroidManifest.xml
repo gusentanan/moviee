@@ -13,11 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moviee">
         <activity
+            android:name=".presentation.search.SearchActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:exported="true" />
+        <activity
             android:name=".presentation.detail.DetailActivity"
             android:exported="true" />
         <activity
             android:name=".presentation.main.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

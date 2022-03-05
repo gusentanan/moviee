@@ -9,6 +9,7 @@ import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.utils.singleTransformerComputation
+import com.bagusmerta.core.utils.singleTransformerIo
 import io.reactivex.disposables.CompositeDisposable
 
 
@@ -21,20 +22,11 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
         useCase.setFavoriteMovies(data, isFavorite)
-            .compose(singleTransformerComputation())
+            .doOnSuccess { mCompositeDisposable.clear() }
             .subscribe({
                 _btnState.postValue(isFavorite)
             }, { error ->
                 Log.e("DetailViewModel: ", error.message.toString())
             }).let(mCompositeDisposable::add)
     }
-
-    fun getDetailMovies(id: Int): LiveData<Resource<Moviee>> {
-        return LiveDataReactiveStreams.fromPublisher(useCase.getDetailMoviesData(id))
-    }
-
-    override fun onCleared() {
-        mCompositeDisposable.clear()
-    }
-
 }

@@ -48,7 +48,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
         result.onNext(Resource.Loading(null))
         val response = apiResponse
-            .compose(flowableTransformerComputation())
+            .compose(flowableTransformerIo())
             .doOnComplete {
                 mCompositeDisposable.dispose()
             }

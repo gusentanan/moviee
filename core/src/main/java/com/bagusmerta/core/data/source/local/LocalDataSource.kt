@@ -1,5 +1,6 @@
 package com.bagusmerta.core.data.source.local
 
+import android.util.Log
 import com.bagusmerta.core.data.source.local.dao.MovieeDao
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import io.reactivex.Completable
@@ -17,9 +18,6 @@ class LocalDataSource(private val dao: MovieeDao) {
     fun setFavoriteMovie(data: MovieeEntity, isFavorite: Boolean): Single<Unit> {
         data.isFavorite = isFavorite
         return Single.fromCallable{ dao.updateFavoriteMovie(data) }
+
     }
-
-    fun getDetailMovieData(id: Int): Flowable<MovieeEntity> = dao.getDetailMovieData(id)
-
-    fun insertDetailMovieData(data: MovieeEntity): Completable = dao.insertDetailMovieData(data)
 }
