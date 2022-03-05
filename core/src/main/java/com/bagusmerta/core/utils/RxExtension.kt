@@ -2,6 +2,7 @@ package com.bagusmerta.core.utils
 
 import io.reactivex.CompletableTransformer
 import io.reactivex.FlowableTransformer
+import io.reactivex.MaybeTransformer
 import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -39,6 +40,13 @@ fun <T> singleTransformerComputation(): SingleTransformer<T, T>{
 
 fun <T> singleTransformerIo(): SingleTransformer<T, T>{
     return SingleTransformer {
+        it.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+}
+
+fun <T> maybeTransformerIo(): MaybeTransformer<T, T>{
+    return MaybeTransformer {
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

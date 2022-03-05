@@ -10,6 +10,7 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.*
 import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
+import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -21,6 +22,7 @@ interface MovieeRepository {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
+    fun checkFavoriteMovies(id: Int): Maybe<Moviee>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
 }
 
@@ -61,6 +63,13 @@ class MovieeRepositoryImpl(
     override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit> {
         val newData = DataMapper.mapMovieeDomainToEntity(data)
         return localDataSource.setFavoriteMovie(newData, isFavorite)
+            .compose(singleTransformerIo())
+    }
+
+    override fun checkFavoriteMovies(id: Int): Maybe<Moviee> {
+        return localDataSource.checkFavoriteMovie(id)
+            .map { DataMapper.mapMovieeEntityToDomain(it) }
+            .compose(maybeTransformerIo())
     }
 
     override fun searchMovies(query: String): Single<Resource<List<Moviee>>> {

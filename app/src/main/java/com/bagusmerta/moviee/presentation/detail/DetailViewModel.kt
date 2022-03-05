@@ -15,16 +15,31 @@ import io.reactivex.disposables.CompositeDisposable
 
 class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
-    private val _btnState = MutableLiveData<Boolean>()
+    private val _btnState = MutableLiveData<Boolean?>()
+    private val _result = MutableLiveData<Moviee>()
     private val mCompositeDisposable = CompositeDisposable()
-    val btnState: LiveData<Boolean>
+    val btnState: LiveData<Boolean?>
         get() = _btnState
+
+    val result: LiveData<Moviee>
+        get() = _result
 
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
         useCase.setFavoriteMovies(data, isFavorite)
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({
                 _btnState.postValue(isFavorite)
+            }, { error ->
+                Log.e("DetailViewModel: ", error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun checkFavoriteMovies(id: Int){
+        useCase.checkFavoriteMovies(id)
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({ data ->
+                _btnState.postValue(data.isFavorite)
+                _result.postValue(data)
             }, { error ->
                 Log.e("DetailViewModel: ", error.message.toString())
             }).let(mCompositeDisposable::add)

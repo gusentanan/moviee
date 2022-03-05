@@ -15,7 +15,6 @@ class DetailActivity : AppCompatActivity() {
 
     private val binding: ActivityDetailBinding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val detailViewModel: DetailViewModel by viewModel()
-    private var favoriteState: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,17 +32,18 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initStateObserver() {
         val moviee = intent.getParcelableExtra<Moviee>(MOVIEE)
-        moviee?.let { data ->
-            setDetailView(data)
-            data.isFavorite?.let { handleButtonSaveIcon(it) }
-        }
+        moviee?.let { setDetailView(it) }
+
         with(detailViewModel){
+            moviee?.id?.let { checkFavoriteMovies(it) }
             btnState.observe(this@DetailActivity){
-                handleButtonSaveIcon(it)
+                it?.let { handleButtonSaveIcon(it) }
+            }
+            result.observe(this@DetailActivity){
+                setDetailView(it)
             }
         }
     }
-
 
     private fun setDetailView(data: Moviee) {
         binding.apply {
@@ -52,8 +52,7 @@ class DetailActivity : AppCompatActivity() {
             tvReleaseDate.text = data.releaseDate
             tvOverviewDetail.text = data.overview
 
-            favoriteState = data.isFavorite!!
-
+            var favoriteState = data.isFavorite!!
             btnSave.setOnClickListener {
                 favoriteState = !favoriteState
                 detailViewModel.setFavoriteMovies(data, favoriteState)
