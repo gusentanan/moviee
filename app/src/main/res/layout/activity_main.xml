@@ -45,13 +45,10 @@
 
     <TextView
         android:id="@+id/tv_new_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Text.Header1"
         android:text="Now Playing Movies"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/poppins_bold"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/app_bar_home" />
 
@@ -66,13 +63,10 @@
 
     <TextView
         android:id="@+id/tv_list_movie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Text.Header1"
         android:text="Movies"
-        android:textSize="20sp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins_bold"
+        android:layout_marginTop="14dp"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/rv_new_movies" />
 

@@ -4,6 +4,7 @@ package com.bagusmerta.moviee.presentation.detail
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
@@ -19,15 +20,15 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setTitle(R.string.detail_page_title)
+        initView()
+
 
         initStateObserver()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    private fun initView() {
+        binding.btnBack.setOnClickListener { onBackPressed() }
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
     }
 
     private fun initStateObserver() {

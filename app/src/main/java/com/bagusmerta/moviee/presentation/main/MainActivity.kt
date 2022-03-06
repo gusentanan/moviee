@@ -1,11 +1,13 @@
 package com.bagusmerta.moviee.presentation.main
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.data.Resource
@@ -40,6 +42,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAppBar(){
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+
         findViewById<ImageView>(R.id.btn_favorite).setOnClickListener {
             val uriFavorite = Uri.parse(URI_FAVORITE)
             startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))

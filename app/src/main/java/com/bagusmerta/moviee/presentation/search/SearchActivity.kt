@@ -1,6 +1,5 @@
 package com.bagusmerta.moviee.presentation.search
 
-import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -9,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.Constants
@@ -17,6 +17,7 @@ import com.bagusmerta.moviee.databinding.ActivitySearchBinding
 import com.bagusmerta.moviee.utils.makeGone
 import com.bagusmerta.moviee.utils.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
@@ -27,6 +28,7 @@ class SearchActivity : AppCompatActivity() {
     private val searchAdapter: SearchAdapter by lazy { SearchAdapter(this) }
     private val searchViewModel: SearchViewModel by viewModel()
     private val items = mutableListOf<Moviee>()
+    private val mCompositeDisposable = CompositeDisposable()
 
     private val searchTextChange = PublishSubject.create<String>()
 
@@ -41,6 +43,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+
         findViewById<ImageView>(R.id.btn_favorite).setOnClickListener {
             val uriFavorite = Uri.parse(Constants.URI_FAVORITE)
             startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
@@ -56,23 +60,25 @@ class SearchActivity : AppCompatActivity() {
         val searchView = findViewById<SearchView>(R.id.sv_search)
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
 
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
                 searchTextChange.onComplete()
                 return true
             }
 
-            @SuppressLint("CheckResult")
             override fun onQueryTextChange(query: String): Boolean {
                 searchTextChange.onNext(query)
                 searchTextChange
+                    .doOnComplete { mCompositeDisposable.clear() }
                     .debounce(400, TimeUnit.MILLISECONDS)
                     .filter{ it.isNotEmpty() && it.length >= 3 }
                     .map { it.lowercase().trim() }
                     .subscribeOn(AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe{ searchViewModel.searchMovies(it) }
+                    .subscribe{
+                        searchViewModel.searchMovies(it)
+                    }.let { mCompositeDisposable::add }
 
                 return true
             }

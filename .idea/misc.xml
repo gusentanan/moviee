@@ -4,10 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/bg_card_detail.xml" value="0.26205128205128203" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.23148148148148148" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2324074074074074" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_baseline_search.xml" value="0.25092592592592594" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_clear_text.xml" value="0.25092592592592594" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_empty_search.xml" value="0.25092592592592594" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/rounded_stroke_gray.xml" value="0.25092592592592594" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/font/font_certificates.xml" value="0.23148148148148148" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/font/work_sans.xml" value="0.23148148148148148" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/font/work_sans_bold.xml" value="0.23148148148148148" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_search.xml" value="0.25" />

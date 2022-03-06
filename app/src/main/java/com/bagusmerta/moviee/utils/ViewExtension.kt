@@ -1,7 +1,9 @@
 package com.bagusmerta.moviee.utils
 
 import android.app.Activity
+import android.content.Context
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toast
 import com.bagusmerta.core.utils.Constants.IMAGE_URL
