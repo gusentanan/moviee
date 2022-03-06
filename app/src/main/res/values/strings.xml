@@ -14,5 +14,5 @@
     <string name="favorite_menu">Favorite Menu</string>
     <string name="title_favoritee">favoritee</string>
     <string name="detail_page_title">Detail Page</string>
-    <string name="no_data">The Movie Not Found!</string>
+    <string name="no_data">No Data</string>
 </resources>

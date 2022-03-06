@@ -1,6 +1,5 @@
 package com.bagusmerta.core.data.source.local
 
-import android.util.Log
 import com.bagusmerta.core.data.source.local.dao.MovieeDao
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import io.reactivex.Completable

@@ -2,7 +2,6 @@ package com.bagusmerta.moviee.presentation.detail
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bagusmerta.core.domain.model.Moviee

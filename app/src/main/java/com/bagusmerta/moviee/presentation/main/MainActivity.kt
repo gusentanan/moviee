@@ -1,7 +1,6 @@
 package com.bagusmerta.moviee.presentation.main
 
 import android.content.Intent
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView

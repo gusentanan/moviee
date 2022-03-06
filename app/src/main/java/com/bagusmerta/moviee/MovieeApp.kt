@@ -18,7 +18,6 @@ class MovieeApp: Application() {
             androidLogger(Level.NONE)
             androidContext(this@MovieeApp)
             modules(
-                /**  put your app module here */
                 databaseModule,
                 networkModule,
                 repositoryModule,

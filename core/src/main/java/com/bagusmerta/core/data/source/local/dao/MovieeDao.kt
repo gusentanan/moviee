@@ -1,6 +1,9 @@
 package com.bagusmerta.core.data.source.local.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.utils.Constants.CHECK_FAVORITE_MOVIES
 import com.bagusmerta.core.utils.Constants.GET_ALL_FAVORITE_MOVIES

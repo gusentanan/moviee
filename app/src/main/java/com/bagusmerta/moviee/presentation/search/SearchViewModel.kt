@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.core.utils.singleTransformerComputation
 import io.reactivex.disposables.CompositeDisposable
 
 class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
