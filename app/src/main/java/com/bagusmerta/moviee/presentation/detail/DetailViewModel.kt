@@ -22,7 +22,6 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
         useCase.setFavoriteMovies(data, isFavorite)
-            .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({
                 _btnState.postValue(isFavorite)
             }, { error ->
@@ -32,12 +31,16 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     fun checkFavoriteMovies(id: Int){
         useCase.checkFavoriteMovies(id)
-            .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ data ->
                 _btnState.postValue(data.isFavorite)
                 _result.postValue(data)
             }, { error ->
                 Log.e("DetailViewModel: ", error.message.toString())
             }).let(mCompositeDisposable::add)
+    }
+
+    override fun onCleared() {
+        mCompositeDisposable.clear()
+        super.onCleared()
     }
 }

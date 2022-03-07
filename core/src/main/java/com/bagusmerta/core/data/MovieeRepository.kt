@@ -34,7 +34,7 @@ class MovieeRepositoryImpl(
             }
 
             override fun shouldFetch(data: List<Moviee>?): Boolean {
-                return data == null || data.isEmpty()
+                return true
             }
 
             override fun createCall(): Flowable<ResultState<List<MovieeItemResponse>>> {
@@ -63,8 +63,9 @@ class MovieeRepositoryImpl(
 
     override fun checkFavoriteMovies(id: Int): Maybe<Moviee> {
         return localDataSource.checkFavoriteMovie(id)
-            .map { DataMapper.mapMovieeEntityToDomain(it) }
             .compose(maybeTransformerIo())
+            .map { DataMapper.mapMovieeEntityToDomain(it) }
+
     }
 
     override fun searchMovies(query: String): Single<Resource<List<Moviee>>> {

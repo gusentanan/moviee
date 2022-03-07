@@ -9,7 +9,6 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
 import com.bagusmerta.moviee.R
@@ -54,12 +53,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStateObserver() {
         with(mainViewModel){
-            movieeList.observe(this@MainActivity){
-                when(it){
-                    is Resource.Success -> handleMovieeResult(it.data)
-                    is Resource.Error -> handleErrorState()
-                    is Resource.Empty -> {}
-                }
+            getAllMovies()
+            result.observe(this@MainActivity){
+                handleMovieeResult(it)
+            }
+            loadingState.observe(this@MainActivity){
+                handleLoadingState(it)
+            }
+            errorState.observe(this@MainActivity){
+                handleErrorState(it)
             }
         }
     }
@@ -70,13 +72,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleErrorState(){
-        this@MainActivity.makeToast(getString(R.string.error_something_wrong))
+    private fun handleErrorState(msg: String){
+        this.makeToast(msg)
     }
 
-    private fun handleMovieeResult(data: List<Moviee>) {
+    private fun handleMovieeResult(data: List<Moviee>?) {
         items.clear()
-        items.addAll(data)
+        data?.let { items.addAll(it) }
         bannerAdapter.setItems(items)
         mainAdapter.setItems(items)
     }

@@ -15,6 +15,7 @@ import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivitySearchBinding
 import com.bagusmerta.moviee.utils.makeGone
+import com.bagusmerta.moviee.utils.makeToast
 import com.bagusmerta.moviee.utils.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -91,10 +92,13 @@ class SearchActivity : AppCompatActivity() {
                 handleLoadingState(it)
             }
             result.observe(this@SearchActivity){
-                it?.let { handleResult(it) }
+                it?.let { handleSearchResult(it) }
             }
             emptyState.observe(this@SearchActivity){
                 handleEmptyResult(it)
+            }
+            errorState.observe(this@SearchActivity){
+                handleErrorState(it)
             }
         }
     }
@@ -114,10 +118,14 @@ class SearchActivity : AppCompatActivity() {
         searchAdapter.clearItems()
     }
 
-    private fun handleResult(data: List<Moviee>){
+    private fun handleSearchResult(data: List<Moviee>){
         items.clear()
         items.addAll(data)
         searchAdapter.setItems(items)
+    }
+
+    private fun handleErrorState(msg: String){
+        this.makeToast(msg)
     }
 
     private fun handleLoadingState(state:Boolean){

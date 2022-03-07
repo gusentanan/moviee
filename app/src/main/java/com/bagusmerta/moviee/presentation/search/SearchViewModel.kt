@@ -13,7 +13,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val _loadingState = MutableLiveData<Boolean>()
     private val _result = MutableLiveData<List<Moviee>?>()
-    private val _errorState = MutableLiveData<String?>()
+    private val _errorState = MutableLiveData<String>()
     private val _emptyState = MutableLiveData<Boolean>()
     private val mCompositeDisposable = CompositeDisposable()
 
@@ -23,7 +23,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val result: LiveData<List<Moviee>?>
         get() = _result
 
-    val errorState: LiveData<String?>
+    val errorState: LiveData<String>
         get() = _errorState
 
     val emptyState: LiveData<Boolean>
@@ -41,10 +41,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }
             .subscribe({ movies ->
                 when(movies){
-                    is Resource.Success -> {
-                        if (movies.data.isEmpty()) _emptyState.postValue(true)
-                        _result.postValue(movies.data)
-                    }
+                    is Resource.Success -> _result.postValue(movies.data)
                     is Resource.Error -> _errorState.postValue(movies.errorMessage)
                     is Resource.Empty -> _emptyState.postValue(true)
                 }

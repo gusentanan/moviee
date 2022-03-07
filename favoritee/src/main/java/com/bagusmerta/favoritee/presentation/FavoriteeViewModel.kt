@@ -6,5 +6,5 @@ import com.bagusmerta.core.domain.usecase.MovieeUseCase
 
 class FavoriteeViewModel(useCase: MovieeUseCase): ViewModel() {
 
-    val favoriteMovieList = LiveDataReactiveStreams.fromPublisher(useCase.getAllFavoriteMovies(isFavorite = true))
+    val favoriteMovieList = LiveDataReactiveStreams.fromPublisher(useCase.getAllFavoriteMovies(true))
 }

@@ -60,10 +60,6 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleErrorState(){
-        this@DetailActivity.makeToast(getString(R.string.error_something_wrong))
-    }
-
     private fun handleButtonSaveIcon(isFavorite: Boolean){
         binding.apply {
             if(isFavorite){
