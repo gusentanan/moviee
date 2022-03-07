@@ -17,7 +17,8 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
-        android:baselineAlignBottom="true"/>
+        android:baselineAlignBottom="true"
+        android:contentDescription="@string/poster_movie" />
 
 
 </androidx.cardview.widget.CardView>

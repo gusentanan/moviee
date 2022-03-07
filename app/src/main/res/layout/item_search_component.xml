@@ -27,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@color/gray" />
+                android:src="@color/gray"
+                android:contentDescription="@string/poster_movie" />
 
         </androidx.cardview.widget.CardView>
 
@@ -39,7 +40,6 @@
             android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:lines="1"
-            android:text="@string/ex_movie_title"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/cv_search_poster"
@@ -52,7 +52,6 @@
             android:layout_marginStart="24dp"
             android:ellipsize="end"
             android:lines="2"
-            android:text="@string/ex_overview_movie"
             android:textColor="@color/colorSecondaryDark"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

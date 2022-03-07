@@ -34,7 +34,7 @@ class MovieeRepositoryImpl(
             }
 
             override fun shouldFetch(data: List<Moviee>?): Boolean {
-                return true
+                return data == null || data.isEmpty()
             }
 
             override fun createCall(): Flowable<ResultState<List<MovieeItemResponse>>> {

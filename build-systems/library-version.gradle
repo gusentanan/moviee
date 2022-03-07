@@ -1,7 +1,5 @@
 ext {
 
-    /** library version */
-
     mockitoCore = '3.10.0'
     espressoVersion = '3.4.0'
     kotlinVersion = '1.6.10'
@@ -60,7 +58,7 @@ ext {
 
     ]
 
-    supportDependencies = [
+    supportDep = [
             design          : "com.google.android.material:material:$materialVersion",
             recyclerView    : "androidx.recyclerview:recyclerview:$recycleViewVersion",
             appCompat       : "androidx.appcompat:appcompat:$appCompatVersion",
@@ -69,7 +67,7 @@ ext {
             card            : "androidx.cardview:cardview:$cardViewVersion"
     ]
 
-    testSupportDependencies = [
+    testSupportDep = [
             extRunner             : "androidx.test.ext:junit:$jUnitExtVersion",
             espressoCore          : "androidx.test.espresso:espresso-core:$espressoVersion",
             espressoIntents       : "androidx.test.espresso:espresso-intents:$espressoVersion",
@@ -77,7 +75,7 @@ ext {
             espressoIdlingResource: "androidx.test.espresso:espresso-idling-resource:$espressoVersion",
     ]
 
-    testLibraries = [
+    testLib = [
             coreTesting   : "androidx.arch.core:core-testing:$archCoreTestingVersion",
             junit         : "junit:junit:$jUnitVersion",
             mockitoCore   : "org.mockito:mockito-core:$mockitoCore",

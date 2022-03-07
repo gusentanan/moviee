@@ -2,7 +2,6 @@ package com.bagusmerta.moviee.presentation.main
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bagusmerta.core.data.Resource
@@ -49,7 +48,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
     }
 
     override fun onCleared() {
-        mCompositeDisposable.clear()
         super.onCleared()
+        mCompositeDisposable.clear()
     }
 }

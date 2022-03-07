@@ -8,7 +8,6 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.utils.loadImage
-import com.bagusmerta.moviee.utils.makeToast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
