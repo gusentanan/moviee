@@ -11,14 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="@dimen/constraint_guide_left_percent"/>
+        app:layout_constraintGuide_percent="@dimen/constraint_guide_left_percent"
+        tools:ignore="DuplicateIncludedIds" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="@dimen/constraint_guide_right_percent"/>
+        app:layout_constraintGuide_percent="@dimen/constraint_guide_right_percent"
+        tools:ignore="DuplicateIncludedIds" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_home"
@@ -31,7 +33,8 @@
             layout="@layout/search_custom_app_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateIncludedIds" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

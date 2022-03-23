@@ -9,3 +9,5 @@ rootProject.name = "moviee"
 include ':app'
 include ':core'
 include ':favoritee'
+
+include ':utility'

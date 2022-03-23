@@ -1,6 +1,5 @@
-package com.bagusmerta.moviee.testHelper
+package com.bagusmerta.moviee.main.testHelper
 
-import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.google.gson.Gson
 import java.io.InputStreamReader

@@ -7,8 +7,8 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.favoritee.R
 import com.bagusmerta.favoritee.databinding.ActivityFavoriteeBinding
 import com.bagusmerta.favoritee.di.favoriteeModule
-import com.bagusmerta.moviee.utils.makeGone
-import com.bagusmerta.moviee.utils.makeVisible
+import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 

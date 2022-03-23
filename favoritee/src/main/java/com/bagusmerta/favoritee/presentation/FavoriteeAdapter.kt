@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
-import com.bagusmerta.moviee.utils.loadImage
+import com.bagusmerta.utility.loadImage
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {
 
-    var items = mutableListOf<Moviee>()
+    private var items = mutableListOf<Moviee>()
 
     inner class ViewHolder(private val binding: ItemFavoriteeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Moviee){

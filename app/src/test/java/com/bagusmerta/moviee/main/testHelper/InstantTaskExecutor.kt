@@ -1,4 +1,4 @@
-package com.bagusmerta.moviee.testHelper
+package com.bagusmerta.moviee.main.testHelper
 
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor

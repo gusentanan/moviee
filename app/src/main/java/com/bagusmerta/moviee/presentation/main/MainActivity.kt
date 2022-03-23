@@ -16,9 +16,9 @@ import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.BannerAdapter
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.moviee.presentation.search.SearchActivity
-import com.bagusmerta.moviee.utils.makeGone
-import com.bagusmerta.moviee.utils.makeToast
-import com.bagusmerta.moviee.utils.makeVisible
+import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeToast
+import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

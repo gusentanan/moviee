@@ -7,7 +7,7 @@ import androidx.core.content.ContextCompat
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
-import com.bagusmerta.moviee.utils.loadImage
+import com.bagusmerta.utility.loadImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {

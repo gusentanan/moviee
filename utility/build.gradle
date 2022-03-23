@@ -1,12 +1,11 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
-    id 'kotlin-parcelize'
-    id 'kotlin-kapt'
 }
 
+
 apply {
-    from "../build-systems/shared-dependencies.gradle"
+    from '../build-systems/shared-dependencies.gradle'
 }
 
 android {
@@ -18,8 +17,8 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "API_KEY", "\"e87f1caa9ba887b36d2b6613e7759f6f\""
-        buildConfigField "String", "BASE_API", "\"https://api.themoviedb.org/3/\""
+        buildConfigField "String", "POSTER_URL", "\"https://image.tmdb.org/t/p/w500\""
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -37,16 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
 }
 
 dependencies {
-    implementation project(":utility")
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation libraries.okhttp3
-    implementation libraries.okhttp3Logging
-    implementation libraries.retrofit2
-    implementation libraries.retrofit2Gson
-    implementation libraries.retrofit2Rx2
-    kapt libraries.roomCompiler
+    implementation project(":core")
 }

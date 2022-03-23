@@ -14,9 +14,9 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivitySearchBinding
-import com.bagusmerta.moviee.utils.makeGone
-import com.bagusmerta.moviee.utils.makeToast
-import com.bagusmerta.moviee.utils.makeVisible
+import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeToast
+import com.bagusmerta.utility.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject

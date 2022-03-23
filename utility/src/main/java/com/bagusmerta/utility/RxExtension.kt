@@ -1,4 +1,4 @@
-package com.bagusmerta.core.utils
+package com.bagusmerta.utility
 
 import io.reactivex.CompletableTransformer
 import io.reactivex.FlowableTransformer

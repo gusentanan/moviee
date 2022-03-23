@@ -49,6 +49,7 @@ android {
 dependencies {
 
     implementation project(":core")
+    implementation project(":utility")
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation libraries.splashScreen
     implementation libraries.rxStream

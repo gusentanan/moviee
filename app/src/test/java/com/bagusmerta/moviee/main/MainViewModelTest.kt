@@ -6,10 +6,10 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.moviee.presentation.main.MainViewModel
-import com.bagusmerta.moviee.testHelper.InstantTaskExecutor
-import com.bagusmerta.moviee.testHelper.TrampolineRxSchedulers
-import com.bagusmerta.moviee.testHelper.getDummyResponse
-import com.bagusmerta.moviee.testHelper.load
+import com.bagusmerta.moviee.main.testHelper.InstantTaskExecutor
+import com.bagusmerta.moviee.main.testHelper.TrampolineRxSchedulers
+import com.bagusmerta.moviee.main.testHelper.getDummyResponse
+import com.bagusmerta.moviee.main.testHelper.load
 import io.reactivex.Flowable
 import org.junit.After
 import org.junit.Before

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.databinding.ItemSlideShowBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
-import com.bagusmerta.moviee.utils.loadImage
+import com.bagusmerta.utility.loadImage
 
 class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
 
