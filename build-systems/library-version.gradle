@@ -54,6 +54,7 @@ ext {
             roomRxJava           : "androidx.room:room-rxjava2:$roomVersion",
             roomKtx              : "androidx.room:room-ktx:$roomVersion",
             lottie               : "com.airbnb.android:lottie:$lottieVersion",
+            gson                 : "com.google.code.gson:gson:2.9.0",
             splashScreen         : "androidx.core:core-splashscreen:$splashScreenVersion"
 
     ]
@@ -81,7 +82,7 @@ ext {
             mockitoCore   : "org.mockito:mockito-core:$mockitoCore",
             mockitoAndroid: "org.mockito:mockito-android:$mockitoCore",
             mockitoInline : "org.mockito:mockito-inline:$mockitoCore",
-            mockitoKotlin : "com.nhaarman:mockito-kotlin:3.2.0",
+            mockitoKotlin : "org.mockito.kotlin:mockito-kotlin:4.0.0",
             kotlinReflect : "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
             kotlinJunit   : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion",
             coroutinesTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion",

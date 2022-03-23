@@ -6,7 +6,6 @@ dependencies {
     implementation supportDep.design
     implementation supportDep.constraintLayout
     implementation supportDep.support
-    testImplementation testLib.junit
     androidTestImplementation testSupportDep.extRunner
     androidTestImplementation testSupportDep.espressoCore
     implementation libraries.koinCore
@@ -16,7 +15,7 @@ dependencies {
     implementation libraries.roomRuntime
     implementation libraries.roomRxJava
     implementation libraries.roomKtx
-    androidTestImplementation testLib.roomTest
+    implementation libraries.gson
 
     implementation libraries.viewModelKtx
     implementation libraries.runtimeKtx
@@ -24,4 +23,15 @@ dependencies {
     implementation libraries.activityKtx
     implementation libraries.glide
     implementation supportDep.card
+
+    testImplementation testLib.junit
+    testImplementation testLib.mockitoCore
+    testImplementation testLib.mockitoKotlin
+    testImplementation testLib.mockitoInline
+
+    androidTestImplementation testLib.junit
+    androidTestImplementation testLib.roomTest
+    androidTestImplementation testLib.mockitoAndroid
+    androidTestImplementation testSupportDep.extRunner
+    androidTestImplementation testSupportDep.espressoCore
 }
