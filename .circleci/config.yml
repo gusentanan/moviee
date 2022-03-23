@@ -12,7 +12,7 @@ jobs:
 
       - run:
           name: Download Dependencies
-          command: ./gradlew androidDependecies
+          command: ./gradlew androidDependencies
 
       - run: 
           name: Run App Module Unit Test
