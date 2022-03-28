@@ -28,6 +28,7 @@ ext {
     activityKtxVersion = "1.4.0"
     cardViewVersion = "1.0.0"
     timberVersion = "5.0.1"
+    shimmerVersion = "0.5.0"
 
 
     libraries = [
@@ -55,7 +56,8 @@ ext {
             roomKtx              : "androidx.room:room-ktx:$roomVersion",
             lottie               : "com.airbnb.android:lottie:$lottieVersion",
             gson                 : "com.google.code.gson:gson:2.9.0",
-            splashScreen         : "androidx.core:core-splashscreen:$splashScreenVersion"
+            splashScreen         : "androidx.core:core-splashscreen:$splashScreenVersion",
+            shimmer              : "com.facebook.shimmer:shimmer:$shimmerVersion"
 
     ]
 

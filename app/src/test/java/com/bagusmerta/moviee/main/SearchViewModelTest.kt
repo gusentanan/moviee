@@ -2,12 +2,10 @@ package com.bagusmerta.moviee.main
 
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.moviee.main.testHelper.*
-import com.bagusmerta.moviee.presentation.main.MainViewModel
-import io.reactivex.Flowable
+import com.bagusmerta.moviee.presentation.search.SearchViewModel
+import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -17,80 +15,81 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-class MainViewModelTest {
-    private val useCase: MovieeUseCase = mock()
-    private lateinit var mainViewModel: MainViewModel
+class SearchViewModelTest {
+    private var useCase: MovieeUseCase = mock()
+    private lateinit var searchViewModel: SearchViewModel
 
     @Before
-    fun setUp(){
+    fun setup(){
         MockitoAnnotations.openMocks(this)
-        mainViewModel = MainViewModel(useCase)
+        searchViewModel = SearchViewModel(useCase)
 
         TrampolineRxSchedulers.start()
         InstantTaskExecutor.start()
     }
 
     @Test
-    fun `when success fetch data should return list of movie`(){
+    fun `when success search movies should return list of movies`(){
         val expectedValue = Resource.Success(getDummyResponse())
+        val query = "title"
+        whenever(useCase.searchMovies(query))
+            .thenReturn(Single.just(expectedValue))
 
-        whenever(useCase.getAllMovies())
-            .thenReturn(Flowable.just(expectedValue))
+        searchViewModel.searchMovies(query)
 
-        mainViewModel.getAllMovies()
-
-        val testCase = useCase.getAllMovies().test()
+        val testCase = useCase.searchMovies(query).test()
         testCase.awaitTerminalEvent()
         testCase.apply {
             assertNoErrors()
             assertComplete()
             assertValueCount(1)
-            assertValue{
+            assertValue {
                 val json = load(MovieeResponse::class.java, "response/movie_response.json")
                 val actualValue = Resource.Success(mapResponseToDomain(json))
                 when(it){
                     is Resource.Success -> it.data.size == actualValue.data.size
                     else -> false
                 }
-            }.dispose()
-        }
-        verify(useCase, atLeastOnce()).getAllMovies()
+            }
+        }.dispose()
+
+        verify(useCase, atLeastOnce()).searchMovies(query)
     }
 
     @Test
-    fun `when success fetch data but empty should return empty state`(){
-        whenever(useCase.getAllMovies())
-            .thenReturn(Flowable.just(Resource.Empty))
+    fun `when success search movies but empty should return empty state`(){
+        val query = "title"
+        whenever(useCase.searchMovies(query))
+            .thenReturn(Single.just(Resource.Empty))
 
-        mainViewModel.getAllMovies()
+        searchViewModel.searchMovies(query)
 
-        val testCase = useCase.getAllMovies().test()
+        val testCase = useCase.searchMovies(query).test()
         testCase.awaitTerminalEvent()
         testCase.apply {
             assertNoErrors()
             assertComplete()
-            assertValue{
+            assertValue {
                 it == Resource.Empty
             }
         }.dispose()
-        verify(useCase, atLeastOnce()).getAllMovies()
+
+        verify(useCase, atLeastOnce()).searchMovies(query)
     }
 
     @Test
-    fun `when failed fetch data should return error message`(){
-        val errorMessage = "Oops something happen!"
+    fun `when failed search movies should return error message`(){
+        val errorMessage = "Opps Something Happen!"
         val expectedValue = Resource.Error(errorMessage)
+        val query = "title"
+        whenever(useCase.searchMovies(query))
+            .thenReturn(Single.just(expectedValue))
 
-        whenever(useCase.getAllMovies())
-            .thenReturn(Flowable.just(expectedValue))
+        searchViewModel.searchMovies(query)
 
-        mainViewModel.getAllMovies()
-
-        val testCase = useCase.getAllMovies().test()
+        val testCase = useCase.searchMovies(query).test()
         testCase.awaitTerminalEvent()
         testCase.apply {
-            assertNoErrors()
-            assertComplete()
             assertValue {
                 when(it){
                     is Resource.Error -> it.errorMessage == errorMessage
@@ -98,7 +97,8 @@ class MainViewModelTest {
                 }
             }
         }.dispose()
-        verify(useCase, atLeastOnce()).getAllMovies()
+
+        verify(useCase, atLeastOnce()).searchMovies(query)
     }
 
     @After

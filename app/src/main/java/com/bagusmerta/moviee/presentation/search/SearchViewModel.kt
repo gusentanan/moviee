@@ -1,6 +1,5 @@
 package com.bagusmerta.moviee.presentation.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +7,7 @@ import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 
 class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
@@ -46,7 +46,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
                     is Resource.Empty -> _emptyState.postValue(true)
                 }
             }, { error ->
-                Log.e("SearchViewModel: ", error.message.toString())
+                Timber.e(error.message.toString())
             }).let(mCompositeDisposable::add)
     }
 

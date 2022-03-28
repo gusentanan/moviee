@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lottieView"
+        android:id="@+id/lottie_view"
         android:layout_width="140dp"
         android:layout_height="140dp"
         app:lottie_autoPlay="true"
@@ -17,10 +17,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_empty_state"
         style="@style/Text.Header1"
         android:textSize="24sp"
         android:text="@string/no_data"
-        app:layout_constraintTop_toBottomOf="@id/lottieView"
+        app:layout_constraintTop_toBottomOf="@id/lottie_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

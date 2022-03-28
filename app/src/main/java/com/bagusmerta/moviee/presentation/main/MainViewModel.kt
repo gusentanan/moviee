@@ -8,6 +8,7 @@ import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 
 
 class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
@@ -39,11 +40,11 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
                         _loadingState.postValue(false)
                         _result.postValue(value.data)
                     }
-                    is Resource.Error -> { _errorState.postValue(value.errorMessage) }
-                    is Resource.Empty -> { _emptyState.postValue(true) }
+                    is Resource.Error ->  _errorState.postValue(value.errorMessage)
+                    is Resource.Empty ->  _emptyState.postValue(true)
                 }
             }, { error ->
-                Log.e("MainViewModel: ", error.message.toString())
+                Timber.e(error.message.toString())
             }).let(mCompositeDisposable::add)
     }
 

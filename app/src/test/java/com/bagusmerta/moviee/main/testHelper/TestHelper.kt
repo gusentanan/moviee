@@ -1,6 +1,8 @@
 package com.bagusmerta.moviee.main.testHelper
 
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.utils.DataMapper
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
@@ -26,8 +28,23 @@ fun getDummyResponse() =
             )
         )
 
+fun getSingleMovieResponse() = Moviee(
+    id = 324668,
+    posterPath = "/lFSSLTlFozwpaGlO31OoUeirBgQ.jpg",
+    title = "Jason Bourne",
+    overview = "The most dangerous former operative of the CIA is drawn out of hiding to uncover hidden truths about his past.",
+    backdropPath = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
+    releaseDate = "2016-07-27",
+    isFavorite = false
+)
 
 fun <T> load(clss: Class<T>, file: String): T {
     val fixtureStreamReader = InputStreamReader(clss.classLoader?.getResourceAsStream(file))
     return Gson().fromJson(fixtureStreamReader, clss)
+}
+
+fun mapResponseToDomain(data: MovieeResponse): List<Moviee> {
+    return DataMapper.mapListMovieeResponseToEntity(data.movieeResponse).let {
+        DataMapper.mapListMovieeEntityToDomain(it)
+    }
 }

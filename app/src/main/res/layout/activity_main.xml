@@ -50,6 +50,7 @@
         android:id="@+id/tv_new_movie"
         style="@style/Text.Header1"
         android:text="@string/header_now_playing"
+        android:visibility="gone"
         android:layout_marginTop="18dp"
         android:layout_marginStart="8dp"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
@@ -70,6 +71,7 @@
         android:text="@string/header_movies"
         android:layout_marginStart="8dp"
         android:layout_marginTop="14dp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
         app:layout_constraintTop_toBottomOf="@id/rv_new_movies" />
 
@@ -92,7 +94,23 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"/>
+
+    <include
+        android:id="@+id/lottie_empty_res"
+        layout="@layout/search_empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

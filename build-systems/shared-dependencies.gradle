@@ -10,6 +10,7 @@ dependencies {
     androidTestImplementation testSupportDep.espressoCore
     implementation libraries.koinCore
     implementation libraries.koinAndroid
+    implementation libraries.timber
 
     implementation libraries.rx2Android
     implementation libraries.roomRuntime

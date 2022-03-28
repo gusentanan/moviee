@@ -63,12 +63,9 @@ class MainActivity : AppCompatActivity() {
             errorState.observe(this@MainActivity){
                 handleErrorState(it)
             }
-        }
-    }
-
-    private fun handleLoadingState(state: Boolean){
-        binding.progressBar.apply {
-            if(state) makeVisible() else makeGone()
+            emptyState.observe(this@MainActivity){
+                handleEmptyState(it)
+            }
         }
     }
 
@@ -95,6 +92,34 @@ class MainActivity : AppCompatActivity() {
             rvMovies.layoutManager = GridLayoutManager(this@MainActivity, 2)
             rvMovies.setHasFixedSize(true)
             rvMovies.adapter = mainAdapter
+        }
+    }
+
+    private fun handleEmptyState(state: Boolean){
+        binding.apply {
+            lottieEmptyRes.root.let {
+                if(state) it.makeVisible() else it.makeGone()
+            }
+            tvNewMovie.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvListMovie.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+        }
+    }
+
+    private fun handleLoadingState(state: Boolean){
+        binding.apply {
+            progressBar.let {
+                if (state) it.makeVisible() else it.makeGone()
+            }
+            tvNewMovie.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvListMovie.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
         }
     }
 }

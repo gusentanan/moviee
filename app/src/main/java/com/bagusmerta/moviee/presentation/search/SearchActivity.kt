@@ -112,8 +112,11 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun handleEmptyResult(state: Boolean){
-        binding.lottieEmptyRes.root.apply {
-            if(state) makeVisible() else makeGone()
+        binding.apply {
+            lottieEmptyRes.root.let {
+                if(state) it.makeVisible() else it.makeGone()
+            }
+            lottieEmptyRes.tvEmptyState.text = getString(R.string.search_movie_not_found)
         }
         searchAdapter.clearItems()
     }
