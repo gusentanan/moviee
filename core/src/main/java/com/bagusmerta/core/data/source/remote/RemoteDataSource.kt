@@ -1,7 +1,6 @@
 package com.bagusmerta.core.data.source.remote
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.utils.ResultState
@@ -13,6 +12,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.SingleSubject
+import timber.log.Timber
 
 class RemoteDataSource(private val apiService: MovieeService) {
 
@@ -27,7 +27,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
 
             }, { error ->
                 res.onNext(ResultState.Error(error.message.toString()))
-                Log.e("RemoteDataSource -> GetAllMovies: ", error.toString())
+                Timber.e(error.toString())
             })
 
         return res.toFlowable(BackpressureStrategy.BUFFER)
@@ -45,7 +45,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
                 res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
             }, { error ->
                 res.onSuccess(ResultState.Error(error.message.toString()))
-                Log.e("RemoteDataSource -> SearchMovies: ", error.toString())
+                Timber.e(error.toString())
             }).let(mCompositeDisposable::add)
 
         return res

@@ -12,6 +12,6 @@
     <string name="no_data">No Data</string>
     <string name="header_now_playing">Now Playing Movies</string>
     <string name="header_movies">Movies</string>
-    <string name="hint_search_movies">Search for movies ...</string>
+    <string name="hint_search_movies">Search for movies …</string>
     <string name="search_movie_not_found">Movie Not Found!</string>
 </resources>

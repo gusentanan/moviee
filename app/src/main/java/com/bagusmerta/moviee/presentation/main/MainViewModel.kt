@@ -1,6 +1,5 @@
 package com.bagusmerta.moviee.presentation.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,7 +32,10 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     fun getAllMovies(){
         useCase.getAllMovies()
-            .doOnSubscribe { _loadingState.postValue(true) }
+            .doOnSubscribe {
+                _loadingState.postValue(true)
+                _emptyState.postValue(false)
+            }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {

@@ -34,7 +34,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@color/gray" />
+                    android:src="@color/gray"
+                    android:contentDescription="@string/image_detail_movie"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -53,7 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@color/gray" />
+                    android:src="@color/gray"
+                    android:contentDescription="@string/poster_movie"/>
 
 
             </androidx.cardview.widget.CardView>

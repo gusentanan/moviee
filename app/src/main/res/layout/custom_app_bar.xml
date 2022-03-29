@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/colorPrimaryDark"
-    android:layout_height="wrap_content">
+    tools:ignore="Overdraw">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_left"
@@ -80,7 +81,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_baseline_search_24"/>
+                android:src="@drawable/ic_baseline_search_24"
+                android:contentDescription="@string/hint_search_movies" />
 
             <TextView
                 android:id="@+id/tv_search_hint"

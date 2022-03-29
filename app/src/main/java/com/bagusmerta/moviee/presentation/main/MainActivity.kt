@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModel()
     private val items = mutableListOf<Moviee>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -37,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         initStateObserver()
         initRecyclerBanner()
         initRecyclerView()
+
     }
 
     private fun initAppBar(){

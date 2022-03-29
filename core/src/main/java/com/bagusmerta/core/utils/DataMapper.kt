@@ -18,19 +18,6 @@ object DataMapper {
             )
         }
 
-    fun mapMovieeResponseToEntity(data: MovieeItemResponse): MovieeEntity =
-        data.let {
-            MovieeEntity(
-                id = it.movieeId,
-                title = it.movieeTitle,
-                backdropPath = it.backdropPath,
-                posterPath = it.posterPath,
-                releaseDate = it.releaseDate,
-                overview = it.overview,
-                isFavorite = false
-            )
-        }
-
     fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<Moviee> =
         data.map {
             Moviee(

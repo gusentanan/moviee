@@ -12,6 +12,7 @@ import com.bagusmerta.core.utils.Constants.API_KEY
 import com.bagusmerta.core.utils.Constants.BASE_URL
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -66,6 +67,7 @@ private fun okHttpClientBuilder(): OkHttpClient {
         .addInterceptor(loggingInterceptor())
         .connectTimeout(120, TimeUnit.SECONDS)
         .readTimeout(120, TimeUnit.SECONDS)
+        .certificatePinner(certificatePinningBuilder())
         .build()
 }
 
@@ -90,4 +92,10 @@ private fun loggingInterceptor(): HttpLoggingInterceptor {
             else it.setLevel(HttpLoggingInterceptor.Level.NONE)
         }
     return loggingInterceptor
+}
+
+private fun certificatePinningBuilder(): CertificatePinner {
+    return CertificatePinner.Builder()
+        .add(BuildConfig.BASE_API, "sha256/oD/WAoRPvbez1Y2dfYfuo4yujAcYHXdv1Ivb2v2MOKk=")
+        .build()
 }

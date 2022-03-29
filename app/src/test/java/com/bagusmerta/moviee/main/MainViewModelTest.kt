@@ -2,9 +2,7 @@ package com.bagusmerta.moviee.main
 
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.moviee.main.testHelper.*
 import com.bagusmerta.moviee.presentation.main.MainViewModel
 import io.reactivex.Flowable
