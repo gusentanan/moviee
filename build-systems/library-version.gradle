@@ -57,8 +57,9 @@ ext {
             lottie               : "com.airbnb.android:lottie:$lottieVersion",
             gson                 : "com.google.code.gson:gson:2.9.0",
             splashScreen         : "androidx.core:core-splashscreen:$splashScreenVersion",
-            shimmer              : "com.facebook.shimmer:shimmer:$shimmerVersion"
-
+            shimmer              : "com.facebook.shimmer:shimmer:$shimmerVersion",
+            sqlChiper            : "net.zetetic:android-database-sqlcipher:4.4.0",
+            sqlite               : "androidx.sqlite:sqlite-ktx:2.1.0"
     ]
 
     supportDep = [

@@ -10,6 +10,8 @@ import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.utils.Constants.API_KEY
 import com.bagusmerta.core.utils.Constants.BASE_URL
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -23,10 +25,15 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<MovieeDatabase>().movieeDao() }
     single {
+        val factory = SupportFactory(
+            SQLiteDatabase.getBytes("moviee".toCharArray())
+        )
         Room.databaseBuilder(
             androidContext(),
             MovieeDatabase::class.java, "Moviee.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
