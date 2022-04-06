@@ -3,7 +3,7 @@ package com.bagusmerta.moviee.main
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.moviee.main.testHelper.*
+import com.bagusmerta.core.utils.testHelper.*
 import com.bagusmerta.moviee.presentation.main.MainViewModel
 import io.reactivex.Flowable
 import org.junit.After
@@ -25,7 +25,6 @@ class MainViewModelTest {
         mainViewModel = MainViewModel(useCase)
 
         TrampolineRxSchedulers.start()
-        InstantTaskExecutor.start()
     }
 
     @Test
@@ -102,7 +101,6 @@ class MainViewModelTest {
     @After
     fun tearDown(){
         TrampolineRxSchedulers.end()
-        InstantTaskExecutor.end()
     }
 
 }

@@ -44,9 +44,12 @@ class FavoriteeActivity : AppCompatActivity() {
 
     private fun initObserverState() {
         favoriteeViewModel.apply {
-            favoriteMovieList.observe(this@FavoriteeActivity){
-                handleEmptyStateResult(it)
-                handleFavoriteMovieResult(it)
+            getAllFavoritesMovies()
+            favoriteState.observe(this@FavoriteeActivity){ state ->
+                when(state){
+                    is FavoriteMovieeState.EmptyState -> handleEmptyStateResult()
+                    is FavoriteMovieeState.GetAllFavoriteMovies -> handleFavoriteMovieResult(state.data)
+                }
             }
         }
     }
@@ -57,9 +60,9 @@ class FavoriteeActivity : AppCompatActivity() {
         favoriteeAdapter.setFavoriteItem(items)
     }
 
-    private fun handleEmptyStateResult(data: List<Moviee>){
+    private fun handleEmptyStateResult(){
         binding.lottieView.root.apply {
-            if(data.isEmpty()) makeVisible() else makeGone()
+            makeVisible()
         }
     }
 }

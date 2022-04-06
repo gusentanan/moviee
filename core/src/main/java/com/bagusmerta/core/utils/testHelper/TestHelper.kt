@@ -1,4 +1,4 @@
-package com.bagusmerta.moviee.main.testHelper
+package com.bagusmerta.core.utils.testHelper
 
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.model.Moviee

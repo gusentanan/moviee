@@ -1,4 +1,4 @@
-package com.bagusmerta.moviee.main.testHelper
+package com.bagusmerta.core.utils.testHelper
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
