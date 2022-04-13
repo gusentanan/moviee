@@ -1,9 +1,8 @@
 package com.bagusmerta.moviee.main
 
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.moviee.main.testHelper.InstantTaskExecutor
-import com.bagusmerta.moviee.main.testHelper.TrampolineRxSchedulers
-import com.bagusmerta.moviee.main.testHelper.getSingleMovieResponse
+import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
+import com.bagusmerta.core.utils.testHelper.getSingleMovieResponse
 import com.bagusmerta.moviee.presentation.detail.DetailViewModel
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -32,7 +31,6 @@ class DetailViewModelTest {
         detailViewModel = DetailViewModel(useCase)
 
         TrampolineRxSchedulers.start()
-        InstantTaskExecutor.start()
     }
 
     @Test
@@ -58,6 +56,5 @@ class DetailViewModelTest {
     @After
     fun tearDown(){
         TrampolineRxSchedulers.end()
-        InstantTaskExecutor.end()
     }
 }

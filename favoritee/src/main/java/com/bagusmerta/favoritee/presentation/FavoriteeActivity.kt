@@ -14,7 +14,11 @@ import org.koin.core.context.loadKoinModules
 
 class FavoriteeActivity : AppCompatActivity() {
 
-    private val binding: ActivityFavoriteeBinding by lazy { ActivityFavoriteeBinding.inflate(layoutInflater) }
+    private val binding: ActivityFavoriteeBinding by lazy {
+        ActivityFavoriteeBinding.inflate(
+            layoutInflater
+        )
+    }
     private val favoriteeViewModel: FavoriteeViewModel by viewModel()
     private val favoriteeAdapter: FavoriteeAdapter by lazy { FavoriteeAdapter(this) }
     private val items = mutableListOf<Moviee>()
@@ -45,24 +49,25 @@ class FavoriteeActivity : AppCompatActivity() {
     private fun initObserverState() {
         favoriteeViewModel.apply {
             getFavoriteMovies(true)
-            emptyState.observe(this@FavoriteeActivity){
+            emptyState.observe(this@FavoriteeActivity) {
                 handleEmptyStateResult(it)
             }
-            result.observe(this@FavoriteeActivity){
-                it?.let {  handleFavoriteMovieResult(it) }
+            result.observe(this@FavoriteeActivity) {
+                it?.let { handleFavoriteMovieResult(it) }
             }
         }
     }
 
-    private fun handleFavoriteMovieResult(data: List<Moviee>){
+    private fun handleFavoriteMovieResult(data: List<Moviee>) {
         items.clear()
         items.addAll(data)
         favoriteeAdapter.setFavoriteItem(items)
     }
 
-    private fun handleEmptyStateResult(state: Boolean){
+
+    private fun handleEmptyStateResult(state: Boolean) {
         binding.lottieView.root.apply {
-            if(state){
+            if (state) {
                 favoriteeAdapter.clearItems()
                 makeVisible()
             } else makeGone()

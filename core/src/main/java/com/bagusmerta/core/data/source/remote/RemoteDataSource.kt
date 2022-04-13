@@ -3,7 +3,7 @@ package com.bagusmerta.core.data.source.remote
 import android.annotation.SuppressLint
 import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
-import com.bagusmerta.core.utils.ResultState
+import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.flowableTransformerComputation
 import com.bagusmerta.utility.singleTransformerComputation
 import io.reactivex.BackpressureStrategy

@@ -1,4 +1,4 @@
-package com.bagusmerta.core.utils
+package com.bagusmerta.utility
 
 sealed class ResultState<out R> {
     data class Success<out T>(val data: T) : ResultState<T>()

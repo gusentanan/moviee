@@ -1,7 +1,7 @@
 package com.bagusmerta.core.data
 
 import android.annotation.SuppressLint
-import com.bagusmerta.core.utils.ResultState
+import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.flowableTransformerComputation
 import com.bagusmerta.utility.flowableTransformerIo
 import io.reactivex.BackpressureStrategy

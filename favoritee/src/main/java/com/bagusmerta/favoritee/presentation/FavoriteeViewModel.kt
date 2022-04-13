@@ -1,7 +1,6 @@
 package com.bagusmerta.favoritee.presentation
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bagusmerta.core.domain.model.Moviee
@@ -21,13 +20,13 @@ class FavoriteeViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val result: LiveData<List<Moviee>?>
         get() = _result
 
-    fun getFavoriteMovies(isFavorite: Boolean){
+    fun getFavoriteMovies(isFavorite: Boolean) {
         useCase.getAllFavoriteMovies(isFavorite)
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ data ->
-                if(data.isEmpty()){
+                if (data.isEmpty()) {
                     _emptyState.postValue(true)
-                }else{
+                } else {
                     _emptyState.postValue(false)
                     _result.postValue(data)
                 }
