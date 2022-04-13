@@ -49,4 +49,10 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
         this.items = data
         notifyDataSetChanged()
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearItems(){
+        items.clear()
+        notifyDataSetChanged()
+    }
 }
