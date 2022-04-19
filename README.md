@@ -1,3 +1,4 @@
+![](https://circleci.com/gh/gusentanan/moviee.svg?style=svg)
 # Moviee
 Simple movie app with MVVM pattern and clean architecture
 
