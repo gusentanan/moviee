@@ -102,12 +102,6 @@ class MainActivity : AppCompatActivity() {
             lottieEmptyRes.root.let {
                 if(state) it.makeVisible() else it.makeGone()
             }
-            tvNewMovie.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvListMovie.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
         }
     }
 
@@ -115,12 +109,6 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             progressBar.let {
                 if (state) it.makeVisible() else it.makeGone()
-            }
-            tvNewMovie.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvListMovie.let {
-                if (state) it.makeGone() else it.makeVisible()
             }
         }
     }
