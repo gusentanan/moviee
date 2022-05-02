@@ -22,7 +22,6 @@ class FavoriteeViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     fun getFavoriteMovies(isFavorite: Boolean) {
         useCase.getAllFavoriteMovies(isFavorite)
-            .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ data ->
                 if (data.isEmpty()) {
                     _emptyState.postValue(true)
@@ -33,6 +32,11 @@ class FavoriteeViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }, { err ->
                 Timber.e(err.message.toString())
             }).let(mCompositeDisposable::add)
+    }
+
+    override fun onCleared() {
+        mCompositeDisposable.clear()
+        super.onCleared()
     }
 
 }

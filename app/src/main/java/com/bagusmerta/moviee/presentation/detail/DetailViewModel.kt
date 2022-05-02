@@ -41,7 +41,8 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
     }
 
     override fun onCleared() {
-        super.onCleared()
         mCompositeDisposable.clear()
+        super.onCleared()
+
     }
 }

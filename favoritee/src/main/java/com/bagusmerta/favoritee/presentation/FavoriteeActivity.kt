@@ -30,14 +30,14 @@ class FavoriteeActivity : AppCompatActivity() {
         supportActionBar?.setTitle(R.string.favorite_page_title)
 
         loadKoinModules(favoriteeModule)
+        initBtnBack()
         initObserverState()
         initRecyclerView()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
-    }
+   private fun initBtnBack(){
+       binding.btnBack.setOnClickListener { onBackPressed() }
+   }
 
     private fun initRecyclerView() {
         binding.apply {

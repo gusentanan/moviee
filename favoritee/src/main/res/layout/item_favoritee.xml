@@ -2,19 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="30dp"
+    android:paddingBottom="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -62,10 +64,12 @@
 
             <TextView
                 android:id="@+id/tv_fav_movie_title"
+                style="@style/Text.Header1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+                android:textSize="16sp"
                 android:ellipsize="end"
                 android:lines="1"
                 android:text="@string/ex_movie_title"
@@ -79,7 +83,7 @@
                 style="@style/Text.Header2"
                 android:layout_width="0dp"
                 android:layout_marginStart="24dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:ellipsize="end"
                 android:lines="2"
                 android:textColor="@color/colorSecondaryDark"
