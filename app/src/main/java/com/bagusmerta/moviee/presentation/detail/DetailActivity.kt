@@ -20,7 +20,6 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         initView()
 
-
         initStateObserver()
     }
 
