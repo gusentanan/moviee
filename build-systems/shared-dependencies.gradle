@@ -11,6 +11,7 @@ dependencies {
     implementation libraries.koinCore
     implementation libraries.koinAndroid
     implementation libraries.timber
+    implementation libraries.motionToast
 
     implementation libraries.rx2Android
     implementation libraries.roomRuntime
@@ -35,5 +36,5 @@ dependencies {
     androidTestImplementation testLib.mockitoAndroid
     androidTestImplementation testSupportDep.extRunner
     androidTestImplementation testSupportDep.espressoCore
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    debugImplementation supportDep.leakCanary
 }

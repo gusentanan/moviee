@@ -16,8 +16,8 @@ import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.BannerAdapter
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.moviee.presentation.search.SearchActivity
+import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeToast
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleErrorState(msg: String){
-        this.makeToast(msg)
+        this.makeErrorToast(msg)
     }
 
     private fun handleMovieeResult(data: List<Moviee>?) {

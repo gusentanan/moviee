@@ -14,8 +14,8 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivitySearchBinding
+import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeToast
 import com.bagusmerta.utility.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -128,7 +128,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun handleErrorState(msg: String){
-        this.makeToast(msg)
+        this.makeErrorToast(msg)
     }
 
     private fun handleLoadingState(state:Boolean){

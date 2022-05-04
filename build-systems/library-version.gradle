@@ -29,6 +29,7 @@ ext {
     cardViewVersion = "1.0.0"
     timberVersion = "5.0.1"
     shimmerVersion = "0.5.0"
+    motionToastVersion = "1.4"
 
 
     libraries = [
@@ -59,7 +60,8 @@ ext {
             splashScreen         : "androidx.core:core-splashscreen:$splashScreenVersion",
             shimmer              : "com.facebook.shimmer:shimmer:$shimmerVersion",
             sqlChiper            : "net.zetetic:android-database-sqlcipher:4.4.0",
-            sqlite               : "androidx.sqlite:sqlite-ktx:2.1.0"
+            sqlite               : "androidx.sqlite:sqlite-ktx:2.1.0",
+            motionToast          : "com.github.Spikeysanju:MotionToast:$motionToastVersion"
     ]
 
     supportDep = [
@@ -68,7 +70,8 @@ ext {
             appCompat       : "androidx.appcompat:appcompat:$appCompatVersion",
             constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             support         : "androidx.legacy:legacy-support-v4:$legacyVersion",
-            card            : "androidx.cardview:cardview:$cardViewVersion"
+            card            : "androidx.cardview:cardview:$cardViewVersion",
+            leakCanary      : "com.squareup.leakcanary:leakcanary-android:2.4"
     ]
 
     testSupportDep = [
@@ -91,5 +94,6 @@ ext {
             coroutinesTest: "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion",
             roomTest      : "androidx.room:room-testing:$roomVersion",
     ]
+
 
 }

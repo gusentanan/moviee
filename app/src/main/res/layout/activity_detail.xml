@@ -29,7 +29,20 @@
             app:layout_constraintStart_toStartOf="@+id/const_detail_all"
             app:layout_constraintTop_toTopOf="parent" />
 
-
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:baselineAlignBottom="false"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:contentDescription="@string/share_button"
+            android:src="@drawable/ic_baseline_bookmark_border_24"
+            app:fabSize="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/iv_detail"
@@ -95,25 +108,9 @@
                 <TextView
                     android:id="@+id/tv_overview"
                     style="@style/Text.Header1"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="26dp"
                     android:text="@string/overview"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_save"
-                    app:layout_constraintStart_toEndOf="@+id/btn_save"
-                    app:layout_constraintTop_toBottomOf="@+id/tl_detail" />
-
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/btn_save"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:baselineAlignBottom="false"
-                    android:backgroundTint="@color/colorSecondaryDark"
-                    android:clickable="true"
-                    android:contentDescription="@string/share_button"
-                    android:src="@drawable/ic_baseline_bookmark_border_24"
-                    app:fabSize="normal"
                     app:layout_constraintStart_toStartOf="@+id/tl_detail"
                     app:layout_constraintTop_toBottomOf="@+id/tl_detail" />
 
@@ -121,7 +118,7 @@
                     android:id="@+id/tv_overview_detail"
                     style="@style/Text.Header2"
                     android:layout_width="0dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/colorSecondaryDark"
                     android:textSize="16sp"
