@@ -1,10 +1,12 @@
 package com.bagusmerta.favoritee
 
 
-import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
 import com.bagusmerta.core.utils.testHelper.getDummyResponse
+import com.bagusmerta.core.utils.testHelper.load
+import com.bagusmerta.core.utils.testHelper.mapResponseToDomain
 import com.bagusmerta.favoritee.presentation.FavoriteeViewModel
 import io.reactivex.Flowable
 import org.junit.After
@@ -28,8 +30,6 @@ class FavoriteeViewModelTest {
         TrampolineRxSchedulers.start()
     }
 
-    /* TODO : Complete unit test on favoritee module **/
-
     @Test
     fun `when success fetch favorite movie should return list of movie`(){
         val expectedValue = getDummyResponse()
@@ -37,16 +37,17 @@ class FavoriteeViewModelTest {
         whenever(useCase.getAllFavoriteMovies(true))
             .thenReturn(Flowable.just(expectedValue))
 
-        favoriteeViewModel.getFavoriteMovies(true)
-        verify(useCase, atLeastOnce()).getAllFavoriteMovies(true)
-    }
-
-    @Test
-    fun `when success fetch favorite movie but empty should return empty state`(){
-        val expectedValue = emptyList<Moviee>()
-
-        whenever(useCase.getAllFavoriteMovies(true))
-            .thenReturn(Flowable.just(expectedValue))
+        val testCase = useCase.getAllFavoriteMovies(true).test()
+        testCase.awaitTerminalEvent()
+        testCase.apply {
+            assertNoErrors()
+            assertComplete()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = mapResponseToDomain(json)
+                it.size == actualValue.size
+            }
+        }.dispose()
 
         favoriteeViewModel.getFavoriteMovies(true)
         verify(useCase, atLeastOnce()).getAllFavoriteMovies(true)
