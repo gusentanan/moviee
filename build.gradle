@@ -26,7 +26,6 @@ apply {
     from 'build-systems/library-version.gradle'
 }
 
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

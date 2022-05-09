@@ -47,6 +47,10 @@ android {
 
     configurations { implementation.exclude group: 'org.jetbrains', module: 'annotations' }
     dynamicFeatures = [':favoritee']
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 
