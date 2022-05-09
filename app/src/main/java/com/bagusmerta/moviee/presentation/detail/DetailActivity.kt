@@ -49,6 +49,7 @@ class DetailActivity : AppCompatActivity() {
             tvTitle.text = data.title
             tvReleaseDate.text = data.releaseDate
             tvOverviewDetail.text = data.overview
+            tvRating.text = data.rating.toString()
 
             var favoriteState = data.isFavorite!!
             btnSave.setOnClickListener {

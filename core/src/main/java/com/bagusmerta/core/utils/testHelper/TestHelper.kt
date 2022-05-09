@@ -15,7 +15,8 @@ fun getDummyResponse() =
                 overview = "From DC Comics comes the Suicide Squad, an antihero team of incarcerated supervillains who act as deniable assets for the United States government, undertaking high-risk black ops missions in exchange for commuted prison sentences.",
                 backdropPath = "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg",
                 releaseDate = "2016-08-03",
-                isFavorite = true
+                isFavorite = true,
+                rating = 7.7
             ),
             Moviee(
                 id = 324668,
@@ -24,7 +25,8 @@ fun getDummyResponse() =
                 overview = "The most dangerous former operative of the CIA is drawn out of hiding to uncover hidden truths about his past.",
                 backdropPath = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
                 releaseDate = "2016-07-27",
-                isFavorite = false
+                isFavorite = false,
+                rating = 7.7
             )
         )
 
@@ -35,7 +37,8 @@ fun getSingleMovieResponse() = Moviee(
     overview = "The most dangerous former operative of the CIA is drawn out of hiding to uncover hidden truths about his past.",
     backdropPath = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
     releaseDate = "2016-07-27",
-    isFavorite = false
+    isFavorite = false,
+    rating = 7.7
 )
 
 fun <T> load(clss: Class<T>, file: String): T {

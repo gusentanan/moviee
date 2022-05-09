@@ -14,7 +14,8 @@ object DataMapper {
                 posterPath = it.posterPath,
                 releaseDate = it.releaseDate,
                 overview = it.overview,
-                isFavorite = false
+                isFavorite = false,
+                rating = it.rating
             )
         }
 
@@ -27,7 +28,8 @@ object DataMapper {
                 posterPath = it.posterPath,
                 releaseDate = it.releaseDate,
                 overview = it.overview,
-                isFavorite = it.isFavorite
+                isFavorite = it.isFavorite,
+                rating = it.rating
             )
         }
 
@@ -40,7 +42,8 @@ object DataMapper {
                 posterPath = it.posterPath,
                 releaseDate = it.releaseDate,
                 isFavorite = it.isFavorite,
-                overview = it.overview
+                overview = it.overview,
+                rating = it.rating
             )
         }
 
@@ -52,7 +55,8 @@ object DataMapper {
                 posterPath = data.posterPath,
                 releaseDate = data.releaseDate,
                 overview = data.overview,
-                isFavorite = data.isFavorite
+                isFavorite = data.isFavorite,
+                rating = data.rating
             )
 
 

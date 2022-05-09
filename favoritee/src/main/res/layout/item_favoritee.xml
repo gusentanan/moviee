@@ -83,14 +83,15 @@
                 style="@style/Text.Header2"
                 android:layout_width="0dp"
                 android:layout_marginStart="24dp"
-                android:textSize="14sp"
                 android:ellipsize="end"
                 android:lines="2"
-                android:textColor="@color/colorSecondaryDark"
                 android:text="@string/ex_overview_movie"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cv_fav_image"
-                app:layout_constraintTop_toBottomOf="@id/tv_fav_movie_title"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_fav_movie_title" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

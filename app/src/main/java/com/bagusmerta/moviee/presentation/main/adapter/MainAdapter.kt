@@ -20,6 +20,7 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
             binding.apply {
                 ivPoster.loadImage(item.posterPath)
                 tvMovieName.text = item.title
+                tvMovieRating.text = item.rating.toString()
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {

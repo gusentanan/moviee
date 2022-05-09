@@ -45,13 +45,49 @@
                 android:id="@+id/tv_movie_name"
                 style="@style/Text.Header1"
                 android:gravity="center"
-                android:lines="1"
+                android:lines="2"
                 android:padding="10dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/cv_iv_poster"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/backgroundPrimary"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_movie_name"
+                app:layout_constraintStart_toStartOf="@+id/tv_movie_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_movie_name">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_star"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_baseline_star_24"
+                        android:contentDescription="@string/rating"/>
+
+                    <TextView
+                        android:id="@+id/tv_movie_rating"
+                        style="@style/Text.Header2"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:lines="1"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

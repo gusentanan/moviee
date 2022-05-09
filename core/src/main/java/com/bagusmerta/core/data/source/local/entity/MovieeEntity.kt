@@ -29,5 +29,8 @@ data class MovieeEntity (
     var posterPath: String?,
 
     @ColumnInfo(name = "is_favorite")
-    var isFavorite: Boolean? = false
+    var isFavorite: Boolean? = false,
+
+    @ColumnInfo(name = "rating")
+    var rating: Double?
 )

@@ -81,12 +81,37 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                     <TableRow
-                        android:id="@+id/tl_detail"
+                        android:id="@+id/tl_rating"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="@id/tv_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+                        <TextView
+                            style="@style/Text.Header2"
+                            android:textStyle="bold"
+                            android:text="@string/rating"
+                            android:textColor="@color/colorSecondaryDark"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_rating"
+                            style="@style/Text.Header2"
+                            android:layout_marginStart="80dp"
+                            android:layout_weight="1"
+                            android:textColor="@color/colorSecondaryDark"
+                            android:textSize="16sp"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tl_release"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintStart_toStartOf="@id/tl_rating"
+                        app:layout_constraintTop_toBottomOf="@id/tl_rating">
 
                         <TextView
                             style="@style/Text.Header2"
@@ -105,14 +130,15 @@
 
                     </TableRow>
 
+
                 <TextView
                     android:id="@+id/tv_overview"
                     style="@style/Text.Header1"
                     android:layout_marginTop="26dp"
                     android:text="@string/overview"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/tl_detail"
-                    app:layout_constraintTop_toBottomOf="@+id/tl_detail" />
+                    app:layout_constraintStart_toStartOf="@+id/tl_release"
+                    app:layout_constraintTop_toBottomOf="@+id/tl_release" />
 
                 <TextView
                     android:id="@+id/tv_overview_detail"
