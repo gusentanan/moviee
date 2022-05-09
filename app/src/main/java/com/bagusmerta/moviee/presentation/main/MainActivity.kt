@@ -107,8 +107,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleLoadingState(state: Boolean){
         binding.apply {
-            progressBar.let {
-                if (state) it.makeVisible() else it.makeGone()
+            shimmerLoading1.let {
+                if(state) it.makeVisible() else it.makeGone()
+            }
+            shimmerLoading2.let {
+                if(state) it.makeVisible() else it.makeGone()
             }
         }
     }
