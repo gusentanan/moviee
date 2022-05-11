@@ -29,7 +29,7 @@ class SearchViewModelTest {
 
     @Test
     fun `when success search movies should return list of movies`(){
-        val expectedValue = Resource.Success(getDummyResponse())
+        val expectedValue = Resource.Success(getDummyMoviee())
         val query = "title"
         whenever(useCase.searchMovies(query))
             .thenReturn(Single.just(expectedValue))

@@ -4,7 +4,7 @@ package com.bagusmerta.favoritee
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
-import com.bagusmerta.core.utils.testHelper.getDummyResponse
+import com.bagusmerta.core.utils.testHelper.getDummyMoviee
 import com.bagusmerta.core.utils.testHelper.load
 import com.bagusmerta.core.utils.testHelper.mapResponseToDomain
 import com.bagusmerta.favoritee.presentation.FavoriteeViewModel
@@ -32,7 +32,7 @@ class FavoriteeViewModelTest {
 
     @Test
     fun `when success fetch favorite movie should return list of movie`(){
-        val expectedValue = getDummyResponse()
+        val expectedValue = getDummyMoviee()
 
         whenever(useCase.getAllFavoriteMovies(true))
             .thenReturn(Flowable.just(expectedValue))

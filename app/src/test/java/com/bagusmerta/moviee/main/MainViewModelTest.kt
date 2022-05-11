@@ -29,7 +29,7 @@ class MainViewModelTest {
 
     @Test
     fun `when success fetch data should return list of movie`(){
-        val expectedValue = Resource.Success(getDummyResponse())
+        val expectedValue = Resource.Success(getDummyMoviee())
 
         whenever(useCase.getAllMovies())
             .thenReturn(Flowable.just(expectedValue))

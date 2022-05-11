@@ -90,7 +90,7 @@ class MovieeRepositoryTest {
 
         whenever(localDataSource.insertMovieData(data))
             .thenReturn(Completable.complete())
-        
+
         localDataSource.insertMovieData(data).test().apply {
             assertComplete()
             assertNoErrors()
