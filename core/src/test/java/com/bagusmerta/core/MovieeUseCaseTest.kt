@@ -32,7 +32,7 @@ class MovieeUseCaseTest {
 
     @Test
     fun `should return all movies when call moviee repository `(){
-        val expectedValue = Resource.Success(getDummyResponse())
+        val expectedValue = Resource.Success(getDummyMoviee())
 
         whenever(repository.getAllMovies())
             .thenReturn(Flowable.just(expectedValue))
@@ -56,7 +56,7 @@ class MovieeUseCaseTest {
 
     @Test
     fun `should return result of search movies when call moviee repository`(){
-        val expectedValue = Resource.Success(getDummyResponse())
+        val expectedValue = Resource.Success(getDummyMoviee())
         val title = "title"
 
         whenever(repository.searchMovies(title))
@@ -81,7 +81,7 @@ class MovieeUseCaseTest {
 
     @Test
     fun `should return all favorite movies when call moviee repository`(){
-        val expectedValue = getDummyResponse()
+        val expectedValue = getDummyMoviee()
         val state = true
 
         whenever(repository.getAllFavoriteMovies(state))
@@ -104,7 +104,7 @@ class MovieeUseCaseTest {
 
     @Test
     fun `should return success when call setFavoriteMovies from moviee repository`(){
-        val data = getSingleMovieResponse()
+        val data = getSingleDummyMoviee()
         val state = true
 
         whenever(repository.setFavoriteMovies(data, state))
@@ -123,7 +123,7 @@ class MovieeUseCaseTest {
     @Test
     fun `should return single movies when call checkFavoriteMovies from moviee repository`(){
         val id = 324668
-        val expectedValue = getSingleMovieResponse()
+        val expectedValue = getSingleDummyMoviee()
 
         whenever(repository.checkFavoriteMovies(id))
             .thenReturn(Maybe.just(expectedValue))
