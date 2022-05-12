@@ -9,6 +9,7 @@ Simple movie app with MVVM pattern and clean architecture
 - Glide
 - Koin 
 - Timber
+- Mockito
 
 ## How to use it ?
 - Clone this project using `https://github.com/gusentanan/moviee.git`
