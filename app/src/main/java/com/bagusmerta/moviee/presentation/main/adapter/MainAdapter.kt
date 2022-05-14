@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
@@ -21,6 +23,10 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
                 ivPoster.loadImage(item.posterPath)
                 tvMovieName.text = item.title
                 tvMovieRating.text = item.rating.toString()
+
+                movieeGrid.animation = AnimationUtils.loadAnimation(
+                    context, R.anim.fade_transition
+                )
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {

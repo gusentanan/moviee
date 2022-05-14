@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ItemSlideShowBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
@@ -18,7 +20,11 @@ class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAd
     inner class ViewHolder(private val binding: ItemSlideShowBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Moviee){
             binding.apply {
-               ivSlide.loadImage(item.backdropPath)
+                ivSlide.loadImage(item.backdropPath)
+
+                movieeBanner.animation = AnimationUtils.loadAnimation(
+                    context, R.anim.fade_transition
+                )
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {

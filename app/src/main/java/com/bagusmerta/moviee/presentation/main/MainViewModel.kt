@@ -39,8 +39,8 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {
-                        _loadingState.postValue(false)
                         _result.postValue(value.data)
+                        _loadingState.postValue(false)
                     }
                     is Resource.Error ->  _errorState.postValue(value.errorMessage)
                     is Resource.Empty ->  _emptyState.postValue(true)
