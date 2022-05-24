@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/moviee_grid"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
+    android:padding="8dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:scaleType="fitCenter"
                     tools:src="@tools:sample/avatars"
+                    android:background="@color/gray"
                     android:contentDescription="@string/poster_movie" />
 
             </androidx.cardview.widget.CardView>
@@ -46,9 +47,9 @@
                 android:id="@+id/tv_movie_name"
                 style="@style/Text.Header1"
                 android:gravity="center"
-                android:lines="2"
-                android:padding="10dp"
-                android:textSize="16sp"
+                android:lines="3"
+                android:padding="2dp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/cv_iv_poster"
                 app:layout_constraintStart_toStartOf="parent"

@@ -2,7 +2,6 @@ package com.bagusmerta.moviee.main
 
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
 import com.bagusmerta.core.utils.testHelper.getSingleDummyMoviee
 import com.bagusmerta.core.utils.testHelper.load

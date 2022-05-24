@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -45,20 +44,21 @@ class SearchActivity : AppCompatActivity() {
 
     private fun initView() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
-
-        findViewById<ImageView>(R.id.btn_favorite).setOnClickListener {
-            val uriFavorite = Uri.parse(Constants.URI_FAVORITE)
-            startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
-        }
-        binding.lottieEmptyRes.apply {
-            lottieView.setAnimation("lottie/empty_state_lottie.json")
-            lottieView.playAnimation()
+        binding.apply {
+            btnFavorite.setOnClickListener{
+                val uriFavorite = Uri.parse(Constants.URI_FAVORITE)
+                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+            }
+            lottieEmptyRes.apply {
+                lottieView.setAnimation("lottie/empty_state_lottie.json")
+                lottieView.playAnimation()
+            }
         }
     }
 
     private fun initSearchMenu(){
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = findViewById<SearchView>(R.id.sv_search)
+        val searchView = binding.svSearch
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
 

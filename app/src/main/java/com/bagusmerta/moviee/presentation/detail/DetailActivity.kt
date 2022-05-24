@@ -3,10 +3,10 @@ package com.bagusmerta.moviee.presentation.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
+import com.bagusmerta.utility.hideStatusBar
 import com.bagusmerta.utility.loadImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +25,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.btnBack.setOnClickListener { onBackPressed() }
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
+        hideStatusBar()
     }
 
     private fun initStateObserver() {

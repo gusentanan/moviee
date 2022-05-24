@@ -3,7 +3,10 @@ package com.bagusmerta.moviee.main
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.core.utils.testHelper.*
+import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
+import com.bagusmerta.core.utils.testHelper.getDummyMoviee
+import com.bagusmerta.core.utils.testHelper.load
+import com.bagusmerta.core.utils.testHelper.mapResponseToDomain
 import com.bagusmerta.moviee.presentation.main.MainViewModel
 import io.reactivex.Flowable
 import org.junit.After

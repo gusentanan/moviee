@@ -3,13 +3,16 @@ package com.bagusmerta.moviee.presentation.main
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.widget.ImageView
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.utils.Constants.BANNER_DELAY
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private val mainViewModel: MainViewModel by viewModel()
     private val items = mutableListOf<Moviee>()
 
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,13 +47,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAppBar(){
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
-
-        findViewById<ImageView>(R.id.btn_favorite).setOnClickListener {
-            val uriFavorite = Uri.parse(URI_FAVORITE)
-            startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
-        }
-        findViewById<CardView>(R.id.cv_search).setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java))
+        binding.apply {
+            btnFavorite.setOnClickListener{
+                val uriFavorite = Uri.parse(URI_FAVORITE)
+                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+            }
+            cvSearch.setOnClickListener {
+                startActivity(Intent(this@MainActivity, SearchActivity::class.java))
+            }
         }
     }
 
@@ -84,8 +89,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerBanner(){
         with(binding){
-            rvNewMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            rvNewMovies.adapter = bannerAdapter
+            viewPager = rvNewMovies
+            with(viewPager){
+                orientation =ViewPager2.ORIENTATION_HORIZONTAL
+                adapter = bannerAdapter
+                offscreenPageLimit = 3
+            }
         }
     }
 
@@ -115,4 +124,54 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+    private var scrollHandler = Handler(Looper.getMainLooper())
+    var scrollRunnable = Runnable {
+        with(binding) {
+            val setCurrent = rvNewMovies.currentItem + 1
+            rvNewMovies.currentItem = setCurrent
+            if ((setCurrent) == bannerAdapter.itemCount) {
+                rvNewMovies.currentItem = 0
+            }
+        }
+    }
+
+    private fun setupBanner() {
+        val compositePageTransformer = CompositePageTransformer()
+        val pageMargin = resources.getDimensionPixelOffset(R.dimen.set_margin).toFloat()
+        val pageOffset = resources.getDimensionPixelOffset(R.dimen.offset).toFloat()
+
+        compositePageTransformer.addTransformer { page, position ->
+            val myOffset: Float = position * -(2 * pageOffset + pageMargin)
+            val r = 1 - kotlin.math.abs(position)
+            if (viewPager.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
+                if (ViewCompat.getLayoutDirection(viewPager) == ViewCompat.LAYOUT_DIRECTION_RTL) {
+                    page.translationX = -myOffset
+                } else {
+                    page.translationX = myOffset
+                }
+            } else {
+                page.translationY = myOffset
+            }
+            page.scaleY = 0.85f + r * 0.15f
+        }
+
+        binding.rvNewMovies.apply {
+            setPageTransformer(compositePageTransformer)
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    scrollHandler.removeCallbacks(scrollRunnable)
+                    scrollHandler.postDelayed(scrollRunnable, BANNER_DELAY)
+                }
+            })
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupBanner()
+    }
+
 }

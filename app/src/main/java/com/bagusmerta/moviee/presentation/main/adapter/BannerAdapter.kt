@@ -48,7 +48,7 @@ class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAd
 
     @SuppressLint("NotifyDataSetChanged")
     fun setItems(data: MutableList<Moviee>){
-        this.items = data.asSequence().shuffled().take(3).toMutableList()
+        this.items = data.asSequence().shuffled().take(6).toMutableList()
         notifyDataSetChanged()
     }
 }

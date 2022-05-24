@@ -140,6 +140,15 @@
                     app:layout_constraintStart_toStartOf="@+id/tl_release"
                     app:layout_constraintTop_toBottomOf="@+id/tl_release" />
 
+                <View
+                    android:id="@+id/divider_overview"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    app:layout_constraintTop_toBottomOf="@id/tv_overview"
+                    app:layout_constraintStart_toStartOf="@id/tv_overview"
+                    app:layout_constraintEnd_toEndOf="@id/tv_overview"/>
+
                 <TextView
                     android:id="@+id/tv_overview_detail"
                     style="@style/Text.Header2"
@@ -150,7 +159,7 @@
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_overview" />
+                    app:layout_constraintTop_toBottomOf="@id/divider_overview" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

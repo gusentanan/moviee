@@ -5,18 +5,16 @@
     android:id="@+id/moviee_banner"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="8dp"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="2dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="parent">
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    app:cardCornerRadius="16dp">
 
     <ImageView
         android:id="@+id/iv_slide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
+        android:background="@color/gray"
         android:adjustViewBounds="true"
         android:baselineAlignBottom="true"
         android:contentDescription="@string/poster_movie" />
