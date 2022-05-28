@@ -15,4 +15,16 @@ interface MovieeService {
     @GET("search/movie")
     fun searchMovies(@Query("query") query: String): Single<MovieeResponse>
 
+    @GET("movie/top_rated")
+    fun getTopRatedMovies(): Single<MovieeResponse>
+
+    @GET("movie/upcoming")
+    fun getUpcomingMovies(): Single<MovieeResponse>
+
+    @GET("movie/popular")
+    fun getPopularMovies(): Single<MovieeResponse>
+
+    @GET("movie/now_playing")
+    fun getNowPlayingMovies(): Single<MovieeResponse>
+
 }

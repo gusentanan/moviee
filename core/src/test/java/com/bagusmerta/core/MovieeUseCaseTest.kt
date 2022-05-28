@@ -31,7 +31,7 @@ class MovieeUseCaseTest {
     }
 
     @Test
-    fun `should return all movies when call moviee repository `(){
+    fun `should return all movies when call getAllMovies`(){
         val expectedValue = Resource.Success(getDummyMoviee())
 
         whenever(repository.getAllMovies())
@@ -140,6 +140,102 @@ class MovieeUseCaseTest {
             }.dispose()
         }
         verify(repository, atLeastOnce()).checkFavoriteMovies(id)
+    }
+
+    @Test
+    fun `should return list of movies when call getUpcomingMovies`(){
+        val expectedValue = Resource.Success(getDummyMoviee())
+
+        whenever(repository.getUpcomingMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        useCase.getUpcomingMovies()
+        repository.getUpcomingMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+                when(it){
+                    is Resource.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(repository, atLeastOnce()).getUpcomingMovies()
+    }
+
+    @Test
+    fun `should return list of movies when call getPopularMovies`(){
+        val expectedValue = Resource.Success(getDummyMoviee())
+
+        whenever(repository.getPopularMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        useCase.getPopularMovies()
+        repository.getPopularMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+                when(it){
+                    is Resource.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(repository, atLeastOnce()).getPopularMovies()
+    }
+
+    @Test
+    fun `should return list of movies when call getNowPlayingMovies`(){
+        val expectedValue = Resource.Success(getDummyMoviee())
+
+        whenever(repository.getNowPlayingMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        useCase.getNowPlayingMovies()
+        repository.getNowPlayingMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+                when(it){
+                    is Resource.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(repository, atLeastOnce()).getNowPlayingMovies()
+    }
+
+    @Test
+    fun `should return list of movies when call getTopRatedMovies`(){
+        val expectedValue = Resource.Success(getDummyMoviee())
+
+        whenever(repository.getTopRatedMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        useCase.getTopRatedMovies()
+        repository.getTopRatedMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+                when(it){
+                    is Resource.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(repository, atLeastOnce()).getTopRatedMovies()
     }
 
     @After

@@ -51,4 +51,71 @@ class RemoteDataSource(private val apiService: MovieeService) {
         return res
     }
 
+    fun getTopRatedMovies(): Single<ResultState<List<MovieeItemResponse>>> {
+        val mCompositeDisposable = CompositeDisposable()
+        val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
+        apiService.getTopRatedMovies()
+            .compose(singleTransformerComputation())
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({ response ->
+                val data = response.movieeResponse
+                res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
+            }, { error ->
+                res.onSuccess(ResultState.Error(error.message.toString()))
+                Timber.e(error.toString())
+            }).let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    fun getUpcomingMovies(): Single<ResultState<List<MovieeItemResponse>>> {
+        val mCompositeDisposable = CompositeDisposable()
+        val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
+        apiService.getUpcomingMovies()
+            .compose(singleTransformerComputation())
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({ response ->
+                val data = response.movieeResponse
+                res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
+            }, { error ->
+                res.onSuccess(ResultState.Error(error.message.toString()))
+                Timber.e(error.toString())
+            }).let(mCompositeDisposable::add)
+
+        return res
+    }
+    fun getNowPlayingMovies(): Single<ResultState<List<MovieeItemResponse>>> {
+        val mCompositeDisposable = CompositeDisposable()
+        val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
+        apiService.getNowPlayingMovies()
+            .compose(singleTransformerComputation())
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({ response ->
+                val data = response.movieeResponse
+                res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
+            }, { error ->
+                res.onSuccess(ResultState.Error(error.message.toString()))
+                Timber.e(error.toString())
+            }).let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    fun getPopularMovies(): Single<ResultState<List<MovieeItemResponse>>> {
+        val mCompositeDisposable = CompositeDisposable()
+        val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
+        apiService.getPopularMovies()
+            .compose(singleTransformerComputation())
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({ response ->
+                val data = response.movieeResponse
+                res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
+            }, { error ->
+                res.onSuccess(ResultState.Error(error.message.toString()))
+                Timber.e(error.toString())
+            }).let(mCompositeDisposable::add)
+
+        return res
+    }
+
 }

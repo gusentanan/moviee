@@ -19,10 +19,15 @@ import io.reactivex.subjects.SingleSubject
 
 interface MovieeRepository {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
+    fun getUpcomingMovies(): Single<Resource<List<Moviee>>>
+    fun getPopularMovies(): Single<Resource<List<Moviee>>>
+    fun getNowPlayingMovies(): Single<Resource<List<Moviee>>>
+    fun getTopRatedMovies(): Single<Resource<List<Moviee>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
-    fun checkFavoriteMovies(id: Int): Maybe<Moviee>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
+    fun checkFavoriteMovies(id: Int): Maybe<Moviee>
+
 }
 
 class MovieeRepositoryImpl(
@@ -54,6 +59,85 @@ class MovieeRepositoryImpl(
 
         }.asFlowable()
 
+    override fun getUpcomingMovies(): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getUpcomingMovies()
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    override fun getPopularMovies(): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getPopularMovies()
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    override fun getNowPlayingMovies(): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getNowPlayingMovies()
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    override fun getTopRatedMovies(): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getTopRatedMovies()
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    override fun searchMovies(query: String): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.searchMovies(query)
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
 
     override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> {
         return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapListMovieeEntityToDomain(it) }
@@ -72,25 +156,10 @@ class MovieeRepositoryImpl(
 
     }
 
-    override fun searchMovies(query: String): Single<Resource<List<Moviee>>> {
-        val res = SingleSubject.create<Resource<List<Moviee>>>()
-        val mCompositeDisposable = CompositeDisposable()
-        remoteDataSource.searchMovies(query)
-            .doAfterTerminate{ mCompositeDisposable.clear() }
-            .subscribe { value ->
-                when (value) {
-                    is ResultState.Success -> {
-                        val listMovie = DataMapper.mapListMovieeResponseToEntity(value.data).let {
-                            DataMapper.mapListMovieeEntityToDomain(it)
-                        }
-                        res.onSuccess(Resource.Success(listMovie))
-                    }
-                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
-                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
-                }
-            }.let(mCompositeDisposable::add)
-
-        return res
+    private fun mapResponseToDomain(movieResponse: List<MovieeItemResponse>): List<Moviee>{
+        return DataMapper.mapListMovieeResponseToEntity(movieResponse).let {
+            DataMapper.mapListMovieeEntityToDomain(it)
+        }
     }
 
 }

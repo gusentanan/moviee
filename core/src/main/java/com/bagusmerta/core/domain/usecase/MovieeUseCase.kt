@@ -9,8 +9,12 @@ import io.reactivex.Single
 
 interface MovieeUseCase {
     fun getAllMovies(): Flowable<Resource<List<Moviee>>>
-    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
+    fun getUpcomingMovies(): Single<Resource<List<Moviee>>>
+    fun getPopularMovies(): Single<Resource<List<Moviee>>>
+    fun getNowPlayingMovies(): Single<Resource<List<Moviee>>>
+    fun getTopRatedMovies(): Single<Resource<List<Moviee>>>
     fun checkFavoriteMovies(id: Int): Maybe<Moviee>
+    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
 
@@ -20,6 +24,18 @@ class MovieeUseCaseImpl(private val repository: MovieeRepository) : MovieeUseCas
 
     override fun getAllMovies(): Flowable<Resource<List<Moviee>>> =
         repository.getAllMovies()
+
+    override fun getUpcomingMovies(): Single<Resource<List<Moviee>>> =
+        repository.getUpcomingMovies()
+
+    override fun getPopularMovies(): Single<Resource<List<Moviee>>> =
+        repository.getPopularMovies()
+
+    override fun getNowPlayingMovies(): Single<Resource<List<Moviee>>> =
+        repository.getNowPlayingMovies()
+
+    override fun getTopRatedMovies(): Single<Resource<List<Moviee>>> =
+        repository.getTopRatedMovies()
 
     override fun searchMovies(query: String): Single<Resource<List<Moviee>>> =
         repository.searchMovies(query)
