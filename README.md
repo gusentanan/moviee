@@ -16,3 +16,6 @@ Simple movie app with MVVM pattern and clean architecture
 - Open project using the latest version of Android Studio.
 - Run the project.
 - Run unit tests using `./gradlew clean test`
+
+## Modern Android Development scorecard
+![summary](https://user-images.githubusercontent.com/68723002/173498315-db13e052-300c-495d-a66e-e45b8e471e3e.png)
