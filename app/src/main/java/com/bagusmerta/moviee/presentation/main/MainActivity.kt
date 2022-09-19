@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bagusmerta.core.domain.model.Moviee
@@ -58,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun filterObserver(){
+
+    }
+
     private fun initStateObserver() {
         with(mainViewModel){
             getAllMovies()
@@ -100,7 +105,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         with(binding){
-            rvMovies.layoutManager = GridLayoutManager(this@MainActivity, 2)
+            rvMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             rvMovies.setHasFixedSize(true)
             rvMovies.adapter = mainAdapter
         }
@@ -121,6 +126,9 @@ class MainActivity : AppCompatActivity() {
             }
             shimmerLoading2.let {
                 if(state) it.makeVisible() else it.makeGone()
+            }
+            tvRecommendMovies.let {
+                if (state) it.makeGone() else it.makeVisible()
             }
         }
     }

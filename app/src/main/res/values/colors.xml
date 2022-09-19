@@ -5,4 +5,5 @@
     <color name="gray">#8F8F8F</color>
     <color name="backgroundPrimary">#DCEEFD</color>
     <color name="backgroundSecondary">#FFFFFF</color>
+    <color name="black_transparent_light">#7E000000</color>
 </resources>

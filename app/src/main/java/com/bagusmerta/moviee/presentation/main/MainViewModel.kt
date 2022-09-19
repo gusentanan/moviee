@@ -50,6 +50,90 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }).let(mCompositeDisposable::add)
     }
 
+    fun getUpcomingMovies(){
+        useCase.getUpcomingMovies()
+            .doOnSubscribe {
+                _loadingState.postValue(true)
+                _emptyState.postValue(false)
+            }
+            .subscribe({ value ->
+                when(value){
+                    is Resource.Success -> {
+                        _result.postValue(value.data)
+                        _loadingState.postValue(false)
+                    }
+                    is Resource.Error ->  _errorState.postValue(value.errorMessage)
+                    is Resource.Empty ->  _emptyState.postValue(true)
+                }
+
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun getPopularMovies(){
+        useCase.getPopularMovies()
+            .doOnSubscribe {
+                _loadingState.postValue(true)
+                _emptyState.postValue(false)
+            }
+            .subscribe({ value ->
+                when(value){
+                    is Resource.Success -> {
+                        _result.postValue(value.data)
+                        _loadingState.postValue(false)
+                    }
+                    is Resource.Error ->  _errorState.postValue(value.errorMessage)
+                    is Resource.Empty ->  _emptyState.postValue(true)
+                }
+
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun getTopRatedMovies(){
+        useCase.getTopRatedMovies()
+            .doOnSubscribe {
+                _loadingState.postValue(true)
+                _emptyState.postValue(false)
+            }
+            .subscribe({ value ->
+                when(value){
+                    is Resource.Success -> {
+                        _result.postValue(value.data)
+                        _loadingState.postValue(false)
+                    }
+                    is Resource.Error ->  _errorState.postValue(value.errorMessage)
+                    is Resource.Empty ->  _emptyState.postValue(true)
+                }
+
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun getNowPlayingMovies(){
+        useCase.getNowPlayingMovies()
+            .doOnSubscribe {
+                _loadingState.postValue(true)
+                _emptyState.postValue(false)
+            }
+            .subscribe({ value ->
+                when(value){
+                    is Resource.Success -> {
+                        _result.postValue(value.data)
+                        _loadingState.postValue(false)
+                    }
+                    is Resource.Error ->  _errorState.postValue(value.errorMessage)
+                    is Resource.Empty ->  _emptyState.postValue(true)
+                }
+
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
     override fun onCleared() {
         mCompositeDisposable.clear()
         super.onCleared()

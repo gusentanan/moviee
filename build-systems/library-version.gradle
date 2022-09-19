@@ -71,7 +71,7 @@ ext {
             constraintLayout: "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion",
             support         : "androidx.legacy:legacy-support-v4:$legacyVersion",
             card            : "androidx.cardview:cardview:$cardViewVersion",
-            leakCanary      : "com.squareup.leakcanary:leakcanary-android:2.4"
+            leakCanary      : "com.squareup.leakcanary:leakcanary-android:2.9.1"
     ]
 
     testSupportDep = [

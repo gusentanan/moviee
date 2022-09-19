@@ -21,12 +21,7 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
         fun bind(item: Moviee){
             binding.apply {
                 ivPoster.loadImage(item.posterPath)
-                tvMovieName.text = item.title
                 tvMovieRating.text = item.rating.toString()
-
-                movieeGrid.animation = AnimationUtils.loadAnimation(
-                    context, R.anim.fade_transition
-                )
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
