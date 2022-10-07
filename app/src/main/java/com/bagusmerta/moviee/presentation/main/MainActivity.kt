@@ -17,8 +17,7 @@ import com.bagusmerta.core.utils.Constants.BANNER_DELAY
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
-import com.bagusmerta.moviee.presentation.main.adapter.BannerAdapter
-import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
+import com.bagusmerta.moviee.presentation.main.adapter.*
 import com.bagusmerta.moviee.presentation.search.SearchActivity
 import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
@@ -29,9 +28,18 @@ class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val mainAdapter: MainAdapter by lazy { MainAdapter(this) }
+    private val upcomingMoviesAdapter: UpcomingMoviesAdapter by lazy { UpcomingMoviesAdapter(this) }
+    private val popularMoviesAdapter: PopularMoviesAdapter by lazy { PopularMoviesAdapter(this) }
+    private val topRateMoviesAdapter: TopRatedMoviesAdapter by lazy { TopRatedMoviesAdapter(this) }
+    private val nowPlayingMoviesAdapter: NowPlayingMoviesAdapter by lazy { NowPlayingMoviesAdapter(this) }
     private val bannerAdapter: BannerAdapter by lazy { BannerAdapter(this) }
+
     private val mainViewModel: MainViewModel by viewModel()
     private val items = mutableListOf<Moviee>()
+    private val upcomingMovieItems = mutableListOf<Moviee>()
+    private val popularMovieItems = mutableListOf<Moviee>()
+    private val topRatedMovieItems = mutableListOf<Moviee>()
+    private val nowPlayingMovieItems = mutableListOf<Moviee>()
 
     private lateinit var viewPager: ViewPager2
 
@@ -66,8 +74,24 @@ class MainActivity : AppCompatActivity() {
     private fun initStateObserver() {
         with(mainViewModel){
             getAllMovies()
+            getUpcomingMovies()
+            getPopularMovies()
+            getNowPlayingMovies()
+            getTopRatedMovies()
             result.observe(this@MainActivity){
                 handleMovieeResult(it)
+            }
+            upcomingResult.observe(this@MainActivity){
+                handleUpcomingMovieResult(it)
+            }
+            popularResult.observe(this@MainActivity){
+                handlePopularMoviesResult(it)
+            }
+            topRatedResult.observe(this@MainActivity){
+                handleTopRatedMoviesResult(it)
+            }
+            nowPlayingResult.observe(this@MainActivity){
+                handleNowPlayingMoviesResult(it)
             }
             loadingState.observe(this@MainActivity){
                 handleLoadingState(it)
@@ -79,6 +103,30 @@ class MainActivity : AppCompatActivity() {
                 handleEmptyState(it)
             }
         }
+    }
+
+    private fun handleNowPlayingMoviesResult(data: List<Moviee>?) {
+        nowPlayingMovieItems.clear()
+        data?.let { nowPlayingMovieItems.addAll(it) }
+        nowPlayingMoviesAdapter.setNowPlayingMovies(nowPlayingMovieItems)
+    }
+
+    private fun handleTopRatedMoviesResult(data: List<Moviee>?) {
+        topRatedMovieItems.clear()
+        data?.let { topRatedMovieItems.addAll(it) }
+        topRateMoviesAdapter.setTopRatedMovies(topRatedMovieItems)
+    }
+
+    private fun handlePopularMoviesResult(data: List<Moviee>?) {
+        popularMovieItems.clear()
+        data?.let { popularMovieItems.addAll(it) }
+        popularMoviesAdapter.setPopularMovies(popularMovieItems)
+    }
+
+    private fun handleUpcomingMovieResult(data: List<Moviee>?) {
+        upcomingMovieItems.clear()
+        data?.let { upcomingMovieItems.addAll(it) }
+        upcomingMoviesAdapter.setUpcomingMoviesItem(upcomingMovieItems)
     }
 
     private fun handleErrorState(msg: String){
@@ -108,7 +156,24 @@ class MainActivity : AppCompatActivity() {
             rvMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             rvMovies.setHasFixedSize(true)
             rvMovies.adapter = mainAdapter
+
+            rvUpcomingMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            rvUpcomingMovies.setHasFixedSize(true)
+            rvUpcomingMovies.adapter = upcomingMoviesAdapter
+
+            rvPopularMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            rvPopularMovies.setHasFixedSize(true)
+            rvPopularMovies.adapter = popularMoviesAdapter
+
+            rvTopratedMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            rvTopratedMovies.setHasFixedSize(true)
+            rvTopratedMovies.adapter = topRateMoviesAdapter
+
+            rvNowplayingMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            rvNowplayingMovies.setHasFixedSize(true)
+            rvNowplayingMovies.adapter = nowPlayingMoviesAdapter
         }
+
     }
 
     private fun handleEmptyState(state: Boolean){
@@ -128,6 +193,18 @@ class MainActivity : AppCompatActivity() {
                 if(state) it.makeVisible() else it.makeGone()
             }
             tvRecommendMovies.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            tvPopularMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvUpcomingMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvNowplayingMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvTopratedMovies.let {
                 if (state) it.makeGone() else it.makeVisible()
             }
         }

@@ -1,5 +1,6 @@
 package com.bagusmerta.moviee.presentation.main
 
+import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,12 +15,29 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val mCompositeDisposable = CompositeDisposable()
     private val _result = MutableLiveData<List<Moviee>?>()
+    private val _upcomingMoviesResult = MutableLiveData<List<Moviee>?>()
+    private val _popularMoviesResult = MutableLiveData<List<Moviee>?>()
+    private val _topRatedMoviesResult = MutableLiveData<List<Moviee>?>()
+    private val _nowPlayingMoviesResult = MutableLiveData<List<Moviee>?>()
+
     private val _loadingState = MutableLiveData<Boolean>()
     private val _errorState = MutableLiveData<String>()
     private val _emptyState = MutableLiveData<Boolean>()
 
     val result: LiveData<List<Moviee>?>
         get() = _result
+
+    val upcomingResult: LiveData<List<Moviee>?>
+        get() = _upcomingMoviesResult
+
+    val popularResult: LiveData<List<Moviee>?>
+        get() = _popularMoviesResult
+
+    val topRatedResult: LiveData<List<Moviee>?>
+        get() = _topRatedMoviesResult
+
+    val nowPlayingResult: LiveData<List<Moviee>?>
+        get() = _nowPlayingMoviesResult
 
     val loadingState: LiveData<Boolean>
         get() = _loadingState
@@ -59,7 +77,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {
-                        _result.postValue(value.data)
+                        _upcomingMoviesResult.postValue(value.data)
                         _loadingState.postValue(false)
                     }
                     is Resource.Error ->  _errorState.postValue(value.errorMessage)
@@ -80,7 +98,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {
-                        _result.postValue(value.data)
+                        _popularMoviesResult.postValue(value.data)
                         _loadingState.postValue(false)
                     }
                     is Resource.Error ->  _errorState.postValue(value.errorMessage)
@@ -101,7 +119,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {
-                        _result.postValue(value.data)
+                        _topRatedMoviesResult.postValue(value.data)
                         _loadingState.postValue(false)
                     }
                     is Resource.Error ->  _errorState.postValue(value.errorMessage)
@@ -122,7 +140,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {
-                        _result.postValue(value.data)
+                        _nowPlayingMoviesResult.postValue(value.data)
                         _loadingState.postValue(false)
                     }
                     is Resource.Error ->  _errorState.postValue(value.errorMessage)

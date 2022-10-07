@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/backgroundPrimary"
     tools:context=".presentation.main.MainActivity">
 
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbars="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                 android:id="@+id/cv_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="24dp"
                 app:layout_constraintEnd_toStartOf="@id/cv_btn_favorite"
@@ -103,15 +103,15 @@
                     android:src="@drawable/ic_baseline_bookmark_24" />
 
             </androidx.cardview.widget.CardView>
-            
+
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/rv_new_movies"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@+id/cv_search"/>
+                app:layout_constraintTop_toBottomOf="@+id/cv_search" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_filter"
@@ -119,37 +119,137 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/rv_new_movies"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                tools:listitem="@layout/item_filter_component"/>
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rv_new_movies"
+                tools:listitem="@layout/item_filter_component" />
 
 
             <TextView
                 android:id="@+id/tv_recommend_movies"
                 style="@style/Text.Header1"
-                android:lines="1"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:lines="1"
                 android:padding="2dp"
+                android:text="@string/tv_newly_movies"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="@string/tv_newly_movies"
-                app:layout_constraintTop_toBottomOf="@id/rv_new_movies"
+                app:layout_constraintBottom_toTopOf="@id/rv_movies"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintBottom_toTopOf="@id/rv_movies"/>
+                app:layout_constraintTop_toBottomOf="@id/rv_new_movies" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movies"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="200dp"
                 android:layout_marginTop="4dp"
                 android:orientation="horizontal"
-                tools:listitem="@layout/item_main_component"
+                app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_movies"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_recommend_movies"
+                tools:listitem="@layout/item_main_component" />
+
+            <TextView
+                android:id="@+id/tv_upcoming_movies"
+                style="@style/Text.Header1"
+                android:layout_marginStart="10dp"
+                android:lines="1"
+                android:padding="2dp"
+                android:text="@string/tv_upcoming_movies"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/rv_upcoming_movies"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rv_movies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_upcoming_movies"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_popular_movies"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_upcoming_movies"
+                tools:listitem="@layout/item_main_component" />
+
+            <TextView
+                android:id="@+id/tv_popular_movies"
+                style="@style/Text.Header1"
+                android:layout_marginStart="10dp"
+                android:lines="1"
+                android:padding="2dp"
+                android:text="@string/tv_popular_movies"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/rv_popular_movies"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rv_upcoming_movies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_popular_movies"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_toprated_movies"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_popular_movies"
+                tools:listitem="@layout/item_main_component" />
+
+            <TextView
+                android:id="@+id/tv_toprated_movies"
+                style="@style/Text.Header1"
+                android:layout_marginStart="10dp"
+                android:lines="1"
+                android:padding="2dp"
+                android:text="@string/tv_toprated_movies"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/rv_toprated_movies"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rv_popular_movies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_toprated_movies"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/tv_nowplaying_movies"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_toprated_movies"
+                tools:listitem="@layout/item_main_component" />
+
+            <TextView
+                android:id="@+id/tv_nowplaying_movies"
+                style="@style/Text.Header1"
+                android:layout_marginStart="10dp"
+                android:lines="1"
+                android:padding="2dp"
+                android:text="@string/tv_nowplaying_movies"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/rv_nowplaying_movies"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rv_toprated_movies" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_nowplaying_movies"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/tv_recommend_movies"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_nowplaying_movies"
+                tools:listitem="@layout/item_main_component" />
 
             <include
                 android:id="@+id/lottie_empty_res"
@@ -170,25 +270,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                app:lottie_autoPlay="true"
-                app:lottie_fileName="lottie/shimmer_loading.json"
-                app:lottie_loop="true"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/guideline_top"/>
+                app:layout_constraintTop_toBottomOf="@id/guideline_top"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lottie/shimmer_loading.json"
+                app:lottie_loop="true" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/shimmer_loading2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                app:lottie_autoPlay="true"
-                app:lottie_fileName="lottie/shimmer_loading.json"
-                app:lottie_loop="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/shimmer_loading1"/>
+                app:layout_constraintTop_toBottomOf="@id/shimmer_loading1"
+                app:layout_constraintVertical_bias="0.0"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lottie/shimmer_loading.json"
+                app:lottie_loop="true" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

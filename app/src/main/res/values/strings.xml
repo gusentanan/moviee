@@ -16,4 +16,8 @@
     <string name="search_movie_not_found">Movie Not Found!</string>
     <string name="rating">Rating</string>
     <string name="tv_newly_movies">Newly Movies</string>
+    <string name="tv_upcoming_movies">Upcoming Movies</string>
+    <string name="tv_popular_movies">Popular Movies</string>
+    <string name="tv_toprated_movies">Top Rated Movies</string>
+    <string name="tv_nowplaying_movies">Now Playing Movies</string>
 </resources>
