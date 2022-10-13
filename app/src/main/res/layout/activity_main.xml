@@ -44,12 +44,13 @@
                 android:id="@+id/cv_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="20dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/cv_btn_favorite"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
@@ -84,9 +85,10 @@
                 android:id="@+id/cv_btn_favorite"
                 android:layout_width="50dp"
                 android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/cv_search"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/cv_search"
                 app:layout_constraintTop_toTopOf="@+id/cv_search">
 
@@ -128,14 +130,29 @@
                 style="@style/Text.Header1"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_newly_movies"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/rv_movies"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_new_movies" />
+
+            <Button
+                android:id="@+id/btn_see_all_recommend"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/tv_see_all"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="@id/tv_recommend_movies"
+                app:layout_constraintBottom_toBottomOf="@id/tv_recommend_movies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_movies"
@@ -153,15 +170,29 @@
             <TextView
                 android:id="@+id/tv_upcoming_movies"
                 style="@style/Text.Header1"
-                android:layout_marginStart="10dp"
+                android:layout_margin="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_upcoming_movies"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/rv_upcoming_movies"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_movies" />
+
+            <Button
+                android:id="@+id/btn_see_all_upcoming"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/tv_see_all"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="@id/tv_upcoming_movies"
+                app:layout_constraintBottom_toBottomOf="@id/tv_upcoming_movies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upcoming_movies"
@@ -179,15 +210,29 @@
             <TextView
                 android:id="@+id/tv_popular_movies"
                 style="@style/Text.Header1"
-                android:layout_marginStart="10dp"
+                android:layout_margin="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_popular_movies"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/rv_popular_movies"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_upcoming_movies" />
+
+            <Button
+                android:id="@+id/btn_see_all_popular"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/tv_see_all"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="@id/tv_popular_movies"
+                app:layout_constraintBottom_toBottomOf="@id/tv_popular_movies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_popular_movies"
@@ -205,15 +250,29 @@
             <TextView
                 android:id="@+id/tv_toprated_movies"
                 style="@style/Text.Header1"
-                android:layout_marginStart="10dp"
+                android:layout_margin="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_toprated_movies"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/rv_toprated_movies"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_popular_movies" />
+
+            <Button
+                android:id="@+id/btn_see_all_toprated"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/tv_see_all"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="@id/tv_toprated_movies"
+                app:layout_constraintBottom_toBottomOf="@id/tv_toprated_movies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_toprated_movies"
@@ -231,15 +290,29 @@
             <TextView
                 android:id="@+id/tv_nowplaying_movies"
                 style="@style/Text.Header1"
-                android:layout_marginStart="10dp"
+                android:layout_margin="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_nowplaying_movies"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/rv_nowplaying_movies"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_toprated_movies" />
+
+            <Button
+                android:id="@+id/btn_see_all_nowplaying"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:background="@drawable/bg_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/tv_see_all"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:layout_constraintTop_toTopOf="@id/tv_nowplaying_movies"
+                app:layout_constraintBottom_toBottomOf="@id/tv_nowplaying_movies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_nowplaying_movies"
@@ -275,7 +348,7 @@
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/guideline_top"
+                app:layout_constraintTop_toBottomOf="@+id/cv_search"
                 app:lottie_autoPlay="true"
                 app:lottie_fileName="lottie/shimmer_loading.json"
                 app:lottie_loop="true" />
@@ -287,7 +360,7 @@
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.512"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/shimmer_loading1"
                 app:layout_constraintVertical_bias="0.0"

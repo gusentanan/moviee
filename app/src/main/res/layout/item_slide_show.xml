@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignBottom="@id/card"
                 android:background="@drawable/gradient_bottom_banner"
-                android:translationZ="20dp" />
+                android:translationZ="10dp" />
 
         </RelativeLayout>
 
