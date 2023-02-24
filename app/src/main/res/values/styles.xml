@@ -13,5 +13,10 @@
         <item name="fontFamily">@font/work_sans</item>
         <item name="android:textSize">18sp</item>
     </style>
+    <style name="Text.SubHeader">
+        <item name="fontFamily">@font/work_sans</item>
+        <item name="color">@color/gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>

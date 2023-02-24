@@ -21,4 +21,9 @@
     <string name="tv_toprated_movies">&#128640; Top Rated Movies</string>
     <string name="tv_nowplaying_movies">&#8987; Now Playing Movies</string>
     <string name="tv_see_all">See All</string>
+    <string name="tv2_recommend_movies">Fresh and anticipated movies</string>
+    <string name="tv2_upcoming_movies">Discover the latest blockbuster</string>
+    <string name="tv2_popular_movies">The ultimate movies experience</string>
+    <string name="tv2_toprated_movies">Cinematic masterpiece lauded</string>
+    <string name="tv2_nowplaying_movies">Thrilling options available</string>
 </resources>
