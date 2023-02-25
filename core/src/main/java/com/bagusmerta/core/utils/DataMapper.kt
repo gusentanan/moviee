@@ -1,10 +1,27 @@
 package com.bagusmerta.core.utils
 
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeDetail
 
 object DataMapper {
+
+    fun mapDetailMovieeResponseToDomain(data: MovieeDetailResponse, genreIds: List<Int>?): MovieeDetail =
+        MovieeDetail(
+            id = data.movieeId,
+            title = data.movieeTitle,
+            overview = data.overview,
+            releaseDate = data.releaseDate,
+            backdropPath = data.backdropPath,
+            posterPath = data.posterPath,
+            isFavorite = false,
+            rating = data.rating,
+            genres = genreIds,
+            runtime = data.runtime
+        )
+
     fun mapListMovieeResponseToEntity(data: List<MovieeItemResponse>): List<MovieeEntity> =
         data.map {
             MovieeEntity(

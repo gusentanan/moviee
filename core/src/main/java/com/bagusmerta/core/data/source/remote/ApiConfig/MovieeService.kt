@@ -1,10 +1,12 @@
 package com.bagusmerta.core.data.source.remote.ApiConfig
 
 
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieeService {
@@ -26,5 +28,8 @@ interface MovieeService {
 
     @GET("movie/now_playing")
     fun getNowPlayingMovies(): Single<MovieeResponse>
+
+    @GET("movie/{movie_id}")
+    fun getDetailMovies(@Path("movie_id") movieId: Int): Single<MovieeDetailResponse>
 
 }

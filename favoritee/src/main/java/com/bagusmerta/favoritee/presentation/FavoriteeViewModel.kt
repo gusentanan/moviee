@@ -21,17 +21,17 @@ class FavoriteeViewModel(private val useCase: MovieeUseCase): ViewModel() {
         get() = _result
 
     fun getFavoriteMovies(isFavorite: Boolean) {
-        useCase.getAllFavoriteMovies(isFavorite)
-            .subscribe({ data ->
-                if (data.isEmpty()) {
-                    _emptyState.postValue(true)
-                } else {
-                    _emptyState.postValue(false)
-                    _result.postValue(data)
-                }
-            }, { err ->
-                Timber.e(err.message.toString())
-            }).let(mCompositeDisposable::add)
+//        useCase.getAllFavoriteMovies(isFavorite)
+//            .subscribe({ data ->
+//                if (data.isEmpty()) {
+//                    _emptyState.postValue(true)
+//                } else {
+//                    _emptyState.postValue(false)
+//                    _result.postValue(data)
+//                }
+//            }, { err ->
+//                Timber.e(err.message.toString())
+//            }).let(mCompositeDisposable::add)
     }
 
     override fun onCleared() {

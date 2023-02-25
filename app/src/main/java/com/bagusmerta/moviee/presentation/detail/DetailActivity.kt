@@ -4,6 +4,7 @@ package com.bagusmerta.moviee.presentation.detail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.utility.hideStatusBar
@@ -30,10 +31,10 @@ class DetailActivity : AppCompatActivity() {
 
     private fun initStateObserver() {
         val moviee = intent.getParcelableExtra<Moviee>(MOVIEE)
-        moviee?.let { setDetailView(it) }
+//        moviee?.let { setDetailView(it) }
 
         with(detailViewModel){
-            moviee?.id?.let { checkFavoriteMovies(it) }
+//            moviee?.id?.let { checkFavoriteMovies(it) }
             btnState.observe(this@DetailActivity){
                 it?.let { handleButtonSaveIcon(it) }
             }
@@ -43,7 +44,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun setDetailView(data: Moviee) {
+    private fun setDetailView(data: MovieeDetail) {
         binding.apply {
             ivDetail.loadImage(data.posterPath)
             tvTitle.text = data.title
@@ -51,11 +52,11 @@ class DetailActivity : AppCompatActivity() {
             tvOverviewDetail.text = data.overview
             tvRating.text = data.rating.toString()
 
-            var favoriteState = data.isFavorite!!
-            btnSave.setOnClickListener {
-                favoriteState = !favoriteState
-                detailViewModel.setFavoriteMovies(data, favoriteState)
-            }
+//            var favoriteState = data.isFavorite!!
+//            btnSave.setOnClickListener {
+//                favoriteState = !favoriteState
+//                detailViewModel.setFavoriteMovies(data, favoriteState)
+//            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.bagusmerta.core.data.source.remote
 
 import android.annotation.SuppressLint
 import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.flowableTransformerComputation
@@ -110,6 +111,29 @@ class RemoteDataSource(private val apiService: MovieeService) {
             .subscribe({ response ->
                 val data = response.movieeResponse
                 res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
+            }, { error ->
+                res.onSuccess(ResultState.Error(error.message.toString()))
+                Timber.e(error.toString())
+            }).let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    fun getDetailMovies(movie_id: Int): Single<ResultState<MovieeDetailResponse>>{
+        val mCompositeDisposable = CompositeDisposable()
+        val res = SingleSubject.create<ResultState<MovieeDetailResponse>>()
+        val listGenreId = arrayListOf<Int>()
+        apiService.getDetailMovies(movie_id)
+            .compose(singleTransformerComputation())
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({ response ->
+                // Loop through genres to collect genre id
+                response.genres?.forEach {
+                    it.id?.let { genreId -> listGenreId.add(genreId) }
+                }
+                response.genreId = listGenreId
+
+                res.onSuccess(if(response != null) ResultState.Success(response) else ResultState.Empty)
             }, { error ->
                 res.onSuccess(ResultState.Error(error.message.toString()))
                 Timber.e(error.toString())

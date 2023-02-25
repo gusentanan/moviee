@@ -2,12 +2,7 @@ package com.bagusmerta.core.data.source.remote.MovieeResponse
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieeResponse(
-    @SerializedName("results")
-    val movieeResponse: List<MovieeItemResponse>
-)
-
-data class MovieeItemResponse(
+data class MovieeDetailResponse(
     @SerializedName("id")
     val movieeId: Int?,
 
@@ -29,4 +24,20 @@ data class MovieeItemResponse(
     @SerializedName("vote_average")
     val rating: Double?,
 
+    @SerializedName("runtime")
+    val runtime: Int?,
+
+    @SerializedName("genres")
+    var genres: List<Genre>?,
+
+    var genreId: List<Int>?
+
+)
+
+data class Genre(
+    @SerializedName("id")
+    var id: Int?,
+
+    @SerializedName("name")
+    var name: String?
 )

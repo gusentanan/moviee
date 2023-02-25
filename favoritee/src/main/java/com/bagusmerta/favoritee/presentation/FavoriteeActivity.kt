@@ -12,6 +12,7 @@ import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
+
 class FavoriteeActivity : AppCompatActivity() {
 
     private val binding: ActivityFavoriteeBinding by lazy {
