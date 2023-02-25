@@ -113,18 +113,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cv_search" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_filter"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_new_movies"
-                tools:listitem="@layout/item_filter_component" />
-
-
             <TextView
                 android:id="@+id/tv_recommend_movies"
                 style="@style/Text.Header1"

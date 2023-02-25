@@ -36,21 +36,20 @@
 
             </androidx.cardview.widget.CardView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignBottom="@id/card"
-                android:background="@drawable/gradient_bottom_banner"
-                android:translationZ="10dp" />
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_alignBottom="@id/card"-->
+<!--                android:background="@drawable/gradient_bottom_banner"-->
+<!--                android:translationZ="50dp" />-->
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="-50dp"
+            android:layout_marginTop="-40dp"
             android:layout_marginStart="30dp"
-            android:layout_marginEnd="50dp"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -60,16 +59,17 @@
 
                 <TextView
                     android:id="@+id/tv_title_text"
-                    style="@style/Text.Header2"
+                    style="@style/Text.Header1"
                     android:layout_gravity="start|bottom"
                     android:gravity="center"
-                    android:layout_margin="@dimen/dimen_8"
+                    android:layout_margin="@dimen/dimen_4"
                     android:background="@drawable/bg_rating"
                     android:paddingHorizontal="@dimen/dimen_8"
                     android:paddingVertical="@dimen/dimen_1"
                     android:lines="1"
+                    android:text="The Batman"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
             </RelativeLayout>
 
