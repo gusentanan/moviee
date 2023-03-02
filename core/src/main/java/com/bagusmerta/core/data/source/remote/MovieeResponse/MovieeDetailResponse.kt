@@ -30,8 +30,43 @@ data class MovieeDetailResponse(
     @SerializedName("genres")
     var genres: List<Genre>?,
 
-    var genreId: List<Int>?
+    var genreId: List<Int>?,
 
+    @SerializedName("videos")
+    var videos: Videos?,
+
+    var keyVideo: String?
+
+)
+data class Videos(
+    @SerializedName("results")
+    var listVideo: List<VideoInfo>?
+)
+
+data class VideoInfo(
+    @SerializedName("id")
+    var id: String?,
+
+    @SerializedName("key")
+    var key: String?,
+
+    @SerializedName("name")
+    var name: String?,
+
+    @SerializedName("official")
+    var official: Boolean?,
+
+    @SerializedName("published_at")
+    var publishedAt: String?,
+
+    @SerializedName("site")
+    var site: String?,
+
+    @SerializedName("size")
+    var size: Int?,
+
+    @SerializedName("type")
+    var type: String?
 )
 
 data class Genre(

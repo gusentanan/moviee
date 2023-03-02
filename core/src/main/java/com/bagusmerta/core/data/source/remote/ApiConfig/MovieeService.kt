@@ -1,6 +1,7 @@
 package com.bagusmerta.core.data.source.remote.ApiConfig
 
 
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieCastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import io.reactivex.Flowable
@@ -30,6 +31,15 @@ interface MovieeService {
     fun getNowPlayingMovies(): Single<MovieeResponse>
 
     @GET("movie/{movie_id}")
-    fun getDetailMovies(@Path("movie_id") movieId: Int): Single<MovieeDetailResponse>
+    fun getDetailMovies(
+        @Path("movie_id") movieId: Int,
+        @Query("append_to_response") appendToResponse: String = "videos"
+    ): Single<MovieeDetailResponse>
+
+    @GET("movie/{movie_id}/credits")
+    fun getMovieCast(
+        @Path("movie_id") movieId: Int,
+        @Query("language") lang: String = "en-US"
+    ): Single<MovieCastResponse>
 
 }

@@ -67,10 +67,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun filterObserver(){
-
-    }
-
     private fun initStateObserver() {
         with(mainViewModel){
             getAllMovies()

@@ -26,4 +26,6 @@
     <string name="tv2_popular_movies">The ultimate movies experience</string>
     <string name="tv2_toprated_movies">Cinematic masterpiece lauded</string>
     <string name="tv2_nowplaying_movies">Thrilling options available</string>
+    <string name="thumbnail_trailer_videos">thumbnail trailer videos</string>
+    <string name="cast_movie_detail">&#10024; Cast</string>
 </resources>

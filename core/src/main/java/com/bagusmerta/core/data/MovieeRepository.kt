@@ -2,9 +2,11 @@ package com.bagusmerta.core.data
 
 import android.annotation.SuppressLint
 import com.bagusmerta.core.data.source.local.LocalDataSource
+import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
+import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.core.utils.DataMapper
@@ -26,6 +28,7 @@ interface MovieeRepository {
     fun getNowPlayingMovies(): Single<Resource<List<Moviee>>>
     fun getTopRatedMovies(): Single<Resource<List<Moviee>>>
     fun getDetailMovies(movieId: Int): Single<Resource<MovieeDetail>>
+    fun getMovieCast(movieId: Int): Single<Resource<List<Cast>>>
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
@@ -158,6 +161,22 @@ class MovieeRepositoryImpl(
         return res
     }
 
+    override fun getMovieCast(movieId: Int): Single<Resource<List<Cast>>> {
+        val res = SingleSubject.create<Resource<List<Cast>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getMovieCast(movieId)
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when(value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapCastMovieResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
     override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> {
         return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapListMovieeEntityToDomain(it) }
     }
@@ -183,7 +202,10 @@ class MovieeRepositoryImpl(
 
     private fun mapDetailResponseToDomain(detailMovieResponse: MovieeDetailResponse, genreIds: List<Int>?): MovieeDetail {
         return DataMapper.mapDetailMovieeResponseToDomain(detailMovieResponse, genreIds)
+    }
 
+    private fun mapCastMovieResponseToDomain(castMovieResponse: List<CastResponse>): List<Cast>{
+        return DataMapper.mapMovieCastResponseToDomain(castMovieResponse)
     }
 
 }
