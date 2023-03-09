@@ -7,6 +7,9 @@
     <dimen name="constraint_guide_top_percent">0.10</dimen>
     <dimen name="offset">14dp</dimen>
     <dimen name="set_margin">14dp</dimen>
+    <dimen name="dimen_94">94dp</dimen>
+    <dimen name="dimen_138">138</dimen>
+    <dimen name="dimen_1">1dp</dimen>
 
 
 </resources>

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/bg_card_detail.xml" value="0.26205128205128203" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/bg_rating.xml" value="0.18055555555555555" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/gradient_bottom_banner.xml" value="0.18055555555555555" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.23148148148148148" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_baseline_bookmark_border_24.xml" value="0.2324074074074074" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/drawable/ic_baseline_broken_image_24.xml" value="0.14322916666666666" />
@@ -17,12 +19,13 @@
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/font/work_sans.xml" value="0.23148148148148148" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/font/work_sans_bold.xml" value="0.23148148148148148" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_detail.xml" value="0.1814814814814815" />
-        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_main.xml" value="0.17894736842105263" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_main.xml" value="0.12" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/custom_app_bar.xml" value="0.25" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/custom_appbar.xml" value="0.25" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/empty_state.xml" value="0.25" />
-        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/item_main_component.xml" value="0.176" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/item_filter_component.xml" value="0.25" />
+        <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/item_main_component.xml" value="0.5303030303030303" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/item_main_placeholder.xml" value="0.5852272727272727" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/item_search_component.xml" value="0.25" />
         <entry key="..\:/PlayGround/android/moviee/app/src/main/res/layout/item_slide_placeholder.xml" value="0.25" />
@@ -45,5 +48,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>

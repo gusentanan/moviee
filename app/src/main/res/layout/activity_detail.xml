@@ -1,182 +1,383 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".presentation.detail.DetailActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/const_detail_all"
+<!--    <include-->
+<!--        android:id="@+id/loading_bg"-->
+<!--        />-->
+
+<!--    <include-->
+<!--        android:id="@+id/error_layout"-->
+<!--        />-->
+
+    <RelativeLayout
+        android:id="@+id/main_detail_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:baselineAlignBottom="false"
-            android:backgroundTint="@color/white"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:contentDescription="@string/share_button"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            app:layout_constraintStart_toStartOf="@+id/const_detail_all"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:baselineAlignBottom="false"
-            android:backgroundTint="@color/white"
-            android:clickable="true"
-            android:contentDescription="@string/share_button"
-            android:src="@drawable/ic_baseline_bookmark_border_24"
-            app:fabSize="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:id="@+id/iv_detail"
-            android:layout_width="match_parent"
-            android:layout_height="575dp"
-            android:contentDescription="@string/image_detail_movie"
-            android:scaleType="centerCrop"
-            android:background="@color/colorSecondaryDark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nsv_detail"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <include
+                android:id="@+id/thumbnail_container"
+                layout="@layout/item_thumbnail_container"
+                android:visibility="visible" />
+
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/yt_player_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:autoPlay="false"
+                app:handleNetworkEvents="true"/>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="450dp"
-                android:paddingStart="42dp"
-                android:background="@drawable/bg_card_detail"
-                android:paddingTop="25dp"
-                android:paddingEnd="42dp"
-                android:paddingBottom="25dp">
+                android:background="@color/backgroundPrimary">
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    style="@style/Text.Header1"
-                    android:textSize="32sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <TableRow
-                        android:id="@+id/tl_rating"
+                    <RelativeLayout
+                        android:background="@color/white"
+                        android:paddingVertical="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_title"
+                            style="@style/Text.Header1"
+                            android:textSize="20sp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:paddingHorizontal="6dp"
+                            android:textColor="@color/black"
+                            tools:text="Avengers: Age of ultron" />
+
+                        <TextView
+                            android:id="@+id/tvGenres"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_title"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            style="@style/Text.SubHeader"
+                            android:paddingHorizontal="6dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:textColor="@color/gray"
+                            android:textSize="12sp"
+                            tools:text="Action • Adventure • Comedy • Scifi" />
+
+                        <LinearLayout
+                            android:id="@+id/movie_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_below="@id/tvGenres"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="8dp"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="8dp">
+
+                            <TextView
+                                android:id="@+id/tv_movie_rating"
+                                style="@style/Text.Header2"
+                                android:layout_gravity="end|top"
+                                android:gravity="center"
+                                android:layout_margin="2dp"
+                                android:background="@drawable/bg_rating"
+                                android:paddingHorizontal="@dimen/dimen_8"
+                                android:paddingVertical="@dimen/dimen_1"
+                                android:lines="1"
+                                android:text="7.8"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
+
+                            <TextView
+                                android:id="@+id/tv_movie_year"
+                                style="@style/Text.Header2"
+                                android:layout_gravity="end|top"
+                                android:gravity="center"
+                                android:layout_margin="2dp"
+                                android:background="@drawable/bg_rating"
+                                android:paddingHorizontal="@dimen/dimen_8"
+                                android:paddingVertical="@dimen/dimen_1"
+                                android:lines="1"
+                                android:text="2020"
+                                android:textColor="@color/white"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tv_movie_runtime"
+                                style="@style/Text.Header2"
+                                android:layout_gravity="end|top"
+                                android:gravity="center"
+                                android:layout_margin="2dp"
+                                android:background="@drawable/bg_rating"
+                                android:paddingHorizontal="@dimen/dimen_8"
+                                android:paddingVertical="@dimen/dimen_1"
+                                android:lines="1"
+                                android:text="1h 42m"
+                                android:textColor="@color/white"
+                                android:textSize="14sp" />
+
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_overview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/movie_info"
+                            android:layout_marginTop="10dp"
+                            android:layout_margin="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:ellipsize="end"
+                            style="@style/Text.SubHeader"
+                            android:maxLines="4"
+                            android:paddingHorizontal="6dp"
+                            android:textSize="14sp"
+                            tools:text="In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages." />
+
+
+
+                    </RelativeLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toStartOf="@id/tv_title"
-                        app:layout_constraintTop_toBottomOf="@id/tv_title">
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:paddingVertical="8dp"
+                        android:background="@color/white">
 
-                        <TextView
-                            style="@style/Text.Header2"
-                            android:textStyle="bold"
-                            android:text="@string/rating"
-                            android:textColor="@color/colorSecondaryDark"
-                            android:textSize="16sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/tv_rating"
-                            style="@style/Text.Header2"
-                            android:layout_marginStart="80dp"
-                            android:layout_weight="1"
-                            android:textColor="@color/colorSecondaryDark"
-                            android:textSize="16sp"/>
-
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/tl_release"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintStart_toStartOf="@id/tl_rating"
-                        app:layout_constraintTop_toBottomOf="@id/tl_rating">
-
-                        <TextView
-                            style="@style/Text.Header2"
-                            android:textStyle="bold"
-                            android:text="@string/release_date"
-                            android:textColor="@color/colorSecondaryDark"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/tv_release_date"
-                            style="@style/Text.Header2"
-                            android:layout_marginStart="25dp"
-                            android:layout_weight="1"
-                            android:textColor="@color/colorSecondaryDark"
-                            android:textSize="16sp"/>
-
-                    </TableRow>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                style="@style/Text.Header1"
+                                android:layout_marginStart="12dp"
+                                android:text="@string/cast_movie_detail"/>
 
 
-                <TextView
-                    android:id="@+id/tv_overview"
-                    style="@style/Text.Header1"
-                    android:layout_marginTop="26dp"
-                    android:text="@string/overview"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/tl_release"
-                    app:layout_constraintTop_toBottomOf="@+id/tl_release" />
+                        </LinearLayout>
 
-                <View
-                    android:id="@+id/divider_overview"
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:background="@color/gray"
-                    app:layout_constraintTop_toBottomOf="@id/tv_overview"
-                    app:layout_constraintStart_toStartOf="@id/tv_overview"
-                    app:layout_constraintEnd_toEndOf="@id/tv_overview"/>
-
-                <TextView
-                    android:id="@+id/tv_overview_detail"
-                    style="@style/Text.Header2"
-                    android:layout_width="0dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="8dp"
-                    android:textColor="@color/colorSecondaryDark"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/divider_overview" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_cast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginStart="12dp"
+                            android:orientation="horizontal"
+                            tools:listitem="@layout/item_cast" />
 
 
-</FrameLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/const_detail_all"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:baselineAlignBottom="false"-->
+<!--            android:backgroundTint="@color/white"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:clickable="true"-->
+<!--            android:contentDescription="@string/share_button"-->
+<!--            android:src="@drawable/ic_baseline_arrow_back_24"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/const_detail_all"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/btn_save"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:baselineAlignBottom="false"-->
+<!--            android:backgroundTint="@color/white"-->
+<!--            android:clickable="true"-->
+<!--            android:contentDescription="@string/share_button"-->
+<!--            android:src="@drawable/ic_baseline_bookmark_border_24"-->
+<!--            app:fabSize="normal"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_detail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="575dp"-->
+<!--            android:contentDescription="@string/image_detail_movie"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:background="@color/colorSecondaryDark"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--        <androidx.core.widget.NestedScrollView-->
+<!--            android:id="@+id/nsv_detail"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fillViewport="true"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="450dp"-->
+<!--                android:paddingStart="42dp"-->
+<!--                android:background="@drawable/bg_card_detail"-->
+<!--                android:paddingTop="25dp"-->
+<!--                android:paddingEnd="42dp"-->
+<!--                android:paddingBottom="25dp">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_title"-->
+<!--                    style="@style/Text.Header1"-->
+<!--                    android:textSize="32sp"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <TableRow-->
+<!--                        android:id="@+id/tl_rating"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        app:layout_constraintStart_toStartOf="@id/tv_title"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/tv_title">-->
+
+<!--                        <TextView-->
+<!--                            style="@style/Text.Header2"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:text="@string/rating"-->
+<!--                            android:textColor="@color/colorSecondaryDark"-->
+<!--                            android:textSize="16sp" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tv_rating"-->
+<!--                            style="@style/Text.Header2"-->
+<!--                            android:layout_marginStart="80dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:textColor="@color/colorSecondaryDark"-->
+<!--                            android:textSize="16sp"/>-->
+
+<!--                    </TableRow>-->
+
+<!--                    <TableRow-->
+<!--                        android:id="@+id/tl_release"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        app:layout_constraintStart_toStartOf="@id/tl_rating"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/tl_rating">-->
+
+<!--                        <TextView-->
+<!--                            style="@style/Text.Header2"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:text="@string/release_date"-->
+<!--                            android:textColor="@color/colorSecondaryDark"-->
+<!--                            android:textSize="16sp" />-->
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/tv_release_date"-->
+<!--                            style="@style/Text.Header2"-->
+<!--                            android:layout_marginStart="25dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:textColor="@color/colorSecondaryDark"-->
+<!--                            android:textSize="16sp"/>-->
+
+<!--                    </TableRow>-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_overview"-->
+<!--                    style="@style/Text.Header1"-->
+<!--                    android:layout_marginTop="26dp"-->
+<!--                    android:text="@string/overview"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/tl_release"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/tl_release" />-->
+
+<!--                <View-->
+<!--                    android:id="@+id/divider_overview"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="1dp"-->
+<!--                    android:background="@color/gray"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/tv_overview"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/tv_overview"-->
+<!--                    app:layout_constraintEnd_toEndOf="@id/tv_overview"/>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_overview_detail"-->
+<!--                    style="@style/Text.Header2"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:textColor="@color/colorSecondaryDark"-->
+<!--                    android:textSize="16sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/divider_overview" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        </androidx.core.widget.NestedScrollView>-->
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progress_bar"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            style="?android:attr/progressBarStyle"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:visibility="invisible"/>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+</LinearLayout>

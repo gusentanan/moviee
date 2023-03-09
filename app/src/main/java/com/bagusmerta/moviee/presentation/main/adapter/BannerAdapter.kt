@@ -21,7 +21,7 @@ class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAd
         fun bind(item: Moviee){
             binding.apply {
                 ivSlide.loadImage(item.backdropPath)
-
+                tvTitleText.text = item.title
                 movieeBanner.animation = AnimationUtils.loadAnimation(
                     context, R.anim.fade_transition
                 )

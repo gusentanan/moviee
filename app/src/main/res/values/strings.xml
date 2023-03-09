@@ -15,4 +15,17 @@
     <string name="hint_search_movies">Search for movies …</string>
     <string name="search_movie_not_found">Movie Not Found!</string>
     <string name="rating">Rating</string>
+    <string name="tv_newly_movies">&#128064; Newly Movies</string>
+    <string name="tv_upcoming_movies">&#127756; Upcoming Movies</string>
+    <string name="tv_popular_movies">&#10024; Popular Movies</string>
+    <string name="tv_toprated_movies">&#128640; Top Rated Movies</string>
+    <string name="tv_nowplaying_movies">&#8987; Now Playing Movies</string>
+    <string name="tv_see_all">See All</string>
+    <string name="tv2_recommend_movies">Fresh and anticipated movies</string>
+    <string name="tv2_upcoming_movies">Discover the latest blockbuster</string>
+    <string name="tv2_popular_movies">The ultimate movies experience</string>
+    <string name="tv2_toprated_movies">Cinematic masterpiece lauded</string>
+    <string name="tv2_nowplaying_movies">Thrilling options available</string>
+    <string name="thumbnail_trailer_videos">thumbnail trailer videos</string>
+    <string name="cast_movie_detail">&#10024; Cast</string>
 </resources>

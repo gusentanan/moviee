@@ -36,7 +36,7 @@ class MovieeRepositoryTest {
     }
 
     @Test
-    fun `should return list movies when call remoteDataSource`(){
+    fun `should return list movies when call getAllMovies - remoteDataSource`(){
         val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
 
         whenever(remoteDataSource.getAllMovies())
@@ -188,6 +188,102 @@ class MovieeRepositoryTest {
             }.dispose()
         }
         verify(remoteDataSource, atLeastOnce()).searchMovies(title)
+    }
+
+    @Test
+    fun `should return list movies when call getTopRatedMovies - remoteDataSource`(){
+        val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
+
+        whenever(remoteDataSource.getTopRatedMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getTopRatedMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+
+                when(it){
+                    is ResultState.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getTopRatedMovies()
+    }
+
+    @Test
+    fun `should return list movies when call getUpcomingMovies - remoteDataSource`(){
+        val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
+
+        whenever(remoteDataSource.getUpcomingMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getUpcomingMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+
+                when(it){
+                    is ResultState.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getUpcomingMovies()
+    }
+
+    @Test
+    fun `should return list movies when call getNowPlayingMovies - remoteDataSource`(){
+        val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
+
+        whenever(remoteDataSource.getNowPlayingMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getNowPlayingMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+
+                when(it){
+                    is ResultState.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getNowPlayingMovies()
+    }
+
+    @Test
+    fun `should return list movies when call getPopularMovies - remoteDataSource`(){
+        val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
+
+        whenever(remoteDataSource.getPopularMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getPopularMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = Resource.Success(mapResponseToDomain(json))
+
+                when(it){
+                    is ResultState.Success -> it.data.size == actualValue.data.size
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getPopularMovies()
     }
 
     @After

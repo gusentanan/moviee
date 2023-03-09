@@ -27,6 +27,6 @@ data class MovieeItemResponse(
     val movieeTitle: String?,
 
     @SerializedName("vote_average")
-    val rating: Double?
+    val rating: Double?,
 
 )

@@ -63,4 +63,6 @@ dependencies {
     implementation libraries.rxStream
     implementation libraries.lottie
     kapt libraries.roomCompiler
+
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1"
 }
