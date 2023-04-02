@@ -33,6 +33,7 @@ interface MovieeRepository {
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
     fun checkFavoriteMovies(id: Int): Maybe<Moviee>
+    fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>>
 
 }
 
@@ -169,6 +170,22 @@ class MovieeRepositoryImpl(
             .subscribe { value ->
                 when(value) {
                     is ResultState.Success -> res.onSuccess(Resource.Success(mapCastMovieResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    override fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getSimilarMovie(movieId)
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when(value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }

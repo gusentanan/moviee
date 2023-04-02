@@ -18,6 +18,7 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
     private val _result = MutableLiveData<MovieeDetail?>()
     private val mCompositeDisposable = CompositeDisposable()
     private val _castResult = MutableLiveData<List<Cast>?>()
+    private val _similarMovieResult  = MutableLiveData<List<Moviee>?>()
 
     private val _loadingState = MutableLiveData<Boolean>()
     private val _errorState = MutableLiveData<String>()
@@ -31,6 +32,25 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     val castResult: LiveData<List<Cast>?>
         get() = _castResult
+
+    val similarMovieResult: LiveData<List<Moviee>?>
+        get() = _similarMovieResult
+
+    fun getSimilarMovie(movieId: Int){
+        useCase.getSimilarMovie(movieId)
+            .doOnSubscribe{
+                _loadingState.postValue(true)
+            }
+            .subscribe({ value ->
+                when(value){
+                    is Resource.Success -> _similarMovieResult.postValue(value.data)
+                    is Resource.Error -> _errorState.postValue(value.errorMessage)
+                    is Resource.Empty -> _emptyState.postValue(true)
+                }
+            }, { error ->
+                Timber.e(error.message)
+            }).let(mCompositeDisposable::add)
+    }
 
     fun getDetailMovies(movieId: Int){
         useCase.getDetailMovies(movieId)

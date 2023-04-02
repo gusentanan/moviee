@@ -42,4 +42,11 @@ interface MovieeService {
         @Query("language") lang: String = "en-US"
     ): Single<MovieCastResponse>
 
+    @GET("movie/{movie_id}/similar")
+    fun getSimilarMovie(
+        @Path("movie_id") movieId: Int,
+        @Query("language") lang: String? = "en-US",
+        @Query("page") page: Int = 1
+    ): Single<MovieeResponse>
+
 }

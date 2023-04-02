@@ -28,4 +28,5 @@
     <string name="tv2_nowplaying_movies">Thrilling options available</string>
     <string name="thumbnail_trailer_videos">thumbnail trailer videos</string>
     <string name="cast_movie_detail">&#10024; Cast</string>
+    <string name="similar_to_this">🧭 Similar to this</string>
 </resources>

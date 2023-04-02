@@ -11,6 +11,7 @@ import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.detail.adapter.CastAdapter
+import com.bagusmerta.moviee.presentation.detail.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.hideStatusBar
 import com.bagusmerta.utility.loadImage
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -24,10 +25,12 @@ class DetailActivity : AppCompatActivity() {
     private val binding: ActivityDetailBinding by lazy { ActivityDetailBinding.inflate(layoutInflater) }
     private val detailViewModel: DetailViewModel by viewModel()
     private val castAdapter: CastAdapter by lazy { CastAdapter(this) }
+    private val similarMovieAdapter: SimilarMovieAdapter by lazy { SimilarMovieAdapter(this) }
 
     private var _youtubePlayer: YouTubePlayer ? = null
     private var youtubePlayerListener: AbstractYouTubePlayerListener ? = null
     private var itemCast = mutableListOf<Cast>()
+    private var itemSimilarMovie = mutableListOf<Moviee>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,8 @@ class DetailActivity : AppCompatActivity() {
         with(detailViewModel){
             moviee?.id?.let { getDetailMovies(it) }
             moviee?.id?.let { getMovieCast(it) }
+            moviee?.id?.let { getSimilarMovie(it) }
+
 
 //            moviee?.id?.let { checkFavoriteMovies(it) }
             btnState.observe(this@DetailActivity){
@@ -60,7 +65,16 @@ class DetailActivity : AppCompatActivity() {
             castResult.observe(this@DetailActivity){
                 it?.let { cast -> handleCastResult(cast) }
             }
+            similarMovieResult.observe(this@DetailActivity){
+                it?.let { movieList -> handleSimilarMovieResult(movieList) }
+            }
         }
+    }
+
+    private fun handleSimilarMovieResult(data: List<Moviee>?){
+        itemSimilarMovie.clear()
+        data?.let { itemSimilarMovie.addAll(it) }
+        similarMovieAdapter.setSimilarMovieItems(itemSimilarMovie)
     }
 
     private fun handleCastResult(data: List<Cast>?){
@@ -82,7 +96,7 @@ class DetailActivity : AppCompatActivity() {
             tvTitle.text = data.title
             tvMovieRating.text = String.format("%.1f", data.rating)
             tvMovieYear.text = formatMediaDate(data.releaseDate)
-            tvMovieRuntime.text = "${data.runtime?.div(60)} h ${data.runtime?.rem(60)} m"
+            tvMovieRuntime.text = "${data.runtime?.div(60)}h ${data.runtime?.rem(60)}m"
             tvOverview.text = data.overview
             tvGenres.text = Helpers.mappingMovieGenreListFromId(data.genres)
                 .joinToString(" • ") { it.name.toString() }
@@ -100,13 +114,17 @@ class DetailActivity : AppCompatActivity() {
             rvCast.layoutManager = LinearLayoutManager(this@DetailActivity, LinearLayoutManager.HORIZONTAL, false)
             rvCast.setHasFixedSize(true)
             rvCast.adapter = castAdapter
+
+            rvMovieSimilar.layoutManager = LinearLayoutManager(this@DetailActivity, LinearLayoutManager.HORIZONTAL, false)
+            rvMovieSimilar.setHasFixedSize(true)
+            rvMovieSimilar.adapter = similarMovieAdapter
         }
     }
     private fun initYouTubePlayer(keyVideo: String) = binding.apply {
         youtubePlayerListener = object: AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 keyVideo.let {
-                    thumbnailContainer.container.isGone = true
+                    thumbnailContainer.container.isGone = false
                     ytPlayerView.isGone = false
                     _youtubePlayer = youTubePlayer
                     _youtubePlayer!!.cueVideo(it, 0f)
