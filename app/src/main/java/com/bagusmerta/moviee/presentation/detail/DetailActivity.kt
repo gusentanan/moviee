@@ -1,6 +1,9 @@
 package com.bagusmerta.moviee.presentation.detail
 
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
@@ -8,12 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.detail.adapter.CastAdapter
 import com.bagusmerta.moviee.presentation.detail.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.hideStatusBar
 import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.makeErrorToast
+import com.bagusmerta.utility.makeGone
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,7 +48,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-//        binding.btnBack.setOnClickListener { onBackPressed() }
         hideStatusBar()
     }
 
@@ -53,9 +58,7 @@ class DetailActivity : AppCompatActivity() {
             moviee?.id?.let { getDetailMovies(it) }
             moviee?.id?.let { getMovieCast(it) }
             moviee?.id?.let { getSimilarMovie(it) }
-
-
-//            moviee?.id?.let { checkFavoriteMovies(it) }
+            
             btnState.observe(this@DetailActivity){
                 it?.let { handleButtonSaveIcon(it) }
             }
@@ -83,6 +86,7 @@ class DetailActivity : AppCompatActivity() {
         castAdapter.setItemCast(itemCast)
     }
 
+    @SuppressLint("StringFormatMatches")
     private fun setDetailView(data: MovieeDetail) {
         binding.apply {
             // init yt video player
@@ -96,7 +100,7 @@ class DetailActivity : AppCompatActivity() {
             tvTitle.text = data.title
             tvMovieRating.text = String.format("%.1f", data.rating)
             tvMovieYear.text = formatMediaDate(data.releaseDate)
-            tvMovieRuntime.text = "${data.runtime?.div(60)}h ${data.runtime?.rem(60)}m"
+            tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
             tvOverview.text = data.overview
             tvGenres.text = Helpers.mappingMovieGenreListFromId(data.genres)
                 .joinToString(" • ") { it.name.toString() }
@@ -106,6 +110,8 @@ class DetailActivity : AppCompatActivity() {
 //                favoriteState = !favoriteState
 //                detailViewModel.setFavoriteMovies(data, favoriteState)
 //            }
+
+            btnGoWatch.setOnClickListener { handleButtonWatch() }
         }
     }
 
@@ -124,8 +130,8 @@ class DetailActivity : AppCompatActivity() {
         youtubePlayerListener = object: AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 keyVideo.let {
-                    thumbnailContainer.container.isGone = false
-                    ytPlayerView.isGone = false
+                    thumbnailContainer.container.makeGone()
+                    ytPlayerView.makeGone()
                     _youtubePlayer = youTubePlayer
                     _youtubePlayer!!.cueVideo(it, 0f)
                 }
@@ -144,13 +150,17 @@ class DetailActivity : AppCompatActivity() {
 //        }
     }
 
+    private fun handleButtonWatch(){
+        makeErrorToast("This feature is currently unavailable")
+    }
+
     private fun formatMediaDate(date: String?): String? {
         if(!date.isNullOrEmpty()) {
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             return sdf.parse(date)
                 ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
         } else {
-            return "Uknown"
+            return "Unknown"
         }
     }
 

@@ -29,4 +29,5 @@
     <string name="thumbnail_trailer_videos">thumbnail trailer videos</string>
     <string name="cast_movie_detail">&#10024; Cast</string>
     <string name="similar_to_this">🧭 Similar to this</string>
+    <string name="runtime_movie_detail">"%sh %sm"</string>
 </resources>
