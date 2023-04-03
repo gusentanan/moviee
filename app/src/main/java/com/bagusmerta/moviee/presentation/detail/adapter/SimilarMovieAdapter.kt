@@ -20,12 +20,6 @@ class SimilarMovieAdapter(private  val context: Context): RecyclerView.Adapter<S
             binding.apply {
                 ivPoster.loadImage(item.posterPath)
                 tvMovieRating.text = String.format("%.1f", item.rating)
-
-                itemView.setOnClickListener {
-                    context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
-                    })
-                }
             }
         }
     }

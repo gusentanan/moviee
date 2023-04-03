@@ -36,6 +36,9 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val similarMovieResult: LiveData<List<Moviee>?>
         get() = _similarMovieResult
 
+    val loadingState: LiveData<Boolean>
+        get() = _loadingState
+
     fun getSimilarMovie(movieId: Int){
         useCase.getSimilarMovie(movieId)
             .doOnSubscribe{
@@ -61,6 +64,7 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 when(value) {
                     is Resource.Success -> {
                         _result.postValue(value.data)
+                        _loadingState.postValue(false)
                     }
                     is Resource.Error -> _errorState.postValue(value.errorMessage)
                     is Resource.Empty -> _emptyState.postValue(true)

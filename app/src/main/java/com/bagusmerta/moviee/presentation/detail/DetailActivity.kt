@@ -16,10 +16,7 @@ import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.detail.adapter.CastAdapter
 import com.bagusmerta.moviee.presentation.detail.adapter.SimilarMovieAdapter
-import com.bagusmerta.utility.hideStatusBar
-import com.bagusmerta.utility.loadImage
-import com.bagusmerta.utility.makeErrorToast
-import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -58,7 +55,7 @@ class DetailActivity : AppCompatActivity() {
             moviee?.id?.let { getDetailMovies(it) }
             moviee?.id?.let { getMovieCast(it) }
             moviee?.id?.let { getSimilarMovie(it) }
-            
+
             btnState.observe(this@DetailActivity){
                 it?.let { handleButtonSaveIcon(it) }
             }
@@ -70,6 +67,17 @@ class DetailActivity : AppCompatActivity() {
             }
             similarMovieResult.observe(this@DetailActivity){
                 it?.let { movieList -> handleSimilarMovieResult(movieList) }
+            }
+            loadingState.observe(this@DetailActivity){
+                it?.let { flag -> handleLoadingState(flag) }
+            }
+        }
+    }
+
+    private fun handleLoadingState(flag: Boolean){
+        if (!flag){
+            binding.apply {
+                detailLoadingShimmer.activityDetailLoader.makeGone()
             }
         }
     }
@@ -131,7 +139,7 @@ class DetailActivity : AppCompatActivity() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
                 keyVideo.let {
                     thumbnailContainer.container.makeGone()
-                    ytPlayerView.makeGone()
+                    ytPlayerView.makeVisible()
                     _youtubePlayer = youTubePlayer
                     _youtubePlayer!!.cueVideo(it, 0f)
                 }

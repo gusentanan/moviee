@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".presentation.detail.DetailActivity">
 
+    <include
+        android:id="@+id/detail_loading_shimmer"
+        layout="@layout/activity_detail_loader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        tools:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/main_detail_layout"
@@ -89,20 +96,30 @@
                             android:orientation="horizontal"
                             android:paddingHorizontal="8dp">
 
-                            <TextView
-                                android:id="@+id/tv_movie_rating"
-                                style="@style/Text.Header2"
-                                android:layout_gravity="end|top"
-                                android:gravity="center"
-                                android:layout_margin="2dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:background="@drawable/bg_rating"
-                                android:paddingHorizontal="@dimen/dimen_8"
-                                android:paddingVertical="@dimen/dimen_1"
-                                android:lines="1"
-                                android:text="7.8"
-                                android:textColor="@color/white"
-                                android:textSize="14sp"
-                                android:textStyle="italic" />
+                                android:paddingHorizontal="@dimen/dimen_1"
+                                android:layout_margin="2dp"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:src="@drawable/ic_baseline_star_24"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="14dp" />
+
+                                <TextView
+                                    android:id="@+id/tv_movie_rating"
+                                    style="@style/Text.Header2"
+                                    android:layout_marginEnd="8dp"
+                                    android:lines="1"
+                                    android:text="7.8"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:textStyle="italic" />
+
+                            </LinearLayout>
 
                             <TextView
                                 android:id="@+id/tv_movie_year"
@@ -131,6 +148,13 @@
                                 android:text="1h 42m"
                                 android:textColor="@color/white"
                                 android:textSize="14sp" />
+
+                            <ImageView
+                                android:layout_marginStart="4dp"
+                                android:src="@drawable/tmdb_icon"
+                                android:layout_width="40dp"
+                                android:padding="2dp"
+                                android:layout_height="match_parent"/>
 
 
                         </LinearLayout>
@@ -161,7 +185,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="260dp"
                                 android:layout_marginTop="2dp"
-                                android:layout_marginStart="10dp"
+                                android:layout_marginStart="12dp"
                                 android:backgroundTint="@color/gray"
                                 android:textColor="@color/white"
                                 style="@style/Text.SubHeader"
