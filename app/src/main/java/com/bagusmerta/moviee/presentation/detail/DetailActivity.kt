@@ -174,7 +174,8 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        youtubePlayerListener?.let { binding.ytPlayerView.removeYouTubePlayerListener(it) }
+        youtubePlayerListener?.let { binding.ytPlayerView.release() }
+
     }
 
     companion object{

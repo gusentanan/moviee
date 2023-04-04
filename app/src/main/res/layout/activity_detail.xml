@@ -189,6 +189,7 @@
                                 android:backgroundTint="@color/gray"
                                 android:textColor="@color/white"
                                 style="@style/Text.SubHeader"
+                                android:textStyle="bold"
                                 android:textAllCaps="false"
                                 app:cornerRadius="@dimen/dimen_8"
                                 android:text="Add to Favorite" />
@@ -203,6 +204,7 @@
                                 android:backgroundTint="@color/gray"
                                 android:textColor="@color/white"
                                 style="@style/Text.SubHeader"
+                                android:textStyle="bold"
                                 android:textAllCaps="false"
                                 app:cornerRadius="@dimen/dimen_8"
                                 android:text="Watch" />
