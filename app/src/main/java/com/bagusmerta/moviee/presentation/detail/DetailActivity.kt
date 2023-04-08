@@ -119,14 +119,12 @@ class DetailActivity : AppCompatActivity() {
                 .joinToString(" • ") { it.name.toString() }
 
             var favoriteState = data.isFavorite!!
-            Log.d("DETL", favoriteState.toString())
             detailViewModel.apply {
                 data.id?.let { checkFavoriteMovies(it) }
                 btnState.observe(this@DetailActivity){
                     it?.let {
                         handleButtonSaveIcon(it)
                         favoriteState = it
-                        Log.d("DETL2", favoriteState.toString())
                     }
                 }
             }

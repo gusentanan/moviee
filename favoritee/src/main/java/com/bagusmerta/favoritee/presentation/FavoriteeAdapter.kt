@@ -10,6 +10,8 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
+import java.text.SimpleDateFormat
+import java.util.*
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {
 
@@ -21,7 +23,8 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
                 ivFavMovie.loadImage(item.posterPath)
                 ivFavMovieBackdrop.loadImage(item.backdropPath)
                 tvFavMovieTitle.text = item.title
-                tvFavMovieOverview.text = item.overview
+                tvMovieRating.text = String.format("%.1f", item.rating)
+                tvMovieYear.text = formatMediaDate(item.releaseDate)
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
@@ -54,5 +57,15 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
     fun clearItems(){
         items.clear()
         notifyDataSetChanged()
+    }
+
+    private fun formatMediaDate(date: String?): String? {
+        if(!date.isNullOrEmpty()) {
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            return sdf.parse(date)
+                ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
+        } else {
+            return "Unknown"
+        }
     }
 }

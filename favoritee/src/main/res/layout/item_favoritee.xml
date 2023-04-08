@@ -80,20 +80,50 @@
                 app:layout_constraintTop_toTopOf="@id/cv_fav_image"/>
 
             <TextView
-                android:id="@+id/tv_fav_movie_overview"
+                android:id="@+id/tv_movie_year"
                 style="@style/Text.Header2"
-                android:layout_width="0dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:lines="2"
-                android:text="@string/ex_overview_movie"
-                android:textColor="@color/colorSecondaryDark"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_rating"
+                android:paddingHorizontal="@dimen/dimen_8"
+                android:paddingVertical="@dimen/dimen_1"
+                android:lines="1"
+                android:text="2020"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/cv_fav_image"
-                app:layout_constraintTop_toBottomOf="@id/tv_fav_movie_title" />
+                app:layout_constraintStart_toStartOf="@id/tv_fav_movie_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fav_movie_title" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_rating"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/dimen_1"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fav_movie_title"
+                app:layout_constraintStart_toEndOf="@+id/tv_movie_year"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_baseline_star_24" />
+
+                <TextView
+                    android:id="@+id/tv_movie_rating"
+                    style="@style/Text.Header2"
+                    android:layout_marginEnd="8dp"
+                    android:padding="1dp"
+                    android:lines="1"
+                    android:text="7.8"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
