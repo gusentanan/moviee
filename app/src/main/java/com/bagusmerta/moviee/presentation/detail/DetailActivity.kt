@@ -5,12 +5,16 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.utils.DataMapper.mapMovieDetailToMoviee
+import com.bagusmerta.core.utils.testHelper.mapResponseToDomain
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.helpers.Helpers
@@ -20,6 +24,7 @@ import com.bagusmerta.utility.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import www.sanju.motiontoast.MotionToast
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -37,6 +42,8 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContentView(binding.root)
         initView()
 
@@ -56,9 +63,6 @@ class DetailActivity : AppCompatActivity() {
             moviee?.id?.let { getMovieCast(it) }
             moviee?.id?.let { getSimilarMovie(it) }
 
-            btnState.observe(this@DetailActivity){
-                it?.let { handleButtonSaveIcon(it) }
-            }
             result.observe(this@DetailActivity){
                 it?.let { detailMovies -> setDetailView(detailMovies) }
             }
@@ -71,6 +75,7 @@ class DetailActivity : AppCompatActivity() {
             loadingState.observe(this@DetailActivity){
                 it?.let { flag -> handleLoadingState(flag) }
             }
+
         }
     }
 
@@ -113,15 +118,33 @@ class DetailActivity : AppCompatActivity() {
             tvGenres.text = Helpers.mappingMovieGenreListFromId(data.genres)
                 .joinToString(" • ") { it.name.toString() }
 
-//            var favoriteState = data.isFavorite!!
-//            btnSave.setOnClickListener {
-//                favoriteState = !favoriteState
-//                detailViewModel.setFavoriteMovies(data, favoriteState)
-//            }
+            var favoriteState = data.isFavorite!!
+            Log.d("DETL", favoriteState.toString())
+            detailViewModel.apply {
+                data.id?.let { checkFavoriteMovies(it) }
+                btnState.observe(this@DetailActivity){
+                    it?.let {
+                        handleButtonSaveIcon(it)
+                        favoriteState = it
+                        Log.d("DETL2", favoriteState.toString())
+                    }
+                }
+            }
+
+            btnFavorite.setOnClickListener {
+                favoriteState = !favoriteState
+                val nData = mapMovieDetailToMoviee(data)
+                if(favoriteState){
+                    detailViewModel.setFavoriteMovies(nData, favoriteState)
+                }else {
+                    detailViewModel.deleteFavoriteMovies(nData.id!!)
+                }
+            }
 
             btnGoWatch.setOnClickListener { handleButtonWatch() }
         }
     }
+
 
     private fun initRecyclerView(){
         with(binding){
@@ -145,17 +168,18 @@ class DetailActivity : AppCompatActivity() {
                 }
             }
         }
+
         ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
     }
 
     private fun handleButtonSaveIcon(isFavorite: Boolean){
-//        binding.apply {
-//            if(isFavorite){
-//                btnSave.setImageResource(R.drawable.ic_baseline_bookmark_24)
-//            }else {
-//                btnSave.setImageResource(R.drawable.ic_baseline_bookmark_border_24)
-//            }
-//        }
+        binding.apply {
+            if(isFavorite){
+                btnFavorite.text = "Remove from favorite"
+            }else {
+                btnFavorite.text = "Add to Favorite"
+            }
+        }
     }
 
     private fun handleButtonWatch(){

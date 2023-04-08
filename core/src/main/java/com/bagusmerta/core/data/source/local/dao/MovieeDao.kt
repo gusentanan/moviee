@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.utils.Constants.CHECK_FAVORITE_MOVIES
+import com.bagusmerta.core.utils.Constants.DELETE_FAVORITE_MOVIES
 import com.bagusmerta.core.utils.Constants.GET_ALL_FAVORITE_MOVIES
 import com.bagusmerta.core.utils.Constants.GET_ALL_MOVIES
 import io.reactivex.Completable
@@ -30,5 +31,8 @@ interface MovieeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun updateFavoriteMovie(data: MovieeEntity)
+
+    @Query(DELETE_FAVORITE_MOVIES)
+    fun deleteFavoriteMovie(movieId: Int): Completable
 
 }

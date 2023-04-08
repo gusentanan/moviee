@@ -16,6 +16,7 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val _btnState = MutableLiveData<Boolean?>()
     private val _result = MutableLiveData<MovieeDetail?>()
+    private val _resultState = MutableLiveData<String?>()
     private val mCompositeDisposable = CompositeDisposable()
     private val _castResult = MutableLiveData<List<Cast>?>()
     private val _similarMovieResult  = MutableLiveData<List<Moviee>?>()
@@ -29,6 +30,9 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     val result: LiveData<MovieeDetail?>
         get() = _result
+
+    val resultState: LiveData<String?>
+        get() = _resultState
 
     val castResult: LiveData<List<Cast>?>
         get() = _castResult
@@ -90,24 +94,43 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }).let(mCompositeDisposable::add)
     }
 
-//    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
-//        useCase.setFavoriteMovies(data, isFavorite)
-//            .subscribe({
-//                _btnState.postValue(isFavorite)
-//            }, { error ->
-//                Timber.e(error.message.toString())
-//            }).let(mCompositeDisposable::add)
-//    }
-//
-//    fun checkFavoriteMovies(id: Int){
-//        useCase.checkFavoriteMovies(id)
-//            .subscribe({ data ->
-//                _btnState.postValue(data.isFavorite)
-//                _result.postValue(data)
-//            }, { error ->
-//                Timber.e(error.message.toString())
-//            }).let(mCompositeDisposable::add)
-//    }
+    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
+        useCase.setFavoriteMovies(data, isFavorite)
+            .subscribe({
+                _btnState.postValue(isFavorite)
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun checkFavoriteMovies(id: Int){
+        useCase.checkFavoriteMovies(id)
+            .subscribe({ data ->
+                if (data == null) {
+                    _btnState.postValue(false)
+                }else {
+                    _btnState.postValue(true)
+                }
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun deleteFavoriteMovies(id: Int){
+        useCase.deleteFavoriteMovies(id)
+            .subscribe({ value ->
+                when(value){
+                    is Resource.Success -> {
+                        _btnState.postValue(false)
+                        _resultState.postValue(value.data)
+                    }
+                    is Resource.Error -> _errorState.postValue(value.errorMessage)
+                    is Resource.Empty -> _emptyState.postValue(true)
+                }
+            }, { error ->
+                Timber.e(error.message.toString())
+            }).let(mCompositeDisposable::add)
+    }
 
     override fun onCleared() {
         mCompositeDisposable.clear()

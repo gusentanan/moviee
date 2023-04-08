@@ -1,6 +1,5 @@
 package com.bagusmerta.core.data
 
-import android.annotation.SuppressLint
 import com.bagusmerta.core.data.source.local.LocalDataSource
 import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
@@ -14,6 +13,7 @@ import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.completableTransformerIo
 import com.bagusmerta.utility.maybeTransformerIo
 import com.bagusmerta.utility.singleTransformerIo
+import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -22,7 +22,7 @@ import io.reactivex.subjects.SingleSubject
 
 
 interface MovieeRepository {
-    fun getAllMovies(): Flowable<Resource<List<Moviee>>>
+    fun getAllMovies(): Single<Resource<List<Moviee>>>
     fun getUpcomingMovies(): Single<Resource<List<Moviee>>>
     fun getPopularMovies(): Single<Resource<List<Moviee>>>
     fun getNowPlayingMovies(): Single<Resource<List<Moviee>>>
@@ -33,6 +33,7 @@ interface MovieeRepository {
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
     fun checkFavoriteMovies(id: Int): Maybe<Moviee>
+    fun deleteFavoriteMovies(id: Int): Single<Resource<String>>
     fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>>
 
 }
@@ -42,29 +43,21 @@ class MovieeRepositoryImpl(
     private val localDataSource: LocalDataSource
 ) : MovieeRepository {
 
-    @SuppressLint("CheckResult")
-    override fun getAllMovies(): Flowable<Resource<List<Moviee>>> =
-        object : NetworkBoundResource<List<Moviee>, List<MovieeItemResponse>>() {
-            override fun loadFromDB(): Flowable<List<Moviee>> {
-                return localDataSource.getAllMovies().map { DataMapper.mapListMovieeEntityToDomain(it) }
-            }
+    override fun getAllMovies(): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getAllMovies()
+            .doAfterTerminate{ mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when (value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
 
-            override fun shouldFetch(data: List<Moviee>?): Boolean {
-                return data == null || data.isEmpty()
-            }
-
-            override fun createCall(): Flowable<ResultState<List<MovieeItemResponse>>> {
-                return remoteDataSource.getAllMovies()
-            }
-
-            override fun saveCallResult(data: List<MovieeItemResponse>) {
-                val movieeList = DataMapper.mapListMovieeResponseToEntity(data)
-                localDataSource.insertMovieData(movieeList)
-                    .compose(completableTransformerIo())
-                    .subscribe()
-            }
-
-        }.asFlowable()
+        return res
+    }
 
     override fun getUpcomingMovies(): Single<Resource<List<Moviee>>> {
         val res = SingleSubject.create<Resource<List<Moviee>>>()
@@ -209,6 +202,21 @@ class MovieeRepositoryImpl(
             .compose(maybeTransformerIo())
             .map { DataMapper.mapMovieeEntityToDomain(it) }
 
+    }
+
+    override fun deleteFavoriteMovies(id: Int): Single<Resource<String>> {
+        val res = SingleSubject.create<Resource<String>>()
+        val mCompositeDisposable = CompositeDisposable()
+        localDataSource.deleteFavoriteMovie(id)
+            .subscribe { value ->
+                when(value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(value.data))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
     }
 
     private fun mapResponseToDomain(movieResponse: List<MovieeItemResponse>): List<Moviee>{

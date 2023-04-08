@@ -19,6 +19,18 @@ object DataMapper {
             )
         }
 
+    fun mapMovieDetailToMoviee(data: MovieeDetail): Moviee =
+        Moviee(
+            id = data.id,
+            title = data.title,
+            overview = data.overview,
+            releaseDate = data.releaseDate,
+            backdropPath = data.backdropPath,
+            isFavorite = data.isFavorite,
+            rating = data.rating,
+            posterPath = data.posterPath
+        )
+
     fun mapDetailMovieeResponseToDomain(data: MovieeDetailResponse, genreIds: List<Int>?): MovieeDetail =
         MovieeDetail(
             id = data.movieeId,

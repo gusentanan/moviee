@@ -36,6 +36,7 @@ val databaseModule = module {
             .openHelperFactory(factory)
             .build()
     }
+
 }
 
 val networkModule = module {

@@ -32,6 +32,7 @@
             app:indicatorSize="44dp"
             app:trackThickness="2dp" />
 
+
     </FrameLayout>
 
 </FrameLayout>

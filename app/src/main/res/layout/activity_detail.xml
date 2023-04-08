@@ -31,7 +31,6 @@
                 layout="@layout/item_thumbnail_container"
                 android:visibility="visible" />
 
-
             <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                 android:id="@+id/yt_player_view"
                 android:layout_width="match_parent"
