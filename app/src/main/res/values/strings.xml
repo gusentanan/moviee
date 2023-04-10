@@ -30,4 +30,6 @@
     <string name="cast_movie_detail">&#10024; Cast</string>
     <string name="similar_to_this">🧭 Similar to this</string>
     <string name="runtime_movie_detail">"%sh %sm"</string>
+    <string name="remove_from_favorite">Remove from favorite</string>
+    <string name="add_to_favorite">Add to favorite</string>
 </resources>

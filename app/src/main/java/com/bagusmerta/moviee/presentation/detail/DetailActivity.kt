@@ -170,15 +170,15 @@ class DetailActivity : AppCompatActivity() {
     private fun handleButtonSaveIcon(isFavorite: Boolean){
         binding.apply {
             if(isFavorite){
-                btnFavorite.text = "Remove from favorite"
+                btnFavorite.text = getString(R.string.remove_from_favorite)
             }else {
-                btnFavorite.text = "Add to Favorite"
+                btnFavorite.text = getString(R.string.add_to_favorite)
             }
         }
     }
 
     private fun handleButtonWatch(){
-        makeErrorToast("This feature is currently unavailable")
+        makeInfoToast("This feature is currently unavailable")
     }
 
     private fun formatMediaDate(date: String?): String? {

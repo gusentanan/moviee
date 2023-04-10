@@ -20,6 +20,7 @@ import com.bagusmerta.moviee.presentation.main.adapter.*
 import com.bagusmerta.moviee.presentation.search.SearchActivity
 import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         initStateObserver()
         initRecyclerBanner()
         initRecyclerView()
-
+        btnStateListener()
     }
 
     private fun initAppBar(){
@@ -123,6 +124,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun handleErrorState(msg: String){
         this.makeErrorToast(msg)
+    }
+
+    private fun handleInfoState(msg: String){
+        this.makeInfoToast(msg)
     }
 
     private fun handleMovieeResult(data: List<Moviee>?) {
@@ -208,6 +213,26 @@ class MainActivity : AppCompatActivity() {
                     scrollHandler.postDelayed(scrollRunnable, BANNER_DELAY)
                 }
             })
+        }
+    }
+
+    private fun btnStateListener(){
+        binding.apply {
+            btnSeeAllNowplaying.setOnClickListener {
+                handleInfoState("This feature is currently unavailable")
+            }
+            btnSeeAllPopular.setOnClickListener {
+                handleInfoState("This feature is currently unavailable")
+            }
+            btnSeeAllRecommend.setOnClickListener {
+                handleInfoState("This feature is currently unavailable")
+            }
+            btnSeeAllToprated.setOnClickListener {
+                handleInfoState("This feature is currently unavailable")
+            }
+            btnSeeAllUpcoming.setOnClickListener {
+                handleInfoState("This feature is currently unavailable")
+            }
         }
     }
 
