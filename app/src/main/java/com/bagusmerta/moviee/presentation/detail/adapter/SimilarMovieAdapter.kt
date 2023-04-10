@@ -2,13 +2,11 @@ package com.bagusmerta.moviee.presentation.detail.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
-import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
 
 class SimilarMovieAdapter(private  val context: Context): RecyclerView.Adapter<SimilarMovieAdapter.ViewHolder>() {

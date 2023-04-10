@@ -16,7 +16,7 @@
     <application>
         <activity
             android:name=".presentation.FavoriteeActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

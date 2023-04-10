@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
@@ -15,16 +16,17 @@ import java.util.*
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {
 
-    private var items = mutableListOf<Moviee>()
+    private var items = mutableListOf<MovieeFavorite>()
 
     inner class ViewHolder(private val binding: ItemFavoriteeBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Moviee){
+        fun bind(item: MovieeFavorite){
             binding.apply {
                 ivFavMovie.loadImage(item.posterPath)
                 ivFavMovieBackdrop.loadImage(item.backdropPath)
                 tvFavMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = formatMediaDate(item.releaseDate)
+                tvGenres.text = item.genre
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
@@ -48,7 +50,7 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setFavoriteItem(data: MutableList<Moviee>){
+    fun setFavoriteItem(data: MutableList<MovieeFavorite>){
         this.items = data
         notifyDataSetChanged()
     }

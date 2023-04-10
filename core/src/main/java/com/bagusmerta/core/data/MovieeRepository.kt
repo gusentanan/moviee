@@ -8,12 +8,12 @@ import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.core.utils.DataMapper
+import com.bagusmerta.core.utils.DataMapper.mapMovieeResponseToDomain
 import com.bagusmerta.utility.ResultState
-import com.bagusmerta.utility.completableTransformerIo
 import com.bagusmerta.utility.maybeTransformerIo
 import com.bagusmerta.utility.singleTransformerIo
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -29,8 +29,8 @@ interface MovieeRepository {
     fun getTopRatedMovies(): Single<Resource<List<Moviee>>>
     fun getDetailMovies(movieId: Int): Single<Resource<MovieeDetail>>
     fun getMovieCast(movieId: Int): Single<Resource<List<Cast>>>
-    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>>
-    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit>
+    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeFavorite>>
+    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit>
     fun searchMovies(query: String): Single<Resource<List<Moviee>>>
     fun checkFavoriteMovies(id: Int): Maybe<Moviee>
     fun deleteFavoriteMovies(id: Int): Single<Resource<String>>
@@ -50,7 +50,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate{ mCompositeDisposable.clear() }
             .subscribe { value ->
                 when (value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -66,7 +66,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate{ mCompositeDisposable.clear() }
             .subscribe { value ->
                 when (value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -82,7 +82,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate{ mCompositeDisposable.clear() }
             .subscribe { value ->
                 when (value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -98,7 +98,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate{ mCompositeDisposable.clear() }
             .subscribe { value ->
                 when (value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -114,7 +114,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate{ mCompositeDisposable.clear() }
             .subscribe { value ->
                 when (value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -130,7 +130,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate{ mCompositeDisposable.clear() }
             .subscribe { value ->
                 when (value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -178,7 +178,7 @@ class MovieeRepositoryImpl(
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe { value ->
                 when(value) {
-                    is ResultState.Success -> res.onSuccess(Resource.Success(mapResponseToDomain(value.data)))
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
                     is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                     is ResultState.Empty -> res.onSuccess(Resource.Empty)
                 }
@@ -187,12 +187,12 @@ class MovieeRepositoryImpl(
         return res
     }
 
-    override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<Moviee>> {
+    override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeFavorite>> {
         return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapListMovieeEntityToDomain(it) }
     }
 
-    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean): Single<Unit> {
-        val newData = DataMapper.mapMovieeDomainToEntity(data)
+    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit> {
+        val newData = DataMapper.mapMovieeDomainToEntity(data, genre)
         return localDataSource.setFavoriteMovie(newData, isFavorite)
             .compose(singleTransformerIo())
     }
@@ -217,12 +217,6 @@ class MovieeRepositoryImpl(
             }.let(mCompositeDisposable::add)
 
         return res
-    }
-
-    private fun mapResponseToDomain(movieResponse: List<MovieeItemResponse>): List<Moviee>{
-        return DataMapper.mapListMovieeResponseToEntity(movieResponse).let {
-            DataMapper.mapListMovieeEntityToDomain(it)
-        }
     }
 
     private fun mapDetailResponseToDomain(detailMovieResponse: MovieeDetailResponse, genreIds: List<Int>?): MovieeDetail {

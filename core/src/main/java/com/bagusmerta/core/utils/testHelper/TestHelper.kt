@@ -70,8 +70,8 @@ fun <T> load(clss: Class<T>, file: String): T {
     return Gson().fromJson(fixtureStreamReader, clss)
 }
 
-fun mapResponseToDomain(data: MovieeResponse): List<Moviee> {
-    return DataMapper.mapListMovieeResponseToEntity(data.movieeResponse).let {
-        DataMapper.mapListMovieeEntityToDomain(it)
-    }
-}
+//fun mapResponseToDomain(data: MovieeResponse): List<Moviee> {
+//    return DataMapper.mapMovieeResponseToEntity(data.movieeResponse).let {
+//        DataMapper.mapListMovieeEntityToDomain(it)
+//    }
+//}

@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="20dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -69,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:textSize="16sp"
                 android:ellipsize="end"
                 android:lines="2"
@@ -80,6 +81,21 @@
                 app:layout_constraintTop_toTopOf="@id/cv_fav_image"/>
 
             <TextView
+                android:id="@+id/tv_genres"
+                style="@style/Text.SubHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:lines="1"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_movie_year"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_fav_movie_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_fav_movie_title"
+                tools:text="Action • Adventure • Comedy • Scifi" />
+
+            <TextView
                 android:id="@+id/tv_movie_year"
                 style="@style/Text.Header2"
                 android:layout_margin="2dp"
@@ -87,12 +103,12 @@
                 android:paddingHorizontal="@dimen/dimen_8"
                 android:paddingVertical="@dimen/dimen_1"
                 android:lines="1"
-                android:text="2020"
+                tools:text="2020"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tv_fav_movie_title"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fav_movie_title" />
+                app:layout_constraintStart_toStartOf="@id/tv_genres"
+                app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -101,7 +117,7 @@
                 android:background="@drawable/bg_rating"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/dimen_1"
-                app:layout_constraintTop_toBottomOf="@+id/tv_fav_movie_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_genres"
                 app:layout_constraintStart_toEndOf="@+id/tv_movie_year"
                 app:layout_constraintBottom_toBottomOf="parent">
 
@@ -116,7 +132,7 @@
                     android:layout_marginEnd="8dp"
                     android:padding="1dp"
                     android:lines="1"
-                    android:text="7.8"
+                    tools:text="7.8"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="italic" />

@@ -7,6 +7,7 @@ import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.domain.model.MovieeFavorite
 
 object DataMapper {
 
@@ -46,23 +47,10 @@ object DataMapper {
             keyVideo = data.keyVideo
         )
 
-    fun mapListMovieeResponseToEntity(data: List<MovieeItemResponse>): List<MovieeEntity> =
+    // used for mapping entity layer model to domain layer model (fetching from DB)
+    fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<MovieeFavorite> =
         data.map {
-            MovieeEntity(
-                id = it.movieeId,
-                title = it.movieeTitle,
-                backdropPath = it.backdropPath,
-                posterPath = it.posterPath,
-                releaseDate = it.releaseDate,
-                overview = it.overview,
-                isFavorite = false,
-                rating = it.rating
-            )
-        }
-
-    fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<Moviee> =
-        data.map {
-            Moviee(
+            MovieeFavorite(
                 id = it.id,
                 title = it.title,
                 backdropPath = it.backdropPath,
@@ -70,9 +58,11 @@ object DataMapper {
                 releaseDate = it.releaseDate,
                 overview = it.overview,
                 isFavorite = it.isFavorite,
-                rating = it.rating
+                rating = it.rating,
+                genre = it.genre
             )
         }
+
 
     fun mapMovieeEntityToDomain(data: MovieeEntity): Moviee =
         data.let {
@@ -88,7 +78,7 @@ object DataMapper {
             )
         }
 
-    fun mapMovieeDomainToEntity(data: Moviee): MovieeEntity =
+    fun mapMovieeDomainToEntity(data: Moviee, genre: String): MovieeEntity =
             MovieeEntity(
                 id = data.id,
                 title = data.title,
@@ -97,8 +87,23 @@ object DataMapper {
                 releaseDate = data.releaseDate,
                 overview = data.overview,
                 isFavorite = data.isFavorite,
-                rating = data.rating
+                rating = data.rating,
+                genre = genre
             )
+
+    fun mapMovieeResponseToDomain(data: List<MovieeItemResponse>): List<Moviee> =
+        data.map {
+            Moviee(
+                id = it.movieeId,
+                backdropPath = it.backdropPath,
+                posterPath = it.posterPath,
+                overview = it.overview,
+                releaseDate = it.releaseDate,
+                title = it.movieeTitle,
+                rating = it.rating,
+                isFavorite = false
+            )
+        }
 
 
 }

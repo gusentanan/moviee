@@ -2,19 +2,14 @@ package com.bagusmerta.moviee.presentation.detail
 
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.core.utils.DataMapper.mapMovieDetailToMoviee
-import com.bagusmerta.core.utils.testHelper.mapResponseToDomain
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityDetailBinding
 import com.bagusmerta.moviee.helpers.Helpers
@@ -24,9 +19,8 @@ import com.bagusmerta.utility.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import www.sanju.motiontoast.MotionToast
 import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
 
@@ -115,8 +109,11 @@ class DetailActivity : AppCompatActivity() {
             tvMovieYear.text = formatMediaDate(data.releaseDate)
             tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
             tvOverview.text = data.overview
-            tvGenres.text = Helpers.mappingMovieGenreListFromId(data.genres)
+
+            val genreString =  Helpers.mappingMovieGenreListFromId(data.genres)
                 .joinToString(" • ") { it.name.toString() }
+            tvGenres.text = genreString
+
 
             var favoriteState = data.isFavorite!!
             detailViewModel.apply {
@@ -133,7 +130,7 @@ class DetailActivity : AppCompatActivity() {
                 favoriteState = !favoriteState
                 val nData = mapMovieDetailToMoviee(data)
                 if(favoriteState){
-                    detailViewModel.setFavoriteMovies(nData, favoriteState)
+                    detailViewModel.setFavoriteMovies(nData, favoriteState, genreString)
                 }else {
                     detailViewModel.deleteFavoriteMovies(nData.id!!)
                 }

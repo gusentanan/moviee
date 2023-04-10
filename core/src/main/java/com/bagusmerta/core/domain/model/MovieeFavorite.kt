@@ -1,6 +1,10 @@
 package com.bagusmerta.core.domain.model
 
-data class MovieeDetail(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class MovieeFavorite(
     val id: Int?,
     val title: String?,
     val overview: String?,
@@ -9,10 +13,6 @@ data class MovieeDetail(
     val posterPath: String?,
     val isFavorite: Boolean?,
     val rating: Double?,
-    val genres: List<Int>?,
-    val runtime: Int?,
-    val keyVideo: String?
-)
+    val genre: String?
 
-
-
+): Parcelable

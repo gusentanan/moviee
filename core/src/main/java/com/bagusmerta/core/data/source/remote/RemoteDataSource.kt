@@ -3,7 +3,6 @@ package com.bagusmerta.core.data.source.remote
 import android.annotation.SuppressLint
 import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieCastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.utility.ResultState

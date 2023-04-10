@@ -32,5 +32,9 @@ data class MovieeEntity (
     var isFavorite: Boolean? = false,
 
     @ColumnInfo(name = "rating")
-    var rating: Double?
+    var rating: Double?,
+
+    @ColumnInfo(name= "genre")
+    var genre: String?
+
 )

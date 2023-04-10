@@ -1,6 +1,5 @@
 package com.bagusmerta.moviee.presentation.main
 
-import android.graphics.Movie
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -42,6 +42,20 @@ fun Activity.makeErrorToast(message: String){
     }
 }
 
+fun Activity.makeInfoToast(message: String){
+    MotionToast.let {
+        it.createColorToast(
+            this,
+            "Info",
+            message,
+            MotionToastStyle.INFO,
+            it.GRAVITY_BOTTOM,
+            it.LONG_DURATION,
+            ResourcesCompat.getFont(this, R.font.helveticabold)
+        )
+    }
+}
+
 
 fun Activity.hideStatusBar(){
     this.window.apply {

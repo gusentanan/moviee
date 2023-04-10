@@ -1,10 +1,10 @@
 package com.bagusmerta.favoritee.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.R
 import com.bagusmerta.favoritee.databinding.ActivityFavoriteeBinding
 import com.bagusmerta.favoritee.di.favoriteeModule
@@ -23,7 +23,7 @@ class FavoriteeActivity : AppCompatActivity() {
     }
     private val favoriteeViewModel: FavoriteeViewModel by viewModel()
     private val favoriteeAdapter: FavoriteeAdapter by lazy { FavoriteeAdapter(this) }
-    private val items = mutableListOf<Moviee>()
+    private val items = mutableListOf<MovieeFavorite>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +60,7 @@ class FavoriteeActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleFavoriteMovieResult(data: List<Moviee>) {
+    private fun handleFavoriteMovieResult(data: List<MovieeFavorite>) {
         items.clear()
         items.addAll(data)
         favoriteeAdapter.setFavoriteItem(items)

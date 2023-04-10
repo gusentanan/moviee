@@ -94,8 +94,8 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }).let(mCompositeDisposable::add)
     }
 
-    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean){
-        useCase.setFavoriteMovies(data, isFavorite)
+    fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String){
+        useCase.setFavoriteMovies(data, isFavorite, genre)
             .subscribe({
                 _btnState.postValue(isFavorite)
             }, { error ->

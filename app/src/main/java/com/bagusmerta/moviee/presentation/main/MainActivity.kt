@@ -8,7 +8,6 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -95,9 +94,6 @@ class MainActivity : AppCompatActivity() {
             errorState.observe(this@MainActivity){
                 handleErrorState(it)
             }
-            emptyState.observe(this@MainActivity){
-                handleEmptyState(it)
-            }
         }
     }
 
@@ -172,41 +168,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun handleEmptyState(state: Boolean){
-        binding.apply {
-            lottieEmptyRes.root.let {
-                if(state) it.makeVisible() else it.makeGone()
-            }
-        }
-    }
-
-    private fun handleLoadingState(state: Boolean){
-        binding.apply {
-            shimmerLoading1.let {
-                if(state) it.makeVisible() else it.makeGone()
-            }
-            shimmerLoading2.let {
-                if(state) it.makeVisible() else it.makeGone()
-            }
-            tvRecommendMovies.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            tvPopularMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvUpcomingMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvNowplayingMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvTopratedMovies.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-        }
-    }
-
-
     private var scrollHandler = Handler(Looper.getMainLooper())
     var scrollRunnable = Runnable {
         with(binding) {
@@ -247,6 +208,59 @@ class MainActivity : AppCompatActivity() {
                     scrollHandler.postDelayed(scrollRunnable, BANNER_DELAY)
                 }
             })
+        }
+    }
+
+    private fun handleLoadingState(state: Boolean){
+        binding.apply {
+            mainLoadingShimmer.activityMainLoader.let {
+                if(state) it.makeVisible() else it.makeGone()
+            }
+            tvRecommendMovies.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            tv2RecommendMovies.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            tvPopularMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tv2PopularMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvUpcomingMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tv2UpcomingMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvNowplayingMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tv2NowplayingMovies.let {
+                if(state) it.makeGone() else it.makeVisible()
+            }
+            tvTopratedMovies.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            tv2TopratedMovies.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            btnSeeAllNowplaying.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            btnSeeAllPopular.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            btnSeeAllRecommend.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            btnSeeAllToprated.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
+            btnSeeAllUpcoming.let {
+                if (state) it.makeGone() else it.makeVisible()
+            }
         }
     }
 

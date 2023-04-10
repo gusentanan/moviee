@@ -3,14 +3,10 @@ package com.bagusmerta.moviee.presentation.main.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Movie
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
