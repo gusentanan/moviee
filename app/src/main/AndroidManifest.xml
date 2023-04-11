@@ -7,9 +7,9 @@
     <application
         android:name=".MovieeApp"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_moviee_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_moviee_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moviee">
         <activity

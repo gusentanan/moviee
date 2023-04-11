@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">moviee</string>
+    <string name="app_name">Moviee</string>
     <string name="poster_movie">poster_movie</string>
     <string name="image_detail_movie">detail image movie</string>
     <string name="release_date">Release Date</string>
