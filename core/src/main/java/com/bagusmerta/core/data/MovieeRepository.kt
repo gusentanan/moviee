@@ -3,7 +3,6 @@ package com.bagusmerta.core.data
 import com.bagusmerta.core.data.source.local.LocalDataSource
 import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee

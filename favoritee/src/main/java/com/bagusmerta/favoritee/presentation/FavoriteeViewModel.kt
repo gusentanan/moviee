@@ -3,7 +3,6 @@ package com.bagusmerta.favoritee.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import io.reactivex.disposables.CompositeDisposable

@@ -16,14 +16,6 @@ fun <T> flowableTransformerComputation(): FlowableTransformer<T, T>{
     }
 }
 
-fun <T> flowableTransformerIo(): FlowableTransformer<T, T>{
-    return FlowableTransformer {
-        it.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .take(1)
-    }
-}
-
 fun completableTransformerIo(): CompletableTransformer{
     return CompletableTransformer {
         it.subscribeOn(Schedulers.io())

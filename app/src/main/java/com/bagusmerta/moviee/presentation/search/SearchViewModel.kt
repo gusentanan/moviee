@@ -50,4 +50,9 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }).let(mCompositeDisposable::add)
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        mCompositeDisposable.clear()
+    }
+
 }

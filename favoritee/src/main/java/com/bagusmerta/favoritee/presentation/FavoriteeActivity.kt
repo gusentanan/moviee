@@ -3,7 +3,6 @@ package com.bagusmerta.favoritee.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.R
 import com.bagusmerta.favoritee.databinding.ActivityFavoriteeBinding

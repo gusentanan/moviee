@@ -2,25 +2,13 @@ package com.bagusmerta.core
 
 import com.bagusmerta.core.data.MovieeRepository
 import com.bagusmerta.core.data.MovieeRepositoryImpl
-import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.data.source.local.LocalDataSource
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
-import com.bagusmerta.core.utils.DataMapper
-import com.bagusmerta.core.utils.testHelper.*
-import com.bagusmerta.utility.ResultState
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Maybe
-import io.reactivex.Single
+import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
 import org.junit.After
 import org.junit.Before
-import org.junit.Test
 import org.mockito.MockitoAnnotations
-import org.mockito.kotlin.atLeastOnce
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
-import org.mockito.kotlin.whenever
 
 class MovieeRepositoryTest {
     private val remoteDataSource: RemoteDataSource = mock()

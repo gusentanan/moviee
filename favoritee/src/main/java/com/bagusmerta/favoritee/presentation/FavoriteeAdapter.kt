@@ -6,7 +6,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity

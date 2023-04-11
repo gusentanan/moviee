@@ -18,8 +18,6 @@ class LocalDataSource(private val dao: MovieeDao) {
 
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeEntity>> = dao.getAllFavoriteMovies(isFavorite)
 
-    fun insertMovieData(data: List<MovieeEntity>): Completable = dao.insertMovieData(data)
-
     fun checkFavoriteMovie(id: Int): Maybe<MovieeEntity> = dao.checkFavoriteMovies(id)
 
     fun setFavoriteMovie(data: MovieeEntity, isFavorite: Boolean): Single<Unit> {

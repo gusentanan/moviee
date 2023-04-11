@@ -152,7 +152,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
     }
 
     override fun onCleared() {
-        mCompositeDisposable.clear()
         super.onCleared()
+        mCompositeDisposable.clear()
     }
 }

@@ -47,7 +47,6 @@ object DataMapper {
             keyVideo = data.keyVideo
         )
 
-    // used for mapping entity layer model to domain layer model (fetching from DB)
     fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<MovieeFavorite> =
         data.map {
             MovieeFavorite(
