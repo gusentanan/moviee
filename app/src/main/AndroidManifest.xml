@@ -14,11 +14,11 @@
         android:theme="@style/Theme.Moviee">
         <activity
             android:name=".presentation.search.SearchActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
             android:exported="true" />
         <activity
             android:name=".presentation.detail.DetailActivity"
-            android:theme="@style/AppThemeTranslucent"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
             android:exported="true" />
         <activity
             android:name=".presentation.main.MainActivity"

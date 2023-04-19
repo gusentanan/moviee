@@ -17,16 +17,16 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="AppThemeTranslucent" parent="Theme.MaterialComponents.Light.NoActionBar">
+<!--    <style name="AppThemeTranslucent" parent="Theme.MaterialComponents.Light.NoActionBar">-->
 
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
 
-        <!-- Optional: set the status bar light and content dark. -->
-        <item name="android:windowLightStatusBar">true</item>
+<!--        &lt;!&ndash; Optional: set the status bar light and content dark. &ndash;&gt;-->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
 
-        <item name="android:enforceStatusBarContrast"  tools:targetApi="q">false</item>
-        <item name="android:enforceNavigationBarContrast"  tools:targetApi="q">false</item>
-    </style>
+<!--        <item name="android:enforceStatusBarContrast"  tools:targetApi="q">false</item>-->
+<!--        <item name="android:enforceNavigationBarContrast"  tools:targetApi="q">false</item>-->
+<!--    </style>-->
 
 </resources>

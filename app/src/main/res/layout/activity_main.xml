@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/backgroundPrimary"
     tools:context=".presentation.main.MainActivity">
 
@@ -129,7 +129,7 @@
                 android:id="@+id/tv_recommend_movies"
                 style="@style/Text.Header1"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_newly_movies"
@@ -182,7 +182,6 @@
                 android:id="@+id/tv_upcoming_movies"
                 style="@style/Text.Header1"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_upcoming_movies"
@@ -234,7 +233,6 @@
                 android:id="@+id/tv_popular_movies"
                 style="@style/Text.Header1"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_popular_movies"
@@ -286,7 +284,6 @@
                 android:id="@+id/tv_toprated_movies"
                 style="@style/Text.Header1"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_toprated_movies"
@@ -339,7 +336,7 @@
                 android:id="@+id/tv_nowplaying_movies"
                 style="@style/Text.Header1"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:lines="1"
                 android:padding="2dp"
                 android:text="@string/tv_nowplaying_movies"
@@ -386,8 +383,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_nowplaying_movies"
                 tools:listitem="@layout/item_main_component" />
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
