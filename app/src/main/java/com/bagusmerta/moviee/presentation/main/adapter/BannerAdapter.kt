@@ -28,7 +28,7 @@ class BannerAdapter(private val context: Context): RecyclerView.Adapter<BannerAd
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }

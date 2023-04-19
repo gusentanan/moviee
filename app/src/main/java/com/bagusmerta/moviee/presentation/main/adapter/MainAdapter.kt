@@ -23,7 +23,7 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }
@@ -61,7 +61,7 @@ class UpcomingMoviesAdapter(private val context: Context): RecyclerView.Adapter<
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }
@@ -104,7 +104,7 @@ class TopRatedMoviesAdapter(private val context: Context): RecyclerView.Adapter<
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }
@@ -144,7 +144,7 @@ class NowPlayingMoviesAdapter(private val context: Context): RecyclerView.Adapte
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }
@@ -184,7 +184,7 @@ class PopularMoviesAdapter(private val context: Context): RecyclerView.Adapter<P
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }

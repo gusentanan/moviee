@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
@@ -20,8 +21,7 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
     inner class ViewHolder(private val binding: ItemFavoriteeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieeFavorite){
             binding.apply {
-                ivFavMovie.loadImage(item.posterPath)
-                ivFavMovieBackdrop.loadImage(item.backdropPath)
+                ivFavMovie.loadImage(item.backdropPath)
                 tvFavMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = formatMediaDate(item.releaseDate)
@@ -29,7 +29,7 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
-                        putExtra(DetailActivity.MOVIEE, item)
+                        putExtra(DetailActivity.MOVIEE, item.id)
                     })
                 }
             }

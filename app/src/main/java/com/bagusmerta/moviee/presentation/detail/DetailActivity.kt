@@ -50,12 +50,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun initStateObserver() {
-        val moviee = intent.getParcelableExtra<Moviee>(MOVIEE)
+        val movieeId = intent.getIntExtra(MOVIEE, 0)
 
         with(detailViewModel){
-            moviee?.id?.let { getDetailMovies(it) }
-            moviee?.id?.let { getMovieCast(it) }
-            moviee?.id?.let { getSimilarMovie(it) }
+            getDetailMovies(movieeId)
+            getMovieCast(movieeId)
+            getSimilarMovie(movieeId)
 
             result.observe(this@DetailActivity){
                 it?.let { detailMovies -> setDetailView(detailMovies) }
