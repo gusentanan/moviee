@@ -1,10 +1,12 @@
 package com.bagusmerta.core.data.source.remote
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemSearchResponse
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.flowableTransformerComputation
 import com.bagusmerta.utility.singleTransformerComputation
@@ -36,14 +38,15 @@ class RemoteDataSource(private val apiService: MovieeService) {
     }
 
 
-    fun searchMovies(query: String): Single<ResultState<List<MovieeItemResponse>>> {
+    fun searchMovies(query: String): Single<ResultState<List<MovieeItemSearchResponse>>> {
         val mCompositeDisposable = CompositeDisposable()
-        val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
+        val res = SingleSubject.create<ResultState<List<MovieeItemSearchResponse>>>()
         apiService.searchMovies(query)
             .compose(singleTransformerComputation())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
-                val data = response.movieeResponse
+                val data = response.movieeItemSearch
+
                 res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
             }, { error ->
                 res.onSuccess(ResultState.Error(error.message.toString()))

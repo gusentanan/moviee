@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.ThemedSpinnerAdapter.Helper
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.moviee.databinding.ItemSearchComponentBinding
 import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
@@ -15,15 +16,19 @@ import com.bagusmerta.utility.loadImage
 
 class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    private var items = mutableListOf<Moviee>()
+    private var items = mutableListOf<MovieeSearch>()
 
     inner class ViewHolder(private val binding: ItemSearchComponentBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: Moviee){
+        fun bind(item: MovieeSearch){
             binding.apply {
                 ivPoster.loadImage(item.backdropPath)
                 tvSearchMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = Helpers.formatMediaDate(item.releaseDate)
+                val genreString =  Helpers.mappingMovieGenreListFromId(item.genreId)
+                    .joinToString(" • ") { it.name.toString() }
+
+                tvGenres.text = genreString
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {
@@ -46,7 +51,7 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
     override fun getItemCount(): Int = items.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setItems(data: MutableList<Moviee>){
+    fun setItems(data: MutableList<MovieeSearch>){
         this.items = data
         notifyDataSetChanged()
     }

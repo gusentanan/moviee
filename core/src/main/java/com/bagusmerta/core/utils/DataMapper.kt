@@ -4,10 +4,8 @@ import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
-import com.bagusmerta.core.domain.model.Cast
-import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.core.domain.model.MovieeDetail
-import com.bagusmerta.core.domain.model.MovieeFavorite
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemSearchResponse
+import com.bagusmerta.core.domain.model.*
 
 object DataMapper {
 
@@ -101,6 +99,19 @@ object DataMapper {
                 title = it.movieeTitle,
                 rating = it.rating,
                 isFavorite = false
+            )
+        }
+
+    fun mapMovieeSearchResponseToDomain(data: List<MovieeItemSearchResponse>): List<MovieeSearch> =
+        data.map {
+            MovieeSearch(
+                id = it.movieeId,
+                backdropPath = it.backdropPath,
+                releaseDate = it.releaseDate,
+                title = it.movieeTitle,
+                rating = it.rating,
+                isFavorite = false,
+                genreId = it.genreId
             )
         }
 

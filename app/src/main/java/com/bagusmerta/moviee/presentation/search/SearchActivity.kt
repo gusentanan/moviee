@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivitySearchBinding
@@ -27,7 +28,7 @@ class SearchActivity : AppCompatActivity() {
     private val binding: ActivitySearchBinding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
     private val searchAdapter: SearchAdapter by lazy { SearchAdapter(this) }
     private val searchViewModel: SearchViewModel by viewModel()
-    private val items = mutableListOf<Moviee>()
+    private val items = mutableListOf<MovieeSearch>()
     private val mCompositeDisposable = CompositeDisposable()
 
     private val searchTextChange = PublishSubject.create<String>()
@@ -128,7 +129,7 @@ class SearchActivity : AppCompatActivity() {
         searchAdapter.clearItems()
     }
 
-    private fun handleSearchResult(data: List<Moviee>){
+    private fun handleSearchResult(data: List<MovieeSearch>){
         items.clear()
         items.addAll(data)
         searchAdapter.setItems(items)

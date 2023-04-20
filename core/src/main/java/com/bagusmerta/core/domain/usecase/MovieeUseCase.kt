@@ -2,10 +2,7 @@ package com.bagusmerta.core.domain.usecase
 
 import com.bagusmerta.core.data.MovieeRepository
 import com.bagusmerta.core.data.Resource
-import com.bagusmerta.core.domain.model.Cast
-import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.core.domain.model.MovieeDetail
-import com.bagusmerta.core.domain.model.MovieeFavorite
+import com.bagusmerta.core.domain.model.*
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -22,7 +19,7 @@ interface MovieeUseCase {
     fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeFavorite>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit>
     fun deleteFavoriteMovies(id: Int): Single<Resource<String>>
-    fun searchMovies(query: String): Single<Resource<List<Moviee>>>
+    fun searchMovies(query: String): Single<Resource<List<MovieeSearch>>>
     fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>>
 
 }
@@ -50,7 +47,7 @@ class MovieeUseCaseImpl(private val repository: MovieeRepository) : MovieeUseCas
     override fun getMovieCast(movieId: Int): Single<Resource<List<Cast>>> =
         repository.getMovieCast(movieId)
 
-    override fun searchMovies(query: String): Single<Resource<List<Moviee>>> =
+    override fun searchMovies(query: String): Single<Resource<List<MovieeSearch>>> =
         repository.searchMovies(query)
 
     override fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>> =

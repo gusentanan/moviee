@@ -4,6 +4,7 @@ package com.bagusmerta.core.data.source.remote.ApiConfig
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieCastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
+import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeSearchResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -16,7 +17,7 @@ interface MovieeService {
     fun getListMovies(): Flowable<MovieeResponse>
 
     @GET("search/movie")
-    fun searchMovies(@Query("query") query: String): Single<MovieeResponse>
+    fun searchMovies(@Query("query") query: String): Single<MovieeSearchResponse>
 
     @GET("movie/top_rated")
     fun getTopRatedMovies(): Single<MovieeResponse>

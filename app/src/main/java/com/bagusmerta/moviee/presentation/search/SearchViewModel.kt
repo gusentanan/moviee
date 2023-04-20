@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
@@ -12,7 +13,7 @@ import timber.log.Timber
 class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val _loadingState = MutableLiveData<Boolean>()
-    private val _result = MutableLiveData<List<Moviee>?>()
+    private val _result = MutableLiveData<List<MovieeSearch>?>()
     private val _errorState = MutableLiveData<String>()
     private val _emptyState = MutableLiveData<Boolean>()
     private val mCompositeDisposable = CompositeDisposable()
@@ -20,7 +21,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val loadingState: LiveData<Boolean>
         get() = _loadingState
 
-    val result: LiveData<List<Moviee>?>
+    val result: LiveData<List<MovieeSearch>?>
         get() = _result
 
     val errorState: LiveData<String>
