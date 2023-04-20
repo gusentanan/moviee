@@ -32,4 +32,6 @@
     <string name="runtime_movie_detail">"%sh %sm"</string>
     <string name="remove_from_favorite">Remove from favorite</string>
     <string name="add_to_favorite">Add to favorite</string>
+    <string name="tv_title_search">Search</string>
+    <string name="back_button">back_button</string>
 </resources>

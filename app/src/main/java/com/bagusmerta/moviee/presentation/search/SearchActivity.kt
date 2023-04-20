@@ -36,7 +36,8 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initView()
-
+        handlingBackButton()
+        
         initStateObserver()
         initRecyclerView()
         initSearchMenu()
@@ -109,6 +110,12 @@ class SearchActivity : AppCompatActivity() {
             rvSearchMovies.setHasFixedSize(true)
             rvSearchMovies.adapter = searchAdapter
         }
+    }
+
+    private fun handlingBackButton(){
+        binding.btnBack.setOnClickListener {
+                onBackPressed()
+            }
     }
 
     private fun handleEmptyResult(state: Boolean){
