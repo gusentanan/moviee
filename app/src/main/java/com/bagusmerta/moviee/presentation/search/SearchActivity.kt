@@ -37,7 +37,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(binding.root)
         initView()
         handlingBackButton()
-        
+
         initStateObserver()
         initRecyclerView()
         initSearchMenu()
@@ -141,6 +141,9 @@ class SearchActivity : AppCompatActivity() {
     private fun handleLoadingState(state:Boolean){
         binding.progressBar.apply {
             if(state) makeVisible() else makeGone()
+        }
+        binding.vDivider.apply {
+            if(state) makeGone() else makeVisible()
         }
     }
 }

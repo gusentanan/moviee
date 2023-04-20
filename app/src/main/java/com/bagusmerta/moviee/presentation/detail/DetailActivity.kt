@@ -106,7 +106,7 @@ class DetailActivity : AppCompatActivity() {
             thumbnailContainer.backdropImage.loadImage(data.backdropPath)
             tvTitle.text = data.title
             tvMovieRating.text = String.format("%.1f", data.rating)
-            tvMovieYear.text = formatMediaDate(data.releaseDate)
+            tvMovieYear.text = Helpers.formatMediaDate(data.releaseDate)
             tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
             tvOverview.text = data.overview
 
@@ -179,16 +179,6 @@ class DetailActivity : AppCompatActivity() {
 
     private fun handleButtonWatch(){
         makeInfoToast("This feature is currently unavailable")
-    }
-
-    private fun formatMediaDate(date: String?): String? {
-        if(!date.isNullOrEmpty()) {
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            return sdf.parse(date)
-                ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
-        } else {
-            return "Unknown"
-        }
     }
 
     override fun onDestroy() {

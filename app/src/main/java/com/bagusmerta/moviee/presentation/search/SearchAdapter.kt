@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.ThemedSpinnerAdapter.Helper
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.databinding.ItemSearchComponentBinding
+import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.loadImage
 
@@ -18,9 +20,10 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
     inner class ViewHolder(private val binding: ItemSearchComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Moviee){
             binding.apply {
-                ivSearchPoster.loadImage(item.posterPath)
+                ivPoster.loadImage(item.backdropPath)
                 tvSearchMovieTitle.text = item.title
-                tvSearchMovieOverview.text = item.overview
+                tvMovieRating.text = String.format("%.1f", item.rating)
+                tvMovieYear.text = Helpers.formatMediaDate(item.releaseDate)
 
                 itemView.setOnClickListener {
                     context.startActivity(Intent(context, DetailActivity::class.java).apply {

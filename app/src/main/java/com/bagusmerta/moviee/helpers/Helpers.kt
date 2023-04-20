@@ -1,8 +1,21 @@
 package com.bagusmerta.moviee.helpers
 
 import com.bagusmerta.core.data.source.remote.MovieeResponse.Genre
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 object Helpers {
+
+    fun formatMediaDate(date: String?): String? {
+        if(!date.isNullOrEmpty()) {
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+            return sdf.parse(date)
+                ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
+        } else {
+            return "Unknown"
+        }
+    }
 
     fun mappingMovieGenreListFromId(id: List<Int>?): List<Genre> {
         if (id == null) {
