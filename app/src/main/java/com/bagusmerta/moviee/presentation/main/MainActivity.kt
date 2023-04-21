@@ -16,6 +16,7 @@ import com.bagusmerta.core.utils.Constants.BANNER_DELAY
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
+import com.bagusmerta.moviee.presentation.all.AllMovieActivity
 import com.bagusmerta.moviee.presentation.main.adapter.*
 import com.bagusmerta.moviee.presentation.search.SearchActivity
 import com.bagusmerta.utility.makeErrorToast
@@ -219,19 +220,29 @@ class MainActivity : AppCompatActivity() {
     private fun btnStateListener(){
         binding.apply {
             btnSeeAllNowplaying.setOnClickListener {
-                handleInfoState("This feature is currently unavailable")
+                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
+                    putExtra(AllMovieActivity.IDENTIFIER, "NowPlayingMovies")
+                })
             }
             btnSeeAllPopular.setOnClickListener {
-                handleInfoState("This feature is currently unavailable")
+                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
+                    putExtra(AllMovieActivity.IDENTIFIER, "PopularMovies")
+                })
             }
             btnSeeAllRecommend.setOnClickListener {
-                handleInfoState("This feature is currently unavailable")
+                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
+                    putExtra(AllMovieActivity.IDENTIFIER, "AllMovies")
+                })
             }
             btnSeeAllToprated.setOnClickListener {
-                handleInfoState("This feature is currently unavailable")
+                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
+                    putExtra(AllMovieActivity.IDENTIFIER, "TopRatedMovies")
+                })
             }
             btnSeeAllUpcoming.setOnClickListener {
-                handleInfoState("This feature is currently unavailable")
+                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
+                    putExtra(AllMovieActivity.IDENTIFIER, "UpcomingMovies")
+                })
             }
         }
     }

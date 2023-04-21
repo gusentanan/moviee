@@ -34,4 +34,5 @@
     <string name="add_to_favorite">Add to favorite</string>
     <string name="tv_title_search">Search</string>
     <string name="back_button">back_button</string>
+    <string name="tv_title_all">All Movies</string>
 </resources>

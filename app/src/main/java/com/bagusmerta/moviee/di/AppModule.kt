@@ -3,6 +3,7 @@ package com.bagusmerta.moviee.di
 
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.domain.usecase.MovieeUseCaseImpl
+import com.bagusmerta.moviee.presentation.all.AllMovieViewModel
 import com.bagusmerta.moviee.presentation.detail.DetailViewModel
 import com.bagusmerta.moviee.presentation.main.MainViewModel
 import com.bagusmerta.moviee.presentation.search.SearchViewModel
@@ -18,4 +19,5 @@ val viewModelModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { SearchViewModel(get()) }
+    viewModel { AllMovieViewModel(get()) }
 }
