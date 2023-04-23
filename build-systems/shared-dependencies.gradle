@@ -36,5 +36,5 @@ dependencies {
     androidTestImplementation testLib.mockitoAndroid
     androidTestImplementation testSupportDep.extRunner
     androidTestImplementation testSupportDep.espressoCore
-    debugImplementation supportDep.leakCanary
+//    debugImplementation supportDep.leakCanary
 }

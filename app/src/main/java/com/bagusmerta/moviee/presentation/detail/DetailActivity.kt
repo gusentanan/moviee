@@ -19,7 +19,7 @@ import com.bagusmerta.utility.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.SimpleDateFormat
+import www.sanju.motiontoast.MotionToast
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
@@ -130,8 +130,10 @@ class DetailActivity : AppCompatActivity() {
                 favoriteState = !favoriteState
                 val nData = mapMovieDetailToMoviee(data)
                 if(favoriteState){
+                    makeSuccessToast("The movie is successfully added to your favorite list")
                     detailViewModel.setFavoriteMovies(nData, favoriteState, genreString)
                 }else {
+                    makeSuccessToast("The movie is successfully removed from your favorite list")
                     detailViewModel.deleteFavoriteMovies(nData.id!!)
                 }
             }
@@ -184,7 +186,6 @@ class DetailActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         youtubePlayerListener?.let { binding.ytPlayerView.release() }
-
     }
 
     companion object{

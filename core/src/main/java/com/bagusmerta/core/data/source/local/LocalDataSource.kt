@@ -4,7 +4,6 @@ import com.bagusmerta.core.data.source.local.dao.MovieeDao
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.completableTransformerIo
-import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single

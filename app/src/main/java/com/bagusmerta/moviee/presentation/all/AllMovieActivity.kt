@@ -1,10 +1,9 @@
 package com.bagusmerta.moviee.presentation.all
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityAllMovieBinding
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeVisible

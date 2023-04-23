@@ -5,9 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.ThemedSpinnerAdapter.Helper
 import androidx.recyclerview.widget.RecyclerView
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.moviee.databinding.ItemSearchComponentBinding
 import com.bagusmerta.moviee.helpers.Helpers

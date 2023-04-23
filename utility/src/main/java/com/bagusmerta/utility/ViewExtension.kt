@@ -31,7 +31,7 @@ fun View.makeGone(){
 fun Activity.makeErrorToast(message: String){
     MotionToast.let {
         it.createColorToast(
-            this,
+            this@makeErrorToast,
             "Error",
             message,
             MotionToastStyle.ERROR,
@@ -49,6 +49,20 @@ fun Activity.makeInfoToast(message: String){
             "Info",
             message,
             MotionToastStyle.INFO,
+            it.GRAVITY_BOTTOM,
+            it.LONG_DURATION,
+            ResourcesCompat.getFont(this, R.font.helveticabold)
+        )
+    }
+}
+
+fun Activity.makeSuccessToast(message: String){
+    MotionToast.let {
+        it.createColorToast(
+            this,
+            "Success",
+            message,
+            MotionToastStyle.SUCCESS,
             it.GRAVITY_BOTTOM,
             it.LONG_DURATION,
             ResourcesCompat.getFont(this, R.font.helveticabold)

@@ -1,7 +1,6 @@
 package com.bagusmerta.core.data.source.remote
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse

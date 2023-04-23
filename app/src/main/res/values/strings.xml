@@ -35,4 +35,14 @@
     <string name="tv_title_search">Search</string>
     <string name="back_button">back_button</string>
     <string name="tv_title_all">All Movies</string>
+    <string name="tv_onboard_subtitle1">Explore the world of cinema</string>
+    <string name="tv_onboard_subtitle2">Find your favorite Movies!</string>
+    <string name="tv_onboard_subtitle3">Ready to learn more about a movie you\'re interested in?</string>
+    <string name="tv_onboard_description1">Let us guide you through our apps features and help you find your next favorite movie.</string>
+    <string name="tv_onboard_description2">Looking for something specific? Our advanced search will help you find exactly what you\'re looking for</string>
+    <string name="tv_onboard_description3">Get all the information you need about a movie, including its plot summary, cast and crew, and user reviews</string>
+    <string name="onboarding_slide1_title">Moviee</string>
+    <string name="btn_next">next</string>
+    <string name="btn_start">start</string>
+    <string name="btn_skip">skip</string>
 </resources>

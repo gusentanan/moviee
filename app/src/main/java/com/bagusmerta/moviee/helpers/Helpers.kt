@@ -3,7 +3,6 @@ package com.bagusmerta.moviee.helpers
 import com.bagusmerta.core.data.source.remote.MovieeResponse.Genre
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 object Helpers {
 

@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.moviee.R
