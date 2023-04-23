@@ -1,5 +1,6 @@
 # Moviee
 Simple movie app with MVVM pattern and clean architecture
+- This app is a movie browsing platform that follows MVVM and Clean Architecture principles. It features different movie categories, search function, and the ability to save favorite movies. Detailed movie pages provide comprehensive information about each film, including plot, cast, reviews, release date, and trailer. This app also adopt modularization strategies. 
 
 | <img src="https://user-images.githubusercontent.com/68723002/233821617-4246e69b-f9c3-46a2-bc6c-10b6144ef66d.jpg" alt="Onboarding 1" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821629-bded2131-9b06-4271-8d31-7f03468637ab.jpg" alt="Onboarding 2" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821631-a66f8535-0bef-44fb-87b3-b8f5b2b8617d.jpg" alt="Onboarding 3" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821700-8e7d6364-516e-45b0-b85a-1a8a7a94d0a5.jpg" alt="Main Page" width="200"/>  |
 | :--: | :--:| :--:| :--:|
