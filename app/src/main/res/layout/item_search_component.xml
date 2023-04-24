@@ -4,17 +4,16 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="25dp"
-    android:layout_margin="4dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="14dp">
+        android:padding="10dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_search_poster"
-            android:layout_width="164dp"
+            android:layout_width="184dp"
             android:layout_height="114dp"
             android:layout_gravity="center"
             app:cardCornerRadius="25dp"
@@ -38,17 +37,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
-            android:textSize="14sp"
+            android:layout_marginEnd="10dp"
             android:ellipsize="end"
-            android:lines="2"
+            android:lines="1"
             android:text="@string/ex_movie_title"
             android:textColor="@color/colorPrimaryDark"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_genres"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@id/cv_search_poster"
-            app:layout_constraintTop_toTopOf="@id/cv_search_poster"
-            app:layout_constraintBottom_toTopOf="@id/tv_genres"/>
+            app:layout_constraintTop_toTopOf="@id/cv_search_poster" />
 
         <TextView
             android:id="@+id/tv_genres"
@@ -56,60 +56,66 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="10dp"
             android:lines="1"
             android:textColor="@color/gray"
             android:textSize="11sp"
             app:layout_constraintTop_toBottomOf="@id/tv_search_movie_title"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/ll_chip"
             app:layout_constraintStart_toStartOf="@id/tv_search_movie_title"
             tools:text="Action • Adventure • Comedy • Scifi" />
 
-        <TextView
-            android:id="@+id/tv_movie_year"
-            style="@style/Text.Header2"
-            android:layout_margin="2dp"
-            android:background="@drawable/bg_chip"
-            android:paddingHorizontal="@dimen/dimen_8"
-            android:paddingVertical="@dimen/dimen_1"
-            android:layout_marginStart="0dp"
-            android:lines="1"
-            tools:text="2020"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="11sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/tv_search_movie_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_genres" />
-
         <LinearLayout
+            android:id="@+id/ll_chip"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/bg_chip"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/dimen_1"
-            app:layout_constraintTop_toBottomOf="@+id/tv_genres"
-            app:layout_constraintStart_toEndOf="@+id/tv_movie_year"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="14dp"
-                android:src="@drawable/ic_baseline_star_24" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_genres"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_genres">
 
             <TextView
-                android:id="@+id/tv_movie_rating"
+                android:id="@+id/tv_movie_year"
                 style="@style/Text.Header2"
-                android:layout_marginEnd="8dp"
-                android:padding="1dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/bg_chip"
+                android:paddingHorizontal="@dimen/dimen_8"
+                android:paddingVertical="@dimen/dimen_1"
+                android:layout_marginStart="0dp"
                 android:lines="1"
-                tools:text="7.8"
+                tools:text="2020"
                 android:textColor="@color/black"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="11sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_chip"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/dimen_1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_baseline_star_24" />
+
+                <TextView
+                    android:id="@+id/tv_movie_rating"
+                    style="@style/Text.Header2"
+                    android:layout_marginEnd="8dp"
+                    android:padding="1dp"
+                    android:lines="1"
+                    tools:text="7.8"
+                    android:textColor="@color/black"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
