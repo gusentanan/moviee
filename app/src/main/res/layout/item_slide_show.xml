@@ -28,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:background="@color/backgroundPrimary"
+                    android:background="@color/gray"
                     android:adjustViewBounds="true"
                     android:baselineAlignBottom="true"
                     android:contentDescription="@string/poster_movie" />

@@ -60,7 +60,7 @@
         android:id="@+id/cv_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
         android:layout_marginStart="20dp"
         app:cardBackgroundColor="@color/white"
@@ -81,6 +81,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
+                app:queryHint="Search Movies ..."
                 android:layout_marginBottom="10dp"
                 android:layout_weight="1" />
 
@@ -118,8 +119,21 @@
         android:background="@color/white"
         android:layout_marginTop="20dp"
         android:visibility="gone"
-        tools:visibility="visible"
+        tools:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/cv_search"/>
+
+    <TextView
+        android:id="@+id/tv_top_searches"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/tv_top_searches"
+        style="@style/Text.Header1"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@id/cv_search"
+        app:layout_constraintTop_toBottomOf="@id/v_divider"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search_movies"
@@ -130,7 +144,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/v_divider"
+        app:layout_constraintTop_toBottomOf="@id/tv_top_searches"
         tools:listitem="@layout/item_search_component"/>
 
     <ProgressBar
@@ -155,6 +169,20 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/error_state"
+        layout="@layout/error_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

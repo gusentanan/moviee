@@ -9,6 +9,7 @@ import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemSearchRes
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.flowableTransformerComputation
 import com.bagusmerta.utility.singleTransformerComputation
+import com.bagusmerta.utility.singleTransformerIo
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -41,7 +42,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemSearchResponse>>>()
         apiService.searchMovies(query)
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeItemSearch
@@ -59,7 +60,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.getTopRatedMovies()
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeResponse
@@ -76,7 +77,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.getUpcomingMovies()
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeResponse
@@ -92,7 +93,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.getNowPlayingMovies()
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeResponse
@@ -109,7 +110,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.getPopularMovies()
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeResponse
@@ -127,7 +128,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val res = SingleSubject.create<ResultState<MovieeDetailResponse>>()
         val listGenreId = arrayListOf<Int>()
         apiService.getDetailMovies(movie_id)
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 // Loop through genres to collect genre id
@@ -156,7 +157,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<CastResponse>>>()
         apiService.getMovieCast(movie_id)
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val itemCast = response.movieCast
@@ -173,7 +174,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.getSimilarMovie(movie_id)
-            .compose(singleTransformerComputation())
+            .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeResponse

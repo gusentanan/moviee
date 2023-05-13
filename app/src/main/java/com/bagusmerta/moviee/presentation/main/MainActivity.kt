@@ -5,12 +5,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.Constants.BANNER_DELAY
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
@@ -24,23 +26,17 @@ import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val mainAdapter: MainAdapter by lazy { MainAdapter(this) }
-    private val upcomingMoviesAdapter: UpcomingMoviesAdapter by lazy { UpcomingMoviesAdapter(this) }
-    private val popularMoviesAdapter: PopularMoviesAdapter by lazy { PopularMoviesAdapter(this) }
-    private val topRateMoviesAdapter: TopRatedMoviesAdapter by lazy { TopRatedMoviesAdapter(this) }
-    private val nowPlayingMoviesAdapter: NowPlayingMoviesAdapter by lazy { NowPlayingMoviesAdapter(this) }
     private val bannerAdapter: BannerAdapter by lazy { BannerAdapter(this) }
 
     private val mainViewModel: MainViewModel by viewModel()
-    private val items = mutableListOf<Moviee>()
-    private val upcomingMovieItems = mutableListOf<Moviee>()
-    private val popularMovieItems = mutableListOf<Moviee>()
-    private val topRatedMovieItems = mutableListOf<Moviee>()
-    private val nowPlayingMovieItems = mutableListOf<Moviee>()
+    private val items = mutableListOf<HomeFeed>()
+    private val bannerItems = mutableListOf<Moviee>()
 
     private lateinit var viewPager: ViewPager2
 
@@ -52,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         initStateObserver()
         initRecyclerBanner()
         initRecyclerView()
-        btnStateListener()
     }
 
     private fun initAppBar(){
@@ -70,25 +65,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStateObserver() {
         with(mainViewModel){
-            getAllMovies()
-            getUpcomingMovies()
-            getPopularMovies()
-            getNowPlayingMovies()
-            getTopRatedMovies()
-            result.observe(this@MainActivity){
+            getBannerMovies()
+            getAllFeed()
+
+            resultBanner.observe(this@MainActivity){
+                handleBannerResult(it)
+            }
+            resultAllFeed.observe(this@MainActivity){
                 handleMovieeResult(it)
-            }
-            upcomingResult.observe(this@MainActivity){
-                handleUpcomingMovieResult(it)
-            }
-            popularResult.observe(this@MainActivity){
-                handlePopularMoviesResult(it)
-            }
-            topRatedResult.observe(this@MainActivity){
-                handleTopRatedMoviesResult(it)
-            }
-            nowPlayingResult.observe(this@MainActivity){
-                handleNowPlayingMoviesResult(it)
             }
             loadingState.observe(this@MainActivity){
                 handleLoadingState(it)
@@ -99,43 +83,36 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleNowPlayingMoviesResult(data: List<Moviee>?) {
-        nowPlayingMovieItems.clear()
-        data?.let { nowPlayingMovieItems.addAll(it) }
-        nowPlayingMoviesAdapter.setNowPlayingMovies(nowPlayingMovieItems)
-    }
 
-    private fun handleTopRatedMoviesResult(data: List<Moviee>?) {
-        topRatedMovieItems.clear()
-        data?.let { topRatedMovieItems.addAll(it) }
-        topRateMoviesAdapter.setTopRatedMovies(topRatedMovieItems)
-    }
-
-    private fun handlePopularMoviesResult(data: List<Moviee>?) {
-        popularMovieItems.clear()
-        data?.let { popularMovieItems.addAll(it) }
-        popularMoviesAdapter.setPopularMovies(popularMovieItems)
-    }
-
-    private fun handleUpcomingMovieResult(data: List<Moviee>?) {
-        upcomingMovieItems.clear()
-        data?.let { upcomingMovieItems.addAll(it) }
-        upcomingMoviesAdapter.setUpcomingMoviesItem(upcomingMovieItems)
-    }
-
-    private fun handleErrorState(msg: String){
-        this.makeErrorToast(msg)
+    private fun handleErrorState(msg: String) {
+        Timber.tag("ERROR").e(msg)
+        binding.apply {
+            mainLoadingShimmer.activityMainLoader.makeGone()
+            errorState.root.makeVisible()
+            errorState.btnTryAgain.setOnClickListener {
+                errorState.root.makeGone()
+                with(mainViewModel){
+                    getBannerMovies()
+                    getAllFeed()
+                }
+            }
+        }
     }
 
     private fun handleInfoState(msg: String){
         this.makeInfoToast(msg)
     }
 
-    private fun handleMovieeResult(data: List<Moviee>?) {
+    private fun handleMovieeResult(data: List<HomeFeed>?) {
         items.clear()
         data?.let { items.addAll(it) }
-        bannerAdapter.setItems(items)
-        mainAdapter.setItems(items)
+        data?.let { mainAdapter.setListItems(items) }
+    }
+
+    private fun handleBannerResult(data: List<Moviee>?) {
+        bannerItems.clear()
+        data?.let { bannerItems.addAll(it) }
+        bannerAdapter.setItems(bannerItems)
     }
 
     private fun initRecyclerBanner(){
@@ -151,25 +128,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         with(binding){
-            rvMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            rvMovies.setHasFixedSize(true)
-            rvMovies.adapter = mainAdapter
-
-            rvUpcomingMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            rvUpcomingMovies.setHasFixedSize(true)
-            rvUpcomingMovies.adapter = upcomingMoviesAdapter
-
-            rvPopularMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            rvPopularMovies.setHasFixedSize(true)
-            rvPopularMovies.adapter = popularMoviesAdapter
-
-            rvTopratedMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            rvTopratedMovies.setHasFixedSize(true)
-            rvTopratedMovies.adapter = topRateMoviesAdapter
-
-            rvNowplayingMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            rvNowplayingMovies.setHasFixedSize(true)
-            rvNowplayingMovies.adapter = nowPlayingMoviesAdapter
+            rvvMovies.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
+            rvvMovies.setHasFixedSize(true)
+            rvvMovies.adapter = mainAdapter
         }
 
     }
@@ -217,85 +178,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun btnStateListener(){
-        binding.apply {
-            btnSeeAllNowplaying.setOnClickListener {
-                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
-                    putExtra(AllMovieActivity.IDENTIFIER, "NowPlayingMovies")
-                })
-            }
-            btnSeeAllPopular.setOnClickListener {
-                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
-                    putExtra(AllMovieActivity.IDENTIFIER, "PopularMovies")
-                })
-            }
-            btnSeeAllRecommend.setOnClickListener {
-                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
-                    putExtra(AllMovieActivity.IDENTIFIER, "AllMovies")
-                })
-            }
-            btnSeeAllToprated.setOnClickListener {
-                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
-                    putExtra(AllMovieActivity.IDENTIFIER, "TopRatedMovies")
-                })
-            }
-            btnSeeAllUpcoming.setOnClickListener {
-                startActivity(Intent(this@MainActivity, AllMovieActivity::class.java).apply {
-                    putExtra(AllMovieActivity.IDENTIFIER, "UpcomingMovies")
-                })
-            }
-        }
-    }
-
     private fun handleLoadingState(state: Boolean){
         binding.apply {
             mainLoadingShimmer.activityMainLoader.let {
                 if(state) it.makeVisible() else it.makeGone()
-            }
-            tvRecommendMovies.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            tv2RecommendMovies.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            tvPopularMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tv2PopularMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvUpcomingMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tv2UpcomingMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvNowplayingMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tv2NowplayingMovies.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            tvTopratedMovies.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            tv2TopratedMovies.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            btnSeeAllNowplaying.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            btnSeeAllPopular.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            btnSeeAllRecommend.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            btnSeeAllToprated.let {
-                if (state) it.makeGone() else it.makeVisible()
-            }
-            btnSeeAllUpcoming.let {
-                if (state) it.makeGone() else it.makeVisible()
             }
         }
     }

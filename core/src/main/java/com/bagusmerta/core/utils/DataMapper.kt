@@ -27,7 +27,8 @@ object DataMapper {
             backdropPath = data.backdropPath,
             isFavorite = data.isFavorite,
             rating = data.rating,
-            posterPath = data.posterPath
+            posterPath = data.posterPath,
+            genreId = data.genres
         )
 
     fun mapDetailMovieeResponseToDomain(data: MovieeDetailResponse, genreIds: List<Int>?): MovieeDetail =
@@ -71,7 +72,8 @@ object DataMapper {
                 releaseDate = it.releaseDate,
                 isFavorite = it.isFavorite,
                 overview = it.overview,
-                rating = it.rating
+                rating = it.rating,
+                genreId = mutableListOf()
             )
         }
 
@@ -98,7 +100,8 @@ object DataMapper {
                 releaseDate = it.releaseDate,
                 title = it.movieeTitle,
                 rating = it.rating,
-                isFavorite = false
+                isFavorite = false,
+                genreId = it.genreId
             )
         }
 

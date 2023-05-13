@@ -50,11 +50,11 @@ class FavoriteeActivity : AppCompatActivity() {
     private fun initObserverState() {
         favoriteeViewModel.apply {
             getFavoriteMovies(true)
-            emptyState.observe(this@FavoriteeActivity) {
-                handleEmptyStateResult(it)
-            }
             result.observe(this@FavoriteeActivity) {
                 it?.let { handleFavoriteMovieResult(it) }
+            }
+            emptyState.observe(this@FavoriteeActivity) {
+                handleEmptyStateResult(it)
             }
         }
     }

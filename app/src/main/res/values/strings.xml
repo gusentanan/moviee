@@ -45,4 +45,5 @@
     <string name="btn_next">next</string>
     <string name="btn_start">start</string>
     <string name="btn_skip">skip</string>
+    <string name="tv_top_searches">Top Searches</string>
 </resources>

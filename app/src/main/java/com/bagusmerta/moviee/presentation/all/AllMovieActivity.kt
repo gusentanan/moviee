@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.databinding.ActivityAllMovieBinding
+import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,26 +42,26 @@ class AllMovieActivity : AppCompatActivity() {
 
 
     private fun initStateObserver() {
-
-        when(intent.getStringExtra(IDENTIFIER)){
-            "AllMovies" -> {
-                handleTitlePage("All Movies")
+        val key = intent.getIntExtra(IDENTIFIER, 0)
+        when(key){
+             1 -> {
+                handleTitlePage(Helpers.findMovieSection(key).toString())
                 allMovieViewModel.getAllMovies()
             }
-            "UpcomingMovies" -> {
-                handleTitlePage("Upcoming Movies")
+            2 -> {
+                handleTitlePage(Helpers.findMovieSection(key).toString())
                 allMovieViewModel.getUpcomingMovies()
             }
-            "PopularMovies" -> {
-                handleTitlePage("Popular Movies")
+            3 -> {
+                handleTitlePage(Helpers.findMovieSection(key).toString())
                 allMovieViewModel.getPopularMovies()
             }
-            "TopRatedMovies" -> {
-                handleTitlePage("Top Rated Movies")
+            4 -> {
+                handleTitlePage(Helpers.findMovieSection(key).toString())
                 allMovieViewModel.getTopRatedMovies()
             }
-            "NowPlayingMovies" -> {
-                handleTitlePage("Now Playing Movies")
+            5 -> {
+                handleTitlePage(Helpers.findMovieSection(key).toString())
                 allMovieViewModel.getNowPlayingMovies()
             }
         }

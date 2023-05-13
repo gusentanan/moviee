@@ -33,7 +33,7 @@ fun <T> singleTransformerComputation(): SingleTransformer<T, T>{
 fun <T> singleTransformerIo(): SingleTransformer<T, T>{
     return SingleTransformer {
         it.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.single())
     }
 }
 

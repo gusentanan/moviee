@@ -29,4 +29,7 @@ data class MovieeItemResponse(
     @SerializedName("vote_average")
     val rating: Double?,
 
+    @SerializedName("genre_ids")
+    val genreId: List<Int>?
+
 )

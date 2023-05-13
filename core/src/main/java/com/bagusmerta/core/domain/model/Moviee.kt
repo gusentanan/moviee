@@ -12,6 +12,14 @@ data class Moviee(
     val backdropPath: String?,
     val posterPath: String?,
     val isFavorite: Boolean?,
-    val rating: Double?
+    val rating: Double?,
+    val genreId: List<Int>?
+): Parcelable
 
+@Parcelize
+data class HomeFeed(
+    val feedTitle: String?,
+    val feedSubHeader: String?,
+    val listMovie: List<Moviee?>,
+    val movieSection: Int?,
 ): Parcelable

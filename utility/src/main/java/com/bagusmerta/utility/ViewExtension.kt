@@ -15,7 +15,7 @@ import www.sanju.motiontoast.MotionToastStyle
 fun ImageView.loadImage(url: String?){
     Glide.with(context)
         .load("${BuildConfig.POSTER_URL}${url}")
-        .diskCacheStrategy(DiskCacheStrategy.ALL)
+        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
         .error(R.drawable.ic_baseline_broken_image_24)
         .into(this)
 }

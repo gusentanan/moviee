@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -20,6 +21,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
 class SearchActivity : AppCompatActivity() {
@@ -89,6 +91,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun initStateObserver(){
         with(searchViewModel){
+            getRecommendMovies()
             loadingState.observe(this@SearchActivity){
                 handleLoadingState(it)
             }
@@ -134,16 +137,28 @@ class SearchActivity : AppCompatActivity() {
         searchAdapter.setItems(items)
     }
 
-    private fun handleErrorState(msg: String){
-        this.makeErrorToast(msg)
+    private fun handleErrorState(msg: String) {
+        Timber.tag("ERROR").e(msg)
+        binding.apply {
+            errorState.tvErrorState.makeVisible()
+            errorState.btnTryAgain.setOnClickListener {
+                initStateObserver()
+            }
+        }
     }
 
     private fun handleLoadingState(state:Boolean){
-        binding.progressBar.apply {
-            if(state) makeVisible() else makeGone()
-        }
-        binding.vDivider.apply {
-            if(state) makeGone() else makeVisible()
+        binding.apply {
+            progressBar.apply {
+                if(state) makeVisible() else makeGone()
+            }
+            vDivider.apply {
+                if (state) makeGone() else {
+                    tvTopSearches.makeGone()
+                    makeVisible()
+                }
+            }
         }
     }
+
 }
