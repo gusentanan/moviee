@@ -30,6 +30,7 @@ ext {
     timberVersion = "5.0.1"
     shimmerVersion = "0.5.0"
     motionToastVersion = "1.4"
+    pagingVersion = "3.1.0"
 
 
     libraries = [
@@ -61,6 +62,7 @@ ext {
             shimmer              : "com.facebook.shimmer:shimmer:$shimmerVersion",
             sqlChiper            : "net.zetetic:android-database-sqlcipher:4.4.0",
             sqlite               : "androidx.sqlite:sqlite-ktx:2.1.0",
+            paging               : "androidx.paging:paging-runtime:$pagingVersion",
             motionToast          : "com.github.Spikeysanju:MotionToast:$motionToastVersion"
     ]
 

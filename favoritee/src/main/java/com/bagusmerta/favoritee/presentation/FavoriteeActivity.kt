@@ -73,9 +73,6 @@ class FavoriteeActivity : AppCompatActivity() {
                 makeVisible()
             } else makeGone()
         }
-        binding.vDivider.apply {
-            if(state) makeGone() else makeVisible()
-        }
     }
 
 }

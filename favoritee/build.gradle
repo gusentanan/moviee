@@ -8,7 +8,7 @@ apply {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         minSdk 26
@@ -33,4 +33,5 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation libraries.rxStream
     implementation libraries.lottie
+    implementation 'com.google.android.material:material:1.9.0'
 }

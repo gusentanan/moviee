@@ -13,6 +13,7 @@ dependencies {
     implementation libraries.timber
     implementation libraries.motionToast
     implementation libraries.shimmer
+    implementation libraries.paging
 
     implementation libraries.rx2Android
     implementation libraries.roomRuntime

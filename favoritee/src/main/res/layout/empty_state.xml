@@ -23,7 +23,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimaryDark"
-        android:text="@string/no_data"
+        android:text="@string/tv_empty"
         app:layout_constraintTop_toBottomOf="@id/lottieView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

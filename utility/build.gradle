@@ -9,11 +9,11 @@ apply {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         minSdk 26
-        targetSdk 31
+        targetSdk 33
 
         buildConfigField "String", "POSTER_URL", "\"https://image.tmdb.org/t/p/w500\""
 

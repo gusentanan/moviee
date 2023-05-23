@@ -17,7 +17,7 @@ val useCaseModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel(get(), androidApplication()) }
+    viewModel { MainViewModel(get(), androidApplication()) } // app context to access Resource or perform operation that require context
     viewModel { DetailViewModel(get()) }
     viewModel { SearchViewModel(get()) }
     viewModel { AllMovieViewModel(get()) }

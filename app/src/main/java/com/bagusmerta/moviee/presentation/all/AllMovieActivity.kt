@@ -86,10 +86,7 @@ class AllMovieActivity : AppCompatActivity() {
     private fun handleLoadingState(state: Boolean) {
         binding.apply {
             allLoadingShimmer.activityAllMovieLoader.let {
-                if(state) it.makeVisible() else it.makeGone()
-            }
-            vDivider.let {
-                if(state) it.makeGone() else it.makeVisible()
+                if (state) it.makeVisible() else it.makeGone()
             }
         }
     }

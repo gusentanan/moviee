@@ -140,7 +140,7 @@ class SearchActivity : AppCompatActivity() {
     private fun handleErrorState(msg: String) {
         Timber.tag("ERROR").e(msg)
         binding.apply {
-            errorState.tvErrorState.makeVisible()
+            errorState.root.makeVisible()
             errorState.btnTryAgain.setOnClickListener {
                 initStateObserver()
             }
@@ -149,13 +149,15 @@ class SearchActivity : AppCompatActivity() {
 
     private fun handleLoadingState(state:Boolean){
         binding.apply {
+            errorState.root.makeGone()
             progressBar.apply {
-                if(state) makeVisible() else makeGone()
-            }
-            vDivider.apply {
-                if (state) makeGone() else {
-                    tvTopSearches.makeGone()
+                if(state){
+                    wrapperTopSearches.makeGone()
                     makeVisible()
+                } else{
+                    tvTopSearches.text = context.getString(R.string.tv_search_results)
+                    wrapperTopSearches.makeVisible()
+                    makeGone()
                 }
             }
         }

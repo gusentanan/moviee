@@ -41,34 +41,42 @@
 
     <TextView
         style="@style/Text.Header1"
-        android:textSize="24sp"
+        android:id="@+id/tv_title_favoritee"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favorite_page_title"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintEnd_toStartOf="@id/btn_clear_favorite"
         app:layout_constraintBottom_toBottomOf="@id/guideline_top"/>
 
-    <View
-        android:id="@+id/v_divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="@id/guideline_top"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_clear_favorite"
+        style="@style/Widget.MaterialComponents.Button.TextButton.OnBoardTextButton"
+        android:background="@color/backgroundPrimary"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_btn_clear"
+        android:textColor="@color/red"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_top"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fav_movie"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_favoritee"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/v_divider" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
