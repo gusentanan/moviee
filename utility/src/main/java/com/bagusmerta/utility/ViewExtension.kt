@@ -22,6 +22,14 @@ fun ImageView.loadImage(url: String?){
         .into(this)
 }
 
+fun ImageView.loadHighQualityImage(url: String?){
+    Glide.with(context)
+        .load("${"https://image.tmdb.org/t/p/w780/"}${url}")
+        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+        .error(R.drawable.ic_baseline_broken_image_24)
+        .into(this)
+}
+
 fun formatMediaDate(date: String?): String? {
     if(!date.isNullOrEmpty()) {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

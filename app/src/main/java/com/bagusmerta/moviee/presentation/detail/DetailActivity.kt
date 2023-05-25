@@ -101,7 +101,7 @@ class DetailActivity : AppCompatActivity() {
                 data.keyVideo?.let { _youtubePlayer!!.cueVideo(it, 0f) }
             }
 
-            thumbnailContainer.backdropImage.loadImage(data.backdropPath)
+            thumbnailContainer.backdropImage.loadHighQualityImage(data.backdropPath)
             tvTitle.text = data.title
             tvMovieRating.text = String.format("%.1f", data.rating)
             tvMovieYear.text = Helpers.formatMediaDate(data.releaseDate)

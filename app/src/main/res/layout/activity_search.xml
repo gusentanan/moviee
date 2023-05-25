@@ -51,11 +51,10 @@
         style="@style/Text.Header1"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@id/btn_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/cv_search"/>
+        app:layout_constraintTop_toTopOf="@id/btn_back"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_search"
