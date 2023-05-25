@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
+import com.bagusmerta.utility.formatMediaDate
 import com.bagusmerta.utility.loadImage
 import java.text.SimpleDateFormat
 import java.util.*
@@ -57,15 +58,5 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
     fun clearItems(){
         items.clear()
         notifyDataSetChanged()
-    }
-
-    private fun formatMediaDate(date: String?): String? {
-        if(!date.isNullOrEmpty()) {
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            return sdf.parse(date)
-                ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
-        } else {
-            return "Unknown"
-        }
     }
 }

@@ -1,7 +1,7 @@
 package com.bagusmerta.favoritee
 
 
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
 import com.bagusmerta.core.utils.testHelper.getDummyMoviee

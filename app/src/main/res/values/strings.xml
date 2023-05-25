@@ -47,4 +47,6 @@
     <string name="btn_skip">skip</string>
     <string name="tv_top_searches">Top Searches</string>
     <string name="tv_search_results">Search Results</string>
+    <string name="tv_similar_movie_empty_state">Sorry, there is no similar movie</string>
+    <string name="tv_cast_empty_state">"Sorry, there is no cast "</string>
 </resources>

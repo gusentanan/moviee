@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
@@ -14,7 +13,6 @@ import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivitySearchBinding
-import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers

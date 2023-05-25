@@ -1,8 +1,8 @@
 package com.bagusmerta.core.data
 
 import com.bagusmerta.core.data.source.local.LocalDataSource
-import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.domain.model.*
 import com.bagusmerta.core.utils.DataMapper
@@ -15,6 +15,7 @@ import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.SingleSubject
 
 
@@ -26,7 +27,7 @@ interface MovieeRepository {
     fun getTopRatedMovies(): Single<Resource<List<Moviee>>>
     fun getDetailMovies(movieId: Int): Single<Resource<MovieeDetail>>
     fun getMovieCast(movieId: Int): Single<Resource<List<Cast>>>
-    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeFavorite>>
+    fun getAllFavoriteMovies(isFavorite: Boolean): Single<Resource<List<MovieeFavorite>>>
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit>
     fun searchMovies(query: String): Single<Resource<List<MovieeSearch>>>
     fun checkFavoriteMovies(id: Int): Maybe<Moviee>
@@ -184,21 +185,19 @@ class MovieeRepositoryImpl(
         return res
     }
 
-    override fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeFavorite>> {
-        return localDataSource.getAllFavoriteMovies(isFavorite).map { DataMapper.mapListMovieeEntityToDomain(it) }
-    }
+    override fun getAllFavoriteMovies(isFavorite: Boolean): Single<Resource<List<MovieeFavorite>>> {
+        val res = SingleSubject.create<Resource<List<MovieeFavorite>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        localDataSource.getAllFavoriteMovies(isFavorite)
+            .subscribe { value ->
+                when(value){
+                    is ResultState.Success -> res.onSuccess(Resource.Success(DataMapper.mapListMovieeEntityToDomain(value.data)))
+                    is ResultState.Empty -> Resource.Empty
+                    is ResultState.Error -> Resource.Error(value.errorMessage)
+                }
+            }.let(mCompositeDisposable::add)
 
-    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit> {
-        val newData = DataMapper.mapMovieeDomainToEntity(data, genre)
-        return localDataSource.setFavoriteMovie(newData, isFavorite)
-            .compose(singleTransformerIo())
-    }
-
-    override fun checkFavoriteMovies(id: Int): Maybe<Moviee> {
-        return localDataSource.checkFavoriteMovie(id)
-            .compose(maybeTransformerIo())
-            .map { DataMapper.mapMovieeEntityToDomain(it) }
-
+        return res
     }
 
     override fun deleteFavoriteMovies(id: Int): Single<Resource<String>> {
@@ -214,6 +213,19 @@ class MovieeRepositoryImpl(
             }.let(mCompositeDisposable::add)
 
         return res
+    }
+
+    override fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit> {
+        val newData = DataMapper.mapMovieeDomainToEntity(data, genre)
+        return localDataSource.setFavoriteMovie(newData, isFavorite)
+            .compose(singleTransformerIo())
+    }
+
+    override fun checkFavoriteMovies(id: Int): Maybe<Moviee> {
+        return localDataSource.checkFavoriteMovie(id)
+            .compose(maybeTransformerIo())
+            .map { DataMapper.mapMovieeEntityToDomain(it) }
+
     }
 
     private fun mapDetailResponseToDomain(detailMovieResponse: MovieeDetailResponse, genreIds: List<Int>?): MovieeDetail {

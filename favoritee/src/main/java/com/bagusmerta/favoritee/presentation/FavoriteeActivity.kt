@@ -7,10 +7,12 @@ import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.favoritee.R
 import com.bagusmerta.favoritee.databinding.ActivityFavoriteeBinding
 import com.bagusmerta.favoritee.di.favoriteeModule
+import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import timber.log.Timber
 
 
 class FavoriteeActivity : AppCompatActivity() {
@@ -50,12 +52,30 @@ class FavoriteeActivity : AppCompatActivity() {
     private fun initObserverState() {
         favoriteeViewModel.apply {
             getFavoriteMovies(true)
+
+            loadingState.observe(this@FavoriteeActivity){
+                handleLoadingState(it)
+            }
             result.observe(this@FavoriteeActivity) {
                 it?.let { handleFavoriteMovieResult(it) }
             }
             emptyState.observe(this@FavoriteeActivity) {
                 handleEmptyStateResult(it)
             }
+            errorState.observe(this@FavoriteeActivity){
+                handleErrorState(it)
+            }
+        }
+    }
+
+    private fun handleErrorState(msg: String?) {
+        this.makeErrorToast("Oops Something Wrong Happen")
+        Timber.e(msg)
+    }
+
+    private fun handleLoadingState(state: Boolean) {
+        binding.loadingState.apply {
+                if(state) makeVisible() else makeGone()
         }
     }
 
@@ -65,9 +85,8 @@ class FavoriteeActivity : AppCompatActivity() {
         favoriteeAdapter.setFavoriteItem(items)
     }
 
-
     private fun handleEmptyStateResult(state: Boolean) {
-        binding.lottieView.root.apply {
+        binding.emptyState.root.apply {
             if (state) {
                 favoriteeAdapter.clearItems()
                 makeVisible()

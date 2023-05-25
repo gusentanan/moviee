@@ -16,23 +16,19 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val _btnState = MutableLiveData<Boolean?>()
     private val _result = MutableLiveData<MovieeDetail?>()
-    private val _resultState = MutableLiveData<String?>()
     private val mCompositeDisposable = CompositeDisposable()
     private val _castResult = MutableLiveData<List<Cast>?>()
     private val _similarMovieResult  = MutableLiveData<List<Moviee>?>()
 
     private val _loadingState = MutableLiveData<Boolean>()
     private val _errorState = MutableLiveData<String>()
-    private val _emptyState = MutableLiveData<Boolean>()
+    private val _detailedEmptyState = MutableLiveData<DetailEmptyState>()
 
     val btnState: LiveData<Boolean?>
         get() = _btnState
 
     val result: LiveData<MovieeDetail?>
         get() = _result
-
-    val resultState: LiveData<String?>
-        get() = _resultState
 
     val castResult: LiveData<List<Cast>?>
         get() = _castResult
@@ -43,6 +39,12 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val loadingState: LiveData<Boolean>
         get() = _loadingState
 
+    val errorState: LiveData<String>
+        get() = _errorState
+
+    val detailedEmptyState: LiveData<DetailEmptyState>
+        get() = _detailedEmptyState
+
     fun getSimilarMovie(movieId: Int){
         useCase.getSimilarMovie(movieId)
             .doOnSubscribe{
@@ -52,7 +54,10 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 when(value){
                     is Resource.Success -> _similarMovieResult.postValue(value.data)
                     is Resource.Error -> _errorState.postValue(value.errorMessage)
-                    is Resource.Empty -> _emptyState.postValue(true)
+                    is Resource.Empty -> {
+                        val newState = DetailEmptyState.SimilarMoviesEmptyState(true)
+                        _detailedEmptyState.postValue(newState)
+                    }
                 }
             }, { error ->
                 Timber.e(error.message)
@@ -71,7 +76,7 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
                         _loadingState.postValue(false)
                     }
                     is Resource.Error -> _errorState.postValue(value.errorMessage)
-                    is Resource.Empty -> _emptyState.postValue(true)
+                    is Resource.Empty -> {  }
                 }
             }, { error ->
                 Timber.e(error.message)
@@ -87,7 +92,10 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 when(value){
                     is Resource.Success -> { _castResult.postValue(value.data)}
                     is Resource.Error -> _errorState.postValue(value.errorMessage)
-                    is Resource.Empty -> _emptyState.postValue(true)
+                    is Resource.Empty -> {
+                        val newEmptyState = DetailEmptyState.CastEmptyState(true)
+                        _detailedEmptyState.postValue(newEmptyState)
+                    }
                 }
             }, { error ->
                 Timber.e(error.message)
@@ -120,12 +128,9 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
         useCase.deleteFavoriteMovies(id)
             .subscribe({ value ->
                 when(value){
-                    is Resource.Success -> {
-                        _btnState.postValue(false)
-                        _resultState.postValue(value.data)
-                    }
+                    is Resource.Success -> _btnState.postValue(false)
                     is Resource.Error -> _errorState.postValue(value.errorMessage)
-                    is Resource.Empty -> _emptyState.postValue(true)
+                    is Resource.Empty -> { }
                 }
             }, { error ->
                 Timber.e(error.message.toString())
@@ -136,4 +141,10 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
         super.onCleared()
         mCompositeDisposable.clear()
     }
+}
+
+sealed class DetailEmptyState {
+    data class SimilarMoviesEmptyState(val state: Boolean): DetailEmptyState()
+    data class CastEmptyState(val state: Boolean): DetailEmptyState()
+
 }

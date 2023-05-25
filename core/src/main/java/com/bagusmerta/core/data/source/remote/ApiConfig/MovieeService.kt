@@ -1,10 +1,10 @@
-package com.bagusmerta.core.data.source.remote.ApiConfig
+package com.bagusmerta.core.data.source.remote.apiConfig
 
 
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieCastResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeSearchResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieCastResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeSearchResponse
 import io.reactivex.Flowable
 import io.reactivex.Single
 import retrofit2.http.GET

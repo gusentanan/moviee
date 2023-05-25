@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -18,10 +17,9 @@ import com.bagusmerta.core.utils.Constants.BANNER_DELAY
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
-import com.bagusmerta.moviee.presentation.all.AllMovieActivity
-import com.bagusmerta.moviee.presentation.main.adapter.*
+import com.bagusmerta.moviee.presentation.main.adapter.BannerAdapter
+import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.moviee.presentation.search.SearchActivity
-import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
@@ -83,21 +81,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-    private fun handleErrorState(msg: String) {
-        Timber.tag("ERROR").e(msg)
-        binding.apply {
-            mainLoadingShimmer.activityMainLoader.makeGone()
-            errorState.root.makeVisible()
-            errorState.btnTryAgain.setOnClickListener {
-                errorState.root.makeGone()
-                with(mainViewModel){
-                    getBannerMovies()
-                    getAllFeed()
-                }
-            }
-        }
-    }
 
     private fun handleInfoState(msg: String){
         this.makeInfoToast(msg)
@@ -186,9 +169,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun handleErrorState(msg: String) {
+        Timber.tag("ERROR").e(msg)
+        binding.apply {
+            mainLoadingShimmer.activityMainLoader.makeGone()
+            errorState.root.makeVisible()
+            errorState.btnTryAgain.setOnClickListener {
+                errorState.root.makeGone()
+                with(mainViewModel){
+                    getBannerMovies()
+                    getAllFeed()
+                }
+            }
+        }
+    }
+
     override fun onResume() {
-        super.onResume()
         setupBanner()
+        super.onResume()
     }
 
 }

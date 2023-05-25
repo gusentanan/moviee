@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bagusmerta.core.data.Resource
-import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.moviee.R
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 

@@ -1,10 +1,10 @@
 package com.bagusmerta.core.utils
 
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
-import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemSearchResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
 import com.bagusmerta.core.domain.model.*
 
 object DataMapper {

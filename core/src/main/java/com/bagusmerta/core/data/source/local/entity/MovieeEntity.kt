@@ -1,16 +1,14 @@
 package com.bagusmerta.core.data.source.local.entity
 
-import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "moviee_table")
-data class MovieeEntity (
+data class MovieeEntity(
 
     @PrimaryKey
     @ColumnInfo(name = "id")
-    @NonNull
     var id: Int?,
 
     @ColumnInfo(name = "title")

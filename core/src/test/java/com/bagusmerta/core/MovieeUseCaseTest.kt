@@ -2,7 +2,7 @@ package com.bagusmerta.core
 
 import com.bagusmerta.core.data.MovieeRepositoryImpl
 import com.bagusmerta.core.data.Resource
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeResponse
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.domain.usecase.MovieeUseCaseImpl
 import com.bagusmerta.core.utils.testHelper.*

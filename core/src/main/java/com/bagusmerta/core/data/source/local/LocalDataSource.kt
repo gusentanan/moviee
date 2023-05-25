@@ -4,27 +4,36 @@ import com.bagusmerta.core.data.source.local.dao.MovieeDao
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.completableTransformerIo
+import com.bagusmerta.utility.flowableTransformerComputation
+import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.SingleSubject
 import timber.log.Timber
 
 class LocalDataSource(private val dao: MovieeDao) {
 
-    fun getAllMovies(): Flowable<List<MovieeEntity>> = dao.getAllMovies()
+    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<ResultState<List<MovieeEntity>>> {
+        val mCompositeDisposable = CompositeDisposable()
+        val result = PublishSubject.create<ResultState<List<MovieeEntity>>>()
+        dao.getAllFavoriteMovies(isFavorite)
+            .compose(flowableTransformerComputation())
+            .subscribe({ data ->
+                if(data.isNotEmpty()) {
+                    result.onNext(ResultState.Success(data))
+                } else {
+                    result.onNext(ResultState.Empty)
+                }
+            }, { error ->
+                result.onNext(ResultState.Error(error.message.toString()))
+                Timber.e(error.toString())
+            }).let(mCompositeDisposable::add)
 
-    fun getAllFavoriteMovies(isFavorite: Boolean): Flowable<List<MovieeEntity>> = dao.getAllFavoriteMovies(isFavorite)
-
-    fun checkFavoriteMovie(id: Int): Maybe<MovieeEntity> = dao.checkFavoriteMovies(id)
-
-    fun setFavoriteMovie(data: MovieeEntity, isFavorite: Boolean): Single<Unit> {
-        data.isFavorite = isFavorite
-        return Single.fromCallable{ dao.updateFavoriteMovie(data) }
-
+        return result.toFlowable(BackpressureStrategy.BUFFER)
     }
-
     fun deleteFavoriteMovie(id: Int): Single<ResultState<String>> {
         val mCompositeDisposable = CompositeDisposable()
         val result = SingleSubject.create<ResultState<String>>()
@@ -39,4 +48,12 @@ class LocalDataSource(private val dao: MovieeDao) {
 
         return result
     }
+
+    fun checkFavoriteMovie(id: Int): Maybe<MovieeEntity> = dao.checkFavoriteMovies(id)
+
+    fun setFavoriteMovie(data: MovieeEntity, isFavorite: Boolean): Single<Unit> {
+        data.isFavorite = isFavorite
+        return Single.fromCallable{ dao.insertUpdateFavoriteMovie(data) }
+    }
+
 }

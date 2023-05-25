@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun ImageView.loadImage(url: String?){
     Glide.with(context)
@@ -18,6 +20,16 @@ fun ImageView.loadImage(url: String?){
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
         .error(R.drawable.ic_baseline_broken_image_24)
         .into(this)
+}
+
+fun formatMediaDate(date: String?): String? {
+    if(!date.isNullOrEmpty()) {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return sdf.parse(date)
+            ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
+    } else {
+        return "Unknown"
+    }
 }
 
 fun View.makeVisible(){

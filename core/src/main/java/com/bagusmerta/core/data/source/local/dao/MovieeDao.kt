@@ -17,9 +17,6 @@ import io.reactivex.Maybe
 @Dao
 interface MovieeDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovieData(data: List<MovieeEntity>): Completable
-
     @Query(GET_ALL_MOVIES)
     fun getAllMovies(): Flowable<List<MovieeEntity>>
 
@@ -30,7 +27,7 @@ interface MovieeDao {
     fun checkFavoriteMovies(movieId: Int): Maybe<MovieeEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun updateFavoriteMovie(data: MovieeEntity)
+    fun insertUpdateFavoriteMovie(data: MovieeEntity)
 
     @Query(DELETE_FAVORITE_MOVIES)
     fun deleteFavoriteMovie(movieId: Int): Completable

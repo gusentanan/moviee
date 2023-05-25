@@ -1,14 +1,13 @@
 package com.bagusmerta.core.data.source.remote
 
 import android.annotation.SuppressLint
-import com.bagusmerta.core.data.source.remote.ApiConfig.MovieeService
-import com.bagusmerta.core.data.source.remote.MovieeResponse.CastResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeDetailResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemResponse
-import com.bagusmerta.core.data.source.remote.MovieeResponse.MovieeItemSearchResponse
+import com.bagusmerta.core.data.source.remote.apiConfig.MovieeService
+import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.flowableTransformerComputation
-import com.bagusmerta.utility.singleTransformerComputation
 import com.bagusmerta.utility.singleTransformerIo
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -28,7 +27,6 @@ class RemoteDataSource(private val apiService: MovieeService) {
             .subscribe ({ response ->
                 val data = response.movieeResponse
                 res.onNext(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
-
             }, { error ->
                 res.onNext(ResultState.Error(error.message.toString()))
                 Timber.e(error.toString())
@@ -46,7 +44,6 @@ class RemoteDataSource(private val apiService: MovieeService) {
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
                 val data = response.movieeItemSearch
-
                 res.onSuccess(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
             }, { error ->
                 res.onSuccess(ResultState.Error(error.message.toString()))
@@ -143,7 +140,6 @@ class RemoteDataSource(private val apiService: MovieeService) {
                         response.keyVideo = it.key
                     }
                 }
-
                 res.onSuccess(if(response != null) ResultState.Success(response) else ResultState.Empty)
             }, { error ->
                 res.onSuccess(ResultState.Error(error.message.toString()))

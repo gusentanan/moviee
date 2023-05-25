@@ -1,4 +1,4 @@
-package com.bagusmerta.core.data.source.remote.MovieeResponse
+package com.bagusmerta.core.data.source.remote.movieeResponse
 
 import com.google.gson.annotations.SerializedName
 

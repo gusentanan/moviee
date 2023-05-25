@@ -19,7 +19,7 @@ import com.bagusmerta.utility.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import www.sanju.motiontoast.MotionToast
+import timber.log.Timber
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
@@ -67,17 +67,15 @@ class DetailActivity : AppCompatActivity() {
                 it?.let { movieList -> handleSimilarMovieResult(movieList) }
             }
             loadingState.observe(this@DetailActivity){
-                it?.let { flag -> handleLoadingState(flag) }
+                handleLoadingState(it)
+            }
+            errorState.observe(this@DetailActivity){
+                handleErrorState(it)
+            }
+            detailedEmptyState.observe(this@DetailActivity){
+                handleEmptyState(it)
             }
 
-        }
-    }
-
-    private fun handleLoadingState(flag: Boolean){
-        if (!flag){
-            binding.apply {
-                detailLoadingShimmer.activityDetailLoader.makeGone()
-            }
         }
     }
 
@@ -175,6 +173,30 @@ class DetailActivity : AppCompatActivity() {
                 btnFavorite.text = getString(R.string.remove_from_favorite)
             }else {
                 btnFavorite.text = getString(R.string.add_to_favorite)
+            }
+        }
+    }
+
+    private fun handleEmptyState(state: DetailEmptyState) {
+        when(state){
+            is DetailEmptyState.SimilarMoviesEmptyState -> {
+                binding.tvSimilarEmptyState.makeVisible()
+            }
+            is DetailEmptyState.CastEmptyState -> {
+                binding.tvCastEmptyState.makeVisible()
+            }
+        }
+    }
+
+    private fun handleErrorState(msg: String?) {
+        Timber.e(msg)
+        this.makeErrorToast("Oops Something wrong happen!")
+    }
+
+    private fun handleLoadingState(flag: Boolean){
+        if (!flag){
+            binding.apply {
+                detailLoadingShimmer.activityDetailLoader.makeGone()
             }
         }
     }

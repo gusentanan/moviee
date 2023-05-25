@@ -13,7 +13,7 @@ import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.moviee.databinding.ItemHorizontalMovieListBinding
 import com.bagusmerta.moviee.presentation.all.AllMovieActivity
 
-class MainAdapter(private val context: Context): ListAdapter<HomeFeed, MainAdapter.ViewHolder>(DiffUtilCallBack()) {
+class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private var items = mutableListOf<HomeFeed>()
 
@@ -58,9 +58,3 @@ class MainAdapter(private val context: Context): ListAdapter<HomeFeed, MainAdapt
 
 }
 
-class DiffUtilCallBack : DiffUtil.ItemCallback<HomeFeed>() {
-    override fun areItemsTheSame(oldItem: HomeFeed, newItem: HomeFeed): Boolean =
-        oldItem == newItem
-    override fun areContentsTheSame(oldItem: HomeFeed, newItem: HomeFeed): Boolean =
-        oldItem.equals(newItem)
-}
