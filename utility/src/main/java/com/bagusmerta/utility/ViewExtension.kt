@@ -24,7 +24,7 @@ fun ImageView.loadImage(url: String?){
 
 fun ImageView.loadHighQualityImage(url: String?){
     Glide.with(context)
-        .load("${"https://image.tmdb.org/t/p/w780/"}${url}")
+        .load("${BuildConfig.POSTER_URL_HQ}${url}")
         .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
         .error(R.drawable.ic_baseline_broken_image_24)
         .into(this)

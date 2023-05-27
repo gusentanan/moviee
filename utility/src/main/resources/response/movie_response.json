@@ -7,7 +7,9 @@
       "id": 297761,
       "original_title": "Suicide Squad",
       "title": "Suicide Squad",
-      "backdrop_path": "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg"
+      "backdrop_path": "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg",
+      "vote_average": "7.7",
+      "genre_ids": [1,2,3]
     },
     {
       "poster_path": "/lFSSLTlFozwpaGlO31OoUeirBgQ.jpg",
@@ -16,7 +18,9 @@
       "id": 324668,
       "original_title": "Jason Bourne",
       "title": "Jason Bourne",
-      "backdrop_path": "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg"
+      "backdrop_path": "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
+      "vote_average": "7.7",
+      "genre_ids": [2,3,5]
     }
   ]
 }

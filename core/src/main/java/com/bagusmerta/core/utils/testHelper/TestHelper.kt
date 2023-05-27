@@ -1,7 +1,8 @@
 package com.bagusmerta.core.utils.testHelper
 
-import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.*
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeDetail
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
@@ -55,26 +56,78 @@ fun getDummyMovieeItemResponse() =
         )
     )
 
+fun getDummySearchResponse() =
+    mutableListOf(
+        MovieeItemSearchResponse(
+            movieeId = 297761,
+            movieeTitle = "Suicide Squad",
+            backdropPath = "/ndlQ2Cuc3cjTL7lTynw6I4boP4S.jpg",
+            releaseDate = "2016-08-03",
+            rating = 7.7,
+            genreId = mutableListOf(2,3,5)
+        ),
+        MovieeItemSearchResponse(
+            movieeId = 324668,
+            movieeTitle = "Jason Bourne",
+            backdropPath = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
+            releaseDate = "2016-07-27",
+            rating = 7.7,
+            genreId = mutableListOf(2,6,4)
+        )
+    )
 
-fun getSingleDummyMoviee() = Moviee(
-    id = 324668,
+
+fun getSingleDummyMoviee() = MovieeDetailResponse(
+    movieeId = 324668,
     posterPath = "/lFSSLTlFozwpaGlO31OoUeirBgQ.jpg",
-    title = "Jason Bourne",
+    movieeTitle = "Jason Bourne",
     overview = "The most dangerous former operative of the CIA is drawn out of hiding to uncover hidden truths about his past.",
     backdropPath = "/AoT2YrJUJlg5vKE3iMOLvHlTd3m.jpg",
     releaseDate = "2016-07-27",
-    isFavorite = false,
     rating = 7.7,
-    genreId = mutableListOf(1,2,33)
+    genres = mutableListOf(
+        Genre(
+            id = 28,
+            name = "Action"
+        ),
+        Genre(
+            id = 12,
+            name = "Adventure"
+        )
+    ),
+    runtime = 115,
+    videos = Videos(
+        mutableListOf(
+            VideoInfo(
+                id = "643d18eb4d67910469d839d9",
+                key = "Wk-MeF0ngVI",
+                name = "The SWAT Chase Extended PreviewOfficial Trailer Jason Bourne",
+                official = true,
+                publishedAt = "2023-04-13T17:00:11.000Z",
+                site = "YouTube",
+                size = 720,
+                type = "Clip"
+            ),
+        )
+    ),
+    genreId = mutableListOf(1,2,3),
+    keyVideo = "Wk-MeF0ngVI"
+)
+
+fun getDummyCastResponse() = mutableListOf(
+    CastResponse(
+        character = "Spiderman - Peter Parker",
+        name = "Tom Holland",
+        profilePicPath = "/lFSSLTlFozwpaGlO31OoUeirBgQ.jpg"
+    ),
+    CastResponse(
+        character = "Iron Man - Tony Stark",
+        name = "Robert Downey Junior",
+        profilePicPath = "/lFSSLTlFozwpaGlO31OoUeirBgQ.jpg"
+    )
 )
 
 fun <T> load(clss: Class<T>, file: String): T {
     val fixtureStreamReader = InputStreamReader(clss.classLoader?.getResourceAsStream(file))
     return Gson().fromJson(fixtureStreamReader, clss)
 }
-
-//fun mapResponseToDomain(data: MovieeResponse): List<Moviee> {
-//    return DataMapper.mapMovieeResponseToEntity(data.movieeResponse).let {
-//        DataMapper.mapListMovieeEntityToDomain(it)
-//    }
-//}
