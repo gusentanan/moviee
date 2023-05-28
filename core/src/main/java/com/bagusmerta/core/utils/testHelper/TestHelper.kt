@@ -1,14 +1,15 @@
 package com.bagusmerta.core.utils.testHelper
 
+import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.data.source.remote.movieeResponse.*
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
-fun getDummyMoviee() =
+fun getDummyEntityMoviee() =
         mutableListOf(
-            Moviee(
+            MovieeEntity(
                 id = 297761,
                 posterPath = "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg",
                 title = "Suicide Squad",
@@ -17,9 +18,9 @@ fun getDummyMoviee() =
                 releaseDate = "2016-08-03",
                 isFavorite = true,
                 rating = 7.7,
-                genreId = mutableListOf(2,1)
+                genre = "Action"
             ),
-            Moviee(
+            MovieeEntity(
                 id = 324668,
                 posterPath = "/lFSSLTlFozwpaGlO31OoUeirBgQ.jpg",
                 title = "Jason Bourne",
@@ -28,7 +29,7 @@ fun getDummyMoviee() =
                 releaseDate = "2016-07-27",
                 isFavorite = false,
                 rating = 7.7,
-                genreId = mutableListOf(1,2,5)
+                genre = "Sci-fi"
             )
         )
 
