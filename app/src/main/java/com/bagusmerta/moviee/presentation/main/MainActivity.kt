@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             getAllFeed()
 
             resultBanner.observe(this@MainActivity){
-                handleBannerResult(it)
+                it?.let { data -> handleBannerResult(data) }
             }
             resultAllFeed.observe(this@MainActivity){
                 handleMovieeResult(it)
@@ -82,15 +82,19 @@ class MainActivity : AppCompatActivity() {
         data?.let { mainAdapter.setListItems(items) }
     }
 
-    private fun handleBannerResult(data: List<Moviee>?) {
+    private fun handleBannerResult(data: List<Moviee>) {
         bannerItems.clear()
-        data?.let { bannerItems.addAll(it) }
+        data.let { bannerItems.addAll(it) }
+        val banner: Moviee = bannerItems.findRandom()!!
 
         binding.apply {
-            ivBanner.loadHighQualityImage(bannerItems[3].posterPath)
-            val genreString =  Helpers.mappingMovieGenreListFromId(bannerItems[3].genreId)
+            if(data.isNotEmpty()){
+                tvGenreBanner.makeVisible()
+                mbMoreInfoBanner.makeVisible()
+            }
+            ivBanner.loadHighQualityImage(banner.posterPath)
+            tvGenreBanner.text = Helpers.mappingMovieGenreListFromId(banner.genreId)
                 .joinToString(" • ") { it.name.toString() }
-            tvGenreBanner.text = genreString
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
@@ -114,21 +118,12 @@ class MainActivity : AppCompatActivity() {
             mainLoadingShimmer.activityMainLoader.let {
                 if(state) it.makeVisible() else it.makeGone()
             }
-            tvGenreBanner.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
-            mbMoreInfoBanner.let {
-                if(state) it.makeGone() else it.makeVisible()
-            }
         }
     }
 
     private fun handleErrorState(msg: String) {
         Timber.tag("ERROR").e(msg)
         binding.apply {
-            tvGenreBanner.makeGone()
-            mbMoreInfoBanner.makeGone()
-
             mainLoadingShimmer.activityMainLoader.makeGone()
             errorState.root.makeVisible()
             errorState.btnTryAgain.setOnClickListener {

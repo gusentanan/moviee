@@ -5,7 +5,6 @@ import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
 import com.bagusmerta.core.utils.testHelper.getDummyEntityMoviee
 import com.bagusmerta.utility.ResultState
 import io.reactivex.Flowable
-import io.reactivex.Maybe
 import io.reactivex.Single
 import org.junit.After
 import org.junit.Before
@@ -15,6 +14,7 @@ import org.mockito.kotlin.atLeastOnce
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
+
 
 class LocalDataSourceTest {
     private val localDataSource: LocalDataSource = mock()

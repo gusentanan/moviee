@@ -18,6 +18,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
+
 class RemoteDataSourceTest {
     private val remoteDataSource: RemoteDataSource = mock()
 
@@ -332,10 +333,10 @@ class RemoteDataSourceTest {
         val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
         val movieId = 21
 
-        whenever(remoteDataSource.getSimilarMovie(movieId))
+        whenever(remoteDataSource.getSimilarMovies(movieId))
             .thenReturn(Single.just(expectedValue))
 
-        remoteDataSource.getSimilarMovie(movieId).test().apply {
+        remoteDataSource.getSimilarMovies(movieId).test().apply {
             assertComplete()
             assertNoErrors()
             assertValue {
@@ -349,17 +350,17 @@ class RemoteDataSourceTest {
                 }
             }.dispose()
         }
-        verify(remoteDataSource, atLeastOnce()).getSimilarMovie(movieId)
+        verify(remoteDataSource, atLeastOnce()).getSimilarMovies(movieId)
     }
 
     @Test
     fun `remoteDataSource-getSimilarMovies() = should return Error`(){
         val expectedValue = ResultState.Error("Opps something wrong happen!")
         val movieId = 21
-        whenever(remoteDataSource.getSimilarMovie(movieId))
+        whenever(remoteDataSource.getSimilarMovies(movieId))
             .thenReturn(Single.just(expectedValue))
 
-        remoteDataSource.getSimilarMovie(movieId).test().apply {
+        remoteDataSource.getSimilarMovies(movieId).test().apply {
             assertComplete()
             assertValue {
                 val actualValue = ResultState.Error("Opps something wrong happen!")
@@ -371,17 +372,17 @@ class RemoteDataSourceTest {
                 }
             }.dispose()
         }
-        verify(remoteDataSource, atLeastOnce()).getSimilarMovie(movieId)
+        verify(remoteDataSource, atLeastOnce()).getSimilarMovies(movieId)
     }
 
     @Test
     fun `remoteDataSource-getSimilarMovies() = should return Empty`(){
         val expectedValue = ResultState.Empty
         val movieId = 21
-        whenever(remoteDataSource.getSimilarMovie(movieId))
+        whenever(remoteDataSource.getSimilarMovies(movieId))
             .thenReturn(Single.just(expectedValue))
 
-        remoteDataSource.getSimilarMovie(movieId).test().apply {
+        remoteDataSource.getSimilarMovies(movieId).test().apply {
             assertComplete()
             assertNoErrors()
             assertValue {
@@ -392,7 +393,7 @@ class RemoteDataSourceTest {
                 }
             }.dispose()
         }
-        verify(remoteDataSource, atLeastOnce()).getSimilarMovie(movieId)
+        verify(remoteDataSource, atLeastOnce()).getSimilarMovies(movieId)
     }
 
     @Test
@@ -488,6 +489,79 @@ class RemoteDataSourceTest {
             }.dispose()
         }
         verify(remoteDataSource, atLeastOnce()).getDetailMovies(movieId)
+    }
+
+    @Test
+    fun `remoteDataSource-getTrendingMovies() = should return list of Movie`(){
+        val expectedValue = ResultState.Success(getDummyMovieeItemResponse())
+
+        whenever(remoteDataSource.getTrendingMovies())
+             .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getTrendingMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val json = load(MovieeResponse::class.java, "response/movie_response.json")
+                val actualValue = ResultState.Success(json)
+
+                when(it){
+                    is ResultState.Success -> {
+                        it.data.size == actualValue.data.movieeResponse.size
+                    }
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getTrendingMovies()
+    }
+
+    @Test
+    fun `remoteDataSource-getTrendingMovies() = should return Empty`(){
+        val expectedValue = ResultState.Empty
+
+        whenever(remoteDataSource.getTrendingMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getTrendingMovies().test().apply {
+            assertComplete()
+            assertNoErrors()
+            assertValue {
+                val actualValue = ResultState.Empty
+                when(it){
+                    ResultState.Empty -> {
+                        it == actualValue
+                    }
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getTrendingMovies()
+    }
+
+    @Test
+    fun `remoteDataSource-getTrendingMovies = should return Error`(){
+        val expectedValue = ResultState.Error("Oops something wrong happen")
+
+        whenever(remoteDataSource.getTrendingMovies())
+            .thenReturn(Single.just(expectedValue))
+
+        remoteDataSource.getTrendingMovies().test().apply {
+            assertComplete()
+            assertValue {
+                val actualValue = ResultState.Error("Oops something wrong happen")
+                when(it){
+                    is ResultState.Error -> {
+                        it.errorMessage == actualValue.errorMessage
+                    }
+                    else -> false
+                }
+            }.dispose()
+        }
+
+        verify(remoteDataSource, atLeastOnce()).getTrendingMovies()
     }
 
 

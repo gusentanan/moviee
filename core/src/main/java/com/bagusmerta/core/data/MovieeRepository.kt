@@ -32,7 +32,8 @@ interface MovieeRepository {
     fun searchMovies(query: String): Single<Resource<List<MovieeSearch>>>
     fun checkFavoriteMovies(id: Int): Maybe<Moviee>
     fun deleteFavoriteMovies(id: Int): Single<Resource<String>>
-    fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>>
+    fun getSimilarMovies(movieId: Int): Single<Resource<List<Moviee>>>
+    fun getTrendingMovies(): Single<Resource<List<Moviee>>>
 
 }
 
@@ -169,10 +170,26 @@ class MovieeRepositoryImpl(
         return res
     }
 
-    override fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>> {
+    override fun getSimilarMovies(movieId: Int): Single<Resource<List<Moviee>>> {
         val res = SingleSubject.create<Resource<List<Moviee>>>()
         val mCompositeDisposable = CompositeDisposable()
-        remoteDataSource.getSimilarMovie(movieId)
+        remoteDataSource.getSimilarMovies(movieId)
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe { value ->
+                when(value) {
+                    is ResultState.Success -> res.onSuccess(Resource.Success(mapMovieeResponseToDomain(value.data)))
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                }
+            }.let(mCompositeDisposable::add)
+
+        return res
+    }
+
+    override fun getTrendingMovies(): Single<Resource<List<Moviee>>> {
+        val res = SingleSubject.create<Resource<List<Moviee>>>()
+        val mCompositeDisposable = CompositeDisposable()
+        remoteDataSource.getTrendingMovies()
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe { value ->
                 when(value) {

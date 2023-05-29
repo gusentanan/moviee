@@ -20,7 +20,8 @@ interface MovieeUseCase {
     fun setFavoriteMovies(data: Moviee, isFavorite: Boolean, genre: String): Single<Unit>
     fun deleteFavoriteMovies(id: Int): Single<Resource<String>>
     fun searchMovies(query: String): Single<Resource<List<MovieeSearch>>>
-    fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>>
+    fun getSimilarMovies(movieId: Int): Single<Resource<List<Moviee>>>
+    fun getTrendingMovies(): Single<Resource<List<Moviee>>>
 
 }
 
@@ -50,8 +51,11 @@ class MovieeUseCaseImpl(private val repository: MovieeRepository) : MovieeUseCas
     override fun searchMovies(query: String): Single<Resource<List<MovieeSearch>>> =
         repository.searchMovies(query)
 
-    override fun getSimilarMovie(movieId: Int): Single<Resource<List<Moviee>>> =
-        repository.getSimilarMovie(movieId)
+    override fun getSimilarMovies(movieId: Int): Single<Resource<List<Moviee>>> =
+        repository.getSimilarMovies(movieId)
+
+    override fun getTrendingMovies(): Single<Resource<List<Moviee>>> =
+        repository.getTrendingMovies()
 
     override fun getAllFavoriteMovies(isFavorite: Boolean): Single<Resource<List<MovieeFavorite>>> =
         repository.getAllFavoriteMovies(isFavorite)

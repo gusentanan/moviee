@@ -46,7 +46,7 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
         get() = _detailedEmptyState
 
     fun getSimilarMovie(movieId: Int){
-        useCase.getSimilarMovie(movieId)
+        useCase.getSimilarMovies(movieId)
             .doOnSubscribe{
                 _loadingState.postValue(true)
             }

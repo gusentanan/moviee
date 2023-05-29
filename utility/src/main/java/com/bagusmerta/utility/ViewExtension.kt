@@ -13,6 +13,7 @@ import www.sanju.motiontoast.MotionToast
 import www.sanju.motiontoast.MotionToastStyle
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.random.Random
 
 fun ImageView.loadImage(url: String?){
     Glide.with(context)
@@ -102,5 +103,11 @@ fun Activity.hideStatusBar(){
            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         }
     }
+}
+
+fun <T> MutableList<T>.findRandom(): T? {
+    if(isEmpty()) return null
+    val index = Random.nextInt(size)
+    return this[index]
 }
 

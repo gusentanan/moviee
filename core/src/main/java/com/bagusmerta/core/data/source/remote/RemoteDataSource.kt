@@ -166,10 +166,10 @@ class RemoteDataSource(private val apiService: MovieeService) {
         return res
     }
 
-    fun getSimilarMovie(movie_id: Int): Single<ResultState<List<MovieeItemResponse>>> {
+    fun getSimilarMovies(movie_id: Int): Single<ResultState<List<MovieeItemResponse>>> {
         val mCompositeDisposable = CompositeDisposable()
         val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
-        apiService.getSimilarMovie(movie_id)
+        apiService.getSimilarMovies(movie_id)
             .compose(singleTransformerIo())
             .doAfterTerminate { mCompositeDisposable.clear() }
             .subscribe({ response ->
@@ -182,5 +182,24 @@ class RemoteDataSource(private val apiService: MovieeService) {
 
         return res
     }
+
+    fun getTrendingMovies(): Single<ResultState<List<MovieeItemResponse>>> {
+        val mCompositeDisposable = CompositeDisposable()
+        val res = SingleSubject.create<ResultState<List<MovieeItemResponse>>>()
+        apiService.getTrendingMovies()
+            .compose(singleTransformerIo())
+            .doAfterTerminate { mCompositeDisposable.clear() }
+            .subscribe({response ->
+                val data = response.movieeResponse
+                res.onSuccess(if(data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)
+            }, { error ->
+                res.onSuccess(ResultState.Error(error.message.toString()))
+                Timber.e(error.message)
+            }).let(mCompositeDisposable::add)
+
+        return res
+    }
+
+
 
 }

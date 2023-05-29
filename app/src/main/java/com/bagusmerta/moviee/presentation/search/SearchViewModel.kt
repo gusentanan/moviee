@@ -29,8 +29,8 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val emptyState: LiveData<Boolean>
         get() = _emptyState
 
-    fun getRecommendMovies(){
-        useCase.getNowPlayingMovies()
+    fun getTrendingMovies(){
+        useCase.getTrendingMovies()
             .doOnSubscribe {
                 _emptyState.postValue(false)
             }

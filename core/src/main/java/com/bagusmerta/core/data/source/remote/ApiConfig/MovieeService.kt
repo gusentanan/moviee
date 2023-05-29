@@ -17,7 +17,10 @@ interface MovieeService {
     fun getListMovies(): Flowable<MovieeResponse>
 
     @GET("search/movie")
-    fun searchMovies(@Query("query") query: String): Single<MovieeSearchResponse>
+    fun searchMovies(
+        @Query("query") query: String,
+        @Query("include_adult") includeAdult: Boolean = false
+    ): Single<MovieeSearchResponse>
 
     @GET("movie/top_rated")
     fun getTopRatedMovies(): Single<MovieeResponse>
@@ -44,8 +47,16 @@ interface MovieeService {
     ): Single<MovieCastResponse>
 
     @GET("movie/{movie_id}/similar")
-    fun getSimilarMovie(
+    fun getSimilarMovies(
         @Path("movie_id") movieId: Int,
+        @Query("language") lang: String? = "en-US",
+        @Query("page") page: Int = 1
+    ): Single<MovieeResponse>
+
+    @GET("trending/{media_type}/{time_window}")
+    fun getTrendingMovies(
+        @Path("media_type") mediaType: String = "movie",
+        @Path("time_window") timeWindow: String = "day",
         @Query("language") lang: String? = "en-US",
         @Query("page") page: Int = 1
     ): Single<MovieeResponse>
