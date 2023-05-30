@@ -1,30 +1,55 @@
 # Moviee
-Simple movie app with MVVM pattern and clean architecture
-- This app is a movie browsing platform that follows MVVM and Clean Architecture principles. It features different movie categories, search function, and the ability to save favorite movies. Detailed movie pages provide comprehensive information about each film, including plot, cast, reviews, release date, and trailer. This app also adopt modularization strategies. 
+This app is a movie browsing platform that follows MVVM and Clean Architecture principles. It features different movie categories, search function, and the ability to save favorite movies. Detailed movie pages provide comprehensive information about each film, including plot, cast, reviews, release date, and trailer.
 
-| <img src="https://user-images.githubusercontent.com/68723002/233821617-4246e69b-f9c3-46a2-bc6c-10b6144ef66d.jpg" alt="Onboarding 1" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821629-bded2131-9b06-4271-8d31-7f03468637ab.jpg" alt="Onboarding 2" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821631-a66f8535-0bef-44fb-87b3-b8f5b2b8617d.jpg" alt="Onboarding 3" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821700-8e7d6364-516e-45b0-b85a-1a8a7a94d0a5.jpg" alt="Main Page" width="200"/>  |
+| <img src="https://github.com/gusentanan/moviee/assets/68723002/7ba6fa80-d2db-4801-96b2-0d6232c1870d" alt="Onboarding 1" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/382ea392-7df6-40c8-a019-75971fde9f73" alt="Onboarding 2" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/f84ac455-a614-4238-9bca-76a189e61c8e" alt="Onboarding 3" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/f39451d3-580b-4bac-bddf-f20400a256d7" alt="Main Page" width="200"/>  |
 | :--: | :--:| :--:| :--:|
 | Onboarding 1 | Onboarding 2 | Onboarding 3 | Main page | 
 
-| <img src="https://user-images.githubusercontent.com/68723002/233821635-7452f061-99eb-4477-9e25-2e4bf54de5a3.jpg" alt="All Movie Page" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821703-1102bc76-6891-498e-a47f-346b18735c13.jpg" alt="Detail Page" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821707-48c46502-be93-472c-8c0c-832fb78ac99c.jpg" alt="Favorite Page" width="200"/> | <img src="https://user-images.githubusercontent.com/68723002/233821709-5f8b3219-22e0-4855-a7ec-b8f72ebb71f8.jpg" alt="Search Page" width="200"/> |
+| <img src="https://github.com/gusentanan/moviee/assets/68723002/1eda38a6-230f-489b-a530-198c5295f6be" alt="All Movie Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/48351a06-582e-4014-bc78-cdec7b568f9b" alt="Detail Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/3f7aca41-bb6e-44b9-9d0d-65f7a94485d5" alt="Favorite Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/ce1c469e-e311-4993-b9ad-a8dc81068444" alt="Search Page" width="200"/> |
 | :--: | :--:| :--:| :--:|
-| All Movie page | Detail page | Favorite page | Search page |
+| See all page| Detail page | Favorite page | Search page |
+
+## Architecture
+The architecture of this app is complies with each of 3 following points:
+- [Model-View-ViewModel (MVVM)](https://proandroiddev.com/understanding-mvvm-pattern-for-android-in-2021-98b155b37b54) by utilizing the ViewModel in this architecture, you can achieve a more modular, testable, and maintainable codebase, with improved separation of concerns and a clear distinction between UI and business logic/data operations.
+- [Modular app architecture](https://developer.android.com/topic/modularization) enables the development of features in isolation, independent of other features. This approach offers benefits such as reusability, scalability, maintainability, reduced app size, and easier modification or replacement of specific features. 
+- [Clean Architecture](https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa) strictly emphasizes a clear separation of concerns through distinct architectural layers: Presentation/UI layer, Domain layer, and Data layer. This separation facilitates writing tests without dependencies on external frameworks or UI components, enhancing testability.
+
+## Modules
+![moviee drawio](https://github.com/gusentanan/moviee/assets/68723002/9ec607f8-afc6-4829-bb6d-63ef288e72f5)
+<br></br>
+Above graph shows the app modular structure.
+- The `:app` module has a direct dependency on the `:core` module. Additionally, `:app` indirectly depends on the `:favoritee` module through dynamic-features
+- `:favoritee` modules depends on `:core`, `utility` and `:app`
+- Both `:core` and `:app` modules may have dependencies on the `:utility` module, but only if there is a need for specific utilities.
+- The `:utility` module does not have any external dependencies.
+<br></br>
+This architecture promotes modularity and encapsulation by separating functionality into distinct modules. It allows for easier maintenance, reuse of modules across projects, and better management of dependencies between modules.
 
 ## Tech Stack:
+- `Androidx`: provides a set of libraries and components that offer backward compatibility, enhanced functionality, and ease of development for Android apps.
+- `Material`:  simplifies the process of creating visually appealing and consistent user interfaces.
+- `LiveData`: allows you to store and observe data in a way that automatically updates the UI when the data changes.
+- `LifeCycle`: offers lifecycle-aware components and callbacks that allow developers to handle common lifecycle events.
+- `ViewModel`: allows you to store and manage data that is independent of the UI lifecycle, ensuring that data is retained even during screen rotations or other configuration changes.
 - `RxJava`:  for doing asynchronous and executing event-based programs by using observable sequences.
 - `Retrofit2`: construct the REST APIs and paging network data.
 - `Room`: construct a DB by creating an abstract layer on top of SQLite, which enables smooth and effortless access to the database.
 - `Glide`:  library for Android that simplifies the process of loading and displaying images from network.
 - `Koin`: a dependency injection framework that facilitates the management and resolution of dependencies.
 - `Timber`: a logger with a small, extensible API.
+- `Shimmer`: simplifies the implementation of shimmering effects, enhancing the user experience and providing visual feedback during content loading.
 - `Mockito`: mocking framework that allows for the creation of mock objects in unit testing.
+- `JUnit` : simplifies the process of writing and running tests, allowing developers to verify the correctness of their code and catch potential issues early in the development cycle.
 - and a lot more ...
 
 ## How to use it ?
-- Clone this project using `https://github.com/gusentanan/moviee.git`
-- Open project using the latest version of Android Studio.
-- Run the project.
+Clone this repository and make sure you're using the latest version of Android Studio
+### Running
+- Download all dependencies using `./gradlew androidDependencies`
+- Run the project using `./gradlew build`
 - Run unit tests using `./gradlew clean test`
 
-## Modern Android Development scorecard
-![summary](https://user-images.githubusercontent.com/68723002/173498315-db13e052-300c-495d-a66e-e45b8e471e3e.png)
+-----------------------------------
+## Contributing
+feel free to contribute, thank you 😄
