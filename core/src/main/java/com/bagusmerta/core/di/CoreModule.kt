@@ -75,7 +75,7 @@ private fun okHttpClientBuilder(): OkHttpClient {
 private fun serviceHttpClient(): Interceptor {
     return Interceptor { chain ->  
         var request = chain.request()
-        val url = request.url()
+        val url = request.url
             .newBuilder()
             .addQueryParameter("api_key", API_KEY)
             .build()

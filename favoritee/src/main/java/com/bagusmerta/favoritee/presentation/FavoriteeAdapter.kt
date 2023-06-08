@@ -11,7 +11,6 @@ import com.bagusmerta.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.utility.formatMediaDate
 import com.bagusmerta.utility.loadImage
-import java.text.SimpleDateFormat
 import java.util.*
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {

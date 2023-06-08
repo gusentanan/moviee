@@ -4,7 +4,7 @@ import com.bagusmerta.core.data.source.local.dao.MovieeDao
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.completableTransformerIo
-import com.bagusmerta.utility.flowableTransformerComputation
+import com.bagusmerta.utility.flowableTransformerIo
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Maybe
@@ -20,7 +20,7 @@ class LocalDataSource(private val dao: MovieeDao) {
         val mCompositeDisposable = CompositeDisposable()
         val result = PublishSubject.create<ResultState<List<MovieeEntity>>>()
         dao.getAllFavoriteMovies(isFavorite)
-            .compose(flowableTransformerComputation())
+            .compose(flowableTransformerIo())
             .subscribe({ data ->
                 if(data.isNotEmpty()) {
                     result.onNext(ResultState.Success(data))

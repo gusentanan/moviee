@@ -7,7 +7,7 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailRespons
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
 import com.bagusmerta.utility.ResultState
-import com.bagusmerta.utility.flowableTransformerComputation
+import com.bagusmerta.utility.flowableTransformerIo
 import com.bagusmerta.utility.singleTransformerIo
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -23,7 +23,7 @@ class RemoteDataSource(private val apiService: MovieeService) {
     fun getAllMovies(): Flowable<ResultState<List<MovieeItemResponse>>> {
         val res = PublishSubject.create<ResultState<List<MovieeItemResponse>>>()
         apiService.getListMovies()
-            .compose(flowableTransformerComputation())
+            .compose(flowableTransformerIo())
             .subscribe ({ response ->
                 val data = response.movieeResponse
                 res.onNext(if (data.isNotEmpty()) ResultState.Success(data) else ResultState.Empty)

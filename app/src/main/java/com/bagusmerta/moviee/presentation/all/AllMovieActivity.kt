@@ -68,7 +68,9 @@ class AllMovieActivity : AppCompatActivity() {
 
         with(allMovieViewModel){
             result.observe(this@AllMovieActivity){
-                handleMovieeResult(it)
+                runOnUiThread {
+                    handleMovieeResult(it)
+                }
             }
             loadingState.observe(this@AllMovieActivity){
                 handleLoadingState(it)

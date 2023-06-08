@@ -57,10 +57,14 @@ class MainActivity : AppCompatActivity() {
             getAllFeed()
 
             resultBanner.observe(this@MainActivity){
-                it?.let { data -> handleBannerResult(data) }
+                runOnUiThread {
+                    it?.let { data -> handleBannerResult(data) }
+                }
             }
             resultAllFeed.observe(this@MainActivity){
-                handleMovieeResult(it)
+                runOnUiThread {
+                    handleMovieeResult(it)
+                }
             }
             loadingState.observe(this@MainActivity){
                 handleLoadingState(it)
@@ -88,18 +92,18 @@ class MainActivity : AppCompatActivity() {
         val banner: Moviee = bannerItems.findRandom()!!
 
         binding.apply {
-            if(data.isNotEmpty()){
-                tvGenreBanner.makeVisible()
-                mbMoreInfoBanner.makeVisible()
-            }
             ivBanner.loadHighQualityImage(banner.posterPath)
             tvGenreBanner.text = Helpers.mappingMovieGenreListFromId(banner.genreId)
                 .joinToString(" • ") { it.name.toString() }
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.MOVIEE, bannerItems[3].id)
+                    putExtra(DetailActivity.MOVIEE, banner.id)
                 })
+            }
+            if(data.isNotEmpty()){
+                tvGenreBanner.makeVisible()
+                mbMoreInfoBanner.makeVisible()
             }
         }
     }

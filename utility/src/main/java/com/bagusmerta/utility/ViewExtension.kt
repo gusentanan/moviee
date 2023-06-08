@@ -9,8 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import www.sanju.motiontoast.MotionToast
-import www.sanju.motiontoast.MotionToastStyle
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.random.Random
@@ -50,45 +48,15 @@ fun View.makeGone(){
 }
 
 fun Activity.makeErrorToast(message: String){
-    MotionToast.let {
-        it.createColorToast(
-            this@makeErrorToast,
-            "Error",
-            message,
-            MotionToastStyle.ERROR,
-            it.GRAVITY_BOTTOM,
-            it.LONG_DURATION,
-            ResourcesCompat.getFont(this, R.font.helveticabold)
-        )
-    }
+
 }
 
 fun Activity.makeInfoToast(message: String){
-    MotionToast.let {
-        it.createColorToast(
-            this,
-            "Info",
-            message,
-            MotionToastStyle.INFO,
-            it.GRAVITY_BOTTOM,
-            it.LONG_DURATION,
-            ResourcesCompat.getFont(this, R.font.helveticabold)
-        )
-    }
+
 }
 
 fun Activity.makeSuccessToast(message: String){
-    MotionToast.let {
-        it.createColorToast(
-            this,
-            "Success",
-            message,
-            MotionToastStyle.SUCCESS,
-            it.GRAVITY_BOTTOM,
-            it.LONG_DURATION,
-            ResourcesCompat.getFont(this, R.font.helveticabold)
-        )
-    }
+
 }
 
 
