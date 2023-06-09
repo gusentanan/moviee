@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
-import com.bagusmerta.moviee.presentation.detail.DetailActivity
+import com.bagusmerta.detail.presentation.DetailActivity
 import com.bagusmerta.utility.loadImage
 
 class AllMovieAdapter(private val context: Context): RecyclerView.Adapter<AllMovieAdapter.ViewHolder>() {

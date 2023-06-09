@@ -17,4 +17,6 @@ android {
     }
 }
 
-dependencies {}
+dependencies {
+    implementation(project(":utility"))
+}

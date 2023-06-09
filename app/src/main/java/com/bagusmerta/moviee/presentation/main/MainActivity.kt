@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.utils.Constants.URI_FAVORITE
+import com.bagusmerta.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.helpers.Helpers
@@ -42,8 +43,9 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
         binding.apply {
             btnFavorite.setOnClickListener{
-                val uriFavorite = Uri.parse(URI_FAVORITE)
-                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+//                val uriFavorite = Uri.parse(URI_FAVORITE)
+//                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+                startActivity(Intent(this@MainActivity, FavoriteeActivity::class.java))
             }
             cvSearch.setOnClickListener {
                 startActivity(Intent(this@MainActivity, SearchActivity::class.java))

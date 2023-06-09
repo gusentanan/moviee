@@ -43,7 +43,6 @@ class AndroidCoreConventionPlugin : Plugin<Project> {
                 // mockito DONE
                 // gson
 
-                add("implementation", project(":utility"))
                 add("implementation", libs.findLibrary("timber").get())
                 add("implementation", libs.findLibrary("koin.core").get())
                 add("implementation", libs.findLibrary("koin.android").get())

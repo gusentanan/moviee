@@ -1,5 +1,3 @@
-import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.include
-
 plugins {
     id("moviee.android.application")
 }
@@ -34,19 +32,13 @@ android {
         jvmTarget = "17"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
-
-    dynamicFeatures = mutableSetOf(":favoritee")
-
     configurations {
         implementation {
             exclude(group = "org.jetbrains", module = "annotations")
         }
-    }
-
-    lintOptions {
-        isAbortOnError = false
     }
 }
 
@@ -54,6 +46,8 @@ android {
 dependencies {
 
     implementation(project(":core"))
+    implementation(project(":detail"))
+    implementation(project(":favoritee"))
     implementation(project(":utility"))
 
     implementation(libs.androidx.core.ktx)
@@ -63,6 +57,7 @@ dependencies {
     implementation(libs.recyclerview)
     implementation(libs.glide)
     implementation(libs.timber)
+    implementation(libs.shimmer)
 
     implementation(libs.koin.core)
     implementation(libs.koin.android)

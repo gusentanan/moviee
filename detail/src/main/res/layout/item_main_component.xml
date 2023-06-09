@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/moviee_grid"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="@dimen/dimen_4"
+    android:layout_marginEnd="@dimen/dimen_8"
+    app:cardCornerRadius="@dimen/dimen_24">
+
+    <ImageView
+        android:id="@+id/iv_poster"
+        android:layout_width="124dp"
+        android:layout_height="184dp"
+        android:scaleType="fitXY"
+        tools:src="@tools:sample/backgrounds/scenic"
+        android:background="@color/gray"
+        android:contentDescription="@string/poster_movie" />
+
+    <TextView
+        android:id="@+id/tv_movie_rating"
+        style="@style/Text.Header2"
+        android:layout_gravity="end|top"
+        android:gravity="center"
+        android:layout_margin="@dimen/dimen_8"
+        android:background="@drawable/bg_rating"
+        android:paddingHorizontal="@dimen/dimen_8"
+        android:paddingVertical="@dimen/dimen_1"
+        android:lines="1"
+        android:text="7.8"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+
+</com.google.android.material.card.MaterialCardView>

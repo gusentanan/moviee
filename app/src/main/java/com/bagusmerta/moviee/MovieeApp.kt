@@ -1,7 +1,6 @@
 package com.bagusmerta.moviee
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
 import com.bagusmerta.core.di.databaseModule
 import com.bagusmerta.core.di.networkModule
 import com.bagusmerta.core.di.repositoryModule
