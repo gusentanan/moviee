@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.moviee.databinding.ItemHorizontalMovieListBinding
-import com.bagusmerta.moviee.presentation.all.AllMovieActivity
+import com.bagusmerta.feature.allmovie.presentation.AllMovieActivity
 
 class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 

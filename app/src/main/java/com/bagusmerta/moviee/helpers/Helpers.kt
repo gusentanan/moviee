@@ -5,17 +5,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object Helpers {
-
-    fun formatMediaDate(date: String?): String? {
-        if(!date.isNullOrEmpty()) {
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            return sdf.parse(date)
-                ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
-        } else {
-            return "Unknown"
-        }
-    }
-
     fun mappingMovieGenreListFromId(id: List<Int>?): List<Genre> {
         if (id == null) {
             return emptyList()
@@ -48,20 +37,5 @@ object Helpers {
         10752 to "War",
         37 to "Western",
     )
-
-    fun findMovieSection(key: Int): String? {
-        movieSectionMap.let {
-            return it[key]
-        }
-    }
-
-    private val movieSectionMap: HashMap<Int, String> = hashMapOf(
-        1 to "Newly Movies",
-        2 to "Upcoming Movies",
-        3 to "Popular Movies",
-        4 to "Top Rated Movies",
-        5 to "Now PLaying Movies"
-    )
-
 
 }

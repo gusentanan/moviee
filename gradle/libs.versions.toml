@@ -68,6 +68,7 @@ androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "androidxRoom" }
+androidx-room-rxjava = { module = "androidx.room:room-rxjava2", version.ref = "androidxRoom" }
 
 # Sqlite
 sqlChiper ={ module = "net.zetetic:android-database-sqlcipher", version.ref = "sqlChiperVersion" }

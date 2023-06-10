@@ -209,8 +209,8 @@ class MovieeRepositoryImpl(
             .subscribe { value ->
                 when(value){
                     is ResultState.Success -> res.onSuccess(Resource.Success(DataMapper.mapListMovieeEntityToDomain(value.data)))
-                    is ResultState.Empty -> Resource.Empty
-                    is ResultState.Error -> Resource.Error(value.errorMessage)
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                 }
             }.let(mCompositeDisposable::add)
 

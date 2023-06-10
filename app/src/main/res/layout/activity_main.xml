@@ -48,29 +48,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <RelativeLayout
+                <include
+                    android:id="@+id/i_wrapper_banner"
+                    layout="@layout/item_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/iv_banner"
-                        android:scaleType="fitXY"
-                        android:layout_width="match_parent"
-                        android:layout_height="516dp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="104dp"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/banner_gradient_top" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="136dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@drawable/banner_gradient_bottom" />
-
-                </RelativeLayout>
+                    android:layout_height="wrap_content"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -81,7 +63,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="14dp"
                         android:layout_marginEnd="10dp"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="30dp"
@@ -140,46 +122,6 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/tv_genre_banner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/Text.SubHeader"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:background="@drawable/bg_rating"
-                        android:paddingHorizontal="6dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:gravity="center"
-                        app:layout_constraintBottom_toTopOf="@id/mb_more_info_banner"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:text="Action • Adventure • Comedy • Scifi"
-                        android:visibility="invisible"/>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/mb_more_info_banner"
-                        style="@style/Widget.MaterialComponents.Button.Icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cornerRadius="24dp"
-                        android:backgroundTint="@android:color/white"
-                        android:text="More Info"
-                        android:textColor="@color/black"
-                        android:textAllCaps="false"
-                        android:textSize="12sp"
-                        app:icon="@drawable/ic_more_info_banner"
-                        app:iconTint="@color/black"
-                        app:iconPadding="2dp"
-                        android:layout_marginBottom="20dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:visibility="invisible"/>
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -191,7 +133,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

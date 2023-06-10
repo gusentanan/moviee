@@ -1,22 +1,19 @@
 package com.bagusmerta.moviee.presentation.main
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.core.utils.Constants.URI_FAVORITE
-import com.bagusmerta.favoritee.presentation.FavoriteeActivity
+import com.bagusmerta.feature.detail.presentation.DetailActivity
+import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.helpers.Helpers
-import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
-import com.bagusmerta.moviee.presentation.search.SearchActivity
+import com.bagusmerta.feature.search.presentation.SearchActivity
 import com.bagusmerta.utility.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -43,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
         binding.apply {
             btnFavorite.setOnClickListener{
-//                val uriFavorite = Uri.parse(URI_FAVORITE)
-//                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
                 startActivity(Intent(this@MainActivity, FavoriteeActivity::class.java))
             }
             cvSearch.setOnClickListener {
@@ -93,7 +88,11 @@ class MainActivity : AppCompatActivity() {
         data.let { bannerItems.addAll(it) }
         val banner: Moviee = bannerItems.findRandom()!!
 
-        binding.apply {
+        binding.iWrapperBanner.apply {
+            if(data.isNotEmpty()){
+                tvGenreBanner.makeVisible()
+                mbMoreInfoBanner.makeVisible()
+            }
             ivBanner.loadHighQualityImage(banner.posterPath)
             tvGenreBanner.text = Helpers.mappingMovieGenreListFromId(banner.genreId)
                 .joinToString(" • ") { it.name.toString() }
@@ -102,10 +101,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
                     putExtra(DetailActivity.MOVIEE, banner.id)
                 })
-            }
-            if(data.isNotEmpty()){
-                tvGenreBanner.makeVisible()
-                mbMoreInfoBanner.makeVisible()
             }
         }
     }

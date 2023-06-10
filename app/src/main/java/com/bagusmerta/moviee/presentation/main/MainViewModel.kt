@@ -61,11 +61,11 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
 
         }
             .doOnSubscribe { _loadingState.postValue(true) }
+            .doOnComplete { _loadingState.postValue(false) }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.single())
             .subscribe ({
                 _resultAllFeed.postValue(_listFeed)
-                _loadingState.postValue(false)
             },{ error ->
                 Timber.e(error.message.toString())
             }).let(mCompositeDisposable::add)

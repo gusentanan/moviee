@@ -46,8 +46,10 @@ android {
 dependencies {
 
     implementation(project(":core"))
-    implementation(project(":detail"))
-    implementation(project(":favoritee"))
+    implementation(project(":feature:detail"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:allmovie"))
+    implementation(project(":feature:favoritee"))
     implementation(project(":utility"))
 
     implementation(libs.androidx.core.ktx)

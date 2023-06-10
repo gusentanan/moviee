@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_banner"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="516dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/banner_gradient_top" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/banner_gradient_bottom" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@id/iv_banner">
+
+        <TextView
+            android:id="@+id/tv_genre_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text.SubHeader"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="@drawable/bg_rating"
+            android:paddingHorizontal="6dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/mb_more_info_banner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Action • Adventure • Comedy • Scifi"
+            android:visibility="invisible"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mb_more_info_banner"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="24dp"
+            android:backgroundTint="@android:color/white"
+            android:text="More Info"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_more_info_banner"
+            app:iconTint="@color/black"
+            app:iconPadding="2dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>
