@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_detail_loader"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
+            android:background="@color/gray" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_14"
+            android:layout_marginEnd="36dp"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:background="@drawable/shimmer_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_12"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="4dp">
+
+            <View
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_10"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/poster_bg" />
+
+            <View
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_10"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/poster_bg" />
+
+            <View
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_10"
+                android:background="@drawable/poster_bg" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:layout_marginEnd="68dp"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:background="@drawable/shimmer_bg" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="96dp"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:background="@drawable/shimmer_bg" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="124dp"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:background="@drawable/shimmer_bg" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_12"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:background="@drawable/shimmer_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_18"
+            android:orientation="horizontal"
+            android:paddingHorizontal="2dp">
+
+            <View
+                android:layout_width="260dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="@dimen/dimen_12"
+                android:layout_marginEnd="36dp"
+                android:background="@drawable/shimmer_bg" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="36dp"
+                android:background="@drawable/shimmer_bg" />
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:background="@color/gray" />
+
+        <View
+            android:layout_width="116dp"
+            android:layout_height="@dimen/dimen_20"
+            android:layout_marginTop="@dimen/dimen_20"
+            android:layout_marginStart="@dimen/dimen_12"
+            android:background="@drawable/shimmer_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_18"
+            android:orientation="horizontal">
+
+            <include
+                layout="@layout/item_cast_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1" />
+
+            <include
+                layout="@layout/item_cast_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1" />
+
+            <include
+                layout="@layout/item_cast_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="6dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dimen_16"
+            android:background="@drawable/shimmer_bg" />
+
+    </LinearLayout>
+
+
+</com.facebook.shimmer.ShimmerFrameLayout>

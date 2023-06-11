@@ -5,7 +5,11 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
-import com.bagusmerta.core.domain.model.*
+import com.bagusmerta.core.domain.model.Cast
+import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.domain.model.MovieeFavorite
+import com.bagusmerta.core.domain.model.MovieeSearch
 
 object DataMapper {
 

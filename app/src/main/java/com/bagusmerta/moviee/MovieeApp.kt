@@ -1,7 +1,6 @@
 package com.bagusmerta.moviee
 
 import android.app.Application
-import androidx.viewbinding.BuildConfig
 import com.bagusmerta.core.di.databaseModule
 import com.bagusmerta.core.di.networkModule
 import com.bagusmerta.core.di.repositoryModule
@@ -16,7 +15,6 @@ import timber.log.Timber
 class MovieeApp: Application() {
     override fun onCreate() {
         super.onCreate()
-        // Initialize Timber for logging
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }

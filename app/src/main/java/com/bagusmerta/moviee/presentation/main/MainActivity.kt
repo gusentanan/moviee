@@ -1,22 +1,24 @@
 package com.bagusmerta.moviee.presentation.main
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.core.utils.Constants.URI_FAVORITE
+import com.bagusmerta.feature.detail.presentation.DetailActivity
+import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
+import com.bagusmerta.feature.search.presentation.SearchActivity
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.helpers.Helpers
-import com.bagusmerta.moviee.presentation.detail.DetailActivity
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
-import com.bagusmerta.moviee.presentation.search.SearchActivity
-import com.bagusmerta.utility.*
+import com.bagusmerta.utility.findRandom
+import com.bagusmerta.utility.loadHighQualityImage
+import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeInfoToast
+import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -42,8 +44,7 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
         binding.apply {
             btnFavorite.setOnClickListener{
-                val uriFavorite = Uri.parse(URI_FAVORITE)
-                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+                startActivity(Intent(this@MainActivity, FavoriteeActivity::class.java))
             }
             cvSearch.setOnClickListener {
                 startActivity(Intent(this@MainActivity, SearchActivity::class.java))
@@ -53,14 +54,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStateObserver() {
         with(mainViewModel){
-            getBannerMovies()
             getAllFeed()
 
             resultBanner.observe(this@MainActivity){
-                it?.let { data -> handleBannerResult(data) }
+                runOnUiThread {
+                    it?.let { data -> handleBannerResult(data) }
+                }
             }
             resultAllFeed.observe(this@MainActivity){
-                handleMovieeResult(it)
+                runOnUiThread {
+                    handleMovieeResult(it)
+                }
             }
             loadingState.observe(this@MainActivity){
                 handleLoadingState(it)
@@ -87,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         data.let { bannerItems.addAll(it) }
         val banner: Moviee = bannerItems.findRandom()!!
 
-        binding.apply {
+        binding.iWrapperBanner.apply {
             if(data.isNotEmpty()){
                 tvGenreBanner.makeVisible()
                 mbMoreInfoBanner.makeVisible()
@@ -98,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.MOVIEE, bannerItems[3].id)
+                    putExtra(DetailActivity.MOVIEE, banner.id)
                 })
             }
         }
@@ -129,7 +133,6 @@ class MainActivity : AppCompatActivity() {
             errorState.btnTryAgain.setOnClickListener {
                 errorState.root.makeGone()
                 with(mainViewModel){
-                    getBannerMovies()
                     getAllFeed()
                 }
             }

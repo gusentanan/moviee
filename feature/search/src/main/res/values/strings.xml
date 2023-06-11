@@ -1,0 +1,15 @@
+<resources>
+    <string name="poster_movie">poster_movie</string>
+    <string name="share_button">Bookmark Movie</string>
+    <string name="ex_movie_title">Spiderman: No Way Home</string>
+    <string name="ex_overview_movie">spiderman vs sinister six, mutiverse and doctor strange</string>
+    <string name="no_data">No Data</string>
+    <string name="header_movies">Movies</string>
+    <string name="hint_search_movies">Search for movies …</string>
+    <string name="search_movie_not_found">Movie Not Found!</string>
+    <string name="rating">Rating</string>
+    <string name="tv_title_search">Search</string>
+    <string name="back_button">back_button</string>
+    <string name="tv_top_searches">Top Searches</string>
+    <string name="tv_search_results">Search Results</string>
+</resources>

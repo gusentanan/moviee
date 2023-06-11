@@ -1,21 +1,23 @@
 package com.bagusmerta.core.data
 
 import com.bagusmerta.core.data.source.local.LocalDataSource
+import com.bagusmerta.core.data.source.remote.RemoteDataSource
 import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
-import com.bagusmerta.core.data.source.remote.RemoteDataSource
-import com.bagusmerta.core.domain.model.*
+import com.bagusmerta.core.domain.model.Cast
+import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.domain.model.MovieeFavorite
+import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.core.utils.DataMapper.mapMovieeResponseToDomain
 import com.bagusmerta.core.utils.DataMapper.mapMovieeSearchResponseToDomain
 import com.bagusmerta.utility.ResultState
 import com.bagusmerta.utility.maybeTransformerIo
 import com.bagusmerta.utility.singleTransformerIo
-import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.SingleSubject
 
 
@@ -209,8 +211,8 @@ class MovieeRepositoryImpl(
             .subscribe { value ->
                 when(value){
                     is ResultState.Success -> res.onSuccess(Resource.Success(DataMapper.mapListMovieeEntityToDomain(value.data)))
-                    is ResultState.Empty -> Resource.Empty
-                    is ResultState.Error -> Resource.Error(value.errorMessage)
+                    is ResultState.Empty -> res.onSuccess(Resource.Empty)
+                    is ResultState.Error -> res.onSuccess(Resource.Error(value.errorMessage))
                 }
             }.let(mCompositeDisposable::add)
 

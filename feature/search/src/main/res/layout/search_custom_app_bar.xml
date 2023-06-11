@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    tools:ignore="Overdraw">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/constraint_guide_left_percent"
+        tools:ignore="DuplicateIncludedIds" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="@dimen/constraint_guide_right_percent"
+        tools:ignore="DuplicateIncludedIds" />
+
+    <ImageView
+        android:id="@+id/logo_app"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toTopOf="@id/cv_search"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        style="@style/Text.Header1"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/cv_search"
+        app:layout_constraintStart_toEndOf="@+id/logo_app"
+        app:layout_constraintTop_toTopOf="@+id/logo_app" />
+
+    <ImageView
+        android:id="@+id/btn_favorite"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="48dp"
+        android:src="@drawable/ic_baseline_bookmark_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cv_search"
+        android:clickable="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/favorite_menu" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_16"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dimen_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_right"
+        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@id/logo_app">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/sv_search"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

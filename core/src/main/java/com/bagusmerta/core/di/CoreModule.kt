@@ -6,8 +6,8 @@ import com.bagusmerta.core.data.MovieeRepository
 import com.bagusmerta.core.data.MovieeRepositoryImpl
 import com.bagusmerta.core.data.source.local.LocalDataSource
 import com.bagusmerta.core.data.source.local.db.MovieeDatabase
-import com.bagusmerta.core.data.source.remote.apiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
+import com.bagusmerta.core.data.source.remote.apiConfig.MovieeService
 import com.bagusmerta.core.utils.Constants.API_KEY
 import com.bagusmerta.core.utils.Constants.BASE_URL
 import net.sqlcipher.database.SQLiteDatabase
@@ -36,7 +36,6 @@ val databaseModule = module {
             .openHelperFactory(factory)
             .build()
     }
-
 }
 
 val networkModule = module {
@@ -68,21 +67,24 @@ private fun okHttpClientBuilder(): OkHttpClient {
         .addInterceptor(loggingInterceptor())
         .connectTimeout(120, TimeUnit.SECONDS)
         .readTimeout(120, TimeUnit.SECONDS)
-        .certificatePinner(certificatePinningBuilder())
+//        .certificatePinner(certificatePinningBuilder())
         .build()
 }
 
 private fun serviceHttpClient(): Interceptor {
     return Interceptor { chain ->  
-        var request = chain.request()
-        val url = request.url()
+        val request = chain.request()
+        val url = request.url
             .newBuilder()
             .addQueryParameter("api_key", API_KEY)
             .build()
 
-        request = request.newBuilder().url(url).addHeader("Accept", "application/json")
+        val modifiedRequest = request.newBuilder()
+            .url(url)
+            .addHeader("Accept", "application/json")
             .build()
-        return@Interceptor chain.proceed(request)
+
+        chain.proceed(modifiedRequest)
     }
 }
 

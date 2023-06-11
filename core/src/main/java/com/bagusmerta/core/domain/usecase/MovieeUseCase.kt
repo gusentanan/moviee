@@ -2,8 +2,11 @@ package com.bagusmerta.core.domain.usecase
 
 import com.bagusmerta.core.data.MovieeRepository
 import com.bagusmerta.core.data.Resource
-import com.bagusmerta.core.domain.model.*
-import io.reactivex.Flowable
+import com.bagusmerta.core.domain.model.Cast
+import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.domain.model.MovieeFavorite
+import com.bagusmerta.core.domain.model.MovieeSearch
 import io.reactivex.Maybe
 import io.reactivex.Single
 

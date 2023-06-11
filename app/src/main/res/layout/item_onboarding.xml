@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="@dimen/dimen_16">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -15,7 +15,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/iv_logo"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="@dimen/dimen_24"
         android:layout_marginTop="42dp"
         app:cardBackgroundColor="@color/backgroundSecondary"
         app:layout_constraintTop_toTopOf="parent"
@@ -51,9 +51,9 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginEnd="@dimen/dimen_16"
         style="@style/Text.Header2"
         android:gravity="center"
         android:textColor="@color/black"
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="@dimen/dimen_20"
         style="@style/Text.SubHeader"
         android:textColor="@color/black"
         tools:text="discover popular and upcoming movies!"

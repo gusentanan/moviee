@@ -20,6 +20,11 @@ class OnboardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        if(!prefManager.isFirstTime){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         initSlider()
         handleButtonListener()
 

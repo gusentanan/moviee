@@ -1,9 +1,13 @@
 package com.bagusmerta.core.utils.testHelper
 
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
-import com.bagusmerta.core.data.source.remote.movieeResponse.*
-import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.Genre
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.VideoInfo
+import com.bagusmerta.core.data.source.remote.movieeResponse.Videos
 import com.google.gson.Gson
 import java.io.InputStreamReader
 
