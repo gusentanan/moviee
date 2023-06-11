@@ -6,11 +6,10 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 import kotlin.random.Random
 
 fun ImageView.loadImage(url: String?){
@@ -78,4 +77,5 @@ fun <T> MutableList<T>.findRandom(): T? {
     val index = Random.nextInt(size)
     return this[index]
 }
+
 

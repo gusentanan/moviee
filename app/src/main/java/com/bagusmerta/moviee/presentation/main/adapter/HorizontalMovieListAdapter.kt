@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
 import com.bagusmerta.feature.detail.presentation.DetailActivity
+import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
 import com.bagusmerta.utility.loadImage
 
 class HorizontalMovieListAdapter(private val context: Context): RecyclerView.Adapter<HorizontalMovieListAdapter.ViewHolder>(){

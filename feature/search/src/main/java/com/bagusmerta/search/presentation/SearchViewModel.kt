@@ -32,8 +32,10 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     fun getTrendingMovies(){
         useCase.getTrendingMovies()
             .doOnSubscribe {
+                _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
+            .doAfterTerminate { _loadingState.postValue(false) }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> {
@@ -65,10 +67,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
-            .doAfterTerminate{
-                _loadingState.postValue(false)
-                mCompositeDisposable.clear()
-            }
+            .doAfterTerminate{ _loadingState.postValue(false) }
             .subscribe({ movies ->
                 when(movies){
                     is Resource.Success -> _result.postValue(movies.data)

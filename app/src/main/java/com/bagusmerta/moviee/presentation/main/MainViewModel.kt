@@ -53,6 +53,7 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
             useCase.getNowPlayingMovies().toObservable(),
         ) { newlyData, upcomingData, popularData, topRatedData, nowPlayingData ->
 
+            getBannerMovies()
             validateNewlyMovies(newlyData)
             validateUpcoming(upcomingData)
             validatePopular(popularData)
@@ -61,10 +62,10 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
 
         }
             .doOnSubscribe { _loadingState.postValue(true) }
-            .doOnComplete { _loadingState.postValue(false) }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.single())
             .subscribe ({
+                _loadingState.postValue(false)
                 _resultAllFeed.postValue(_listFeed)
             },{ error ->
                 Timber.e(error.message.toString())
@@ -136,7 +137,7 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     }
 
 
-    fun getBannerMovies(){
+    private fun getBannerMovies(){
         useCase.getAllMovies()
             .doOnSubscribe {
                 _loadingState.postValue(true)
@@ -144,9 +145,7 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
             }
             .subscribe({ value ->
                 when(value){
-                    is Resource.Success -> {
-                        _resultBanner.postValue(value.data)
-                    }
+                    is Resource.Success -> _resultBanner.postValue(value.data)
                     is Resource.Error ->  _errorState.postValue(value.errorMessage)
                     is Resource.Empty ->  _emptyState.postValue(true)
                 }
@@ -156,7 +155,9 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     }
 
     override fun onCleared() {
-        mCompositeDisposable.clear()
         super.onCleared()
+        mCompositeDisposable.clear()
     }
+
+
 }

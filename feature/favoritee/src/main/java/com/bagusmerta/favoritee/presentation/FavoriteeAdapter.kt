@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.MovieeFavorite
-import com.bagusmerta.feature.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.feature.detail.presentation.DetailActivity
+import com.bagusmerta.feature.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.utility.formatMediaDate
 import com.bagusmerta.utility.loadImage
 import java.util.*

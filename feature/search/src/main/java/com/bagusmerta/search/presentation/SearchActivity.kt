@@ -13,8 +13,6 @@ import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.Constants
 import com.bagusmerta.feature.search.R
 import com.bagusmerta.feature.search.databinding.ActivitySearchBinding
-import com.bagusmerta.feature.search.presentation.SearchAdapter
-import com.bagusmerta.feature.search.presentation.SearchViewModel
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers

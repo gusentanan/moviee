@@ -35,7 +35,7 @@ class AllMovieViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
-            .doFinally { _loadingState.postValue(false) }
+            .doAfterTerminate { _loadingState.postValue(false) }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> _result.postValue(value.data)
@@ -53,7 +53,7 @@ class AllMovieViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
-            .doFinally { _loadingState.postValue(false) }
+            .doAfterTerminate { _loadingState.postValue(false) }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> _result.postValue(value.data)
@@ -72,7 +72,7 @@ class AllMovieViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
-            .doFinally { _loadingState.postValue(false) }
+            .doAfterTerminate { _loadingState.postValue(false) }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> _result.postValue(value.data)
@@ -90,7 +90,7 @@ class AllMovieViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
-            .doFinally { _loadingState.postValue(false) }
+            .doAfterTerminate { _loadingState.postValue(false) }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> _result.postValue(value.data)
@@ -108,7 +108,7 @@ class AllMovieViewModel(private val useCase: MovieeUseCase): ViewModel() {
                 _loadingState.postValue(true)
                 _emptyState.postValue(false)
             }
-            .doFinally { _loadingState.postValue(false) }
+            .doAfterTerminate { _loadingState.postValue(false) }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> _result.postValue(value.data)
@@ -122,8 +122,8 @@ class AllMovieViewModel(private val useCase: MovieeUseCase): ViewModel() {
     }
 
     override fun onCleared() {
-        mCompositeDisposable.clear()
         super.onCleared()
+        mCompositeDisposable.clear()
     }
 
 }

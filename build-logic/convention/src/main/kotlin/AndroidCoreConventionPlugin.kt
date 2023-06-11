@@ -1,13 +1,12 @@
-import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.gradle.LibraryExtension
+import com.bagusmerta.moviee.BuildAndroidConfig
+import com.bagusmerta.moviee.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.gradle.kotlin.dsl.kotlin
-import com.bagusmerta.moviee.configureKotlinAndroid
 
 class AndroidCoreConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -21,29 +20,12 @@ class AndroidCoreConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 33
+                defaultConfig.targetSdk = BuildAndroidConfig.target_sdk
             }
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             dependencies {
-                // koin DONE
-                // kotlin IN LIB
-                // kotlincore IN LIB
-                // rxJava DONE
-
-                // okhttp3 DONE
-                // retrofit DONE
-                // sqlite DONE
-                // sqlchipper DONE
-                // timber DONE
-                // room DONE
-
-                // junit DONE
-                // mockito DONE
-                // gson
-
-                add("implementation", libs.findLibrary("timber").get())
                 add("implementation", libs.findLibrary("koin.core").get())
                 add("implementation", libs.findLibrary("koin.android").get())
                 add("implementation", libs.findLibrary("rxjava").get())
@@ -56,7 +38,6 @@ class AndroidCoreConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("junit").get())
                 add("implementation", libs.findLibrary("mockito.kotlin").get())
                 add("implementation", libs.findLibrary("androidx.junit").get())
-//                add("implementation", libs.findLibrary("android.test").get())
                 add("implementation", libs.findLibrary("retrofit").get())
                 add("implementation", libs.findLibrary("retrofit.rx2").get())
                 add("implementation", libs.findLibrary("okhttp.interceptor").get())

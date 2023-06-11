@@ -12,7 +12,12 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":utility"))
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
 
+    implementation(libs.shimmer)
+    implementation(libs.timber)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.compiler)
+
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
 }

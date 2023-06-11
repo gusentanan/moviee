@@ -45,11 +45,25 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val detailedEmptyState: LiveData<DetailEmptyState>
         get() = _detailedEmptyState
 
-    fun getSimilarMovie(movieId: Int){
-        useCase.getSimilarMovies(movieId)
+    fun getDetailMovies(movieId: Int){
+        useCase.getDetailMovies(movieId)
             .doOnSubscribe{
                 _loadingState.postValue(true)
             }
+            .doAfterTerminate { _loadingState.postValue(false) }
+            .subscribe({ value ->
+                when(value) {
+                    is Resource.Success -> _result.postValue(value.data)
+                    is Resource.Error -> _errorState.postValue(value.errorMessage)
+                    is Resource.Empty -> {  }
+                }
+            }, { error ->
+                Timber.e(error.message)
+            }).let(mCompositeDisposable::add)
+    }
+
+    fun getSimilarMovie(movieId: Int){
+        useCase.getSimilarMovies(movieId)
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> _similarMovieResult.postValue(value.data)
@@ -64,30 +78,8 @@ class DetailViewModel(private val useCase: MovieeUseCase): ViewModel() {
             }).let(mCompositeDisposable::add)
     }
 
-    fun getDetailMovies(movieId: Int){
-        useCase.getDetailMovies(movieId)
-            .doOnSubscribe{
-                _loadingState.postValue(true)
-            }
-            .subscribe({ value ->
-                when(value) {
-                    is Resource.Success -> {
-                        _result.postValue(value.data)
-                        _loadingState.postValue(false)
-                    }
-                    is Resource.Error -> _errorState.postValue(value.errorMessage)
-                    is Resource.Empty -> {  }
-                }
-            }, { error ->
-                Timber.e(error.message)
-            }).let(mCompositeDisposable::add)
-    }
-
     fun getMovieCast(movieId: Int){
         useCase.getMovieCast(movieId)
-            .doOnSubscribe {
-                _loadingState.postValue(true)
-            }
             .subscribe({ value ->
                 when(value){
                     is Resource.Success -> { _castResult.postValue(value.data)}
@@ -148,3 +140,5 @@ sealed class DetailEmptyState {
     data class CastEmptyState(val state: Boolean): DetailEmptyState()
 
 }
+
+

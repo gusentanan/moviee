@@ -19,4 +19,5 @@ android {
 
 dependencies {
     implementation(project(":utility"))
+    implementation(libs.timber)
 }

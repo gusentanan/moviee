@@ -6,8 +6,8 @@ import com.bagusmerta.core.data.MovieeRepository
 import com.bagusmerta.core.data.MovieeRepositoryImpl
 import com.bagusmerta.core.data.source.local.LocalDataSource
 import com.bagusmerta.core.data.source.local.db.MovieeDatabase
-import com.bagusmerta.core.data.source.remote.apiConfig.MovieeService
 import com.bagusmerta.core.data.source.remote.RemoteDataSource
+import com.bagusmerta.core.data.source.remote.apiConfig.MovieeService
 import com.bagusmerta.core.utils.Constants.API_KEY
 import com.bagusmerta.core.utils.Constants.BASE_URL
 import net.sqlcipher.database.SQLiteDatabase

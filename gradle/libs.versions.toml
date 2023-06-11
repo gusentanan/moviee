@@ -45,6 +45,8 @@ gsonVersion = "2.9.0"
 androidxAppCompat = "1.5.1"
 activityKtxVersion = "1.4.0"
 shimmerVersion = "0.5.0"
+splashScreenVersion = "1.0.0-alpha02"
+lottieVersion = "4.1.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -112,6 +114,12 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 # Shimmer
 shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmerVersion" }
+
+# Splash screen
+splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreenVersion" }
+
+# Lottie
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottieVersion" }
 
 # Desugar
 android-desugarJdkLibs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }

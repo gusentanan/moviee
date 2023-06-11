@@ -32,28 +32,25 @@ class FavoriteeViewModel(private val useCase: MovieeUseCase): ViewModel() {
     fun getFavoriteMovies(isFavorite: Boolean) {
         useCase.getAllFavoriteMovies(isFavorite)
             .doOnSubscribe { _loadingState.postValue(true) }
+            .doAfterTerminate {
+                _emptyState.postValue(false)
+                _loadingState.postValue(false)
+                mCompositeDisposable.clear()
+            }
             .subscribe({ value ->
                 when(value){
-                    is Resource.Success -> {
-                        _loadingState.postValue(false)
-                        _emptyState.postValue(false)
-                        _result.postValue(value.data)
-                    }
-                    is Resource.Empty -> {
-                        _loadingState.postValue(false)
-                        _emptyState.postValue(true)
-                    }
-                    is Resource.Error -> { _errorMsg.postValue(value.errorMessage) }
+                    is Resource.Success -> _result.postValue(value.data)
+                    is Resource.Empty -> _emptyState.postValue(true)
+                    is Resource.Error -> _errorMsg.postValue(value.errorMessage)
                 }
             }, { err ->
                 Timber.e(err.message.toString())
             }).let(mCompositeDisposable::add)
     }
 
-
     override fun onCleared() {
-        mCompositeDisposable.clear()
         super.onCleared()
+        mCompositeDisposable.clear()
     }
 
 }

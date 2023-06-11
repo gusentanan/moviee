@@ -13,6 +13,10 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":feature:detail"))
     implementation(project(":utility"))
-    implementation("com.airbnb.android:lottie:4.1.0")
-    implementation("com.google.android.material:material:1.9.0")
+
+    implementation(libs.lottie)
+    implementation(libs.timber)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.compiler)
 }

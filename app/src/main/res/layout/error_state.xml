@@ -24,7 +24,7 @@
         android:text="Retry"
         android:textAllCaps="false"
         android:textSize="12sp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dimen_10"
         app:layout_constraintTop_toBottomOf="@id/tv_error_state"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

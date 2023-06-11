@@ -4,12 +4,9 @@ plugins {
 
 android {
     namespace = "com.bagusmerta.moviee"
-    defaultConfig {
-        applicationId = "com.bagusmerta.moviee"
-        versionCode = 3
-        versionName = "0.0.3"
-        multiDexEnabled = true
 
+    defaultConfig {
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -60,19 +57,15 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.timber)
     implementation(libs.shimmer)
-
     implementation(libs.koin.core)
     implementation(libs.koin.android)
-
     implementation(libs.rxjava)
     implementation(libs.rx.android)
     implementation(libs.rx.stream)
+    implementation(libs.lottie)
+    implementation(libs.material)
+    implementation(libs.splash.screen)
 
-    implementation("com.airbnb.android:lottie:4.1.0")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.core:core-splashscreen:1.0.0-alpha02")
-    // youtube player dep
-    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
     //stepper dep
     implementation("com.tbuonomo:dotsindicator:4.3")
 

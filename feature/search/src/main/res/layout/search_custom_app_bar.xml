@@ -61,9 +61,9 @@
         android:id="@+id/cv_search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/dimen_16"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="@dimen/dimen_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/guideline_right"
         app:layout_constraintStart_toStartOf="@id/guideline_left"
@@ -78,10 +78,10 @@
                 android:id="@+id/sv_search"
                 android:layout_width="0dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_10"
+                android:layout_marginEnd="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_10"
                 android:layout_weight="1" />
 
         </LinearLayout>

@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.HomeFeed
-import com.bagusmerta.moviee.databinding.ItemHorizontalMovieListBinding
 import com.bagusmerta.feature.allmovie.presentation.AllMovieActivity
+import com.bagusmerta.moviee.databinding.ItemHorizontalMovieListBinding
 
 class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 

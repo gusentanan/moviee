@@ -9,12 +9,16 @@ import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
+import com.bagusmerta.feature.search.presentation.SearchActivity
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
-import com.bagusmerta.feature.search.presentation.SearchActivity
-import com.bagusmerta.utility.*
+import com.bagusmerta.utility.findRandom
+import com.bagusmerta.utility.loadHighQualityImage
+import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeInfoToast
+import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -50,7 +54,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initStateObserver() {
         with(mainViewModel){
-            getBannerMovies()
             getAllFeed()
 
             resultBanner.observe(this@MainActivity){
@@ -130,7 +133,6 @@ class MainActivity : AppCompatActivity() {
             errorState.btnTryAgain.setOnClickListener {
                 errorState.root.makeGone()
                 with(mainViewModel){
-                    getBannerMovies()
                     getAllFeed()
                 }
             }

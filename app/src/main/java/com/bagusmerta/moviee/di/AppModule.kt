@@ -3,11 +3,11 @@ package com.bagusmerta.moviee.di
 
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.core.domain.usecase.MovieeUseCaseImpl
-import com.bagusmerta.feature.favoritee.presentation.FavoriteeViewModel
 import com.bagusmerta.feature.allmovie.presentation.AllMovieViewModel
 import com.bagusmerta.feature.detail.presentation.DetailViewModel
-import com.bagusmerta.moviee.presentation.main.MainViewModel
+import com.bagusmerta.feature.favoritee.presentation.FavoriteeViewModel
 import com.bagusmerta.feature.search.presentation.SearchViewModel
+import com.bagusmerta.moviee.presentation.main.MainViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

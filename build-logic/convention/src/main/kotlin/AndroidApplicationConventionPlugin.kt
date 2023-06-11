@@ -1,8 +1,9 @@
 import com.android.build.api.dsl.ApplicationExtension
+import com.bagusmerta.moviee.BuildAndroidConfig
+import com.bagusmerta.moviee.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
-import com.bagusmerta.moviee.configureKotlinAndroid
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -16,30 +17,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
-                defaultConfig.targetSdk = 33
+                defaultConfig.applicationId = BuildAndroidConfig.application_id
+                defaultConfig.targetSdk = BuildAndroidConfig.target_sdk
+                defaultConfig.versionCode = BuildAndroidConfig.version_code
+                defaultConfig.versionName = BuildAndroidConfig.version_name
             }
-
-//            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-//
-//            dependencies {
-//                add("implementation", project(":core"))
-//                add("implementation", project(":utility"))
-//
-//                add("implementation", libs.findLibrary("androidx.core.ktx"))
-//                add("implementation", libs.findLibrary("androidx.activity.ktx"))
-//                add("implementation", libs.findLibrary("androidx.appcompat"))
-//                add("implementation", libs.findLibrary("androidx.lifecycle"))
-//                add("implementation", libs.findLibrary("recyclerview"))
-//                add("implementation", libs.findLibrary("glide"))
-//                add("implementation", libs.findLibrary("timber"))
-//
-//                add("implementation", libs.findLibrary("koin.core"))
-//                add("implementation", libs.findLibrary("koin.android"))
-//
-//                add("implementation", libs.findLibrary("rxjava"))
-//                add("implementation", libs.findLibrary("rx.android"))
-//                add("implementation", libs.findLibrary("rx.stream"))
-//            }
         }
     }
 

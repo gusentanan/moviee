@@ -104,7 +104,7 @@ class DetailActivity : AppCompatActivity() {
             thumbnailContainer.backdropImage.loadHighQualityImage(data.backdropPath)
             tvTitle.text = data.title
             tvMovieRating.text = String.format("%.1f", data.rating)
-            tvMovieYear.text = HelpersDetail.formatMediaDate(data.releaseDate)
+            tvMovieYear.text = formatMediaDate(data.releaseDate)
             tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
             tvOverview.text = data.overview
 
