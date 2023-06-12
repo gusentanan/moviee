@@ -5,7 +5,7 @@ This app is a movie browsing platform that follows MVVM and Clean Architecture p
 | :--: | :--:| :--:| :--:|
 | Onboarding 1 | Onboarding 2 | Onboarding 3 | Main page | 
 
-| <img src="https://github.com/gusentanan/moviee/assets/68723002/1eda38a6-230f-489b-a530-198c5295f6be" alt="All Movie Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/48351a06-582e-4014-bc78-cdec7b568f9b" alt="Detail Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/3f7aca41-bb6e-44b9-9d0d-65f7a94485d5" alt="Favorite Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/ce1c469e-e311-4993-b9ad-a8dc81068444" alt="Search Page" width="200"/> |
+| <img src="https://github.com/gusentanan/moviee/assets/68723002/1eda38a6-230f-489b-a530-198c5295f6be" alt="All Movie Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/fea28e99-8296-4282-a2c2-739e88b29a83" alt="Detail Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/3f7aca41-bb6e-44b9-9d0d-65f7a94485d5" alt="Favorite Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/ce1c469e-e311-4993-b9ad-a8dc81068444" alt="Search Page" width="200"/> |
 | :--: | :--:| :--:| :--:|
 | See all page| Detail page | Favorite page | Search page |
 
@@ -16,7 +16,7 @@ The architecture of this app is complies with each of 3 following points:
 - [Clean Architecture](https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa) strictly emphasizes a clear separation of concerns through distinct architectural layers: Presentation/UI layer, Domain layer, and Data layer. This separation facilitates writing tests without dependencies on external frameworks or UI components, enhancing testability.
 
 ## Modules
-![moviee drawio](https://github.com/gusentanan/moviee/assets/68723002/9ec607f8-afc6-4829-bb6d-63ef288e72f5)
+![moviee drawio](https://github.com/gusentanan/moviee/assets/68723002/c195e347-59cc-4109-9735-a5a76b69e056)
 <br></br>
 Above graph shows the app modular structure.
 - The `:app` module has a direct dependency on the `:core` module. Additionally, `:app` indirectly depends on the `:favoritee` module through dynamic-features
@@ -46,10 +46,8 @@ This architecture promotes modularity and encapsulation by separating functional
 ## How to use it ?
 Clone this repository and make sure you're using the latest version of Android Studio
 ### Running
-- Download all dependencies using `./gradlew androidDependencies`
 - Run the project using `./gradlew build`
 - Run unit tests using `./gradlew clean test`
 
 -----------------------------------
-## Contributing
-feel free to contribute, thank you 😄
+Thanks for stopping by 😄
