@@ -19,8 +19,8 @@ The architecture of this app is complies with each of 3 following points:
 ![moviee drawio](https://github.com/gusentanan/moviee/assets/68723002/c195e347-59cc-4109-9735-a5a76b69e056)
 <br></br>
 Above graph shows the app modular structure.
-- The `:app` module has a direct dependency on the `:core` module. Additionally, `:app` indirectly depends on the `:favoritee` module through dynamic-features
-- `:favoritee` modules depends on `:core`, `utility` and `:app`
+- The `:app` module has a direct dependency on the `:core` module. Additionally, `:app` indirectly depends on the `:feature` module through library
+- `:feature` modules depends on `:core`, and `utility`.
 - Both `:core` and `:app` modules may have dependencies on the `:utility` module, but only if there is a need for specific utilities.
 - The `:utility` module does not have any external dependencies.
 <br></br>
