@@ -32,6 +32,15 @@
             app:indicatorSize="44dp"
             app:trackThickness="2dp" />
 
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:background="@drawable/ic_play"/>
 
     </FrameLayout>
 

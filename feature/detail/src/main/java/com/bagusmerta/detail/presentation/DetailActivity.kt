@@ -18,6 +18,7 @@ import com.bagusmerta.feature.detail.presentation.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.*
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.*
@@ -155,11 +156,17 @@ class DetailActivity : AppCompatActivity() {
     private fun initYouTubePlayer(keyVideo: String) = binding.apply {
         youtubePlayerListener = object: AbstractYouTubePlayerListener() {
             override fun onReady(youTubePlayer: YouTubePlayer) {
-                keyVideo.let {
-                    thumbnailContainer.container.makeGone()
-                    ytPlayerView.makeVisible()
-                    _youtubePlayer = youTubePlayer
-                    _youtubePlayer!!.cueVideo(it, 0f)
+                keyVideo.let {key ->
+                    thumbnailContainer.apply {
+                        videoLoader.makeGone()
+                        btnPlay.makeVisible()
+                        btnPlay.setOnClickListener {
+                            thumbnailContainer.container.makeGone()
+                            ytPlayerView.makeVisible()
+                            _youtubePlayer = youTubePlayer
+                            _youtubePlayer!!.loadVideo(key, 0f)
+                        }
+                    }
                 }
             }
         }

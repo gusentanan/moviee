@@ -21,10 +21,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.all.AllMovieActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" />
-        <activity
             android:name=".presentation.main.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"/>

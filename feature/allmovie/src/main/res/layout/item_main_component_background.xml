@@ -8,7 +8,7 @@
     app:cardCornerRadius="@dimen/dimen_24">
 
     <View
-        android:layout_width="1@dimen/dimen_24"
+        android:layout_width="124dp"
         android:layout_height="184dp"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"

@@ -12,4 +12,5 @@
     <string name="back_button">back_button</string>
     <string name="tv_top_searches">Top Searches</string>
     <string name="tv_search_results">Search Results</string>
+    <string name="favorite_menu">favorite menu</string>
 </resources>
