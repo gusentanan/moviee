@@ -12,6 +12,7 @@ androidxLifecycle = "2.6.1"
 androidxRoom = "2.5.0"
 androidxArchCore = "2.1.0"
 androidxCoreKtx = "1.10.1"
+androidxCoreApp = "1.10.1"
 androidXStartup = "1.1.1"
 hilt = "2.45"
 retrofit = "2.9.0"
@@ -53,6 +54,7 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 
+androidx-core-app = { module = "androidx.core:core", version.ref = "androidxCoreApp" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidxFragment" }
 androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }

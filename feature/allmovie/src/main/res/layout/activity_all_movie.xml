@@ -46,7 +46,6 @@
         android:id="@+id/tv_title_all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_title_all"
         style="@style/Text.Header1"
         android:textSize="20sp"
         android:textStyle="bold"

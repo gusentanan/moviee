@@ -15,4 +15,5 @@
     <string name="back_button">back_button</string>
     <string name="tv_similar_movie_empty_state">Sorry, there is no similar movie</string>
     <string name="tv_cast_empty_state">"Sorry, there is no cast "</string>
+    <string name="poster_movie">movie poster image</string>
 </resources>

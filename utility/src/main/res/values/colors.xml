@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="translucent">#6F000000</color>
+    <color name="error">#FF5A66</color>
+    <color name="info">#5C85FF</color>
+    <color name="success">#24CF8A</color>
+    <color name="translucent">#000000</color>
 </resources>
