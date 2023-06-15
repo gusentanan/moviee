@@ -35,8 +35,6 @@ class AndroidCoreConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.room.ktx").get())
                 add("implementation", libs.findLibrary("androidx.room.rxjava").get())
                 add("kapt", libs.findLibrary("androidx.room.compiler").get())
-                add("implementation", libs.findLibrary("junit").get())
-                add("implementation", libs.findLibrary("mockito.kotlin").get())
                 add("implementation", libs.findLibrary("androidx.junit").get())
                 add("implementation", libs.findLibrary("retrofit").get())
                 add("implementation", libs.findLibrary("retrofit.rx2").get())

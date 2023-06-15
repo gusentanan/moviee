@@ -19,5 +19,9 @@ android {
 
 dependencies {
     implementation(project(":utility"))
+    implementation(libs.junit)
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.mockito.inline)
     implementation(libs.timber)
 }
