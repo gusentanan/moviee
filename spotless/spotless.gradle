@@ -1,0 +1,11 @@
+apply plugin: "com.diffplug.spotless"
+
+spotless {
+    kotlin {
+        target "**/*.kt"
+        targetExclude "**/build/**/*.kt"
+        licenseHeaderFile file("${project.rootDir}/spotless/license.kt")
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
