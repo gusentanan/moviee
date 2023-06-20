@@ -73,6 +73,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.splash.screen)
 
+    // sdp and ssp dep
+    implementation("com.intuit.sdp:sdp-android:1.1.0")
+    implementation("com.intuit.ssp:ssp-android:1.1.0")
+
+
     //stepper dep
     implementation("com.tbuonomo:dotsindicator:4.3")
 
