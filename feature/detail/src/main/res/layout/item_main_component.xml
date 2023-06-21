@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/iv_poster"
-        android:layout_width="124dp"
-        android:layout_height="184dp"
+        android:layout_width="@dimen/_104sdp"
+        android:layout_height="@dimen/_164sdp"
         android:scaleType="fitXY"
         tools:src="@tools:sample/backgrounds/scenic"
         android:background="@color/gray"
@@ -23,14 +23,14 @@
         style="@style/Text.Header2"
         android:layout_gravity="end|top"
         android:gravity="center"
-        android:layout_margin="@dimen/dimen_8"
+        android:layout_margin="@dimen/_8sdp"
         android:background="@drawable/bg_rating"
-        android:paddingHorizontal="@dimen/dimen_8"
-        android:paddingVertical="@dimen/dimen_1"
+        android:paddingHorizontal="@dimen/_6sdp"
+        android:paddingVertical="@dimen/_1sdp"
         android:lines="1"
         android:text="7.8"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="italic" />
 
 

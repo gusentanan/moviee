@@ -8,12 +8,8 @@
         <item name="colorSecondary">@color/colorPrimaryDark</item>
         <item name="colorSecondaryVariant">@color/colorSecondaryDark</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:statusBarColor">@color/backgroundPrimary</item>
 
         <item name="fontFamily">@font/work_sans_bold</item>
-        <item name="android:textSize">20sp</item>
     </style>
 
 </resources>
