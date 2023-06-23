@@ -17,14 +17,13 @@ package com.bagusmerta.feature.search.presentation
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeSearch
-import com.bagusmerta.core.utils.Constants
+import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.feature.search.R
 import com.bagusmerta.feature.search.databinding.ActivitySearchBinding
 import com.bagusmerta.utility.makeGone
@@ -35,6 +34,7 @@ import io.reactivex.subjects.PublishSubject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+
 
 class SearchActivity : AppCompatActivity() {
 
@@ -60,8 +60,7 @@ class SearchActivity : AppCompatActivity() {
     private fun initView() {
         binding.apply {
             btnFavorite.setOnClickListener{
-                val uriFavorite = Uri.parse(Constants.URI_FAVORITE)
-                startActivity(Intent(Intent.ACTION_VIEW, uriFavorite))
+                startActivity(Intent(this@SearchActivity, FavoriteeActivity::class.java))
             }
             lottieEmptyRes.apply {
                 lottieView.setAnimation("lottie/empty_state_lottie.json")
@@ -73,8 +72,15 @@ class SearchActivity : AppCompatActivity() {
     private fun initSearchMenu(){
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = binding.svSearch
-
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
+
+        binding.cvSearch.setOnClickListener {
+            searchView.isIconified = false
+            searchView.requestFocus()
+
+            val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT)
+        }
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -94,7 +100,6 @@ class SearchActivity : AppCompatActivity() {
                     .subscribe{
                         searchViewModel.searchMovies(it)
                     }.let { mCompositeDisposable::add }
-
                 return true
             }
         })
@@ -137,7 +142,6 @@ class SearchActivity : AppCompatActivity() {
             lottieEmptyRes.root.let {
                 if(state) it.makeVisible() else it.makeGone()
             }
-            lottieEmptyRes.tvEmptyState.text = getString(R.string.search_movie_not_found)
         }
         searchAdapter.clearItems()
     }

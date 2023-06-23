@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="feature_favoritee">favoritee</string>
     <string name="title_favoritee">favorite</string>
     <string name="poster_movie">poster_movie</string>
     <string name="favorite_page_title">Favorite Movies</string>
