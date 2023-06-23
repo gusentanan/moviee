@@ -7,25 +7,37 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieView"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="lottie/empty_state_lottie.json"
-        app:lottie_loop="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="lottie/empty_state_lottie.json"
+        app:lottie_loop="true" />
+
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_empty"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/lottieView"
+        app:layout_constraintEnd_toEndOf="@id/lottieView"
+        app:layout_constraintStart_toStartOf="@id/lottieView" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:lines="2"
+        android:text="@string/tv_empty_desc"
         android:textColor="@color/colorPrimaryDark"
-        android:text="@string/tv_empty"
-        app:layout_constraintTop_toBottomOf="@id/lottieView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintTop_toBottomOf="@id/tv_empty"
+        app:layout_constraintEnd_toEndOf="@id/tv_empty"
+        app:layout_constraintStart_toStartOf="@id/tv_empty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

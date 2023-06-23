@@ -8,8 +8,8 @@
     app:cardCornerRadius="@dimen/dimen_24">
 
     <View
-        android:layout_width="@dimen/_104sdp"
-        android:layout_height="@dimen/_164sdp"
+        android:layout_width="@dimen/_114sdp"
+        android:layout_height="@dimen/_154sdp"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/poster_bg" />

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingBottom="4dp"
+    android:paddingBottom="@dimen/_4sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/_4sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_fav_image"
-                android:layout_width="154dp"
-                android:layout_height="104dp"
+                android:layout_width="@dimen/_134sdp"
+                android:layout_height="@dimen/_94sdp"
                 android:layout_gravity="center"
                 app:cardCornerRadius="25dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +46,10 @@
                 style="@style/Text.Header1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_24"
-                android:layout_marginEnd="@dimen/dimen_14"
-                android:layout_marginTop="@dimen/dimen_10"
-                android:textSize="14sp"
+                android:layout_marginStart="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textSize="@dimen/_12ssp"
                 android:ellipsize="end"
                 android:lines="2"
                 android:text="@string/ex_movie_title"
@@ -64,10 +64,10 @@
                 style="@style/Text.SubHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dimen_20"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:lines="1"
                 android:textColor="@color/gray"
-                android:textSize="11sp"
+                android:textSize="@dimen/_10ssp"
                 app:layout_constraintTop_toBottomOf="@id/tv_fav_movie_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/ll_chip"
@@ -78,8 +78,8 @@
                 android:id="@+id/ll_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="@dimen/dimen_10"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tv_genres"
                 app:layout_constraintTop_toBottomOf="@id/tv_genres">
@@ -88,36 +88,36 @@
                     android:id="@+id/tv_movie_year"
                     style="@style/Text.Header2"
                     android:background="@drawable/bg_chip"
-                    android:paddingHorizontal="@dimen/dimen_8"
-                    android:paddingVertical="@dimen/dimen_1"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:paddingVertical="@dimen/_1sdp"
                     android:layout_marginStart="0dp"
                     android:lines="1"
                     tools:text="2020"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="11sp" />
+                    android:textSize="@dimen/_10ssp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:background="@drawable/bg_chip"
                     android:gravity="center"
-                    android:paddingHorizontal="@dimen/dimen_1">
+                    android:paddingHorizontal="@dimen/_1sdp">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dimen_14"
+                        android:layout_height="@dimen/_14sdp"
                         android:src="@drawable/ic_baseline_star_24" />
 
                     <TextView
                         android:id="@+id/tv_movie_rating"
                         style="@style/Text.Header2"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="@dimen/_8sdp"
                         android:lines="1"
                         tools:text="7.8"
                         android:textColor="@color/black"
-                        android:textSize="11sp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
 
                 </LinearLayout>

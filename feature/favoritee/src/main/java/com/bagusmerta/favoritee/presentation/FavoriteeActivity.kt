@@ -23,6 +23,7 @@ import com.bagusmerta.feature.favoritee.databinding.ActivityFavoriteeBinding
 import com.bagusmerta.feature.favoritee.di.favoriteeModule
 import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
+import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -48,6 +49,7 @@ class FavoriteeActivity : AppCompatActivity() {
 
         loadKoinModules(favoriteeModule)
         initBtnBack()
+        initClearButton()
         initObserverState()
         initRecyclerView()
     }
@@ -55,6 +57,12 @@ class FavoriteeActivity : AppCompatActivity() {
    private fun initBtnBack(){
        binding.btnBack.setOnClickListener { onBackPressed() }
    }
+
+    private fun initClearButton(){
+        binding.btnClearFavorite.setOnClickListener {
+            this.makeInfoToast("This feature is currently unavailable")
+        }
+    }
 
     private fun initRecyclerView() {
         binding.apply {
