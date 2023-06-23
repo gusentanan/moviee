@@ -14,6 +14,7 @@
  */
 package com.bagusmerta.feature.favoritee.presentation
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,7 +56,13 @@ class FavoriteeActivity : AppCompatActivity() {
     }
 
    private fun initBtnBack(){
-       binding.btnBack.setOnClickListener { onBackPressed() }
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+           onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+               onBackPressedDispatcher.onBackPressed() }
+       }
+       binding.btnBack.setOnClickListener {
+           onBackPressedDispatcher.onBackPressed()
+       }
    }
 
     private fun initClearButton(){

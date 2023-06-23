@@ -16,6 +16,7 @@ package com.bagusmerta.feature.detail.presentation
 
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -52,12 +53,19 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContentView(binding.root)
+        handleBackPressed()
         initView()
 
         initRecyclerView()
         initStateObserver()
+    }
+
+    private fun handleBackPressed() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+                onBackPressedDispatcher.onBackPressed() }
+        }
     }
 
     private fun initView() {

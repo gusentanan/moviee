@@ -17,8 +17,11 @@ package com.bagusmerta.feature.search.presentation
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import android.window.OnBackInvokedCallback
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -91,13 +94,14 @@ class SearchActivity : AppCompatActivity() {
             override fun onQueryTextChange(query: String): Boolean {
                 searchTextChange.onNext(query)
                 searchTextChange
-                    .doOnComplete { mCompositeDisposable.clear() }
+                    .doAfterTerminate{ mCompositeDisposable.clear() }
                     .debounce(400, TimeUnit.MILLISECONDS)
                     .filter{ it.isNotEmpty() && it.length >= 3 }
                     .map { it.lowercase().trim() }
                     .subscribeOn(AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe{
+                        binding.tvTopSearches.text = getString(R.string.tv_search_results)
                         searchViewModel.searchMovies(it)
                     }.let { mCompositeDisposable::add }
                 return true
@@ -133,8 +137,8 @@ class SearchActivity : AppCompatActivity() {
 
     private fun handlingBackButton(){
         binding.btnBack.setOnClickListener {
-                onBackPressed()
-            }
+           onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun handleEmptyResult(state: Boolean){
@@ -170,7 +174,6 @@ class SearchActivity : AppCompatActivity() {
                     wrapperTopSearches.makeGone()
                     makeVisible()
                 } else{
-                    tvTopSearches.text = context.getString(R.string.tv_search_results)
                     wrapperTopSearches.makeVisible()
                     makeGone()
                 }
