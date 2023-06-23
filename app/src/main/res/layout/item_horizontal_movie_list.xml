@@ -52,6 +52,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv2_recommend_movies"
-        tools:listitem="@layout/item_main_component" />
+        tools:listitem="@layout/item_allmovie_component" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

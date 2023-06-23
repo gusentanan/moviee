@@ -13,30 +13,30 @@
             android:id="@+id/first_loader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/_18sdp"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_2"
-                android:layout_marginEnd="@dimen/dimen_2"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -47,30 +47,30 @@
             android:id="@+id/second_loader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/_18sdp"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/first_loader">
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_2"
-                android:layout_marginEnd="@dimen/dimen_2"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -81,30 +81,30 @@
             android:id="@+id/third_loader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/_18sdp"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/second_loader">
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginEnd="2dp"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
@@ -115,30 +115,30 @@
             android:id="@+id/fourth_loader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/_18sdp"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/dimen_10"
-            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/third_loader">
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dimen_2"
-                android:layout_marginEnd="@dimen/dimen_2"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
