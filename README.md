@@ -1,10 +1,35 @@
-# Moviee
-This app is a movie browsing platform that follows MVVM and Clean Architecture principles. It features different movie categories, search function, and the ability to save favorite movies. Detailed movie pages provide comprehensive information about each film, including plot, cast, reviews, release date, and trailer.
+<p align="left">
+<a href="https://app.circleci.com/pipelines/github/gusentanan/moviee"><img src="https://img.shields.io/circleci/build/github/gusentanan/moviee/main?logo=circleci" alt="CI Status"></a>
 
-| <img src="https://github.com/gusentanan/moviee/assets/68723002/f39451d3-580b-4bac-bddf-f20400a256d7" alt="Main Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/1eda38a6-230f-489b-a530-198c5295f6be" alt="All Movie Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/fea28e99-8296-4282-a2c2-739e88b29a83" alt="Detail Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/3f7aca41-bb6e-44b9-9d0d-65f7a94485d5" alt="Favorite Page" width="200"/> | <img src="https://github.com/gusentanan/moviee/assets/68723002/ce1c469e-e311-4993-b9ad-a8dc81068444" alt="Search Page" width="200"/> |
-| :--: | :--:| :--:| :--:|:--:|
-| Main page | See all page| Detail page | Favorite page | Search page |
-
+# Moviee App
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/gusentanan/my-readme-template/assets/68723002/f9c6a2ef-3868-43ed-9b84-8d0790a03bbc" height=80 align="left"> 
+    <p>This app is a movie browsing platform that follows MVVM and Clean Architecture principles. It features different movie categories, search function, and the ability to save favorite movies. Detailed movie pages provide comprehensive information about each film, including plot, cast, reviews, release date, and trailer.
+      </p>
+    </td>
+  </tr>
+</table>
+<table>
+  
+<table>
+  <tr>
+     <td>Home</td>
+     <td>Detail</td>
+     <td>All Movie</td>
+     <td>Search</td>
+     <td>Favoritee</td>
+  </tr>
+  <tr>
+    <td><img src="assets/main.jpg" width=270 ></td>
+    <td><img src="assets/detail.jpg" width=270 ></td>
+    <td><img src="assets/allmovie.jpg" width=270 ></td>
+    <td><img src="assets/search.jpg" width=270 ></td>
+      <td><img src="assets/favoritee.jpg" width=270 ></td>
+  </tr>
+ </table>
+ 
 ## Architecture
 The architecture of this app is complies with each of 3 following points:
 - [Model-View-ViewModel (MVVM)](https://proandroiddev.com/understanding-mvvm-pattern-for-android-in-2021-98b155b37b54) by utilizing the ViewModel in this architecture, you can achieve a more modular, testable, and maintainable codebase, with improved separation of concerns and a clear distinction between UI and business logic/data operations.
