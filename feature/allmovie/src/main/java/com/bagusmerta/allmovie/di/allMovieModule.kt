@@ -21,3 +21,4 @@ import org.koin.dsl.module
 val allMovieModule = module {
     viewModel { AllMovieViewModel(get()) }
 }
+

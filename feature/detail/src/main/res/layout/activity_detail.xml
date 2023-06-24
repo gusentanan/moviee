@@ -52,20 +52,20 @@
 
                     <RelativeLayout
                         android:background="@color/white"
-                        android:paddingVertical="@dimen/dimen_8"
+                        android:paddingVertical="@dimen/_8sdp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/tv_title"
                             style="@style/Text.Header1"
-                            android:textSize="20sp"
-                            android:layout_marginTop="@dimen/dimen_2"
-                            android:layout_marginStart="@dimen/dimen_10"
-                            android:layout_marginEnd="@dimen/dimen_10"
+                            android:textSize="@dimen/_16ssp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentStart="true"
-                            android:paddingHorizontal="6dp"
+                            android:paddingHorizontal="@dimen/_6sdp"
                             android:textColor="@color/black"
                             tools:text="Avengers: Age of ultron" />
 
@@ -74,14 +74,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_title"
-                            android:layout_marginStart="@dimen/dimen_10"
-                            android:layout_marginEnd="@dimen/dimen_10"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             style="@style/Text.SubHeader"
-                            android:paddingHorizontal="6dp"
+                            android:paddingHorizontal="@dimen/_6sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentStart="true"
                             android:textColor="@color/gray"
-                            android:textSize="12sp"
+                            android:textSize="@dimen/_11ssp"
                             tools:text="Action • Adventure • Comedy • Scifi" />
 
                         <LinearLayout
@@ -90,17 +90,17 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
                             android:layout_below="@id/tvGenres"
-                            android:layout_marginTop="@dimen/dimen_10"
-                            android:layout_marginStart="@dimen/dimen_8"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginStart="@dimen/_8sdp"
                             android:orientation="horizontal"
-                            android:paddingHorizontal="@dimen/dimen_8">
+                            android:paddingHorizontal="@dimen/_8sdp">
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bg_chip"
                                 android:paddingHorizontal="1dp"
-                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_margin="@dimen/_2sdp"
                                 android:gravity="center">
 
                                 <ImageView
@@ -111,11 +111,11 @@
                                 <TextView
                                     android:id="@+id/tv_movie_rating"
                                     style="@style/Text.Header2"
-                                    android:layout_marginEnd="@dimen/dimen_8"
+                                    android:layout_marginEnd="@dimen/_8sdp"
                                     android:lines="1"
                                     android:text="7.8"
                                     android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/_10ssp"
                                     android:textStyle="bold" />
 
                             </LinearLayout>
@@ -126,14 +126,14 @@
                                 android:textStyle="bold"
                                 android:layout_gravity="end|top"
                                 android:gravity="center"
-                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_margin="@dimen/_2sdp"
                                 android:background="@drawable/bg_chip"
-                                android:paddingHorizontal="@dimen/dimen_8"
+                                android:paddingHorizontal="@dimen/_8sdp"
                                 android:paddingVertical="1dp"
                                 android:lines="1"
                                 android:text="2020"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp"/>
+                                android:textSize="@dimen/_10ssp"/>
 
                             <TextView
                                 android:id="@+id/tv_movie_runtime"
@@ -141,20 +141,20 @@
                                 android:textStyle="bold"
                                 android:layout_gravity="end|top"
                                 android:gravity="center"
-                                android:layout_margin="@dimen/dimen_2"
+                                android:layout_margin="@dimen/_2sdp"
                                 android:background="@drawable/bg_chip"
-                                android:paddingHorizontal="@dimen/dimen_8"
+                                android:paddingHorizontal="@dimen/_8sdp"
                                 android:paddingVertical="1dp"
                                 android:lines="1"
                                 android:text="1h 42m"
                                 android:textColor="@color/colorPrimaryDark"
-                                android:textSize="14sp" />
+                                android:textSize="@dimen/_10ssp" />
 
                             <ImageView
-                                android:layout_marginStart="@dimen/dimen_4"
+                                android:layout_marginStart="@dimen/_4sdp"
                                 android:src="@drawable/tmdb_icon"
-                                android:layout_width="40dp"
-                                android:padding="@dimen/dimen_2"
+                                android:layout_width="@dimen/_38sdp"
+                                android:padding="@dimen/_2sdp"
                                 android:layout_height="match_parent"/>
 
 
@@ -165,47 +165,51 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/movie_info"
-                            android:layout_marginTop="@dimen/dimen_10"
-                            android:layout_margin="@dimen/dimen_10"
-                            android:layout_marginStart="@dimen/dimen_10"
-                            android:layout_marginEnd="@dimen/dimen_10"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_margin="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:ellipsize="end"
                             style="@style/Text.SubHeader"
                             android:maxLines="4"
-                            android:paddingHorizontal="6dp"
-                            android:textSize="14sp"
+                            android:paddingHorizontal="@dimen/_6sdp"
+                            android:textSize="@dimen/_12ssp"
                             tools:text="In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages." />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/tv_overview">
+                            android:layout_below="@id/tv_overview"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginEnd="@dimen/_12sdp">
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn_favorite"
                                 android:layout_height="wrap_content"
-                                android:layout_width="260dp"
-                                android:layout_marginTop="@dimen/dimen_2"
-                                android:layout_marginStart="@dimen/dimen_12"
+                                android:layout_width="@dimen/_172sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
                                 android:backgroundTint="@color/backgroundPrimary"
                                 android:textColor="@color/black"
                                 android:textStyle="bold"
                                 android:textAllCaps="false"
                                 app:cornerRadius="@dimen/dimen_16"
+                                android:textSize="@dimen/_12ssp"
                                 android:text="Add to Favorite" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btn_go_watch"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
-                                android:layout_marginTop="@dimen/dimen_2"
-                                android:layout_marginStart="@dimen/dimen_10"
-                                android:layout_marginEnd="@dimen/dimen_10"
+                                app:icon="@drawable/ic_open_in_new_24"
+                                app:iconTint="@color/black"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
                                 android:backgroundTint="@color/backgroundPrimary"
                                 android:textColor="@color/colorPrimaryDark"
                                 android:textStyle="bold"
                                 android:textAllCaps="false"
                                 app:cornerRadius="@dimen/dimen_16"
+                                android:textSize="@dimen/_12ssp"
                                 android:text="Watch" />
 
                         </LinearLayout>
@@ -215,9 +219,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dimen_10"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="vertical"
-                        android:paddingVertical="@dimen/dimen_8"
+                        android:paddingVertical="@dimen/_8sdp"
                         android:background="@color/white">
 
                         <LinearLayout
@@ -230,9 +234,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/Text.Header1"
-                                android:layout_marginStart="@dimen/dimen_12"
+                                android:textSize="@dimen/_16ssp"
+                                android:layout_marginStart="@dimen/_12sdp"
                                 android:text="@string/cast_movie_detail"/>
-
 
                         </LinearLayout>
 
@@ -240,8 +244,8 @@
                             android:id="@+id/rv_cast"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimen_12"
-                            android:layout_marginTop="@dimen/dimen_4"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
                             android:orientation="horizontal"
                             tools:listitem="@layout/item_cast" />
 
@@ -249,9 +253,9 @@
                             android:id="@+id/tv_cast_empty_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dimen_16"
-                            android:layout_marginTop="@dimen/dimen_10"
-                            android:layout_marginBottom="@dimen/dimen_10"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginBottom="@dimen/_10sdp"
                             android:visibility="gone"
                             android:text="@string/tv_cast_empty_state" />
 
@@ -262,9 +266,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginTop="@dimen/dimen_10"
-                        android:paddingVertical="@dimen/dimen_8"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingVertical="@dimen/_8sdp"
                         android:background="@color/white">
 
                         <LinearLayout
@@ -277,7 +281,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 style="@style/Text.Header1"
-                                android:layout_marginStart="@dimen/dimen_12"
+                                android:textSize="@dimen/_16ssp"
+                                android:layout_marginStart="@dimen/_12sdp"
                                 android:text="@string/similar_to_this"/>
 
                         </LinearLayout>
@@ -286,9 +291,9 @@
                             android:id="@+id/rv_movie_similar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_8"
-                            android:layout_marginBottom="@dimen/dimen_12"
-                            android:layout_marginStart="@dimen/dimen_12"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_12sdp"
                             android:orientation="horizontal"
                             tools:listitem="@layout/item_main_component" />
 
@@ -296,9 +301,9 @@
                             android:id="@+id/tv_similar_empty_state"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dimen_8"
-                            android:layout_marginBottom="@dimen/dimen_12"
-                            android:layout_marginStart="@dimen/dimen_16"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:layout_marginStart="@dimen/_16sdp"
                             android:visibility="gone"
                             android:text="@string/tv_similar_movie_empty_state" />
 

@@ -21,7 +21,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.feature.allmovie.databinding.ItemMainComponentBinding
+import com.bagusmerta.feature.allmovie.databinding.ItemAllmovieComponentBinding
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.utility.loadImage
 
@@ -29,7 +29,7 @@ class AllMovieAdapter(private val context: Context): RecyclerView.Adapter<AllMov
 
     private var items = mutableListOf<Moviee>()
 
-    inner class ViewHolder(private val binding: ItemMainComponentBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ItemAllmovieComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Moviee){
             binding.apply {
                 ivPoster.loadImage(item.posterPath)
@@ -46,7 +46,7 @@ class AllMovieAdapter(private val context: Context): RecyclerView.Adapter<AllMov
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllMovieAdapter.ViewHolder {
-        val binding = ItemMainComponentBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemAllmovieComponentBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 

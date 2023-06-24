@@ -38,4 +38,9 @@ dependencies {
     implementation(libs.mockito.kotlin)
     implementation(libs.mockito.inline)
     implementation(libs.timber)
+
+    // sdp and ssp dep
+    implementation("com.intuit.sdp:sdp-android:1.1.0")
+    implementation("com.intuit.ssp:ssp-android:1.1.0")
+
 }

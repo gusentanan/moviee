@@ -33,5 +33,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.compiler)
 
+    // YT player dep
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
 }

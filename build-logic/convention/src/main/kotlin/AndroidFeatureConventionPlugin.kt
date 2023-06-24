@@ -39,6 +39,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
             dependencies {
                 add("implementation", libs.findLibrary("androidx.lifecycle").get())
+                add("implementation", libs.findLibrary("androidx.activity.ktx").get())
                 add("implementation", libs.findLibrary("recyclerview").get())
                 add("implementation", libs.findLibrary("glide").get())
                 add("implementation", libs.findLibrary("material").get())

@@ -12,7 +12,7 @@
         <View
             android:id="@+id/slideshow_loader"
             android:layout_width="match_parent"
-            android:layout_height="516dp"
+            android:layout_height="@dimen/_416sdp"
             android:layout_gravity="center_horizontal"
             android:background="@color/gray"
             android:scaleType="fitXY"
@@ -22,20 +22,20 @@
 
         <View
             android:id="@+id/title_movie_loader1"
-            android:layout_width="116dp"
-            android:layout_height="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_width="@dimen/_116sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:background="@drawable/shimmer_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/slideshow_loader" />
 
         <View
             android:id="@+id/title_movie_loaderRight1"
-            android:layout_width="80dp"
-            android:layout_height="@dimen/dimen_20"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:layout_marginEnd="@dimen/dimen_10"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@drawable/shimmer_bg"
             app:layout_constraintEnd_toEndOf="@+id/slideshow_loader"
             app:layout_constraintTop_toBottomOf="@id/slideshow_loader" />
@@ -44,30 +44,30 @@
             android:id="@+id/first_loader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
+            android:layout_marginTop="@dimen/_18sdp"
             android:orientation="horizontal"
-            android:layout_marginStart="@dimen/dimen_20"
+            android:layout_marginStart="@dimen/_14sdp"
             app:layout_constraintTop_toBottomOf="@id/title_movie_loader1">
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
                 android:layout_weight="1" />
 
             <include
-                layout="@layout/item_main_component_background"
+                layout="@layout/item_allmovie_component_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
+                android:layout_marginHorizontal="@dimen/_2sdp"
                 android:layout_weight="1" />
 
         </LinearLayout>

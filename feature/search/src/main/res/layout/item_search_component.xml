@@ -4,8 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="25dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp"
+    android:layout_marginTop="@dimen/_2sdp"
+    android:layout_marginBottom="@dimen/_2sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +15,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_search_poster"
-            android:layout_width="154dp"
-            android:layout_height="104dp"
+            android:layout_width="@dimen/_134sdp"
+            android:layout_height="@dimen/_94sdp"
             android:layout_gravity="center"
             app:cardCornerRadius="25dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,14 +38,14 @@
             style="@style/Text.Header1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_24"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:layout_marginEnd="@dimen/dimen_14"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
             android:ellipsize="end"
             android:lines="2"
             android:text="@string/ex_movie_title"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp"
+            android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toTopOf="@id/tv_genres"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -57,10 +57,10 @@
             style="@style/Text.SubHeader"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_20"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:lines="1"
             android:textColor="@color/gray"
-            android:textSize="11sp"
+            android:textSize="@dimen/_10ssp"
             app:layout_constraintTop_toBottomOf="@id/tv_search_movie_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/ll_chip"
@@ -71,8 +71,8 @@
             android:id="@+id/ll_chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="@dimen/dimen_10"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             app:layout_constraintTop_toBottomOf="@id/tv_genres"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_genres">
@@ -81,36 +81,36 @@
                 android:id="@+id/tv_movie_year"
                 style="@style/Text.Header2"
                 android:background="@drawable/bg_chip"
-                android:paddingHorizontal="@dimen/dimen_8"
-                android:paddingVertical="@dimen/dimen_1"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_1sdp"
                 android:lines="1"
                 tools:text="2020"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="11sp" />
+                android:textSize="@dimen/_10ssp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:background="@drawable/bg_chip"
                 android:gravity="center"
-                android:paddingHorizontal="@dimen/dimen_1">
+                android:paddingHorizontal="@dimen/_1sdp">
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dimen_14"
+                    android:layout_height="@dimen/_14sdp"
                     android:src="@drawable/ic_baseline_star_24" />
 
                 <TextView
                     android:id="@+id/tv_movie_rating"
                     style="@style/Text.Header2"
-                    android:layout_marginEnd="8dp"
-                    android:padding="1dp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:padding="@dimen/_1sdp"
                     android:lines="1"
                     tools:text="7.8"
                     android:textColor="@color/black"
-                    android:textSize="11sp"
+                    android:textSize="@dimen/_11ssp"
                     android:textStyle="bold" />
 
             </LinearLayout>

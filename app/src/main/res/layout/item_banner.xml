@@ -9,17 +9,17 @@
         android:id="@+id/iv_banner"
         android:scaleType="fitXY"
         android:layout_width="match_parent"
-        android:layout_height="516dp"/>
+        android:layout_height="@dimen/_416sdp"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="@dimen/_104sdp"
         android:layout_alignParentTop="true"
         android:background="@drawable/banner_gradient_top" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="136dp"
+        android:layout_height="@dimen/_136sdp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/banner_gradient_bottom" />
 
@@ -33,14 +33,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/Text.SubHeader"
-            android:paddingStart="@dimen/dimen_10"
-            android:paddingEnd="@dimen/dimen_10"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
             android:background="@drawable/bg_rating"
-            android:paddingHorizontal="6dp"
+            android:paddingHorizontal="@dimen/_6sdp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="@dimen/_10ssp"
             android:gravity="center"
             app:layout_constraintBottom_toTopOf="@id/mb_more_info_banner"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,11 +58,11 @@
             android:text="More Info"
             android:textColor="@color/black"
             android:textAllCaps="false"
-            android:textSize="12sp"
+            android:textSize="@dimen/_11ssp"
             app:icon="@drawable/ic_more_info_banner"
             app:iconTint="@color/black"
-            app:iconPadding="2dp"
-            android:layout_marginBottom="@dimen/dimen_20"
+            app:iconPadding="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

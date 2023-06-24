@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">detail</string>
+    <string name="feature_detail">detail</string>
     <string name="release_date">Release Date</string>
     <string name="overview">Overview</string>
     <string name="share_button">Bookmark Movie</string>

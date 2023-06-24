@@ -6,11 +6,12 @@
         <activity
             android:name=".presentation.SearchActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="@string/app_name" android:host="search"/>
+                <data android:scheme="@string/feature_search" android:host="search"/>
             </intent-filter>
         </activity>
     </application>

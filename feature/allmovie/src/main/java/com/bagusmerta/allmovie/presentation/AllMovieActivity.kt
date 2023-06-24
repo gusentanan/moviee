@@ -14,6 +14,7 @@
  */
 package com.bagusmerta.feature.allmovie.presentation
 
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -41,8 +42,12 @@ class AllMovieActivity : AppCompatActivity() {
     }
 
     private fun initBtnBack() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+                onBackPressedDispatcher.onBackPressed() }
+        }
         binding.btnBackAll.setOnClickListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 

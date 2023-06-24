@@ -14,39 +14,26 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="@dimen/constraint_guide_top_percent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_left"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.04"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_right"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.96"/>
-
     <ImageButton
         android:id="@+id/btn_back"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
         android:src="@drawable/ic_baseline_arrow_back_24"
         android:contentDescription="@string/share_button"
         app:layout_constraintBottom_toBottomOf="@id/guideline_top"
-        app:layout_constraintStart_toStartOf="@id/guideline_left"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         style="@style/Text.Header1"
         android:id="@+id/tv_title_favoritee"
-        android:textSize="20sp"
+        android:textSize="@dimen/_16ssp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/favorite_page_title"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="@dimen/_30sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_back"
         app:layout_constraintEnd_toStartOf="@id/btn_clear_favorite"
@@ -56,11 +43,12 @@
         android:id="@+id/btn_clear_favorite"
         style="@style/Widget.MaterialComponents.Button.TextButton.OnBoardTextButton"
         android:background="@color/backgroundPrimary"
-        android:textSize="16sp"
+        android:textSize="@dimen/_14ssp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_btn_clear"
         android:textColor="@color/red"
+        android:textStyle="bold"
         android:textAllCaps="false"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,9 +58,9 @@
         android:id="@+id/rv_fav_movie"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dimen_20"
-        android:layout_marginStart="@dimen/dimen_10"
-        android:layout_marginEnd="@dimen/dimen_10"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_title_favoritee"
         app:layout_constraintEnd_toEndOf="parent"
@@ -95,9 +83,9 @@
         layout="@layout/empty_state"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/dimen_16"
-        android:layout_marginEnd="@dimen/dimen_16"
-        android:layout_marginBottom="@dimen/dimen_16"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginBottom="@dimen/_16sdp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

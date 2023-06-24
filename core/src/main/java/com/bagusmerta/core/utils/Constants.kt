@@ -24,6 +24,4 @@ object Constants {
     const val DELETE_FAVORITE_MOVIES = "DELETE FROM moviee_table WHERE id = :movieId"
     const val GET_ALL_FAVORITE_MOVIES = "SELECT * FROM moviee_table WHERE is_favorite = :isFavorite"
     const val CHECK_FAVORITE_MOVIES = "SELECT * FROM moviee_table WHERE id = :movieId"
-    const val URI_FAVORITE = "Moviee://favoritee"
-
 }
