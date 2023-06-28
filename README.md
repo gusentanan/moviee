@@ -1,11 +1,12 @@
 <p align="left">
-<a href="https://app.circleci.com/pipelines/github/gusentanan/moviee"><img src="https://img.shields.io/circleci/build/github/gusentanan/moviee/main?logo=circleci" alt="CI Status"></a>
+<a href="https://github.com/gusentanan/moviee/actions/workflows/build.yaml"><img src="https://github.com/gusentanan/moviee/actions/workflows/build.yaml/badge.svg" alt="CI Status">
+</a>
 
 # Moviee App
 <table>
   <tr>
     <td>
-      <img src="https://github.com/gusentanan/moviee/assets/68723002/df85f30c-0149-47e5-bdbe-6c351cf78cb0" height=80 align="left"> 
+      <img src="https://github.com/gusentanan/moviee/assets/68723002/bc718231-6ad8-4701-9858-5b2fbd40d567" height=80 align="left"> 
     <p>This app is a movie browsing platform that follows MVVM and Clean Architecture principles. It features different movie categories, search function, and the ability to save favorite movies. Detailed movie pages provide comprehensive information about each film, including plot, cast, reviews, release date, and trailer.
       </p>
     </td>
@@ -65,10 +66,11 @@ This architecture promotes modularity and encapsulation by separating functional
 |`Androidx`        | provides a set of libraries and components that offer backward compatibility, enhanced functionality, and ease of development for Android apps.|
 |`Material`        | implifies the process of creating visually appealing and consistent user interfaces.                                                           |
 |`LiveData`        | allows you to store and observe data in a way that automatically updates the UI when the data changes.                                         |
-|`LifeCycle`       |  offers lifecycle-aware components and callbacks that allow developers to handle common lifecycle events.                                      |
+|`LifeCycle`       | offers lifecycle-aware components and callbacks that allow developers to handle common lifecycle events.                                       |
 |`ViewModel`       | allows you to store and manage data that is independent of the UI lifecycle, ensuring that data is retained even during screen rotations or other configuration changes.                                                                                                                                              |
-| `RxJava`         | for doing asynchronous and executing event-based programs by using observable sequences.                                                       |
-|`Retrofit2`       |construct the REST APIs and paging network data.                                                                                                |
+|`RxJava2`         | for doing asynchronous and executing event-based programs by using observable sequences.                                                       |
+|`Retrofit2`       | construct the REST APIs and paging network data.                                                                                               |
+|`Moshi`           | modern JSON library for Kotlin and Java.                                                                                                       |
 |`Room`            | construct a DB by creating an abstract layer on top of SQLite, which enables smooth and effortless access to the database.                     |
 |`Glide`           |library for Android that simplifies the process of loading and displaying images from network.                                                  |
 |`Koin`            | a dependency injection framework that facilitates the management and resolution of dependencies.                                               |
@@ -83,12 +85,9 @@ Clone this repository and make sure you're using the latest version of Android S
 - Run the project using
   
   ```sh
-  ./gradlew build
+  ./gradlew assembleDebug
   ```
-- Run unit tests using
-    ```sh
-  ./gradlew clean test
-  ```
+  
 -----------------
 Feel free to contribute to this project & I Hope you found this repository useful 
 ### Thanks!😄
