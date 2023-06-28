@@ -4,7 +4,6 @@
     <string name="title_favoritee">favorite</string>
     <string name="poster_movie">poster_movie</string>
     <string name="favorite_page_title">Favorite Movies</string>
-    <string name="no_data">No Data</string>
     <string name="tv_btn_clear">Clear</string>
     <string name="tv_empty">No saved Movie</string>
     <string name="tv_empty_desc">Movie you save will be stored here to read later</string>

@@ -1,20 +1,11 @@
 <resources>
     <string name="app_name">Moviee</string>
     <string name="poster_movie">poster_movie</string>
-    <string name="image_detail_movie">detail image movie</string>
-    <string name="release_date">Release Date</string>
-    <string name="overview">Overview</string>
     <string name="share_button">Bookmark Movie</string>
     <string name="ex_movie_title">Spiderman: No Way Home</string>
-    <string name="ex_overview_movie">spiderman vs sinister six, mutiverse and doctor strange</string>
     <string name="favorite_menu">Favorite Menu</string>
     <string name="title_favoritee">favoritee</string>
-    <string name="no_data">No Data</string>
-    <string name="header_now_playing">Now Playing Movies</string>
-    <string name="header_movies">Movies</string>
     <string name="hint_search_movies">Search for movies …</string>
-    <string name="search_movie_not_found">Movie Not Found!</string>
-    <string name="rating">Rating</string>
     <string name="tv_newly_movies">&#128064; Newly Movies</string>
     <string name="tv_upcoming_movies">&#127756; Upcoming Movies</string>
     <string name="tv_popular_movies">&#10024; Popular Movies</string>
@@ -34,14 +25,12 @@
     <string name="add_to_favorite">Add to favorite</string>
     <string name="tv_title_search">Search</string>
     <string name="back_button">back_button</string>
-    <string name="tv_title_all">All Movies</string>
     <string name="tv_onboard_subtitle1">Explore the world of cinema</string>
     <string name="tv_onboard_subtitle2">Find your favorite Movies!</string>
     <string name="tv_onboard_subtitle3">Ready to learn more about a movie you\'re interested in?</string>
     <string name="tv_onboard_description1">Let us guide you through our apps features and help you find your next favorite movie.</string>
     <string name="tv_onboard_description2">Looking for something specific? Our advanced search will help you find exactly what you\'re looking for</string>
     <string name="tv_onboard_description3">Get all the information you need about a movie, including its plot summary, cast and crew, and user reviews</string>
-    <string name="onboarding_slide1_title">Moviee</string>
     <string name="btn_next">next</string>
     <string name="btn_start">start</string>
     <string name="btn_skip">skip</string>

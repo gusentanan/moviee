@@ -14,21 +14,24 @@
  */
 package com.bagusmerta.core.data.source.remote.movieeResponse
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class MovieCastResponse(
-    @SerializedName("cast")
+    @Json(name = "cast")
     var movieCast: List<CastResponse>
 )
 
+@JsonClass(generateAdapter = true)
 data class CastResponse(
 
-    @SerializedName("character")
+    @Json(name = "character")
     var character: String?,
 
-    @SerializedName("name")
+    @Json(name = "name")
     var name: String?,
 
-    @SerializedName("profile_path")
+    @Json(name = "profile_path")
     var profilePicPath: String?
 )

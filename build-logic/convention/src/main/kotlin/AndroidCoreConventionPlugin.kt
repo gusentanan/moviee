@@ -50,11 +50,13 @@ class AndroidCoreConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("androidx.room.rxjava").get())
                 add("kapt", libs.findLibrary("androidx.room.compiler").get())
                 add("implementation", libs.findLibrary("androidx.junit").get())
-                add("implementation", libs.findLibrary("retrofit").get())
                 add("implementation", libs.findLibrary("retrofit.rx2").get())
                 add("implementation", libs.findLibrary("okhttp.interceptor").get())
                 add("implementation", libs.findLibrary("okhttp.mockserver").get())
-                add("implementation", libs.findLibrary("gson").get())
+                add("implementation", libs.findLibrary("retrofit.moshi").get())
+                add("implementation", libs.findLibrary("moshi").get())
+                add("kapt", libs.findLibrary("moshi.codegen").get())
+
                 add("implementation", libs.findLibrary("sqlite").get())
                 add("implementation", libs.findLibrary("sqlChiper").get())
 

@@ -14,29 +14,32 @@
  */
 package com.bagusmerta.core.data.source.remote.movieeResponse
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class MovieeSearchResponse(
-    @SerializedName("results")
+    @Json(name = "results")
     val movieeItemSearch: List<MovieeItemSearchResponse>
 )
 
+@JsonClass(generateAdapter = true)
 data class MovieeItemSearchResponse(
-    @SerializedName("id")
+    @Json(name = "id")
     val movieeId: Int?,
 
-    @SerializedName("backdrop_path")
+    @Json(name = "backdrop_path")
     val backdropPath: String?,
 
-    @SerializedName("release_date")
+    @Json(name = "release_date")
     val releaseDate: String?,
 
-    @SerializedName("title")
+    @Json(name = "title")
     val movieeTitle: String?,
 
-    @SerializedName("vote_average")
+    @Json(name = "vote_average")
     val rating: Double?,
 
-    @SerializedName("genre_ids")
+    @Json(name = "genre_ids")
     val genreId: List<Int>?
 )
