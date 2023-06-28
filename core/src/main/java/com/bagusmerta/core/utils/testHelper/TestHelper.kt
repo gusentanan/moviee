@@ -22,7 +22,12 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.VideoInfo
 import com.bagusmerta.core.data.source.remote.movieeResponse.Videos
-import com.google.gson.Gson
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonReader
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okio.buffer
+import okio.source
 import java.io.InputStreamReader
 
 fun getDummyEntityMoviee() =
@@ -146,7 +151,14 @@ fun getDummyCastResponse() = mutableListOf(
     )
 )
 
-fun <T> load(clss: Class<T>, file: String): T {
-    val fixtureStreamReader = InputStreamReader(clss.classLoader?.getResourceAsStream(file))
-    return Gson().fromJson(fixtureStreamReader, clss)
+fun <T> load(clss: Class<T>, file: String): T? {
+    val moshi = Moshi.Builder()
+        .addLast(KotlinJsonAdapterFactory())
+        .build()
+
+    val jsonAdapter: JsonAdapter<T> = moshi.adapter(clss)
+
+    val fixtureStreamReader = clss.classLoader?.getResourceAsStream(file)?.source()?.buffer() ?: throw IllegalArgumentException("File not found: $file")
+    val jsonReader = JsonReader.of(fixtureStreamReader)
+    return jsonAdapter.fromJson(jsonReader)
 }

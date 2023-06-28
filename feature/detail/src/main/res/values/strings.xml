@@ -1,11 +1,7 @@
 <resources>
     <string name="feature_detail">detail</string>
-    <string name="release_date">Release Date</string>
-    <string name="overview">Overview</string>
     <string name="share_button">Bookmark Movie</string>
     <string name="ex_movie_title">Spiderman: No Way Home</string>
-    <string name="ex_overview_movie">spiderman vs sinister six, mutiverse and doctor strange</string>
-    <string name="rating">Rating</string>
     <string name="thumbnail_trailer_videos">thumbnail trailer videos</string>
     <string name="cast_movie_detail">&#10024; Cast</string>
     <string name="similar_to_this">🧭 Similar to this</string>

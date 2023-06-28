@@ -14,79 +14,85 @@
  */
 package com.bagusmerta.core.data.source.remote.movieeResponse
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class MovieeDetailResponse(
-    @SerializedName("id")
+    @Json(name = "id")
     val movieeId: Int?,
 
-    @SerializedName("backdrop_path")
+    @Json(name = "backdrop_path")
     val backdropPath: String?,
 
-    @SerializedName("poster_path")
+    @Json(name = "poster_path")
     val posterPath: String?,
 
-    @SerializedName("overview")
+    @Json(name = "overview")
     val overview: String?,
 
-    @SerializedName("release_date")
+    @Json(name = "release_date")
     val releaseDate: String?,
 
-    @SerializedName("title")
+    @Json(name = "title")
     val movieeTitle: String?,
 
-    @SerializedName("vote_average")
+    @Json(name = "vote_average")
     val rating: Double?,
 
-    @SerializedName("runtime")
+    @Json(name = "runtime")
     val runtime: Int?,
 
-    @SerializedName("genres")
+    @Json(name = "genres")
     var genres: List<Genre>?,
 
     var genreId: List<Int>?,
 
-    @SerializedName("videos")
+    @Json(name = "videos")
     var videos: Videos?,
 
     var keyVideo: String?
 
 )
+
+@JsonClass(generateAdapter = true)
 data class Videos(
-    @SerializedName("results")
+    @Json(name = "results")
     var listVideo: List<VideoInfo>?
 )
 
+@JsonClass(generateAdapter = true)
 data class VideoInfo(
-    @SerializedName("id")
+    @Json(name = "id")
     var id: String?,
 
-    @SerializedName("key")
+    @Json(name = "key")
     var key: String?,
 
-    @SerializedName("name")
+    @Json(name = "name")
     var name: String?,
 
-    @SerializedName("official")
+    @Json(name = "official")
     var official: Boolean?,
 
-    @SerializedName("published_at")
+    @Json(name = "published_at")
     var publishedAt: String?,
 
-    @SerializedName("site")
+    @Json(name = "site")
     var site: String?,
 
-    @SerializedName("size")
+    @Json(name = "size")
     var size: Int?,
 
-    @SerializedName("type")
+    @Json(name = "type")
     var type: String?
 )
 
+@JsonClass(generateAdapter = true)
 data class Genre(
-    @SerializedName("id")
+    @Json(name = "id")
     var id: Int?,
 
-    @SerializedName("name")
+    @Json(name = "name")
     var name: String?
 )
