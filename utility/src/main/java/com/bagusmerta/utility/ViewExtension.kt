@@ -24,27 +24,27 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import coil.load
+import coil.request.CachePolicy
 import com.bagusmerta.utility.databinding.ColorToastBinding
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.random.Random
 
-fun ImageView.loadImage(url: String?){
-    Glide.with(context)
-        .load("${BuildConfig.POSTER_URL}${url}")
-        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-        .error(R.drawable.ic_baseline_broken_image_24)
-        .into(this)
+fun ImageView.loadCoilImageHQ(url: String?){
+    this.load("${BuildConfig.POSTER_URL_HQ}${url}"){
+        diskCachePolicy(CachePolicy.ENABLED)
+        error(R.drawable.ic_baseline_broken_image_24)
+        crossfade(true)
+    }
 }
 
-fun ImageView.loadHighQualityImage(url: String?){
-    Glide.with(context)
-        .load("${BuildConfig.POSTER_URL_HQ}${url}")
-        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-        .error(R.drawable.ic_baseline_broken_image_24)
-        .into(this)
+fun ImageView.loadCoilImage(url: String?){
+    this.load("${BuildConfig.POSTER_URL}${url}"){
+        diskCachePolicy(CachePolicy.ENABLED)
+        error(R.drawable.ic_baseline_broken_image_24)
+        crossfade(true)
+    }
 }
 
 fun formatMediaDate(date: String?): String? {

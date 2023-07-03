@@ -38,7 +38,7 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             dependencies {
-                add("implementation", libs.findLibrary("glide").get())
+                add("implementation", libs.findLibrary("coil").get())
                 add("implementation", libs.findLibrary("timber").get())
                 add("implementation", libs.findLibrary("rxjava").get())
                 add("implementation", libs.findLibrary("rx.android").get())

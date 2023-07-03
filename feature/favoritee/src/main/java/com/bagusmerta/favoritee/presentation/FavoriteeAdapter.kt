@@ -24,7 +24,7 @@ import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.favoritee.databinding.ItemFavoriteeBinding
 import com.bagusmerta.utility.formatMediaDate
-import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.loadCoilImage
 import java.util.*
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {
@@ -34,7 +34,7 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
     inner class ViewHolder(private val binding: ItemFavoriteeBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieeFavorite){
             binding.apply {
-                ivFavMovie.loadImage(item.backdropPath)
+                ivFavMovie.loadCoilImage(item.backdropPath)
                 tvFavMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = formatMediaDate(item.releaseDate)

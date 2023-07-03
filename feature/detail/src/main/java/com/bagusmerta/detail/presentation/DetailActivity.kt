@@ -24,10 +24,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.core.utils.DataMapper.mapMovieDetailToMoviee
 import com.bagusmerta.feature.detail.R
 import com.bagusmerta.feature.detail.databinding.ActivityDetailBinding
-import com.bagusmerta.feature.detail.helpers.HelpersDetail
 import com.bagusmerta.feature.detail.presentation.adapter.CastAdapter
 import com.bagusmerta.feature.detail.presentation.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.*
@@ -124,14 +124,14 @@ class DetailActivity : AppCompatActivity() {
                 data.keyVideo?.let { _youtubePlayer!!.cueVideo(it, 0f) }
             }
 
-            thumbnailContainer.backdropImage.loadHighQualityImage(data.backdropPath)
+            thumbnailContainer.backdropImage.loadCoilImageHQ(data.backdropPath)
             tvTitle.text = data.title
             tvMovieRating.text = String.format("%.1f", data.rating)
             tvMovieYear.text = formatMediaDate(data.releaseDate)
             tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
             tvOverview.text = data.overview
 
-            val genreString =  HelpersDetail.mappingMovieGenreListFromId(data.genres)
+            val genreString =  DataMapper.mappingMovieGenreListFromId(data.genres)
                 .joinToString(" • ") { it.name.toString() }
             tvGenres.text = genreString
 

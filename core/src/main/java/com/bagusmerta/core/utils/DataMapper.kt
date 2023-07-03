@@ -16,6 +16,7 @@ package com.bagusmerta.core.utils
 
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.core.data.source.remote.movieeResponse.CastResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.Genre
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
@@ -24,8 +25,16 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.core.domain.model.MovieeSearch
+import com.bagusmerta.utility.GenreList
 
 object DataMapper {
+
+    fun mappingMovieGenreListFromId(id: List<Int>?): List<Genre> {
+        if (id == null) { return emptyList() }
+        val results = mutableListOf<Genre>()
+        id.forEach { GenreList.moviesGenresMap.containsKey(it) && results.add(Genre(it, GenreList.moviesGenresMap[it]!!)) }
+        return results
+    }
 
     fun mapMovieCastResponseToDomain(data: List<CastResponse>): List<Cast> =
         data.map {

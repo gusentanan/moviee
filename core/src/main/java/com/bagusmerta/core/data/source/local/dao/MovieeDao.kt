@@ -19,9 +19,11 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
+import com.bagusmerta.core.data.source.local.entity.MovieeHomeFeeds
 import com.bagusmerta.core.utils.Constants.CHECK_FAVORITE_MOVIES
 import com.bagusmerta.core.utils.Constants.DELETE_FAVORITE_MOVIES
 import com.bagusmerta.core.utils.Constants.GET_ALL_FAVORITE_MOVIES
+import com.bagusmerta.core.utils.Constants.GET_ALL_HOME_FEEDS
 import com.bagusmerta.core.utils.Constants.GET_ALL_MOVIES
 import io.reactivex.Completable
 import io.reactivex.Flowable
@@ -45,5 +47,8 @@ interface MovieeDao {
 
     @Query(DELETE_FAVORITE_MOVIES)
     fun deleteFavoriteMovie(movieId: Int): Completable
+
+    @Query(GET_ALL_HOME_FEEDS)
+    fun getAllHomeFeeds(header: String): Flowable<List<MovieeHomeFeeds>>
 
 }

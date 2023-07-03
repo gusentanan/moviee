@@ -27,3 +27,6 @@ android {
         buildConfigField("String", "POSTER_URL_HQ", "\"https://image.tmdb.org/t/p/w780/\"")
     }
 }
+dependencies {
+    implementation("androidx.core:core:1.10.1")
+}

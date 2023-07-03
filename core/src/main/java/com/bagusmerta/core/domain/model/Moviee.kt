@@ -37,3 +37,4 @@ data class HomeFeed(
     val listMovie: List<Moviee?>,
     val movieSection: Int?,
 ): Parcelable
+

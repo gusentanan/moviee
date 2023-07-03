@@ -21,7 +21,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.feature.detail.databinding.ItemCastBinding
-import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.loadCoilImage
 
 class CastAdapter(private val context: Context): RecyclerView.Adapter<CastAdapter.ViewHolder>() {
 
@@ -32,7 +32,7 @@ class CastAdapter(private val context: Context): RecyclerView.Adapter<CastAdapte
             binding.apply {
                 crewCharacterName.text = item.character
                 crewRealName.text = item.name
-                crewPicture.loadImage(item.profilePicPath)
+                crewPicture.loadCoilImage(item.profilePicPath)
             }
         }
     }

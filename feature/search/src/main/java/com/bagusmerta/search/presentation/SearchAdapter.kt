@@ -21,11 +21,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.MovieeSearch
+import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.search.databinding.ItemSearchComponentBinding
-import com.bagusmerta.feature.search.helpers.HelpersSearch
 import com.bagusmerta.utility.formatMediaDate
-import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.loadCoilImage
 
 class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
@@ -34,11 +34,11 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
     inner class ViewHolder(private val binding: ItemSearchComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieeSearch){
             binding.apply {
-                ivPoster.loadImage(item.backdropPath)
+                ivPoster.loadCoilImage(item.backdropPath)
                 tvSearchMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = formatMediaDate(item.releaseDate)
-                val genreString =  HelpersSearch.mappingMovieGenreListFromId(item.genreId)
+                val genreString =  DataMapper.mappingMovieGenreListFromId(item.genreId)
                     .joinToString(" • ") { it.name.toString() }
 
                 tvGenres.text = genreString

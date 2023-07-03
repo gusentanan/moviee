@@ -22,15 +22,15 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.feature.search.presentation.SearchActivity
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
-import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.utility.findRandom
-import com.bagusmerta.utility.loadHighQualityImage
+import com.bagusmerta.utility.loadCoilImageHQ
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
@@ -111,8 +111,8 @@ class MainActivity : AppCompatActivity() {
                 tvGenreBanner.makeVisible()
                 mbMoreInfoBanner.makeVisible()
             }
-            ivBanner.loadHighQualityImage(banner.posterPath)
-            tvGenreBanner.text = Helpers.mappingMovieGenreListFromId(banner.genreId)
+            ivBanner.loadCoilImageHQ(banner.posterPath)
+            tvGenreBanner.text = DataMapper.mappingMovieGenreListFromId(banner.genreId)
                 .joinToString(" • ") { it.name.toString() }
 
             mbMoreInfoBanner.setOnClickListener {

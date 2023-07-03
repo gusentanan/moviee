@@ -21,7 +21,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.detail.databinding.ItemMainComponentBinding
-import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.loadCoilImage
 
 class SimilarMovieAdapter(private  val context: Context): RecyclerView.Adapter<SimilarMovieAdapter.ViewHolder>() {
 
@@ -30,7 +30,7 @@ class SimilarMovieAdapter(private  val context: Context): RecyclerView.Adapter<S
     inner class ViewHolder(private val binding: ItemMainComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Moviee){
             binding.apply {
-                ivPoster.loadImage(item.posterPath)
+                ivPoster.loadCoilImage(item.posterPath)
                 tvMovieRating.text = String.format("%.1f", item.rating)
             }
         }
