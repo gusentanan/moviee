@@ -47,8 +47,7 @@ class FavoriteeActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle(R.string.favorite_page_title)
-
-        loadKoinModules(favoriteeModule)
+        
         initBtnBack()
         initClearButton()
         initObserverState()

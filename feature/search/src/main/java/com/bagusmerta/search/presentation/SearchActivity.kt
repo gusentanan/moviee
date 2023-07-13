@@ -111,7 +111,6 @@ class SearchActivity : AppCompatActivity() {
 
     private fun initStateObserver(){
         with(searchViewModel){
-            getTrendingMovies()
             loadingState.observe(this@SearchActivity){
                 handleLoadingState(it)
             }

@@ -31,6 +31,9 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     private val _emptyState = MutableLiveData<Boolean>()
     private val mCompositeDisposable = CompositeDisposable()
 
+    init {
+        getTrendingMovies()
+    }
     val loadingState: LiveData<Boolean>
         get() = _loadingState
 
@@ -43,7 +46,7 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val emptyState: LiveData<Boolean>
         get() = _emptyState
 
-    fun getTrendingMovies(){
+    private fun getTrendingMovies(){
         useCase.getTrendingMovies()
             .doOnSubscribe {
                 _loadingState.postValue(true)

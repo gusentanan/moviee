@@ -33,11 +33,13 @@ interface MovieeService {
     @GET("search/movie")
     fun searchMovies(
         @Query("query") query: String,
-        @Query("include_adult") includeAdult: Boolean = false
+        @Query("include_adult") includeAdult: Boolean = false,
     ): Single<MovieeSearchResponse>
 
     @GET("movie/top_rated")
-    fun getTopRatedMovies(): Single<MovieeResponse>
+    fun getTopRatedMovies(
+        @Query("page") page: Int = 1
+    ): Single<MovieeResponse>
 
     @GET("movie/upcoming")
     fun getUpcomingMovies(): Single<MovieeResponse>
