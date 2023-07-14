@@ -12,6 +12,7 @@
         android:id="@+id/material_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_19sdp"
         android:padding="@dimen/_4sdp"
         android:background="@android:color/transparent"
         android:translationZ="@dimen/_100sdp">

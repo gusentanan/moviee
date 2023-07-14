@@ -21,8 +21,12 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
@@ -56,45 +60,54 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initStatusBar()
         initAppBar()
 
         initStateObserver()
         initRecyclerView()
     }
 
-    /**
-     * do not use AppBarLayout inside of any view, it must remain at the top of your .xml
-     * not being a child of another view because otherwise its not gonna work
-     *
-     * ToolBar inside of the AppBarLayout is ok,
-     * but somehow we cannot override the system actionbar using setSupportActionBar
-     *
-     * End solution, using NoActionBar theme and adding your AppBarLayour with your custom toolbar
-     * */
-
     private fun initAppBar(){
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
         binding.apply {
-            nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-                if(scrollY > oldScrollY){
-                    materialAppBarLayout.visibility = View.GONE
-                } else {
-                    if(scrollY < oldScrollY){
-                        materialAppBarLayout.visibility = View.VISIBLE
-                        val color = adaptiveColorAppBar(
-                            ContextCompat.getColor(this@MainActivity, R.color.black_transparent_light),
-                            (min(455, scrollY).toFloat() / 455.0f).toDouble()
-                        )
-                        materialAppBarLayout.setBackgroundColor(color)
-                    }
-                }
-            }
             btnFavorite.setOnClickListener{
                 startActivity(Intent(this@MainActivity, FavoriteeActivity::class.java))
             }
             cvSearch.setOnClickListener {
                 startActivity(Intent(this@MainActivity, SearchActivity::class.java))
             }
+            nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+                if(scrollY > oldScrollY){  // scroll down
+                    materialAppBarLayout.visibility = View.GONE
+                    window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.black_transparent_light)
+                } else {
+                    if(scrollY < oldScrollY){  // scroll up
+                        materialAppBarLayout.visibility = View.VISIBLE
+                        val color = changeBackgroundColorAppBar(
+                            ContextCompat.getColor(this@MainActivity, R.color.black_transparent_light),
+                            (min(455, scrollY).toFloat() / 455.0f).toDouble()
+                        )
+                        materialAppBarLayout.setBackgroundColor(color)
+                        window.statusBarColor = color
+                    }
+                }
+            }
+        }
+    }
+
+    @SuppressLint("ObsoleteSdkInt")
+    private fun initStatusBar(){
+        if (Build.VERSION.SDK_INT in 21..29) {
+            window.statusBarColor = Color.TRANSPARENT
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
+
+        } else if (Build.VERSION.SDK_INT >= 30) {
+            window.statusBarColor = Color.TRANSPARENT
+            // Making status bar overlaps with the activity
+            WindowCompat.setDecorFitsSystemWindows(window, false)
         }
     }
 
@@ -183,7 +196,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun adaptiveColorAppBar(color: Int, fraction: Double): Int {
+    private fun changeBackgroundColorAppBar(color: Int, fraction: Double): Int {
         val red: Int = Color.red(color)
         val green: Int = Color.green(color)
         val blue: Int = Color.blue(color)
