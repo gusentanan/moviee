@@ -3,52 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:paddingBottom="@dimen/_4sdp"
+    android:padding="@dimen/_4sdp"
+    android:background="@color/backgroundPrimary"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
+        android:id="@+id/cv_fav_image"
+        android:layout_width="@dimen/_134sdp"
+        android:layout_height="@dimen/_94sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginStart="@dimen/_2sdp"
         app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/v_divider">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_margin="@dimen/_4sdp"
+        <ImageView
+            android:id="@+id/iv_fav_movie"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_fav_image"
-                android:layout_width="@dimen/_134sdp"
-                android:layout_height="@dimen/_94sdp"
-                android:layout_gravity="center"
-                app:cardCornerRadius="25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <ImageView
-                    android:id="@+id/iv_fav_movie"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@color/gray"
-                    android:contentDescription="@string/poster_movie"/>
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@color/gray"
+            android:contentDescription="@string/poster_movie"/>
 
 
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_fav_movie_title"
                 style="@style/Text.Header1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_24sdp"
-                android:layout_marginEnd="@dimen/_14sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:textSize="@dimen/_12ssp"
                 android:ellipsize="end"
                 android:lines="2"
@@ -64,7 +53,7 @@
                 style="@style/Text.SubHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:lines="1"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_10ssp"
@@ -78,9 +67,8 @@
                 android:id="@+id/ll_chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/v_divider"
                 app:layout_constraintStart_toStartOf="@id/tv_genres"
                 app:layout_constraintTop_toBottomOf="@id/tv_genres">
 
@@ -122,11 +110,16 @@
 
                 </LinearLayout>
 
-
             </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
+    <View
+        android:id="@+id/v_divider"
+        android:layout_width="@dimen/_258sdp"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/graySecondary"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_fav_image"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,11 +39,6 @@ dependencies {
     implementation(libs.mockito.inline)
     implementation(libs.timber)
 
-    implementation("androidx.paging:paging-runtime:3.1.1")
+    implementation(libs.androidx.paging.ktx)
     implementation("androidx.paging:paging-rxjava2:3.1.1")
-
-    // sdp and ssp dep
-    implementation("com.intuit.sdp:sdp-android:1.1.0")
-    implementation("com.intuit.ssp:ssp-android:1.1.0")
-
 }

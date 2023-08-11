@@ -15,6 +15,7 @@
 package com.bagusmerta.utility
 
 import android.app.Activity
+import android.content.res.Configuration
 import android.os.Build
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -24,6 +25,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import coil.load
 import coil.request.CachePolicy
 import com.bagusmerta.utility.databinding.ColorToastBinding
@@ -55,6 +57,14 @@ fun formatMediaDate(date: String?): String? {
     } else {
         return "Unknown"
     }
+}
+
+fun Activity.initStatusBar(){
+    window.statusBarColor = getColor(R.color.backgroundPrimary)
+    val windowInsetsController = WindowCompat.getInsetsController(
+        window, window.decorView
+    )
+    windowInsetsController.isAppearanceLightStatusBars = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK === Configuration.UI_MODE_NIGHT_NO
 }
 
 fun View.makeVisible(){

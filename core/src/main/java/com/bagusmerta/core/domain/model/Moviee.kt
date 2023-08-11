@@ -15,6 +15,7 @@
 package com.bagusmerta.core.domain.model
 
 import android.os.Parcelable
+import com.bagusmerta.utility.MovieeHomeFeed
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -32,9 +33,7 @@ data class Moviee(
 
 @Parcelize
 data class HomeFeed(
-    val feedTitle: String?,
-    val feedSubHeader: String?,
+    val feedResources: MovieeHomeFeed?,
     val listMovie: List<Moviee?>,
-    val movieSection: Int?,
 ): Parcelable
 

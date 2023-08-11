@@ -45,10 +45,8 @@ class RemoteDataSource(private val apiService: MovieeService) {
                 res.onNext(ResultState.Error(error.message.toString()))
                 Timber.e(error.toString())
             })
-
         return res.toFlowable(BackpressureStrategy.BUFFER)
     }
-
 
     fun searchMovies(query: String): Single<ResultState<List<MovieeItemSearchResponse>>> {
         val mCompositeDisposable = CompositeDisposable()

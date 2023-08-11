@@ -14,6 +14,7 @@ androidxArchCore = "2.1.0"
 androidxCoreKtx = "1.10.1"
 androidxCoreApp = "1.10.1"
 androidXStartup = "1.1.1"
+navigationKtxVersion = "2.6.0"
 hilt = "2.45"
 retrofit = "2.9.0"
 okHttp = "4.10.0"
@@ -50,6 +51,7 @@ activityKtxVersion = "1.7.2"
 shimmerVersion = "0.5.0"
 splashScreenVersion = "1.0.0-alpha02"
 lottieVersion = "4.1.0"
+pagingVersion = "3.1.1"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -69,6 +71,8 @@ androidx-espresso = { module = "androidx.test.espresso:espresso-core", version.r
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCoreKtx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtxVersion" }
+androidx-navigation-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationKtxVersion" }
+androidx-paging-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingVersion" }
 
 # Room libs
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }

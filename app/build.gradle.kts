@@ -79,5 +79,4 @@ dependencies {
 
     //stepper dep
     implementation("com.tbuonomo:dotsindicator:4.3")
-
 }

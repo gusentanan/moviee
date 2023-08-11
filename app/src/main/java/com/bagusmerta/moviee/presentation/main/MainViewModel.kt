@@ -25,6 +25,7 @@ import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
 import com.bagusmerta.moviee.R
+import com.bagusmerta.utility.MovieeHomeFeed
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -92,8 +93,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
     private fun validateNewlyMovies(newly: Resource<List<Moviee>>){
         when(newly){
             is Resource.Success -> {
-                val homeFeed = HomeFeed( NEWLY_HEADER,
-                    NEWLY_SUB, newly.data, 1)
+                val homeFeed = HomeFeed(MovieeHomeFeed.NEWLY_MOVIES, newly.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -106,8 +106,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
         when(upcoming){
             is Resource.Success -> {
                 val homeFeed = HomeFeed(
-                    UPCOMING_HEADER,
-                    UPCOMING_SUB, upcoming.data, 2)
+                    MovieeHomeFeed.UPCOMING_MOVIES, upcoming.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -120,8 +119,8 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
         when(popular){
             is Resource.Success -> {
                 val homeFeed = HomeFeed(
-                    POPULAR_HEADER,
-                    POPULAR_SUB, popular.data, 3)
+                    MovieeHomeFeed.POPULAR_MOVIES, popular.data)
+
                 _listFeed.add(homeFeed)
             }
             is Resource.Error ->  _errorState.postValue(popular.errorMessage)
@@ -133,8 +132,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
         when(top){
             is Resource.Success -> {
                 val homeFeed = HomeFeed(
-                    TOP_HEADER,
-                    TOP_SUB, top.data, 4)
+                    MovieeHomeFeed.TOP_RATED_MOVIES, top.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -147,8 +145,7 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
         when(now){
             is Resource.Success -> {
                 val homeFeed = HomeFeed(
-                    NOW_HEADER,
-                    NOW_SUB, now.data, 5)
+                    MovieeHomeFeed.NOW_PLAYING_MOVIES, now.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -156,7 +153,6 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
             is Resource.Empty ->  _emptyState.postValue(true)
         }
     }
-
 
     private fun getBannerMovies(){
         useCase.getAllMovies()
@@ -178,24 +174,6 @@ class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
     override fun onCleared() {
         super.onCleared()
         mCompositeDisposable.clear()
-    }
-
-    /**
-     * Temporary workaround for dynamic string in each movie feeds,
-     * as for the old ones might leak the context
-     */
-    companion object {
-        const val NEWLY_HEADER = "Newly Movies"
-        const val UPCOMING_HEADER = "Upcoming Movies"
-        const val POPULAR_HEADER = "Popular Movies"
-        const val TOP_HEADER = "Top Rated Movies"
-        const val NOW_HEADER = "Now Playing Movies"
-
-        const val NEWLY_SUB = "Fresh and anticipated movies"
-        const val UPCOMING_SUB = "Discover the latest blockbuster"
-        const val POPULAR_SUB = "The ultimate movies experience"
-        const val TOP_SUB = "Cinematic masterpiece lauded"
-        const val NOW_SUB = "Thrilling options available"
     }
 
 }

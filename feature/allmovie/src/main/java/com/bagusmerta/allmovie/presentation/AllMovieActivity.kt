@@ -14,13 +14,16 @@
  */
 package com.bagusmerta.feature.allmovie.presentation
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.allmovie.databinding.ActivityAllMovieBinding
-import com.bagusmerta.feature.allmovie.helpers.HelpersAllMovie
+import com.bagusmerta.utility.MovieeHomeFeed
+import com.bagusmerta.utility.initStatusBar
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,8 +38,9 @@ class AllMovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initBtnBack()
+        initStatusBar()
 
+        initBtnBack()
         initStateObserver()
         initRecycleView()
     }
@@ -63,24 +67,24 @@ class AllMovieActivity : AppCompatActivity() {
     private fun initStateObserver() {
         val key = intent.getIntExtra(IDENTIFIER, 0)
         when(key){
-             1 -> {
-                handleTitlePage(HelpersAllMovie.findMovieSection(key).toString())
+             MovieeHomeFeed.NEWLY_MOVIES.id -> {
+                handleTitlePage(MovieeHomeFeed.NEWLY_MOVIES.text)
                 allMovieViewModel.getAllMovies()
             }
-            2 -> {
-                handleTitlePage(HelpersAllMovie.findMovieSection(key).toString())
+            MovieeHomeFeed.UPCOMING_MOVIES.id -> {
+                handleTitlePage(MovieeHomeFeed.UPCOMING_MOVIES.text)
                 allMovieViewModel.getUpcomingMovies()
             }
-            3 -> {
-                handleTitlePage(HelpersAllMovie.findMovieSection(key).toString())
+            MovieeHomeFeed.POPULAR_MOVIES.id -> {
+                handleTitlePage(MovieeHomeFeed.POPULAR_MOVIES.text)
                 allMovieViewModel.getPopularMovies()
             }
-            4 -> {
-                handleTitlePage(HelpersAllMovie.findMovieSection(key).toString())
+            MovieeHomeFeed.TOP_RATED_MOVIES.id -> {
+                handleTitlePage(MovieeHomeFeed.TOP_RATED_MOVIES.text)
                 allMovieViewModel.getTopRatedMovies()
             }
-            5 -> {
-                handleTitlePage(HelpersAllMovie.findMovieSection(key).toString())
+            MovieeHomeFeed.NOW_PLAYING_MOVIES.id -> {
+                handleTitlePage(MovieeHomeFeed.NOW_PLAYING_MOVIES.text)
                 allMovieViewModel.getNowPlayingMovies()
             }
         }

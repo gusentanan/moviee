@@ -12,19 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bagusmerta.feature.allmovie.helpers
+package com.bagusmerta.moviee
 
-object HelpersAllMovie {
-    fun findMovieSection(key: Int): String? {
-        movieSectionMap.let {
-            return it[key]
-        }
-    }
-    private val movieSectionMap: HashMap<Int, String> = hashMapOf(
-        1 to "Newly Movies",
-        2 to "Upcoming Movies",
-        3 to "Popular Movies",
-        4 to "Top Rated Movies",
-        5 to "Now Playing Movies"
-    )
+object BuildAndroidConfig {
+    const val application_id = "com.bagusmerta.moviee"
+    const val compile_sdk = 33
+    const val min_sdk = 31
+    const val target_sdk = 33
+    const val version_code = 1
+    const val version_name = "1.0.0"
 }

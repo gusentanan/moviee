@@ -14,20 +14,21 @@
  */
 package com.bagusmerta.feature.favoritee.presentation
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.favoritee.R
 import com.bagusmerta.feature.favoritee.databinding.ActivityFavoriteeBinding
-import com.bagusmerta.feature.favoritee.di.favoriteeModule
+import com.bagusmerta.utility.initStatusBar
 import com.bagusmerta.utility.makeErrorToast
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.context.loadKoinModules
 import timber.log.Timber
 
 
@@ -47,7 +48,8 @@ class FavoriteeActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle(R.string.favorite_page_title)
-        
+
+        initStatusBar()
         initBtnBack()
         initClearButton()
         initObserverState()

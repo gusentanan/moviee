@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initStatusBar()
         initAppBar()
+        observerAppBar()
 
         initStateObserver()
         initRecyclerView()
@@ -75,19 +76,25 @@ class MainActivity : AppCompatActivity() {
             cvSearch.setOnClickListener {
                 startActivity(Intent(this@MainActivity, SearchActivity::class.java))
             }
+        }
+    }
+
+    private fun observerAppBar() {
+        binding.apply {
             nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-                if(scrollY > oldScrollY){  // scroll down
+                if (scrollY > oldScrollY) {  // scroll down
                     materialAppBarLayout.visibility = View.GONE
-                    window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.black_transparent_light)
                 } else {
-                    if(scrollY < oldScrollY){  // scroll up
+                    if (scrollY < oldScrollY) {  // scroll up
                         materialAppBarLayout.visibility = View.VISIBLE
                         val color = changeBackgroundColorAppBar(
-                            ContextCompat.getColor(this@MainActivity, R.color.black_transparent_light),
-                            (min(455, scrollY).toFloat() / 455.0f).toDouble()
+                            ContextCompat.getColor(
+                                this@MainActivity,
+                                R.color.black_transparent_light
+                            ),
+                            (min(255, scrollY).toFloat() / 255.0f).toDouble()
                         )
                         materialAppBarLayout.setBackgroundColor(color)
-                        window.statusBarColor = color
                     }
                 }
             }
@@ -95,7 +102,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    private fun initStatusBar(){
+    private fun initStatusBar() {
         if (Build.VERSION.SDK_INT in 21..29) {
             window.statusBarColor = Color.TRANSPARENT
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -103,37 +110,36 @@ class MainActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
-
-        } else if (Build.VERSION.SDK_INT >= 30) {
-            window.statusBarColor = Color.TRANSPARENT
+         } else if (Build.VERSION.SDK_INT >= 30) {
+             window.statusBarColor = Color.TRANSPARENT
             // Making status bar overlaps with the activity
             WindowCompat.setDecorFitsSystemWindows(window, false)
-        }
+         }
     }
 
     private fun initStateObserver() {
-        with(mainViewModel){
-            resultBanner.observe(this@MainActivity){
+        with(mainViewModel) {
+            resultBanner.observe(this@MainActivity) {
                 runOnUiThread {
                     it?.let { data -> handleBannerResult(data) }
                 }
             }
-            resultAllFeed.observe(this@MainActivity){
+            resultAllFeed.observe(this@MainActivity) {
                 runOnUiThread {
                     handleMovieeResult(it)
                 }
             }
-            loadingState.observe(this@MainActivity){
+            loadingState.observe(this@MainActivity) {
                 handleLoadingState(it)
             }
-            errorState.observe(this@MainActivity){
+            errorState.observe(this@MainActivity) {
                 handleErrorState(it)
             }
         }
     }
 
 
-    private fun handleInfoState(msg: String){
+    private fun handleInfoState(msg: String) {
         this.makeInfoToast(msg)
     }
 
@@ -149,18 +155,17 @@ class MainActivity : AppCompatActivity() {
         val banner: Moviee = bannerItems.findRandom()!!
 
         binding.iWrapperBanner.apply {
-            if(data.isNotEmpty()){
+            if (data.isNotEmpty()) {
                 tvGenreBanner.makeVisible()
                 mbMoreInfoBanner.makeVisible()
             }
             ivBanner.loadCoilImageHQ(banner.posterPath)
             tvGenreBanner.text = DataMapper.mappingMovieGenreListFromId(banner.genreId)
-                .joinToString(" • ") { it.name.toString() }
+                        .joinToString(" • ") { it.name.toString() }
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.MOVIEE, banner.id)
-                })
+                    putExtra(DetailActivity.MOVIEE, banner.id) })
             }
         }
     }
