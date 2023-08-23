@@ -20,6 +20,7 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.Genre
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.ProductionCountries
 import com.bagusmerta.core.data.source.remote.movieeResponse.VideoInfo
 import com.bagusmerta.core.data.source.remote.movieeResponse.Videos
 import com.squareup.moshi.JsonAdapter
@@ -135,7 +136,19 @@ fun getSingleDummyMoviee() = MovieeDetailResponse(
         )
     ),
     genreId = mutableListOf(1,2,3),
-    keyVideo = "Wk-MeF0ngVI"
+    keyVideo = "Wk-MeF0ngVI",
+    budget = 2000.0000,
+    revenue = 201.210,
+    originalTitle = "Jason Bourne",
+    originalLanguage = "English",
+    status = "Released",
+    tagline = "Serious Agent",
+    voteCount = 20.000,
+    productionCountries = mutableListOf(
+        ProductionCountries(
+            countryName = "United States of America"
+        )
+    )
 )
 
 fun getDummyCastResponse() = mutableListOf(

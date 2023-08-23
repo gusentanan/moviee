@@ -71,10 +71,8 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.material)
     implementation(libs.splash.screen)
-
-    // sdp and ssp dep
-    implementation("com.intuit.sdp:sdp-android:1.1.0")
-    implementation("com.intuit.ssp:ssp-android:1.1.0")
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
 
 
     //stepper dep

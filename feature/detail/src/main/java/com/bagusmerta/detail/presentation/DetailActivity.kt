@@ -16,8 +16,10 @@ package com.bagusmerta.feature.detail.presentation
 
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -56,9 +58,26 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         handleBackPressed()
         initView()
+        initStatusBar()
 
         initRecyclerView()
         initStateObserver()
+    }
+
+    @SuppressLint("ObsoleteSdkInt")
+    private fun initStatusBar() {
+        if (Build.VERSION.SDK_INT in 21..29) {
+            window.statusBarColor = Color.TRANSPARENT
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
+        } else if (Build.VERSION.SDK_INT >= 30) {
+            window.statusBarColor = Color.TRANSPARENT
+            // Making status bar overlaps with the activity
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
     }
 
     private fun handleBackPressed() {
@@ -118,23 +137,36 @@ class DetailActivity : AppCompatActivity() {
     private fun setDetailView(data: MovieeDetail) {
         binding.apply {
             // init yt video player
-            if(_youtubePlayer == null) {
-                data.keyVideo?.let { initYouTubePlayer(it) }
-            } else {
-                data.keyVideo?.let { _youtubePlayer!!.cueVideo(it, 0f) }
+//            if(_youtubePlayer == null) {
+//                data.keyVideo?.let { initYouTubePlayer(it) }
+//            } else {
+//                data.keyVideo?.let { _youtubePlayer!!.cueVideo(it, 0f) }
+//            }
+
+            val genreString = DataMapper.mappingMovieGenreListFromId(data.genres)
+                .joinToString(" • ") { it.name.toString() }
+
+            itemTopContainer.apply {
+                ivPoster.loadCoilImage(data.posterPath)
+                backdropImage.loadCoilImageHQ(data.backdropPath)
+                tvTitleDetail.text = data.title
+                tvGenreInfo.text = genreString
+                tvRatingDetail.text = data.rating.toString()
             }
 
-            thumbnailContainer.backdropImage.loadCoilImageHQ(data.backdropPath)
-            tvTitle.text = data.title
-            tvMovieRating.text = String.format("%.1f", data.rating)
-            tvMovieYear.text = formatMediaDate(data.releaseDate)
-            tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
+            itemInfoContainer.apply {
+                vOriginalTitle.text = data.originalTitle
+                vOriginalLanguage.text = data.originalLanguage
+                vStatus.text = data.status
+                vRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
+                vOriginalLanguage.text = data.originalLanguage
+                vProductionCountries.text = data.productionCountries
+                vBudget.text = data.budget.toString()
+                vRevenue.text = data.revenue.toString()
+            }
+
+            tvTagline.text = data.tagline
             tvOverview.text = data.overview
-
-            val genreString =  DataMapper.mappingMovieGenreListFromId(data.genres)
-                .joinToString(" • ") { it.name.toString() }
-            tvGenres.text = genreString
-
 
             var favoriteState = data.isFavorite!!
             detailViewModel.apply {
@@ -175,26 +207,26 @@ class DetailActivity : AppCompatActivity() {
             rvMovieSimilar.adapter = similarMovieAdapter
         }
     }
-    private fun initYouTubePlayer(keyVideo: String) = binding.apply {
-        youtubePlayerListener = object: AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                keyVideo.let {key ->
-                    thumbnailContainer.apply {
-                        videoLoader.makeGone()
-                        btnPlay.makeVisible()
-                        btnPlay.setOnClickListener {
-                            thumbnailContainer.container.makeGone()
-                            ytPlayerView.makeVisible()
-                            _youtubePlayer = youTubePlayer
-                            _youtubePlayer!!.loadVideo(key, 0f)
-                        }
-                    }
-                }
-            }
-        }
-
-        ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
-    }
+//    private fun initYouTubePlayer(keyVideo: String) = binding.apply {
+//        youtubePlayerListener = object: AbstractYouTubePlayerListener() {
+//            override fun onReady(youTubePlayer: YouTubePlayer) {
+//                keyVideo.let {key ->
+//                    thumbnailContainer.apply {
+//                        videoLoader.makeGone()
+//                        btnPlay.makeVisible()
+//                        btnPlay.setOnClickListener {
+//                            thumbnailContainer.container.makeGone()
+//                            ytPlayerView.makeVisible()
+//                            _youtubePlayer = youTubePlayer
+//                            _youtubePlayer!!.loadVideo(key, 0f)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
+//    }
 
     private fun handleButtonSaveIcon(isFavorite: Boolean){
         binding.apply {
@@ -236,7 +268,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        youtubePlayerListener?.let { binding.ytPlayerView.release() }
+//        youtubePlayerListener?.let { binding.ytPlayerView.release() }
     }
 
     companion object{

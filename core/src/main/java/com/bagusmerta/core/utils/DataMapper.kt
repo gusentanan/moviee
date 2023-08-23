@@ -70,7 +70,16 @@ object DataMapper {
             rating = data.rating,
             genres = genreIds,
             runtime = data.runtime,
-            keyVideo = data.keyVideo
+            keyVideo = data.keyVideo,
+            budget = data.budget,
+            revenue = data.revenue,
+            originalLanguage = data.originalLanguage,
+            originalTitle = data.originalTitle,
+            status = data.status,
+            tagline = data.tagline,
+            voteCount = data.voteCount,
+            productionCountries = data.productionCountries?.get(0)?.countryName.toString()
+
         )
 
     fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<MovieeFavorite> =

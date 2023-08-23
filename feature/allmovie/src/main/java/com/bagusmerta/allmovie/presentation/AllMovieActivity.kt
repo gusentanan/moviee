@@ -14,11 +14,9 @@
  */
 package com.bagusmerta.feature.allmovie.presentation
 
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.allmovie.databinding.ActivityAllMovieBinding

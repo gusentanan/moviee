@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_240sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/backdrop_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_172sdp"
+            tools:src="@tools:sample/backgrounds/scenic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/thumbnail_trailer_videos"
+            android:scaleType="fitXY"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_24sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/banner_gradient_top_detail" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_112sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/banner_gradient_bottom_detail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_14sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="24dp">
+
+            <ImageView
+                android:id="@+id/iv_poster"
+                android:layout_width="@dimen/_114sdp"
+                android:layout_height="@dimen/_154sdp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:background="@color/gray"
+                android:contentDescription="@string/poster_movie" />
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/rl_wrapper_detail"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/cv_poster"
+            app:layout_constraintStart_toEndOf="@id/cv_poster"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tv_title_detail"
+                style="@style/Text.Header1"
+                android:textSize="@dimen/_16ssp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:maxLines="3"
+                tools:text="Transformer: Rise of the Beasts" />
+
+            <TextView
+                android:id="@+id/tv_genre_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title_detail"
+                style="@style/Text.SubHeader"
+                android:textColor="@color/gray"
+                android:paddingHorizontal="@dimen/_6sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:textSize="@dimen/_11ssp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                tools:text="Action • Adventure • Comedy • Scifi "
+                app:layout_constraintEnd_toEndOf="parent"
+                android:maxLines="3"/>
+
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_rating_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/backgroundPrimary"
+            app:layout_constraintStart_toStartOf="@id/rl_wrapper_detail"
+            app:layout_constraintTop_toBottomOf="@id/rl_wrapper_detail">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_2sdp"
+                android:layout_gravity="center_vertical">
+
+                <ImageView
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:src="@drawable/tmdb_icon"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="match_parent"/>
+
+                <TextView
+                    android:id="@+id/tv_rating_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="5.6%"
+                    android:textStyle="bold"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_rating_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by 11k"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@id/cv_rating_wrapper"
+            app:layout_constraintTop_toTopOf="@id/cv_rating_wrapper"
+            app:layout_constraintBottom_toBottomOf="@id/cv_rating_wrapper"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

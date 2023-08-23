@@ -52,6 +52,7 @@ shimmerVersion = "0.5.0"
 splashScreenVersion = "1.0.0-alpha02"
 lottieVersion = "4.1.0"
 pagingVersion = "3.1.1"
+intuitSdpVersion = "1.1.0"
 
 [libraries]
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -80,6 +81,10 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidx
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "androidxRoom" }
 androidx-room-rxjava = { module = "androidx.room:room-rxjava2", version.ref = "androidxRoom" }
+
+# Scalable dp
+intuit-sdp = { module = "com.intuit.sdp:sdp-android", version.ref = "intuitSdpVersion" }
+intuit-ssp = { module = "com.intuit.ssp:ssp-android", version.ref = "intuitSdpVersion" }
 
 # Sqlite
 sqlChiper ={ module = "net.zetetic:android-database-sqlcipher", version.ref = "sqlChiperVersion" }

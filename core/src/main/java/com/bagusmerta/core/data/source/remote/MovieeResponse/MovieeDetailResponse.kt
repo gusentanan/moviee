@@ -51,8 +51,39 @@ data class MovieeDetailResponse(
     @Json(name = "videos")
     var videos: Videos?,
 
-    var keyVideo: String?
+    var keyVideo: String?,
 
+    @Json(name = "budget")
+    var budget: Double?,
+
+    @Json(name = "revenue")
+    var revenue: Double?,
+
+    @Json(name = "original_title")
+    var originalTitle: String?,
+
+    @Json(name = "status")
+    var status: String?,
+
+    @Json(name = "tagline")
+    var tagline: String?,
+
+    @Json(name = "vote_count")
+    var voteCount: Double?,
+
+    @Json(name = "original_language")
+    var originalLanguage: String?,
+
+    @Json(name = "production_countries")
+    var productionCountries: List<ProductionCountries>?
+
+)
+
+@JsonClass(generateAdapter = true)
+data class  ProductionCountries(
+
+    @Json(name = "name")
+    var countryName: String?
 )
 
 @JsonClass(generateAdapter = true)
