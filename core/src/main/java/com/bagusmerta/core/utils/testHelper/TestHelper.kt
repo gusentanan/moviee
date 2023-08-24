@@ -20,6 +20,7 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.Genre
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
+import com.bagusmerta.core.data.source.remote.movieeResponse.ProductionCompanies
 import com.bagusmerta.core.data.source.remote.movieeResponse.ProductionCountries
 import com.bagusmerta.core.data.source.remote.movieeResponse.VideoInfo
 import com.bagusmerta.core.data.source.remote.movieeResponse.Videos
@@ -148,6 +149,16 @@ fun getSingleDummyMoviee() = MovieeDetailResponse(
         ProductionCountries(
             countryName = "United States of America"
         )
+    ),
+    productionCompanies = mutableListOf(
+        ProductionCompanies(
+            logo = null,
+            companyName = "Pixar"
+        ),
+        ProductionCompanies(
+            logo = null,
+            companyName = "Disney"
+        ),
     )
 )
 

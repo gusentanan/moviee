@@ -33,5 +33,6 @@ data class MovieeDetail(
     var originalLanguage: String?,
     var originalTitle: String?,
     var status: String?,
-    var productionCountries: String?
+    var productionCountries: String?,
+    var productionCompanies: List<String?>?
 )

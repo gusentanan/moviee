@@ -170,6 +170,8 @@ class DetailActivity : AppCompatActivity() {
                 vProductionCountries.text = data.productionCountries
                 vBudget.text = NumberFormat.getCurrencyInstance(Locale.US).format(data.budget).toString()
                 vRevenue.text = NumberFormat.getCurrencyInstance(Locale.US).format(data.revenue).toString()
+                vReleaseDate.text = formatMediaDateMonth(data.releaseDate)
+                vProductionCompanies.text = data.productionCompanies?.joinToString("\n")
             }
 
             tvTagline.text = data.tagline

@@ -24,7 +24,7 @@ import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.search.databinding.ItemSearchComponentBinding
-import com.bagusmerta.utility.formatMediaDate
+import com.bagusmerta.utility.formatMediaDateYear
 import com.bagusmerta.utility.loadCoilImage
 
 class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
@@ -37,7 +37,7 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
                 ivPoster.loadCoilImage(item.backdropPath)
                 tvSearchMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
-                tvMovieYear.text = formatMediaDate(item.releaseDate)
+                tvMovieYear.text = formatMediaDateYear(item.releaseDate)
                 val genreString =  DataMapper.mappingMovieGenreListFromId(item.genreId)
                     .joinToString(" • ") { it.name.toString() }
 

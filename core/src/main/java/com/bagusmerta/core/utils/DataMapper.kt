@@ -78,7 +78,8 @@ object DataMapper {
             status = data.status,
             tagline = data.tagline,
             voteCount = data.voteCount,
-            productionCountries = data.productionCountries?.get(0)?.countryName.toString()
+            productionCountries = data.productionCountries?.get(0)?.countryName.toString(),
+            productionCompanies = data.productionCompanies?.map { it.companyName }
 
         )
 

@@ -49,11 +49,21 @@ fun ImageView.loadCoilImage(url: String?){
     }
 }
 
-fun formatMediaDate(date: String?): String? {
+fun formatMediaDateYear(date: String?): String? {
     if(!date.isNullOrEmpty()) {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return sdf.parse(date)
             ?.let { SimpleDateFormat("yyyy", Locale.getDefault()).format(it) }
+    } else {
+        return "Unknown"
+    }
+}
+
+fun formatMediaDateMonth(date: String?): String? {
+    if(!date.isNullOrEmpty()) {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return sdf.parse(date)
+            ?.let { SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(it) }
     } else {
         return "Unknown"
     }

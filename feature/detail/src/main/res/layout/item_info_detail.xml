@@ -33,11 +33,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_12sdp"
-        android:stretchColumns="*"
-        android:shrinkColumns="*"
         app:layout_constraintTop_toBottomOf="@id/tv_title_sub">
 
         <TableRow
@@ -48,6 +47,7 @@
             <TextView
                 android:id="@+id/tv_original_title"
                 android:text="Original Title"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -57,7 +57,7 @@
                 android:id="@+id/v_original_title"
                 tools:text="Elemental"
                 style="@style/Text.SubHeader"
-                android:layout_weight="1.3"
+                android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/black"/>
 
@@ -72,14 +72,40 @@
             <TextView
                 android:id="@+id/tv_status"
                 android:text="Status"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
-                android:layout_weight="1.1"
+                android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/gray"/>
 
             <TextView
                 android:id="@+id/v_status"
                 tools:text="Released"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_release_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_release_date"
+                android:text="Release Date"
+                android:layout_width="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_release_date"
+                tools:text="Jun 2020"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -96,8 +122,9 @@
             <TextView
                 android:id="@+id/tv_runtime"
                 android:text="Runtime"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
-                android:layout_weight="1.1"
+                android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/gray"/>
 
@@ -120,6 +147,7 @@
             <TextView
                 android:id="@+id/tv_original_language"
                 android:text="Original Language"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -129,7 +157,7 @@
                 android:id="@+id/v_original_language"
                 tools:text="English"
                 style="@style/Text.SubHeader"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/black"/>
 
@@ -144,6 +172,7 @@
             <TextView
                 android:id="@+id/tv_production_countries"
                 android:text="Production Countries"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -168,8 +197,9 @@
             <TextView
                 android:id="@+id/tv_budget"
                 android:text="Budget"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
-                android:layout_weight="1.6"
+                android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/gray"/>
 
@@ -192,14 +222,40 @@
             <TextView
                 android:id="@+id/tv_revenue"
                 android:text="Revenue"
+                android:layout_width="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
-                android:layout_weight="1.3"
+                android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/gray"/>
 
             <TextView
                 android:id="@+id/v_revenue"
                 tools:text="$432.123.545"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_production_companies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_production_companies"
+                android:text="Production Companies"
+                android:layout_width="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_production_companies"
+                tools:text="Warner Bros\nPixar"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
