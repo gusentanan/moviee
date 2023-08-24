@@ -69,7 +69,7 @@ data class MovieeDetailResponse(
     var tagline: String?,
 
     @Json(name = "vote_count")
-    var voteCount: Double?,
+    var voteCount: Int?,
 
     @Json(name = "original_language")
     var originalLanguage: String?,

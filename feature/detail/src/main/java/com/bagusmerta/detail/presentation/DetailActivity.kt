@@ -19,7 +19,11 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableStringBuilder
+import android.text.style.ClickableSpan
+import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +42,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import java.text.NumberFormat
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
@@ -51,6 +56,7 @@ class DetailActivity : AppCompatActivity() {
     private var youtubePlayerListener: AbstractYouTubePlayerListener ? = null
     private var itemCast = mutableListOf<Cast>()
     private var itemSimilarMovie = mutableListOf<Moviee>()
+    private var isExpanded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -151,7 +157,8 @@ class DetailActivity : AppCompatActivity() {
                 backdropImage.loadCoilImageHQ(data.backdropPath)
                 tvTitleDetail.text = data.title
                 tvGenreInfo.text = genreString
-                tvRatingDetail.text = data.rating.toString()
+                tvRatingDetail.text = data.rating?.toPercentageString()
+                tvRatingCount.text = data.voteCount?.toKFormatString()
             }
 
             itemInfoContainer.apply {
@@ -159,10 +166,10 @@ class DetailActivity : AppCompatActivity() {
                 vOriginalLanguage.text = data.originalLanguage
                 vStatus.text = data.status
                 vRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
-                vOriginalLanguage.text = data.originalLanguage
+                vOriginalLanguage.text = (LanguageEnum.values().find { it.isoCode == data.originalLanguage } ?: LanguageEnum.UNKNOWN).toString()
                 vProductionCountries.text = data.productionCountries
-                vBudget.text = data.budget.toString()
-                vRevenue.text = data.revenue.toString()
+                vBudget.text = NumberFormat.getCurrencyInstance(Locale.US).format(data.budget).toString()
+                vRevenue.text = NumberFormat.getCurrencyInstance(Locale.US).format(data.revenue).toString()
             }
 
             tvTagline.text = data.tagline

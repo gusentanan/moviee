@@ -143,7 +143,7 @@ fun getSingleDummyMoviee() = MovieeDetailResponse(
     originalLanguage = "English",
     status = "Released",
     tagline = "Serious Agent",
-    voteCount = 20.000,
+    voteCount = 20000,
     productionCountries = mutableListOf(
         ProductionCountries(
             countryName = "United States of America"

@@ -29,7 +29,7 @@ data class MovieeDetail(
     val budget: Double?,
     val revenue: Double?,
     var tagline: String?,
-    var voteCount: Double?,
+    var voteCount: Int?,
     var originalLanguage: String?,
     var originalTitle: String?,
     var status: String?,
