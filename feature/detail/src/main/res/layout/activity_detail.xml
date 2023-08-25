@@ -223,10 +223,23 @@
                         android:visibility="visible" />
 
                     <View
+                        android:id="@+id/v_divider_trailer"
+                        android:layout_width="@dimen/_278sdp"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_18sdp"
+                        android:background="@color/gray10"/>
+
+                    <include
+                        android:id="@+id/item_trailer_container"
+                        layout="@layout/item_trailers_detail"
+                        android:visibility="visible" />
+
+                    <View
                         android:id="@+id/v_divider_similar"
                         android:layout_width="@dimen/_278sdp"
                         android:layout_height="@dimen/_1sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginStart="@dimen/_18sdp"
                         android:background="@color/gray10"/>
 
@@ -259,9 +272,10 @@
                             android:id="@+id/rv_movie_similar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_8sdp"
-                            android:layout_marginBottom="@dimen/_8sdp"
-                            android:layout_marginStart="@dimen/_12sdp"
+                            android:paddingTop="@dimen/_8sdp"
+                            android:paddingBottom="@dimen/_8sdp"
+                            android:paddingStart="@dimen/_12sdp"
+                            android:clipToPadding="false"
                             android:orientation="horizontal"
                             tools:listitem="@layout/item_main_component" />
 

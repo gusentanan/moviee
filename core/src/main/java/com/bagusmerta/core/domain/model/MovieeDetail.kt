@@ -26,6 +26,7 @@ data class MovieeDetail(
     val genres: List<Int>?,
     val runtime: Int?,
     val keyVideo: String?,
+    val titleVideo: String?,
     val budget: Double?,
     val revenue: Double?,
     var tagline: String?,

@@ -150,6 +150,8 @@ class RemoteDataSource(private val apiService: MovieeService) {
                 response.videos?.listVideo?.forEach {
                     if(it.type == "Trailer" && it.site == "YouTube"){
                         response.keyVideo = it.key
+                        response.titleVideo = it.name
+
                     }
                 }
                 res.onSuccess(if(response != null) ResultState.Success(response) else ResultState.Empty)

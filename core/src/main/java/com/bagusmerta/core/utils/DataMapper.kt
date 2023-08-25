@@ -71,6 +71,7 @@ object DataMapper {
             genres = genreIds,
             runtime = data.runtime,
             keyVideo = data.keyVideo,
+            titleVideo = data.titleVideo,
             budget = data.budget,
             revenue = data.revenue,
             originalLanguage = data.originalLanguage,
@@ -80,7 +81,6 @@ object DataMapper {
             voteCount = data.voteCount,
             productionCountries = data.productionCountries?.get(0)?.countryName.toString(),
             productionCompanies = data.productionCompanies?.map { it.companyName }
-
         )
 
     fun mapListMovieeEntityToDomain(data: List<MovieeEntity>): List<MovieeFavorite> =

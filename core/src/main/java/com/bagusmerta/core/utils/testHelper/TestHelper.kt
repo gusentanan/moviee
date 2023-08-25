@@ -138,6 +138,7 @@ fun getSingleDummyMoviee() = MovieeDetailResponse(
     ),
     genreId = mutableListOf(1,2,3),
     keyVideo = "Wk-MeF0ngVI",
+    titleVideo = "Official Trailers",
     budget = 2000.0000,
     revenue = 201.210,
     originalTitle = "Jason Bourne",

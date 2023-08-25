@@ -177,6 +177,11 @@ class DetailActivity : AppCompatActivity() {
             tvTagline.text = data.tagline
             tvOverview.text = data.overview
 
+            itemTrailerContainer.apply {
+                ivTrailerThumbnail.loadCoilImageHQ(data.backdropPath)
+                tvTrailerTitle.text = data.titleVideo
+            }
+
             var favoriteState = data.isFavorite!!
             detailViewModel.apply {
                 data.id?.let { checkFavoriteMovies(it) }
