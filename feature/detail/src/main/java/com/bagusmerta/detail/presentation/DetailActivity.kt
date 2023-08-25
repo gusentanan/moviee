@@ -166,10 +166,10 @@ class DetailActivity : AppCompatActivity() {
                 vOriginalLanguage.text = data.originalLanguage
                 vStatus.text = data.status
                 vRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
-                vOriginalLanguage.text = (LanguageEnum.values().find { it.isoCode == data.originalLanguage } ?: LanguageEnum.UNKNOWN).toString()
+                vOriginalLanguage.text = getOriginalLanguage(data.originalLanguage)
                 vProductionCountries.text = data.productionCountries
-                vBudget.text = NumberFormat.getCurrencyInstance(Locale.US).format(data.budget).toString()
-                vRevenue.text = NumberFormat.getCurrencyInstance(Locale.US).format(data.revenue).toString()
+                vBudget.text = getCurrency(data.budget)
+                vRevenue.text = getCurrency(data.revenue)
                 vReleaseDate.text = formatMediaDateMonth(data.releaseDate)
                 vProductionCompanies.text = data.productionCompanies?.joinToString("\n")
             }
@@ -236,6 +236,15 @@ class DetailActivity : AppCompatActivity() {
 //
 //        ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
 //    }
+
+    private fun getOriginalLanguage(data: String?): String {
+        return (LanguageEnum.values().find { it.isoCode == data } ?: LanguageEnum.UNKNOWN).toString()
+    }
+    private fun getCurrency(data: Double?): String{
+        return NumberFormat
+            .getCurrencyInstance(Locale.US)
+            .format(data)
+    }
 
     private fun handleButtonSaveIcon(isFavorite: Boolean){
         binding.apply {

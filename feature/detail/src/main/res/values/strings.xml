@@ -13,4 +13,15 @@
     <string name="tv_cast_empty_state">"Sorry, there is no cast "</string>
     <string name="poster_movie">movie poster image</string>
     <string name="tv_see_all_cast">See all</string>
+    <string name="tv_information_header">Information</string>
+    <string name="tv_information_subheader">Release Information</string>
+    <string name="tv_original_title">Original Title</string>
+    <string name="tv_status">Status</string>
+    <string name="tv_release_date">Release Date</string>
+    <string name="tv_runtime">Runtime</string>
+    <string name="tv_original_language">Original Language</string>
+    <string name="tv_production_countries">Production Countries</string>
+    <string name="tv_budget">Budget</string>
+    <string name="tv_revenue">Revenue</string>
+    <string name="tv_companies">Companies</string>
 </resources>

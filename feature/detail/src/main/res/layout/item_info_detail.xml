@@ -10,7 +10,7 @@
         android:id="@+id/tv_title_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Information"
+        android:text="@string/tv_information_header"
         android:textStyle="bold"
         style="@style/Text.Header1"
         android:textSize="@dimen/_16ssp"
@@ -22,7 +22,7 @@
         android:id="@+id/tv_title_sub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Release Information"
+        android:text="@string/tv_information_subheader"
         style="@style/Text.SubHeader"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/gray"
@@ -46,8 +46,8 @@
 
             <TextView
                 android:id="@+id/tv_original_title"
-                android:text="Original Title"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_original_title"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -71,8 +71,8 @@
 
             <TextView
                 android:id="@+id/tv_status"
-                android:text="Status"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_status"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -96,8 +96,8 @@
 
             <TextView
                 android:id="@+id/tv_release_date"
-                android:text="Release Date"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_release_date"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -121,8 +121,8 @@
 
             <TextView
                 android:id="@+id/tv_runtime"
-                android:text="Runtime"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_runtime"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -146,8 +146,8 @@
 
             <TextView
                 android:id="@+id/tv_original_language"
-                android:text="Original Language"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_original_language"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -171,8 +171,8 @@
 
             <TextView
                 android:id="@+id/tv_production_countries"
-                android:text="Production Countries"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_production_countries"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -196,8 +196,8 @@
 
             <TextView
                 android:id="@+id/tv_budget"
-                android:text="Budget"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_budget"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -221,8 +221,8 @@
 
             <TextView
                 android:id="@+id/tv_revenue"
-                android:text="Revenue"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_revenue"
+                android:minWidth="@dimen/_100sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -246,8 +246,8 @@
 
             <TextView
                 android:id="@+id/tv_production_companies"
-                android:text="Production Companies"
-                android:layout_width="@dimen/_100sdp"
+                android:text="@string/tv_companies"
+                android:minWidth="@dimen/_200sdp"
                 style="@style/Text.SubHeader"
                 android:layout_weight="1"
                 android:textSize="@dimen/_12ssp"
@@ -264,7 +264,6 @@
         </TableRow>
 
     </TableLayout>
-
-
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>

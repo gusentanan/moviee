@@ -75,21 +75,35 @@ data class MovieeDetailResponse(
     var originalLanguage: String?,
 
     @Json(name = "production_countries")
-    var productionCountries: List<ProductionCountries>?
+    var productionCountries: List<ProductionCountries>?,
+
+    @Json(name = "production_companies")
+    var productionCompanies: List<ProductionCompanies>?
+
+)
+
+@JsonClass(generateAdapter = true)
+data class ProductionCompanies(
+    @Json(name = "logo_path")
+    var logo: String?,
+
+    @Json(name = "name")
+    var companyName: String?,
 
 )
 
 @JsonClass(generateAdapter = true)
 data class  ProductionCountries(
-
     @Json(name = "name")
     var countryName: String?
+
 )
 
 @JsonClass(generateAdapter = true)
 data class Videos(
     @Json(name = "results")
     var listVideo: List<VideoInfo>?
+
 )
 
 @JsonClass(generateAdapter = true)
