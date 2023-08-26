@@ -53,6 +53,8 @@ data class MovieeDetailResponse(
 
     var keyVideo: String?,
 
+    var titleVideo: String?,
+
     @Json(name = "budget")
     var budget: Double?,
 
