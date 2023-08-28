@@ -69,14 +69,6 @@ fun formatMediaDateMonth(date: String?): String? {
     }
 }
 
-fun Activity.initStatusBar(){
-    window.statusBarColor = getColor(R.color.backgroundPrimary)
-    val windowInsetsController = WindowCompat.getInsetsController(
-        window, window.decorView
-    )
-    windowInsetsController.isAppearanceLightStatusBars = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK === Configuration.UI_MODE_NIGHT_NO
-}
-
 fun View.makeVisible(){
     visibility = View.VISIBLE
 }
@@ -156,6 +148,14 @@ private fun startTimer(duration: Long, toast: Toast) {
 private fun startAnimation(context: Activity, customToastImage: ImageView) {
     val pulseAnimation = AnimationUtils.loadAnimation(context, R.anim.pulse)
     customToastImage.startAnimation(pulseAnimation)
+}
+
+fun Activity.initStatusBar(){
+    window.statusBarColor = getColor(R.color.backgroundPrimary)
+    val windowInsetsController = WindowCompat.getInsetsController(
+        window, window.decorView
+    )
+    windowInsetsController.isAppearanceLightStatusBars = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK === Configuration.UI_MODE_NIGHT_NO
 }
 
 fun Activity.hideStatusBar(){

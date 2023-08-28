@@ -14,6 +14,7 @@
  */
 plugins {
     id("moviee.android.feature")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -35,4 +36,6 @@ dependencies {
 
     // YT player dep
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.4.0")
 }

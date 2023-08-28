@@ -16,6 +16,7 @@ package com.bagusmerta.feature.detail.presentation
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -32,6 +33,7 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.core.utils.DataMapper.mapMovieDetailToMoviee
+import com.bagusmerta.detail.presentation.FullscreenYouTubePlayerActivity
 import com.bagusmerta.feature.detail.R
 import com.bagusmerta.feature.detail.databinding.ActivityDetailBinding
 import com.bagusmerta.feature.detail.presentation.adapter.CastAdapter
@@ -52,11 +54,8 @@ class DetailActivity : AppCompatActivity() {
     private val castAdapter: CastAdapter by lazy { CastAdapter(this) }
     private val similarMovieAdapter: SimilarMovieAdapter by lazy { SimilarMovieAdapter(this) }
 
-    private var _youtubePlayer: YouTubePlayer ? = null
-    private var youtubePlayerListener: AbstractYouTubePlayerListener ? = null
     private var itemCast = mutableListOf<Cast>()
     private var itemSimilarMovie = mutableListOf<Moviee>()
-    private var isExpanded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +89,9 @@ class DetailActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
                 onBackPressedDispatcher.onBackPressed() }
+        }
+        binding.itemTopContainer.btnBackDetail.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 
@@ -142,12 +144,6 @@ class DetailActivity : AppCompatActivity() {
     @SuppressLint("StringFormatMatches")
     private fun setDetailView(data: MovieeDetail) {
         binding.apply {
-            // init yt video player
-//            if(_youtubePlayer == null) {
-//                data.keyVideo?.let { initYouTubePlayer(it) }
-//            } else {
-//                data.keyVideo?.let { _youtubePlayer!!.cueVideo(it, 0f) }
-//            }
 
             val genreString = DataMapper.mappingMovieGenreListFromId(data.genres)
                 .joinToString(" • ") { it.name.toString() }
@@ -180,6 +176,11 @@ class DetailActivity : AppCompatActivity() {
             itemTrailerContainer.apply {
                 ivTrailerThumbnail.loadCoilImageHQ(data.backdropPath)
                 tvTrailerTitle.text = data.titleVideo
+                btnWatchTrailer.setOnClickListener {
+                    this@DetailActivity.startActivity(Intent(this@DetailActivity, FullscreenYouTubePlayerActivity::class.java).apply {
+                            putExtra(FullscreenYouTubePlayerActivity.KEY_TRAILERS, data.keyVideo)
+                        })
+                }
             }
 
             var favoriteState = data.isFavorite!!
@@ -221,26 +222,6 @@ class DetailActivity : AppCompatActivity() {
             rvMovieSimilar.adapter = similarMovieAdapter
         }
     }
-//    private fun initYouTubePlayer(keyVideo: String) = binding.apply {
-//        youtubePlayerListener = object: AbstractYouTubePlayerListener() {
-//            override fun onReady(youTubePlayer: YouTubePlayer) {
-//                keyVideo.let {key ->
-//                    thumbnailContainer.apply {
-//                        videoLoader.makeGone()
-//                        btnPlay.makeVisible()
-//                        btnPlay.setOnClickListener {
-//                            thumbnailContainer.container.makeGone()
-//                            ytPlayerView.makeVisible()
-//                            _youtubePlayer = youTubePlayer
-//                            _youtubePlayer!!.loadVideo(key, 0f)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
-//    }
 
     private fun getOriginalLanguage(data: String?): String {
         return (LanguageEnum.values().find { it.isoCode == data } ?: LanguageEnum.UNKNOWN).toString()
@@ -289,10 +270,6 @@ class DetailActivity : AppCompatActivity() {
         makeInfoToast("This feature is currently unavailable")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-//        youtubePlayerListener?.let { binding.ytPlayerView.release() }
-    }
 
     companion object{
         const val MOVIEE = "moviee"
