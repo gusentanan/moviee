@@ -1,21 +1,11 @@
 package com.bagusmerta.detail.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowManager
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.view.WindowCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.bagusmerta.feature.detail.databinding.ActivityFullscreenYouTubePlayerBinding
-import com.bagusmerta.feature.detail.R
+import com.bagusmerta.utility.initTransparentStatusBar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -33,9 +23,9 @@ class FullscreenYouTubePlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        initStatusBar()
+        initTransparentStatusBar()
+
         handleButtonBack()
         val keyVideo = intent.getStringExtra(KEY_TRAILERS)
         if(_youtubePlayer == null) {
@@ -53,22 +43,6 @@ class FullscreenYouTubePlayerActivity : AppCompatActivity() {
         binding.btnBackYt.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
             finish()
-        }
-    }
-
-    @SuppressLint("ObsoleteSdkInt")
-    private fun initStatusBar() {
-        if (Build.VERSION.SDK_INT in 21..29) {
-            window.statusBarColor = Color.TRANSPARENT
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            )
-        } else if (Build.VERSION.SDK_INT >= 30) {
-            window.statusBarColor = Color.TRANSPARENT
-            // Making status bar overlaps with the activity
-            WindowCompat.setDecorFitsSystemWindows(window, false)
         }
     }
 

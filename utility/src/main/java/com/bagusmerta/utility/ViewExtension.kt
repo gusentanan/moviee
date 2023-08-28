@@ -14,8 +14,10 @@
  */
 package com.bagusmerta.utility
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.res.Configuration
+import android.graphics.Color
 import android.os.Build
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -156,6 +158,22 @@ fun Activity.initStatusBar(){
         window, window.decorView
     )
     windowInsetsController.isAppearanceLightStatusBars = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK === Configuration.UI_MODE_NIGHT_NO
+}
+
+@SuppressLint("ObsoleteSdkInt")
+fun Activity.initTransparentStatusBar(){
+    if (Build.VERSION.SDK_INT in 21..29) {
+        window.statusBarColor = Color.TRANSPARENT
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+    } else if (Build.VERSION.SDK_INT >= 30) {
+        window.statusBarColor = Color.TRANSPARENT
+        // Making status bar overlaps with the activity
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+    }
 }
 
 fun Activity.hideStatusBar(){

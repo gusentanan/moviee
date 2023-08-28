@@ -17,14 +17,8 @@ package com.bagusmerta.feature.detail.presentation
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.text.SpannableStringBuilder
-import android.text.style.ClickableSpan
-import android.view.View
-import android.view.WindowManager
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,9 +33,6 @@ import com.bagusmerta.feature.detail.databinding.ActivityDetailBinding
 import com.bagusmerta.feature.detail.presentation.adapter.CastAdapter
 import com.bagusmerta.feature.detail.presentation.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.*
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.text.NumberFormat
@@ -63,27 +54,12 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         handleBackPressed()
         initView()
-        initStatusBar()
+        initTransparentStatusBar()
 
         initRecyclerView()
         initStateObserver()
     }
 
-    @SuppressLint("ObsoleteSdkInt")
-    private fun initStatusBar() {
-        if (Build.VERSION.SDK_INT in 21..29) {
-            window.statusBarColor = Color.TRANSPARENT
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            )
-        } else if (Build.VERSION.SDK_INT >= 30) {
-            window.statusBarColor = Color.TRANSPARENT
-            // Making status bar overlaps with the activity
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-        }
-    }
 
     private fun handleBackPressed() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

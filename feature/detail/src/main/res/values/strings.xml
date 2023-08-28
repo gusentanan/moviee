@@ -24,8 +24,5 @@
     <string name="tv_budget">Budget</string>
     <string name="tv_revenue">Revenue</string>
     <string name="tv_companies">Companies</string>
-    <string name="title_activity_fullscreen_you_tube_player">FullscreenYouTubePlayerActivity
-    </string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_fullscreen_you_tube_player">FullscreenYouTubePlayerActivity</string>
 </resources>

@@ -14,11 +14,9 @@
  */
 package com.bagusmerta.feature.favoritee.presentation
 
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.favoritee.R

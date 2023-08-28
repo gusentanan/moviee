@@ -19,7 +19,12 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.MovieCastResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeSearchResponse
-import com.bagusmerta.core.utils.testHelper.*
+import com.bagusmerta.core.utils.testHelper.TrampolineRxSchedulers
+import com.bagusmerta.core.utils.testHelper.getDummyCastResponse
+import com.bagusmerta.core.utils.testHelper.getDummyMovieeItemResponse
+import com.bagusmerta.core.utils.testHelper.getDummySearchResponse
+import com.bagusmerta.core.utils.testHelper.getSingleDummyMoviee
+import com.bagusmerta.core.utils.testHelper.load
 import com.bagusmerta.utility.ResultState
 import io.reactivex.Flowable
 import io.reactivex.Single

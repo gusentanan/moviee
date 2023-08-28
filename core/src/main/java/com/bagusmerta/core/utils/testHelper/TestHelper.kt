@@ -30,7 +30,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okio.buffer
 import okio.source
-import java.io.InputStreamReader
 
 fun getDummyEntityMoviee() =
         mutableListOf(

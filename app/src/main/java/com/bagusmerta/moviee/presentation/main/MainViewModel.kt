@@ -14,9 +14,6 @@
  */
 package com.bagusmerta.moviee.presentation.main
 
-import android.app.Application
-import android.content.Context
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,7 +21,6 @@ import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.moviee.R
 import com.bagusmerta.utility.MovieeHomeFeed
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable

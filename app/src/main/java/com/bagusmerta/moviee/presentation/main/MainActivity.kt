@@ -14,19 +14,12 @@
  */
 package com.bagusmerta.moviee.presentation.main
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-import android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
@@ -38,14 +31,13 @@ import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.utility.findRandom
+import com.bagusmerta.utility.initTransparentStatusBar
 import com.bagusmerta.utility.loadCoilImageHQ
 import com.bagusmerta.utility.makeGone
 import com.bagusmerta.utility.makeInfoToast
 import com.bagusmerta.utility.makeVisible
-import com.google.android.material.appbar.AppBarLayout
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
-import kotlin.math.abs
 import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
@@ -60,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initStatusBar()
+        initTransparentStatusBar()
         initAppBar()
         observerAppBar()
 
@@ -99,22 +91,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    @SuppressLint("ObsoleteSdkInt")
-    private fun initStatusBar() {
-        if (Build.VERSION.SDK_INT in 21..29) {
-            window.statusBarColor = Color.TRANSPARENT
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.setFlags(
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-            )
-         } else if (Build.VERSION.SDK_INT >= 30) {
-             window.statusBarColor = Color.TRANSPARENT
-            // Making status bar overlaps with the activity
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-         }
     }
 
     private fun initStateObserver() {
