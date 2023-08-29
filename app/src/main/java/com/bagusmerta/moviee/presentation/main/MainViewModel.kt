@@ -21,7 +21,7 @@ import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.utility.MovieeHomeFeed
+import com.bagusmerta.utility.datasource.MovieeHomeFeed
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

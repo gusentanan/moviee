@@ -30,12 +30,14 @@ import com.bagusmerta.feature.search.presentation.SearchActivity
 import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
-import com.bagusmerta.utility.findRandom
-import com.bagusmerta.utility.initTransparentStatusBar
-import com.bagusmerta.utility.loadCoilImageHQ
-import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeInfoToast
-import com.bagusmerta.utility.makeVisible
+import com.bagusmerta.utility.extensions.changeBackgroundColorAppBar
+import com.bagusmerta.utility.extensions.findRandom
+import com.bagusmerta.utility.extensions.initTransparentStatusBar
+import com.bagusmerta.utility.extensions.joinToGenreString
+import com.bagusmerta.utility.extensions.loadCoilImageHQ
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeInfoToast
+import com.bagusmerta.utility.extensions.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import kotlin.math.min
@@ -79,14 +81,13 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     if (scrollY < oldScrollY) {  // scroll up
                         materialAppBarLayout.visibility = View.VISIBLE
-                        val color = changeBackgroundColorAppBar(
-                            ContextCompat.getColor(
-                                this@MainActivity,
-                                R.color.black_transparent_light
-                            ),
-                            (min(255, scrollY).toFloat() / 255.0f).toDouble()
+
+                        val colorInt = ContextCompat.getColor(
+                            this@MainActivity,
+                            R.color.black_transparent_light
                         )
-                        materialAppBarLayout.setBackgroundColor(color)
+                        val fraction = (min(255, scrollY).toFloat() / 255.0f).toDouble()
+                        materialAppBarLayout.setBackgroundColor(colorInt.changeBackgroundColorAppBar(fraction))
                     }
                 }
             }
@@ -137,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             }
             ivBanner.loadCoilImageHQ(banner.posterPath)
             tvGenreBanner.text = DataMapper.mappingMovieGenreListFromId(banner.genreId)
-                        .joinToString(" • ") { it.name.toString() }
+                        .joinToGenreString()
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
@@ -176,13 +177,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun changeBackgroundColorAppBar(color: Int, fraction: Double): Int {
-        val red: Int = Color.red(color)
-        val green: Int = Color.green(color)
-        val blue: Int = Color.blue(color)
-        val alpha: Int = (Color.alpha(color) * fraction).toInt()
-        return Color.argb(alpha, red, green, blue)
-    }
-
 }

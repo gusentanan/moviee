@@ -15,7 +15,7 @@
 package com.bagusmerta.core.domain.model
 
 import android.os.Parcelable
-import com.bagusmerta.utility.MovieeHomeFeed
+import com.bagusmerta.utility.datasource.MovieeHomeFeed
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

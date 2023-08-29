@@ -23,8 +23,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.favoritee.databinding.ItemFavoriteeBinding
-import com.bagusmerta.utility.formatMediaDateYear
-import com.bagusmerta.utility.loadCoilImage
+import com.bagusmerta.utility.extensions.formatMediaDateYear
+import com.bagusmerta.utility.extensions.loadCoilImage
 import java.util.*
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {

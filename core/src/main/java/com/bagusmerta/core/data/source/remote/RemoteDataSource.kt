@@ -21,8 +21,8 @@ import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeDetailRespons
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemResponse
 import com.bagusmerta.core.data.source.remote.movieeResponse.MovieeItemSearchResponse
 import com.bagusmerta.utility.ResultState
-import com.bagusmerta.utility.flowableTransformerIo
-import com.bagusmerta.utility.singleTransformerIo
+import com.bagusmerta.utility.extensions.flowableTransformerIo
+import com.bagusmerta.utility.extensions.singleTransformerIo
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single

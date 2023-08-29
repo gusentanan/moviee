@@ -17,6 +17,7 @@ package com.bagusmerta.feature.search.presentation
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
@@ -26,8 +27,8 @@ import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.feature.search.R
 import com.bagusmerta.feature.search.databinding.ActivitySearchBinding
-import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeVisible
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -133,7 +134,12 @@ class SearchActivity : AppCompatActivity() {
 
     private fun handlingBackButton(){
         binding.btnBack.setOnClickListener {
-           onBackPressedDispatcher.onBackPressed()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+                    onBackPressedDispatcher.onBackPressed() }
+            } else {
+                onBackPressedDispatcher.onBackPressed()
+            }
         }
     }
 

@@ -20,10 +20,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.allmovie.databinding.ActivityAllMovieBinding
-import com.bagusmerta.utility.MovieeHomeFeed
-import com.bagusmerta.utility.initStatusBar
-import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeVisible
+import com.bagusmerta.utility.datasource.MovieeHomeFeed
+import com.bagusmerta.utility.extensions.initStatusBar
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AllMovieActivity : AppCompatActivity() {
@@ -44,12 +44,14 @@ class AllMovieActivity : AppCompatActivity() {
     }
 
     private fun initBtnBack() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-                onBackPressedDispatcher.onBackPressed() }
-        }
         binding.btnBackAll.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+                    onBackPressedDispatcher.onBackPressed()
+                }
+            } else {
+                onBackPressedDispatcher.onBackPressed()
+            }
         }
     }
 
@@ -121,6 +123,6 @@ class AllMovieActivity : AppCompatActivity() {
     }
 
     companion object{
-        const val IDENTIFIER = "Identifier"
+        const val IDENTIFIER = "identifier"
     }
 }

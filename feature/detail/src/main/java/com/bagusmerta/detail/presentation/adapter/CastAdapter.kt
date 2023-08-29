@@ -21,7 +21,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.feature.detail.databinding.ItemCastBinding
-import com.bagusmerta.utility.loadCoilImage
+import com.bagusmerta.utility.extensions.loadCoilImage
 
 class CastAdapter(private val context: Context): RecyclerView.Adapter<CastAdapter.ViewHolder>() {
 

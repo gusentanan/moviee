@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.bagusmerta.utility
+package com.bagusmerta.utility.datasource
 
 object GenreList {
     val moviesGenresMap: HashMap<Int, String> = hashMapOf(

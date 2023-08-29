@@ -5,14 +5,11 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bagusmerta.feature.detail.databinding.ActivityFullscreenYouTubePlayerBinding
-import com.bagusmerta.utility.initTransparentStatusBar
+import com.bagusmerta.utility.extensions.initTransparentStatusBar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
-/**
- * An example full-screen activity that shows and hides the system UI (i.e.
- * status bar and navigation/system bar) with user interaction.
- */
+
 class FullscreenYouTubePlayerActivity : AppCompatActivity() {
 
     private val binding: ActivityFullscreenYouTubePlayerBinding by lazy { ActivityFullscreenYouTubePlayerBinding.inflate(layoutInflater) }

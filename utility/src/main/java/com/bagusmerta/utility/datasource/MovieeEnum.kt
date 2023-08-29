@@ -1,4 +1,4 @@
-package com.bagusmerta.utility
+package com.bagusmerta.utility.datasource
 
 enum class MovieeHomeFeed(val id: Int, val text: String, val subText: String) {
     NEWLY_MOVIES( 0, MovieeTextResource.NEWLY, MovieeSubTextResource.NEWLY),

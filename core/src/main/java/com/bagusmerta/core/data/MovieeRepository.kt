@@ -27,8 +27,8 @@ import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.core.utils.DataMapper.mapMovieeResponseToDomain
 import com.bagusmerta.core.utils.DataMapper.mapMovieeSearchResponseToDomain
 import com.bagusmerta.utility.ResultState
-import com.bagusmerta.utility.maybeTransformerIo
-import com.bagusmerta.utility.singleTransformerIo
+import com.bagusmerta.utility.extensions.maybeTransformerIo
+import com.bagusmerta.utility.extensions.singleTransformerIo
 import io.reactivex.Maybe
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable

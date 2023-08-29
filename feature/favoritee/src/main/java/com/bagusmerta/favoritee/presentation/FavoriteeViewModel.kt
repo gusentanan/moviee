@@ -43,6 +43,9 @@ class FavoriteeViewModel(private val useCase: MovieeUseCase): ViewModel() {
     val errorState: LiveData<String>
         get() = _errorMsg
 
+    init {
+        getFavoriteMovies(true)
+    }
     fun getFavoriteMovies(isFavorite: Boolean) {
         useCase.getAllFavoriteMovies(isFavorite)
             .doOnSubscribe { _loadingState.postValue(true) }

@@ -22,7 +22,7 @@ import com.bagusmerta.moviee.databinding.ActivityOnboardingBinding
 import com.bagusmerta.moviee.helpers.OnboardPrefManager
 import com.bagusmerta.moviee.presentation.main.MainActivity
 import com.bagusmerta.moviee.presentation.onboarding.entity.OnboardPages
-import com.bagusmerta.utility.initStatusBar
+import com.bagusmerta.utility.extensions.initStatusBar
 
 class OnboardingActivity : AppCompatActivity() {
 

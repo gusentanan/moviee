@@ -17,8 +17,8 @@ package com.bagusmerta.core.data.source.local
 import com.bagusmerta.core.data.source.local.dao.MovieeDao
 import com.bagusmerta.core.data.source.local.entity.MovieeEntity
 import com.bagusmerta.utility.ResultState
-import com.bagusmerta.utility.completableTransformerIo
-import com.bagusmerta.utility.flowableTransformerIo
+import com.bagusmerta.utility.extensions.completableTransformerIo
+import com.bagusmerta.utility.extensions.flowableTransformerIo
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Maybe

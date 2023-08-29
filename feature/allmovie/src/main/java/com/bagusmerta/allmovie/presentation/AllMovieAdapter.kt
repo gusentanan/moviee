@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.allmovie.databinding.ItemAllmovieComponentBinding
 import com.bagusmerta.feature.detail.presentation.DetailActivity
-import com.bagusmerta.utility.loadCoilImage
+import com.bagusmerta.utility.extensions.loadCoilImage
 
 class AllMovieAdapter(private val context: Context): RecyclerView.Adapter<AllMovieAdapter.ViewHolder>() {
 

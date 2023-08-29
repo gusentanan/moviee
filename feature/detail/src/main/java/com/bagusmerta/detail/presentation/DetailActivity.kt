@@ -33,6 +33,20 @@ import com.bagusmerta.feature.detail.databinding.ActivityDetailBinding
 import com.bagusmerta.feature.detail.presentation.adapter.CastAdapter
 import com.bagusmerta.feature.detail.presentation.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.*
+import com.bagusmerta.utility.datasource.LanguageEnum
+import com.bagusmerta.utility.extensions.formatMediaDateMonth
+import com.bagusmerta.utility.extensions.hideStatusBar
+import com.bagusmerta.utility.extensions.initTransparentStatusBar
+import com.bagusmerta.utility.extensions.joinToGenreString
+import com.bagusmerta.utility.extensions.loadCoilImage
+import com.bagusmerta.utility.extensions.loadCoilImageHQ
+import com.bagusmerta.utility.extensions.makeErrorToast
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeInfoToast
+import com.bagusmerta.utility.extensions.makeSuccessToast
+import com.bagusmerta.utility.extensions.makeVisible
+import com.bagusmerta.utility.extensions.toKFormatString
+import com.bagusmerta.utility.extensions.toPercentageString
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 import java.text.NumberFormat
@@ -53,7 +67,7 @@ class DetailActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(binding.root)
         handleBackPressed()
-        initView()
+        hideStatusBar()
         initTransparentStatusBar()
 
         initRecyclerView()
@@ -62,18 +76,16 @@ class DetailActivity : AppCompatActivity() {
 
 
     private fun handleBackPressed() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-                onBackPressedDispatcher.onBackPressed() }
-        }
         binding.itemTopContainer.btnBackDetail.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+                    onBackPressedDispatcher.onBackPressed() }
+            } else {
+                onBackPressedDispatcher.onBackPressed()
+            }
         }
     }
 
-    private fun initView() {
-        hideStatusBar()
-    }
 
     private fun initStateObserver() {
         val movieeId = intent.getIntExtra(MOVIEE, 0)
@@ -121,8 +133,7 @@ class DetailActivity : AppCompatActivity() {
     private fun setDetailView(data: MovieeDetail) {
         binding.apply {
 
-            val genreString = DataMapper.mappingMovieGenreListFromId(data.genres)
-                .joinToString(" • ") { it.name.toString() }
+            val genreString = DataMapper.mappingMovieGenreListFromId(data.genres).joinToGenreString()
 
             itemTopContainer.apply {
                 ivPoster.loadCoilImage(data.posterPath)

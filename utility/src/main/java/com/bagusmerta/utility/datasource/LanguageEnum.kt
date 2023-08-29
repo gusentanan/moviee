@@ -1,4 +1,4 @@
-package com.bagusmerta.utility
+package com.bagusmerta.utility.datasource
 
 enum class LanguageEnum(val isoCode: String) {
     ENGLISH("en"),

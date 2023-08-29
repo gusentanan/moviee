@@ -21,11 +21,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.favoritee.R
 import com.bagusmerta.feature.favoritee.databinding.ActivityFavoriteeBinding
-import com.bagusmerta.utility.initStatusBar
-import com.bagusmerta.utility.makeErrorToast
-import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeInfoToast
-import com.bagusmerta.utility.makeVisible
+import com.bagusmerta.utility.extensions.initStatusBar
+import com.bagusmerta.utility.extensions.makeErrorToast
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeInfoToast
+import com.bagusmerta.utility.extensions.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -55,12 +55,13 @@ class FavoriteeActivity : AppCompatActivity() {
     }
 
    private fun initBtnBack(){
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-           onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-               onBackPressedDispatcher.onBackPressed() }
-       }
        binding.btnBack.setOnClickListener {
-           onBackPressedDispatcher.onBackPressed()
+           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+               onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
+                   onBackPressedDispatcher.onBackPressed() }
+           } else {
+               onBackPressedDispatcher.onBackPressed()
+           }
        }
    }
 
@@ -79,7 +80,6 @@ class FavoriteeActivity : AppCompatActivity() {
 
     private fun initObserverState() {
         favoriteeViewModel.apply {
-            getFavoriteMovies(true)
 
             loadingState.observe(this@FavoriteeActivity){
                 handleLoadingState(it)

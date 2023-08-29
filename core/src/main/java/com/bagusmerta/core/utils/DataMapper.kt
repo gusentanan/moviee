@@ -25,7 +25,7 @@ import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.core.domain.model.MovieeSearch
-import com.bagusmerta.utility.GenreList
+import com.bagusmerta.utility.datasource.GenreList
 
 object DataMapper {
 
