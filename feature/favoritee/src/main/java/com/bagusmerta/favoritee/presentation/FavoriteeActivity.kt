@@ -102,7 +102,7 @@ class FavoriteeActivity : AppCompatActivity() {
     }
 
     private fun handleLoadingState(state: Boolean) {
-        binding.loadingState.apply {
+        binding.cvProgressBar.apply {
             if(state) makeVisible() else makeGone()
         }
     }

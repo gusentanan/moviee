@@ -151,18 +151,27 @@
         app:layout_constraintTop_toBottomOf="@id/wrapper_top_searches"
         tools:listitem="@layout/item_search_component"/>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        style="?android:attr/progressBarStyle"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="invisible"
-        android:indeterminate="true"
-        android:indeterminateTint="@color/colorPrimaryDark"/>
+        app:cardCornerRadius="@dimen/_25sdp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimaryDark"/>
+
+    </androidx.cardview.widget.CardView>
 
     <include
         android:id="@+id/lottie_empty_res"

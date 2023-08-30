@@ -6,6 +6,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bagusmerta.feature.detail.databinding.ActivityFullscreenYouTubePlayerBinding
 import com.bagusmerta.utility.extensions.initTransparentStatusBar
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeVisible
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -23,6 +25,7 @@ class FullscreenYouTubePlayerActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initTransparentStatusBar()
 
+        handleLoadingState(false)
         handleButtonBack()
         val keyVideo = intent.getStringExtra(KEY_TRAILERS)
         if(_youtubePlayer == null) {
@@ -48,6 +51,7 @@ class FullscreenYouTubePlayerActivity : AppCompatActivity() {
             youtubePlayerListener = object : AbstractYouTubePlayerListener() {
                 override fun onReady(youTubePlayer: YouTubePlayer) {
                     keyVideo.let { key ->
+                        handleLoadingState(true)
                         _youtubePlayer = youTubePlayer
                         _youtubePlayer!!.loadVideo(key, 0f)
                     }
@@ -55,6 +59,18 @@ class FullscreenYouTubePlayerActivity : AppCompatActivity() {
             }
 
             ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
+        }
+    }
+
+    private fun handleLoadingState(value: Boolean){
+        binding.apply {
+            if(value){
+                cvProgressBar.makeGone()
+                ytPlayerView.makeVisible()
+            } else {
+                cvProgressBar.makeVisible()
+                ytPlayerView.makeGone()
+            }
         }
     }
 

@@ -171,7 +171,7 @@ class SearchActivity : AppCompatActivity() {
     private fun handleLoadingState(state:Boolean){
         binding.apply {
             errorState.root.makeGone()
-            progressBar.apply {
+            cvProgressBar.apply {
                 if(state){
                     wrapperTopSearches.makeGone()
                     makeVisible()
