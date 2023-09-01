@@ -133,7 +133,9 @@ class DetailActivity : AppCompatActivity() {
     private fun setDetailView(data: MovieeDetail) {
         binding.apply {
 
-            val genreString = DataMapper.mappingMovieGenreListFromId(data.genres).joinToGenreString()
+            val genreString = DataMapper.mappingMovieGenreListFromId(data.genres)
+                .map{ it.name }
+                .joinToGenreString()
 
             itemTopContainer.apply {
                 ivPoster.loadCoilImage(data.posterPath)

@@ -138,7 +138,8 @@ class MainActivity : AppCompatActivity() {
             }
             ivBanner.loadCoilImageHQ(banner.posterPath)
             tvGenreBanner.text = DataMapper.mappingMovieGenreListFromId(banner.genreId)
-                        .joinToGenreString()
+                .map { it.name }
+                .joinToGenreString()
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {

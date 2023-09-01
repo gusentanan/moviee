@@ -40,6 +40,7 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = formatMediaDateYear(item.releaseDate)
                 val genreString =  DataMapper.mappingMovieGenreListFromId(item.genreId)
+                    .map { it.name }
                     .joinToGenreString()
 
                 tvGenres.text = genreString
