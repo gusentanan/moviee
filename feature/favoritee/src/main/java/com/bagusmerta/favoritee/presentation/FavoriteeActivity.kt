@@ -48,20 +48,15 @@ class FavoriteeActivity : AppCompatActivity() {
         supportActionBar?.setTitle(R.string.favorite_page_title)
 
         initStatusBar()
-        initBtnBack()
+        handleBackPressed()
         initClearButton()
         initObserverState()
         initRecyclerView()
     }
 
-   private fun initBtnBack(){
+   private fun handleBackPressed(){
        binding.btnBack.setOnClickListener {
-           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-               onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-                   onBackPressedDispatcher.onBackPressed() }
-           } else {
                onBackPressedDispatcher.onBackPressed()
-           }
        }
    }
 

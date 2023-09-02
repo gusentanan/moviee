@@ -38,20 +38,14 @@ class AllMovieActivity : AppCompatActivity() {
         setContentView(binding.root)
         initStatusBar()
 
-        initBtnBack()
+        handleBackPressed()
         initStateObserver()
         initRecycleView()
     }
 
-    private fun initBtnBack() {
+    private fun handleBackPressed() {
         binding.btnBackAll.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-                    onBackPressedDispatcher.onBackPressed()
-                }
-            } else {
                 onBackPressedDispatcher.onBackPressed()
-            }
         }
     }
 

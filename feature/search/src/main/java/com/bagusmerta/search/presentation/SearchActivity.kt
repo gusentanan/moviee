@@ -51,7 +51,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initView()
-        handlingBackButton()
+        handlingBackPressed()
 
         initStateObserver()
         initRecyclerView()
@@ -132,14 +132,9 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun handlingBackButton(){
+    private fun handlingBackPressed(){
         binding.btnBack.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-                    onBackPressedDispatcher.onBackPressed() }
-            } else {
                 onBackPressedDispatcher.onBackPressed()
-            }
         }
     }
 
