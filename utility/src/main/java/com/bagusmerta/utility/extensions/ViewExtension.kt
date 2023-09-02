@@ -36,7 +36,7 @@ fun View.makeGone(){
 
 
 fun Activity.initStatusBar(){
-    window.statusBarColor = getColor(R.color.backgroundPrimary)
+    window.statusBarColor = getColor(com.bagusmerta.common_ui.R.color.backgroundPrimary)
     val windowInsetsController = WindowCompat.getInsetsController(
         window, window.decorView
     )
@@ -61,7 +61,7 @@ fun Activity.initTransparentStatusBar(){
 
 fun Activity.hideStatusBar(){
     this.window.apply {
-        clearFlags(ContextCompat.getColor(context, R.color.translucent))
+        clearFlags(ContextCompat.getColor(context, com.bagusmerta.common_ui.R.color.translucent))
         addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

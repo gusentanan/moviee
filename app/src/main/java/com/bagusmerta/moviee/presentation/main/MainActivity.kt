@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
                         val colorInt = ContextCompat.getColor(
                             this@MainActivity,
-                            R.color.black_transparent_light
+                            com.bagusmerta.common_ui.R.color.black_transparent_light
                         )
                         val fraction = (min(255, scrollY).toFloat() / 255.0f).toDouble()
                         materialAppBarLayout.setBackgroundColor(colorInt.changeBackgroundColorAppBar(fraction))

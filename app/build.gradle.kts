@@ -48,12 +48,13 @@ android {
 
 dependencies {
 
-    implementation(project(":core"))
+    implementation(project(":core-logic"))
     implementation(project(":feature:detail"))
     implementation(project(":feature:search"))
     implementation(project(":feature:allmovie"))
     implementation(project(":feature:favoritee"))
     implementation(project(":utility"))
+    implementation(project(":common-ui"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.ktx)

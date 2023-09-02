@@ -1,4 +1,4 @@
-1/*
+/*
  * Designed and developed by 2023 gusentanan (Bagus Merta)
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,17 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    versionCatalogs {
-        create("libs") {
-            from(files("../gradle/libs.versions.toml"))
-        }
+plugins {
+    id("moviee.android.library")
+}
+
+android {
+    namespace = "com.bagusmerta.common_ui"
+    buildFeatures {
+        buildConfig = true
+        viewBinding = true
     }
 }
 
-rootProject.name = "build-logic"
-include(":convention")
+dependencies {
+    implementation(libs.androidx.core.app)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
+}

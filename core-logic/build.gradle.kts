@@ -13,21 +13,32 @@
  * limitations under the License.
  */
 plugins {
-    id("moviee.android.library")
+    id("moviee.android.core_logic")
 }
 
 android {
-    namespace = "com.bagusmerta.utility"
+    namespace = "com.bagusmerta.core_logic"
     buildFeatures {
         buildConfig = true
-        viewBinding = true
     }
     defaultConfig {
-        buildConfigField("String", "POSTER_URL", "\"https://image.tmdb.org/t/p/w500\"")
-        buildConfigField("String", "POSTER_URL_HQ", "\"https://image.tmdb.org/t/p/w780/\"")
+
+        buildConfigField("String", "API_KEY", "\"e87f1caa9ba887b36d2b6613e7759f6f\"")
+        buildConfigField("String", "BASE_API", "\"https://api.themoviedb.org/3/\"")
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 }
+
 dependencies {
-    implementation(project(":common-ui"))
-    implementation(libs.androidx.core.app)
+    implementation(project(":utility"))
+    implementation(libs.junit)
+    implementation(libs.mockito.core)
+    implementation(libs.mockito.kotlin)
+    implementation(libs.mockito.inline)
+    implementation(libs.timber)
+
+    implementation(libs.androidx.paging.ktx)
+    implementation("androidx.paging:paging-rxjava2:3.1.1")
 }

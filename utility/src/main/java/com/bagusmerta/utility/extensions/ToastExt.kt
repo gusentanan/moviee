@@ -21,7 +21,9 @@ fun Activity.makeErrorToast(message: String){
             R.drawable.ic_error_toast
         ))
         startAnimation(this, it.colorToastImage)
-        it.colorToastView.backgroundTintList = ContextCompat.getColorStateList(this, R.color.error)
+        it.colorToastView.backgroundTintList = ContextCompat.getColorStateList(this,
+            com.bagusmerta.common_ui.R.color.error
+        )
         it.colorToastText.text = "Error"
         it.colorToastDescription.text = message
     }
@@ -43,7 +45,9 @@ fun Activity.makeInfoToast(message: String){
             R.drawable.ic_info_toast
         ))
         startAnimation(this, it.colorToastImage)
-        it.colorToastView.backgroundTintList = ContextCompat.getColorStateList(this, R.color.info)
+        it.colorToastView.backgroundTintList = ContextCompat.getColorStateList(this,
+            com.bagusmerta.common_ui.R.color.info
+        )
         it.colorToastText.text = "Info"
         it.colorToastDescription.text = message
     }
@@ -65,7 +69,7 @@ fun Activity.makeSuccessToast(message: String){
         ))
         startAnimation(this, it.colorToastImage)
         it.colorToastView.backgroundTintList = ContextCompat.getColorStateList(this,
-            R.color.success
+            com.bagusmerta.common_ui.R.color.success
         )
         it.colorToastText.text = "Success"
         it.colorToastDescription.text = message

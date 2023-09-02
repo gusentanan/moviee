@@ -25,8 +25,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core-logic"))
     implementation(project(":utility"))
+    implementation(project(":common-ui"))
 
     implementation(libs.shimmer)
     implementation(libs.timber)
