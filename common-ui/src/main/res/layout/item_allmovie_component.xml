@@ -5,18 +5,18 @@
     android:id="@+id/moviee_grid"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginVertical="@dimen/dimen_4"
-    android:layout_marginEnd="@dimen/dimen_8"
+    android:layout_marginVertical="@dimen/_4sdp"
+    android:layout_marginEnd="@dimen/_4sdp"
     app:cardCornerRadius="@dimen/dimen_24">
 
     <ImageView
         android:id="@+id/iv_poster"
-        android:layout_width="@dimen/_104sdp"
-        android:layout_height="@dimen/_164sdp"
+        android:layout_width="@dimen/_114sdp"
+        android:layout_height="@dimen/_154sdp"
         android:scaleType="fitXY"
+        android:layout_gravity="center"
         tools:src="@tools:sample/backgrounds/scenic"
-        android:background="@color/gray"
-        android:contentDescription="@string/poster_movie" />
+        android:background="@color/gray" />
 
     <TextView
         android:id="@+id/tv_movie_rating"
@@ -30,8 +30,7 @@
         android:lines="1"
         android:text="7.8"
         android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"
-        android:textStyle="italic" />
+        android:textSize="@dimen/_10ssp"/>
 
 
 </com.google.android.material.card.MaterialCardView>

@@ -19,8 +19,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.common_ui.databinding.ItemMainComponentBinding
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.feature.detail.databinding.ItemMainComponentBinding
 import com.bagusmerta.utility.extensions.loadCoilImage
 
 class SimilarMovieAdapter(private  val context: Context): RecyclerView.Adapter<SimilarMovieAdapter.ViewHolder>() {

@@ -1,6 +1,5 @@
 package com.bagusmerta.utility.extensions
 
-import java.lang.StringBuilder
 import kotlin.random.Random
 
 fun <T> MutableList<T>.findRandom(): T? {

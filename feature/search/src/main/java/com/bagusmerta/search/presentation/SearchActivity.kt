@@ -162,7 +162,7 @@ class SearchActivity : AppCompatActivity() {
         Timber.tag("ERROR").e(msg)
         binding.apply {
             errorState.root.makeVisible()
-            errorState.btnTryAgain.setOnClickListener {
+            errorState.root.setOnClickListener {
                 initStateObserver()
             }
         }
@@ -171,7 +171,7 @@ class SearchActivity : AppCompatActivity() {
     private fun handleLoadingState(state:Boolean){
         binding.apply {
             errorState.root.makeGone()
-            cvProgressBar.apply {
+            cvProgressBar.root.apply {
                 if(state){
                     wrapperTopSearches.makeGone()
                     makeVisible()

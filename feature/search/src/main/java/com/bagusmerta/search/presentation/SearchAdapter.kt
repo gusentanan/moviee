@@ -20,10 +20,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.common_ui.databinding.ItemAllmovieHorizontalComponentBinding
 import com.bagusmerta.core.domain.model.MovieeSearch
 import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
-import com.bagusmerta.feature.search.databinding.ItemSearchComponentBinding
 import com.bagusmerta.utility.extensions.formatMediaDateYear
 import com.bagusmerta.utility.extensions.joinToGenreString
 import com.bagusmerta.utility.extensions.loadCoilImage
@@ -32,11 +32,11 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
 
     private var items = mutableListOf<MovieeSearch>()
 
-    inner class ViewHolder(private val binding: ItemSearchComponentBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ItemAllmovieHorizontalComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieeSearch){
             binding.apply {
-                ivPoster.loadCoilImage(item.backdropPath)
-                tvSearchMovieTitle.text = item.title
+                ivMovie.loadCoilImage(item.backdropPath)
+                tvMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
                 tvMovieYear.text = formatMediaDateYear(item.releaseDate)
                 val genreString =  DataMapper.mappingMovieGenreListFromId(item.genreId)
@@ -55,7 +55,7 @@ class SearchAdapter(private val context: Context): RecyclerView.Adapter<SearchAd
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val  binding = ItemSearchComponentBinding.inflate(LayoutInflater.from(context), parent,false)
+        val  binding = ItemAllmovieHorizontalComponentBinding.inflate(LayoutInflater.from(context), parent,false)
         return ViewHolder(binding)
     }
 

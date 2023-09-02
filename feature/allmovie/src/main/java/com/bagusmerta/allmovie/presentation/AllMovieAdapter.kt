@@ -20,8 +20,8 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.common_ui.databinding.ItemAllmovieComponentBinding
 import com.bagusmerta.core.domain.model.Moviee
-import com.bagusmerta.feature.allmovie.databinding.ItemAllmovieComponentBinding
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.utility.extensions.loadCoilImage
 

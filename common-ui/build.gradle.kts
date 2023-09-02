@@ -27,6 +27,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.app)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.material)
     implementation(libs.intuit.sdp)
     implementation(libs.intuit.ssp)
 }

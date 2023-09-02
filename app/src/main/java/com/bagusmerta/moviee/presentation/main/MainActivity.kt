@@ -15,7 +15,6 @@
 package com.bagusmerta.moviee.presentation.main
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +26,6 @@ import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.feature.search.presentation.SearchActivity
-import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
 import com.bagusmerta.utility.extensions.changeBackgroundColorAppBar

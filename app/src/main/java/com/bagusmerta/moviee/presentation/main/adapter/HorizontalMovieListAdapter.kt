@@ -20,9 +20,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.common_ui.databinding.ItemMainComponentBinding
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.detail.presentation.DetailActivity
-import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
 import com.bagusmerta.utility.extensions.loadCoilImage
 
 class HorizontalMovieListAdapter(private val context: Context): RecyclerView.Adapter<HorizontalMovieListAdapter.ViewHolder>(){

@@ -4,7 +4,6 @@ import android.widget.ImageView
 import coil.load
 import coil.request.CachePolicy
 import com.bagusmerta.utility.BuildConfig
-import com.bagusmerta.utility.R
 
 fun ImageView.loadCoilImageHQ(url: String?){
     this.load("${BuildConfig.POSTER_URL_HQ}${url}"){

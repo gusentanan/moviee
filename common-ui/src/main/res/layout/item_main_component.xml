@@ -6,18 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginVertical="@dimen/_4sdp"
-    android:layout_marginEnd="@dimen/_4sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
     app:cardCornerRadius="@dimen/dimen_24">
 
     <ImageView
         android:id="@+id/iv_poster"
-        android:layout_width="@dimen/_114sdp"
-        android:layout_height="@dimen/_154sdp"
+        android:layout_width="@dimen/_104sdp"
+        android:layout_height="@dimen/_164sdp"
         android:scaleType="fitXY"
-        android:layout_gravity="center"
         tools:src="@tools:sample/backgrounds/scenic"
-        android:background="@color/gray"
-        android:contentDescription="@string/poster_movie" />
+        android:background="@color/gray" />
 
     <TextView
         android:id="@+id/tv_movie_rating"
@@ -31,7 +29,7 @@
         android:lines="1"
         android:text="7.8"
         android:textColor="@color/white"
-        android:textSize="@dimen/_10ssp"/>
+        android:textSize="@dimen/_10ssp" />
 
 
 </com.google.android.material.card.MaterialCardView>
