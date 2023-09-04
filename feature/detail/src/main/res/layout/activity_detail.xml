@@ -59,22 +59,22 @@
                             android:textStyle="bold"
                             tools:text="Opposite reaction."
                             android:textSize="@dimen/_12ssp"
-                            android:layout_marginTop="@dimen/_8sdp"
-                            android:layout_marginStart="@dimen/_14sdp"
-                            android:layout_marginEnd="@dimen/_10sdp"/>
+                            android:paddingStart="@dimen/_14sdp"
+                            android:paddingEnd="@dimen/_14sdp"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_4sdp"/>
 
                         <TextView
                             android:id="@+id/tv_overview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/tv_tagline"
-                            android:layout_marginStart="@dimen/_10sdp"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:paddingStart="@dimen/_14sdp"
+                            android:paddingEnd="@dimen/_14sdp"
+                            android:paddingBottom="@dimen/_10sdp"
                             android:ellipsize="end"
                             style="@style/Text.SubHeader"
                             android:maxLines="4"
-                            android:paddingHorizontal="@dimen/_6sdp"
                             android:textSize="@dimen/_12ssp"
                             tools:text="In a time when monsters walk the Earth, humanity’s fight for its future sets Godzilla and Kong on a collision course that will see the two most powerful forces of nature on the planet collide in a spectacular battle for the ages." />
 
@@ -137,6 +137,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_10sdp"
                             android:layout_gravity="center_horizontal"
                             android:orientation="horizontal">
 
@@ -240,18 +241,42 @@
                         android:background="@color/white">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:layout_gravity="center_horizontal"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/Text.Header1"
-                                android:textSize="@dimen/_16ssp"
-                                android:layout_marginStart="@dimen/_12sdp"
-                                android:text="@string/similar_to_this"/>
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    style="@style/Text.Header1"
+                                    android:textSize="@dimen/_16ssp"
+                                    android:layout_marginStart="@dimen/_12sdp"
+                                    android:text="@string/similar_to_this"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"/>
+
+                                <Button
+                                    android:id="@+id/btn_see_all_similar"
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:background="@drawable/bg_button"
+                                    android:text="@string/tv_see_all_cast"
+                                    android:textStyle="bold"
+                                    android:textAllCaps="false"
+                                    android:layout_marginEnd="@dimen/_24sdp"
+                                    android:textSize="@dimen/_12ssp"
+                                    android:layout_marginBottom="@dimen/_2sdp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                         </LinearLayout>
 

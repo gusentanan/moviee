@@ -3,8 +3,8 @@
     <string name="share_button">Bookmark Movie</string>
     <string name="ex_movie_title">Spiderman: No Way Home</string>
     <string name="thumbnail_trailer_videos">thumbnail trailer videos</string>
-    <string name="cast_movie_detail">&#10024; Cast</string>
-    <string name="similar_to_this">🧭 Similar to this</string>
+    <string name="cast_movie_detail">Cast</string>
+    <string name="similar_to_this">Similar to this</string>
     <string name="runtime_movie_detail">"%s Hr %s Min"</string>
     <string name="remove_from_favorite">Remove from favorite</string>
     <string name="add_to_favorite">Add to favorite</string>
