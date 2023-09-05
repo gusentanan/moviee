@@ -28,7 +28,9 @@ import retrofit2.http.Query
 interface MovieeService {
 
     @GET("discover/movie")
-    fun getListMovies(): Flowable<MovieeResponse>
+    fun getListMovies(
+        @Query("include_adult") includeAdult: Boolean = false,
+    ): Flowable<MovieeResponse>
 
     @GET("search/movie")
     fun searchMovies(
@@ -38,17 +40,23 @@ interface MovieeService {
 
     @GET("movie/top_rated")
     fun getTopRatedMovies(
-        @Query("page") page: Int = 1
+        @Query("include_adult") includeAdult: Boolean = false,
     ): Single<MovieeResponse>
 
     @GET("movie/upcoming")
-    fun getUpcomingMovies(): Single<MovieeResponse>
+    fun getUpcomingMovies(
+        @Query("include_adult") includeAdult: Boolean = false,
+    ): Single<MovieeResponse>
 
     @GET("movie/popular")
-    fun getPopularMovies(): Single<MovieeResponse>
+    fun getPopularMovies(
+        @Query("include_adult") includeAdult: Boolean = false,
+    ): Single<MovieeResponse>
 
     @GET("movie/now_playing")
-    fun getNowPlayingMovies(): Single<MovieeResponse>
+    fun getNowPlayingMovies(
+        @Query("include_adult") includeAdult: Boolean = false,
+    ): Single<MovieeResponse>
 
     @GET("movie/{movie_id}")
     fun getDetailMovies(
@@ -66,6 +74,7 @@ interface MovieeService {
     fun getSimilarMovies(
         @Path("movie_id") movieId: Int,
         @Query("language") lang: String? = "en-US",
+        @Query("include_adult") includeAdult: Boolean = false,
         @Query("page") page: Int = 1
     ): Single<MovieeResponse>
 
@@ -74,6 +83,7 @@ interface MovieeService {
         @Path("media_type") mediaType: String = "movie",
         @Path("time_window") timeWindow: String = "day",
         @Query("language") lang: String? = "en-US",
+        @Query("include_adult") includeAdult: Boolean = false,
         @Query("page") page: Int = 1
     ): Single<MovieeResponse>
 
