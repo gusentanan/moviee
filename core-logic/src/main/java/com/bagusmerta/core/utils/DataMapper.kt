@@ -147,6 +147,7 @@ object DataMapper {
             MovieeSearch(
                 id = it.movieeId,
                 backdropPath = it.backdropPath,
+                posterPath = it.posterPath,
                 releaseDate = it.releaseDate,
                 title = it.movieeTitle,
                 rating = it.rating,

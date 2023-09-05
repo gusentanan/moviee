@@ -64,7 +64,8 @@ class SearchViewModel(private val useCase: MovieeUseCase): ViewModel() {
                                     releaseDate = it.releaseDate,
                                     rating = it.rating,
                                     genreId = it.genreId,
-                                    isFavorite = it.isFavorite
+                                    isFavorite = it.isFavorite,
+                                    posterPath = it.posterPath
                                 )
                             }
                         )

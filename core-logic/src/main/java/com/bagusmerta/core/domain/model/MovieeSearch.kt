@@ -19,6 +19,7 @@ data class MovieeSearch(
     val title: String?,
     val releaseDate: String?,
     val backdropPath: String?,
+    val posterPath: String?,
     val isFavorite: Boolean?,
     val rating: Double?,
     val genreId: List<Int>?

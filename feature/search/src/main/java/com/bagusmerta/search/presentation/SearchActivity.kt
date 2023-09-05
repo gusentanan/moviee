@@ -16,16 +16,18 @@ package com.bagusmerta.feature.search.presentation
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeSearch
-import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.feature.search.R
 import com.bagusmerta.feature.search.databinding.ActivitySearchBinding
+import com.bagusmerta.search.presentation.SearchGridAdapter
+import com.bagusmerta.utility.datasource.RecyclerViewEnum
+import com.bagusmerta.utility.extensions.initStatusBar
 import com.bagusmerta.utility.extensions.makeGone
 import com.bagusmerta.utility.extensions.makeVisible
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -39,29 +41,30 @@ import java.util.concurrent.TimeUnit
 class SearchActivity : AppCompatActivity() {
 
     private val binding: ActivitySearchBinding by lazy { ActivitySearchBinding.inflate(layoutInflater) }
-    private val searchAdapter: SearchAdapter by lazy { SearchAdapter(this) }
+    private val searchListAdapter: SearchListAdapter by lazy { SearchListAdapter(this) }
+    private val searchGridAdapter: SearchGridAdapter by lazy { SearchGridAdapter(this) }
     private val searchViewModel: SearchViewModel by viewModel()
     private val items = mutableListOf<MovieeSearch>()
     private val mCompositeDisposable = CompositeDisposable()
 
     private val searchTextChange = PublishSubject.create<String>()
+    private var viewFlag: RecyclerViewEnum = RecyclerViewEnum.LIST_VIEW
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initStatusBar()
+
         initView()
         handlingBackPressed()
-
         initStateObserver()
         initRecyclerView()
+        toggleRecylerViewChanges()
         initSearchMenu()
     }
 
     private fun initView() {
         binding.apply {
-            btnFavorite.setOnClickListener{
-                startActivity(Intent(this@SearchActivity, FavoriteeActivity::class.java))
-            }
             lottieEmptyRes.apply {
                 lottieView.setAnimation("lottie/empty_state_lottie.json")
                 lottieView.playAnimation()
@@ -98,7 +101,6 @@ class SearchActivity : AppCompatActivity() {
                     .subscribeOn(AndroidSchedulers.mainThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe{
-                        binding.tvTopSearches.text = getString(R.string.tv_search_results)
                         searchViewModel.searchMovies(it)
                     }.let { mCompositeDisposable::add }
                 return true
@@ -125,9 +127,21 @@ class SearchActivity : AppCompatActivity() {
 
     private fun initRecyclerView(){
         binding.apply {
-            rvSearchMovies.layoutManager = LinearLayoutManager(this@SearchActivity)
-            rvSearchMovies.setHasFixedSize(true)
-            rvSearchMovies.adapter = searchAdapter
+            when(viewFlag){
+                RecyclerViewEnum.GRID_VIEW -> {
+                    rvSearchMovies.layoutManager = GridLayoutManager(this@SearchActivity, 3, GridLayoutManager.VERTICAL, false)
+                    rvSearchMovies.setHasFixedSize(true)
+                    searchGridAdapter.setItems(items)
+                    rvSearchMovies.adapter = searchGridAdapter
+                }
+                RecyclerViewEnum.LIST_VIEW -> {
+                    rvSearchMovies.layoutManager = LinearLayoutManager(this@SearchActivity)
+                    rvSearchMovies.setHasFixedSize(true)
+                    searchListAdapter.setItems(items)
+                    rvSearchMovies.adapter = searchListAdapter
+                }
+            }
+
         }
     }
 
@@ -137,19 +151,38 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun toggleRecylerViewChanges(){
+        binding.btnView.setOnClickListener {
+            if(viewFlag == RecyclerViewEnum.LIST_VIEW){
+                viewFlag = RecyclerViewEnum.GRID_VIEW
+                binding.btnView.setImageResource(com.bagusmerta.common_ui.R.drawable.ic_baseline_view_module_24)
+                initRecyclerView()
+            } else {
+                viewFlag = RecyclerViewEnum.LIST_VIEW
+                binding.btnView.setImageResource(com.bagusmerta.common_ui.R.drawable.ic_baseline_view_list_24)
+                initRecyclerView()
+            }
+        }
+    }
+
     private fun handleEmptyResult(state: Boolean){
         binding.apply {
             lottieEmptyRes.root.let {
                 if(state) it.makeVisible() else it.makeGone()
             }
         }
-        searchAdapter.clearItems()
+        searchListAdapter.clearItems()
     }
 
     private fun handleSearchResult(data: List<MovieeSearch>){
         items.clear()
         items.addAll(data)
-        searchAdapter.setItems(items)
+        if(viewFlag == RecyclerViewEnum.LIST_VIEW){
+            searchListAdapter.setItems(items)
+        } else {
+            searchGridAdapter.setItems(items)
+        }
+
     }
 
     private fun handleErrorState(msg: String) {
@@ -166,13 +199,7 @@ class SearchActivity : AppCompatActivity() {
         binding.apply {
             errorState.root.makeGone()
             cvProgressBar.root.apply {
-                if(state){
-                    wrapperTopSearches.makeGone()
-                    makeVisible()
-                } else{
-                    wrapperTopSearches.makeVisible()
-                    makeGone()
-                }
+                if(state) makeVisible() else makeGone()
             }
         }
     }
