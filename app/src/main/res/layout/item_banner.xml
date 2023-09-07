@@ -19,7 +19,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_136sdp"
+        android:layout_height="@dimen/_166sdp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/banner_gradient_bottom" />
 

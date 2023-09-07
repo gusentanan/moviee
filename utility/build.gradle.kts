@@ -27,3 +27,7 @@ android {
         buildConfigField("String", "POSTER_URL_HQ", "\"https://image.tmdb.org/t/p/w780/\"")
     }
 }
+dependencies {
+    implementation(project(":common-ui"))
+    implementation(libs.androidx.core.app)
+}

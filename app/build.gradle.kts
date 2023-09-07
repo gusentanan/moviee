@@ -28,8 +28,8 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -48,12 +48,13 @@ android {
 
 dependencies {
 
-    implementation(project(":core"))
+    implementation(project(":core-logic"))
     implementation(project(":feature:detail"))
     implementation(project(":feature:search"))
     implementation(project(":feature:allmovie"))
     implementation(project(":feature:favoritee"))
     implementation(project(":utility"))
+    implementation(project(":common-ui"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.ktx)
@@ -71,13 +72,10 @@ dependencies {
     implementation(libs.lottie)
     implementation(libs.material)
     implementation(libs.splash.screen)
-
-    // sdp and ssp dep
-    implementation("com.intuit.sdp:sdp-android:1.1.0")
-    implementation("com.intuit.ssp:ssp-android:1.1.0")
+    implementation(libs.intuit.sdp)
+    implementation(libs.intuit.ssp)
 
 
     //stepper dep
     implementation("com.tbuonomo:dotsindicator:4.3")
-
 }

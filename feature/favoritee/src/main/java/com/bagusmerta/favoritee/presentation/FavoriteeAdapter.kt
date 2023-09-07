@@ -20,24 +20,24 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.common_ui.databinding.ItemAllmovieHorizontalComponentBinding
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.detail.presentation.DetailActivity
-import com.bagusmerta.feature.favoritee.databinding.ItemFavoriteeBinding
-import com.bagusmerta.utility.formatMediaDate
-import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.extensions.formatMediaDateYear
+import com.bagusmerta.utility.extensions.loadCoilImage
 import java.util.*
 
 class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<FavoriteeAdapter.ViewHolder>() {
 
     private var items = mutableListOf<MovieeFavorite>()
 
-    inner class ViewHolder(private val binding: ItemFavoriteeBinding): RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ItemAllmovieHorizontalComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieeFavorite){
             binding.apply {
-                ivFavMovie.loadImage(item.backdropPath)
-                tvFavMovieTitle.text = item.title
+                ivMovie.loadCoilImage(item.backdropPath)
+                tvMovieTitle.text = item.title
                 tvMovieRating.text = String.format("%.1f", item.rating)
-                tvMovieYear.text = formatMediaDate(item.releaseDate)
+                tvMovieYear.text = formatMediaDateYear(item.releaseDate)
                 tvGenres.text = item.genre
 
                 itemView.setOnClickListener {
@@ -50,7 +50,7 @@ class FavoriteeAdapter(private val context: Context): RecyclerView.Adapter<Favor
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteeAdapter.ViewHolder {
-        val binding = ItemFavoriteeBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemAllmovieHorizontalComponentBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 

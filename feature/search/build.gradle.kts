@@ -24,10 +24,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(project(":core-logic"))
     implementation(project(":utility"))
     implementation(project(":feature:detail"))
     implementation(project(":feature:favoritee"))
+    implementation(project(":common-ui"))
 
     implementation(libs.timber)
     implementation(libs.lottie)

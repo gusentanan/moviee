@@ -31,9 +31,10 @@ dependencyResolutionManagement {
 
 rootProject.name = "moviee"
 include(":app")
-include(":core")
+include(":core-logic")
 include(":feature:detail")
 include(":feature:allmovie")
 include(":feature:favoritee")
 include(":feature:search")
 include(":utility")
+include(":common-ui")

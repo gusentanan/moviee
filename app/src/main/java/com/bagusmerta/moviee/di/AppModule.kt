@@ -22,7 +22,6 @@ import com.bagusmerta.feature.detail.presentation.DetailViewModel
 import com.bagusmerta.feature.favoritee.presentation.FavoriteeViewModel
 import com.bagusmerta.feature.search.presentation.SearchViewModel
 import com.bagusmerta.moviee.presentation.main.MainViewModel
-import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -32,7 +31,7 @@ val useCaseModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel(get(), androidApplication()) } // app context to access Resource or perform operation that require context
+    viewModel { MainViewModel(get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { FavoriteeViewModel(get()) }
     viewModel { SearchViewModel(get()) }

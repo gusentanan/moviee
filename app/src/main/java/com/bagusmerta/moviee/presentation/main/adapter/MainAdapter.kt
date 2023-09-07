@@ -32,11 +32,11 @@ class MainAdapter(private val context: Context): RecyclerView.Adapter<MainAdapte
     inner class ViewHolder(private val binding: ItemHorizontalMovieListBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: HomeFeed){
             binding.apply {
-                tvRecommendMovies.text = item.feedTitle
-                tv2RecommendMovies.text = item.feedSubHeader
+                tvRecommendMovies.text = item.feedResources?.text
+                tv2RecommendMovies.text = item.feedResources?.subText
                 btnSeeAllRecommend.setOnClickListener {
                     context.startActivity(Intent(context, AllMovieActivity::class.java).apply {
-                        putExtra(AllMovieActivity.IDENTIFIER, item.movieSection)
+                        putExtra(AllMovieActivity.IDENTIFIER, item.feedResources?.id)
                     })
                 }
 

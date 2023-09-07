@@ -16,7 +16,7 @@ package com.bagusmerta.feature.detail.presentation
 
 
 import android.annotation.SuppressLint
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -24,18 +24,31 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.Cast
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.model.MovieeDetail
+import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.core.utils.DataMapper.mapMovieDetailToMoviee
+import com.bagusmerta.detail.presentation.FullscreenYouTubePlayerActivity
 import com.bagusmerta.feature.detail.R
 import com.bagusmerta.feature.detail.databinding.ActivityDetailBinding
-import com.bagusmerta.feature.detail.helpers.HelpersDetail
 import com.bagusmerta.feature.detail.presentation.adapter.CastAdapter
 import com.bagusmerta.feature.detail.presentation.adapter.SimilarMovieAdapter
 import com.bagusmerta.utility.*
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.loadOrCueVideo
+import com.bagusmerta.utility.datasource.LanguageEnum
+import com.bagusmerta.utility.extensions.formatMediaDateMonth
+import com.bagusmerta.utility.extensions.hideStatusBar
+import com.bagusmerta.utility.extensions.initTransparentStatusBar
+import com.bagusmerta.utility.extensions.joinToGenreString
+import com.bagusmerta.utility.extensions.loadCoilImage
+import com.bagusmerta.utility.extensions.loadCoilImageHQ
+import com.bagusmerta.utility.extensions.makeErrorToast
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeInfoToast
+import com.bagusmerta.utility.extensions.makeSuccessToast
+import com.bagusmerta.utility.extensions.makeVisible
+import com.bagusmerta.utility.extensions.toKFormatString
+import com.bagusmerta.utility.extensions.toPercentageString
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import java.text.NumberFormat
 import java.util.*
 
 class DetailActivity : AppCompatActivity() {
@@ -45,8 +58,6 @@ class DetailActivity : AppCompatActivity() {
     private val castAdapter: CastAdapter by lazy { CastAdapter(this) }
     private val similarMovieAdapter: SimilarMovieAdapter by lazy { SimilarMovieAdapter(this) }
 
-    private var _youtubePlayer: YouTubePlayer ? = null
-    private var youtubePlayerListener: AbstractYouTubePlayerListener ? = null
     private var itemCast = mutableListOf<Cast>()
     private var itemSimilarMovie = mutableListOf<Moviee>()
 
@@ -55,22 +66,20 @@ class DetailActivity : AppCompatActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(binding.root)
         handleBackPressed()
-        initView()
+        hideStatusBar()
+        initTransparentStatusBar()
 
         initRecyclerView()
         initStateObserver()
     }
 
+
     private fun handleBackPressed() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-                onBackPressedDispatcher.onBackPressed() }
+        binding.itemTopContainer.btnBackDetail.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
         }
     }
 
-    private fun initView() {
-        hideStatusBar()
-    }
 
     private fun initStateObserver() {
         val movieeId = intent.getIntExtra(MOVIEE, 0)
@@ -117,24 +126,45 @@ class DetailActivity : AppCompatActivity() {
     @SuppressLint("StringFormatMatches")
     private fun setDetailView(data: MovieeDetail) {
         binding.apply {
-            // init yt video player
-            if(_youtubePlayer == null) {
-                data.keyVideo?.let { initYouTubePlayer(it) }
-            } else {
-                data.keyVideo?.let { _youtubePlayer!!.cueVideo(it, 0f) }
+
+            val genreString = DataMapper.mappingMovieGenreListFromId(data.genres)
+                .map{ it.name }
+                .joinToGenreString()
+
+            itemTopContainer.apply {
+                ivPoster.loadCoilImage(data.posterPath)
+                backdropImage.loadCoilImageHQ(data.backdropPath)
+                tvTitleDetail.text = data.title
+                tvGenreInfo.text = genreString
+                tvRatingDetail.text = data.rating?.toPercentageString()
+                tvRatingCount.text = data.voteCount?.toKFormatString()
             }
 
-            thumbnailContainer.backdropImage.loadHighQualityImage(data.backdropPath)
-            tvTitle.text = data.title
-            tvMovieRating.text = String.format("%.1f", data.rating)
-            tvMovieYear.text = formatMediaDate(data.releaseDate)
-            tvMovieRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
+            itemInfoContainer.apply {
+                vOriginalTitle.text = data.originalTitle
+                vOriginalLanguage.text = data.originalLanguage
+                vStatus.text = data.status
+                vRuntime.text = getString(R.string.runtime_movie_detail, data.runtime?.div(60), data.runtime?.rem(60))
+                vOriginalLanguage.text = getOriginalLanguage(data.originalLanguage)
+                vProductionCountries.text = data.productionCountries
+                vBudget.text = getCurrency(data.budget)
+                vRevenue.text = getCurrency(data.revenue)
+                vReleaseDate.text = formatMediaDateMonth(data.releaseDate)
+                vProductionCompanies.text = data.productionCompanies?.joinToString("\n")
+            }
+
+            tvTagline.text = data.tagline
             tvOverview.text = data.overview
 
-            val genreString =  HelpersDetail.mappingMovieGenreListFromId(data.genres)
-                .joinToString(" • ") { it.name.toString() }
-            tvGenres.text = genreString
-
+            itemTrailerContainer.apply {
+                ivTrailerThumbnail.loadCoilImageHQ(data.backdropPath)
+                tvTrailerTitle.text = data.titleVideo
+                btnWatchTrailer.setOnClickListener {
+                    this@DetailActivity.startActivity(Intent(this@DetailActivity, FullscreenYouTubePlayerActivity::class.java).apply {
+                            putExtra(FullscreenYouTubePlayerActivity.KEY_TRAILERS, data.keyVideo)
+                        })
+                }
+            }
 
             var favoriteState = data.isFavorite!!
             detailViewModel.apply {
@@ -175,25 +205,14 @@ class DetailActivity : AppCompatActivity() {
             rvMovieSimilar.adapter = similarMovieAdapter
         }
     }
-    private fun initYouTubePlayer(keyVideo: String) = binding.apply {
-        youtubePlayerListener = object: AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                keyVideo.let {key ->
-                    thumbnailContainer.apply {
-                        videoLoader.makeGone()
-                        btnPlay.makeVisible()
-                        btnPlay.setOnClickListener {
-                            thumbnailContainer.container.makeGone()
-                            ytPlayerView.makeVisible()
-                            _youtubePlayer = youTubePlayer
-                            _youtubePlayer!!.loadVideo(key, 0f)
-                        }
-                    }
-                }
-            }
-        }
 
-        ytPlayerView.addYouTubePlayerListener(youtubePlayerListener!!)
+    private fun getOriginalLanguage(data: String?): String {
+        return (LanguageEnum.values().find { it.isoCode == data } ?: LanguageEnum.UNKNOWN).toString()
+    }
+    private fun getCurrency(data: Double?): String{
+        return NumberFormat
+            .getCurrencyInstance(Locale.US)
+            .format(data)
     }
 
     private fun handleButtonSaveIcon(isFavorite: Boolean){
@@ -234,10 +253,6 @@ class DetailActivity : AppCompatActivity() {
         makeInfoToast("This feature is currently unavailable")
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        youtubePlayerListener?.let { binding.ytPlayerView.release() }
-    }
 
     companion object{
         const val MOVIEE = "moviee"

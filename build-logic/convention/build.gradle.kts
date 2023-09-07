@@ -43,9 +43,9 @@ gradlePlugin {
             id = "moviee.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
-        register("androidCore") {
-            id = "moviee.android.core"
-            implementationClass = "AndroidCoreConventionPlugin"
+        register("androidCoreLogic") {
+            id = "moviee.android.core_logic"
+            implementationClass = "AndroidCoreLogicConventionPlugin"
         }
         register("androidFeature") {
             id = "moviee.android.feature"

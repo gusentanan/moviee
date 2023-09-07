@@ -15,27 +15,30 @@
 package com.bagusmerta.moviee.presentation.main
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
+import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
 import com.bagusmerta.feature.favoritee.presentation.FavoriteeActivity
 import com.bagusmerta.feature.search.presentation.SearchActivity
-import com.bagusmerta.moviee.R
 import com.bagusmerta.moviee.databinding.ActivityMainBinding
-import com.bagusmerta.moviee.helpers.Helpers
 import com.bagusmerta.moviee.presentation.main.adapter.MainAdapter
-import com.bagusmerta.utility.findRandom
-import com.bagusmerta.utility.loadHighQualityImage
-import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeInfoToast
-import com.bagusmerta.utility.makeVisible
+import com.bagusmerta.utility.extensions.changeBackgroundColorAppBar
+import com.bagusmerta.utility.extensions.findRandom
+import com.bagusmerta.utility.extensions.initTransparentStatusBar
+import com.bagusmerta.utility.extensions.joinToGenreString
+import com.bagusmerta.utility.extensions.loadCoilImageHQ
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeInfoToast
+import com.bagusmerta.utility.extensions.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
+import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,14 +52,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initTransparentStatusBar()
         initAppBar()
+        observerAppBar()
 
         initStateObserver()
         initRecyclerView()
     }
 
     private fun initAppBar(){
-        window.statusBarColor = ContextCompat.getColor(this, R.color.colorSecondaryDark)
         binding.apply {
             btnFavorite.setOnClickListener{
                 startActivity(Intent(this@MainActivity, FavoriteeActivity::class.java))
@@ -67,31 +71,50 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initStateObserver() {
-        with(mainViewModel){
-            getAllFeed()
+    private fun observerAppBar() {
+        binding.apply {
+            nestedScroll.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+                if (scrollY > oldScrollY) {  // scroll down
+                    materialAppBarLayout.visibility = View.GONE
+                } else {
+                    if (scrollY < oldScrollY) {  // scroll up
+                        materialAppBarLayout.visibility = View.VISIBLE
 
-            resultBanner.observe(this@MainActivity){
+                        val colorInt = ContextCompat.getColor(
+                            this@MainActivity,
+                            com.bagusmerta.common_ui.R.color.black_transparent_light
+                        )
+                        val fraction = (min(255, scrollY).toFloat() / 255.0f).toDouble()
+                        materialAppBarLayout.setBackgroundColor(colorInt.changeBackgroundColorAppBar(fraction))
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initStateObserver() {
+        with(mainViewModel) {
+            resultBanner.observe(this@MainActivity) {
                 runOnUiThread {
                     it?.let { data -> handleBannerResult(data) }
                 }
             }
-            resultAllFeed.observe(this@MainActivity){
+            resultAllFeed.observe(this@MainActivity) {
                 runOnUiThread {
                     handleMovieeResult(it)
                 }
             }
-            loadingState.observe(this@MainActivity){
+            loadingState.observe(this@MainActivity) {
                 handleLoadingState(it)
             }
-            errorState.observe(this@MainActivity){
+            errorState.observe(this@MainActivity) {
                 handleErrorState(it)
             }
         }
     }
 
 
-    private fun handleInfoState(msg: String){
+    private fun handleInfoState(msg: String) {
         this.makeInfoToast(msg)
     }
 
@@ -107,18 +130,18 @@ class MainActivity : AppCompatActivity() {
         val banner: Moviee = bannerItems.findRandom()!!
 
         binding.iWrapperBanner.apply {
-            if(data.isNotEmpty()){
+            if (data.isNotEmpty()) {
                 tvGenreBanner.makeVisible()
                 mbMoreInfoBanner.makeVisible()
             }
-            ivBanner.loadHighQualityImage(banner.posterPath)
-            tvGenreBanner.text = Helpers.mappingMovieGenreListFromId(banner.genreId)
-                .joinToString(" • ") { it.name.toString() }
+            ivBanner.loadCoilImageHQ(banner.posterPath)
+            tvGenreBanner.text = DataMapper.mappingMovieGenreListFromId(banner.genreId)
+                .map { it.name }
+                .joinToGenreString()
 
             mbMoreInfoBanner.setOnClickListener {
                 startActivity(Intent(this@MainActivity, DetailActivity::class.java).apply {
-                    putExtra(DetailActivity.MOVIEE, banner.id)
-                })
+                    putExtra(DetailActivity.MOVIEE, banner.id) })
             }
         }
     }
@@ -153,5 +176,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

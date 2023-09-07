@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bagusmerta.feature.detail">
+    package="com.bagusmerta.feature.detail" >
 
     <application>
         <activity
+            android:name="com.bagusmerta.detail.presentation.FullscreenYouTubePlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="false"
+            android:label="@string/title_activity_fullscreen_you_tube_player"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"/>
+        <activity
             android:name=".presentation.DetailActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge" >
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="@string/feature_detail" android:host="detail"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="detail"
+                    android:scheme="@string/feature_detail" />
             </intent-filter>
         </activity>
     </application>

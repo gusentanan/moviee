@@ -22,6 +22,7 @@ import com.bagusmerta.moviee.databinding.ActivityOnboardingBinding
 import com.bagusmerta.moviee.helpers.OnboardPrefManager
 import com.bagusmerta.moviee.presentation.main.MainActivity
 import com.bagusmerta.moviee.presentation.onboarding.entity.OnboardPages
+import com.bagusmerta.utility.extensions.initStatusBar
 
 class OnboardingActivity : AppCompatActivity() {
 
@@ -33,6 +34,7 @@ class OnboardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        initStatusBar()
 
         if(!prefManager.isFirstTime){
             startActivity(Intent(this, MainActivity::class.java))

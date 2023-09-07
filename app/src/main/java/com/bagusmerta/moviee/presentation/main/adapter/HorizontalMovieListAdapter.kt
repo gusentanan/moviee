@@ -20,10 +20,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bagusmerta.common_ui.databinding.ItemMainComponentBinding
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.feature.detail.presentation.DetailActivity
-import com.bagusmerta.moviee.databinding.ItemMainComponentBinding
-import com.bagusmerta.utility.loadImage
+import com.bagusmerta.utility.extensions.loadCoilImage
 
 class HorizontalMovieListAdapter(private val context: Context): RecyclerView.Adapter<HorizontalMovieListAdapter.ViewHolder>(){
 
@@ -32,7 +32,7 @@ class HorizontalMovieListAdapter(private val context: Context): RecyclerView.Ada
     inner class ViewHolder(private val binding: ItemMainComponentBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Moviee){
             binding.apply {
-                ivPoster.loadImage(item.posterPath)
+                ivPoster.loadCoilImage(item.posterPath)
                 tvMovieRating.text = item.rating.toString()
 
                 itemView.setOnClickListener {

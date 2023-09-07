@@ -50,6 +50,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("rxjava").get())
                 add("implementation", libs.findLibrary("rx.android").get())
                 add("implementation", libs.findLibrary("rx.stream").get())
+
+                add("implementation", libs.findLibrary("intuit.sdp").get())
+                add("implementation", libs.findLibrary("intuit.ssp").get())
             }
         }
     }

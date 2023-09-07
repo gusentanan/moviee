@@ -14,20 +14,18 @@
  */
 package com.bagusmerta.feature.favoritee.presentation
 
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeFavorite
 import com.bagusmerta.feature.favoritee.R
 import com.bagusmerta.feature.favoritee.databinding.ActivityFavoriteeBinding
-import com.bagusmerta.feature.favoritee.di.favoriteeModule
-import com.bagusmerta.utility.makeErrorToast
-import com.bagusmerta.utility.makeGone
-import com.bagusmerta.utility.makeInfoToast
-import com.bagusmerta.utility.makeVisible
+import com.bagusmerta.utility.extensions.initStatusBar
+import com.bagusmerta.utility.extensions.makeErrorToast
+import com.bagusmerta.utility.extensions.makeGone
+import com.bagusmerta.utility.extensions.makeInfoToast
+import com.bagusmerta.utility.extensions.makeVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.context.loadKoinModules
 import timber.log.Timber
 
 
@@ -48,20 +46,16 @@ class FavoriteeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle(R.string.favorite_page_title)
 
-        loadKoinModules(favoriteeModule)
-        initBtnBack()
+        initStatusBar()
+        handleBackPressed()
         initClearButton()
         initObserverState()
         initRecyclerView()
     }
 
-   private fun initBtnBack(){
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-           onBackInvokedDispatcher.registerOnBackInvokedCallback(1000) {
-               onBackPressedDispatcher.onBackPressed() }
-       }
+   private fun handleBackPressed(){
        binding.btnBack.setOnClickListener {
-           onBackPressedDispatcher.onBackPressed()
+               onBackPressedDispatcher.onBackPressed()
        }
    }
 
@@ -80,7 +74,6 @@ class FavoriteeActivity : AppCompatActivity() {
 
     private fun initObserverState() {
         favoriteeViewModel.apply {
-            getFavoriteMovies(true)
 
             loadingState.observe(this@FavoriteeActivity){
                 handleLoadingState(it)
@@ -103,7 +96,7 @@ class FavoriteeActivity : AppCompatActivity() {
     }
 
     private fun handleLoadingState(state: Boolean) {
-        binding.loadingState.apply {
+        binding.cvProgressBar.root.apply {
             if(state) makeVisible() else makeGone()
         }
     }

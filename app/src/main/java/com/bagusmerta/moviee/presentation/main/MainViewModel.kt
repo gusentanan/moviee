@@ -14,22 +14,21 @@
  */
 package com.bagusmerta.moviee.presentation.main
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.bagusmerta.core.data.Resource
 import com.bagusmerta.core.domain.model.HomeFeed
 import com.bagusmerta.core.domain.model.Moviee
 import com.bagusmerta.core.domain.usecase.MovieeUseCase
-import com.bagusmerta.moviee.R
+import com.bagusmerta.utility.datasource.MovieeHomeFeed
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 
-class MainViewModel(private val useCase: MovieeUseCase, application: Application): AndroidViewModel(application) {
+class MainViewModel(private val useCase: MovieeUseCase): ViewModel() {
 
     private val mCompositeDisposable = CompositeDisposable()
     private val _resultBanner = MutableLiveData<List<Moviee>?>()
@@ -39,6 +38,10 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     private val _loadingState = MutableLiveData<Boolean>()
     private val _errorState = MutableLiveData<String>()
     private val _emptyState = MutableLiveData<Boolean>()
+
+    init {
+        getAllFeed()
+    }
 
     val resultBanner: LiveData<List<Moviee>?>
         get() = _resultBanner
@@ -55,9 +58,6 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     val errorState: LiveData<String>
         get() = _errorState
 
-    private fun getMyStringResource(resId: Int): String {
-        return getApplication<Application>().getString(resId)
-    }
     fun getAllFeed(){
         Observable.zip(
             useCase.getAllMovies().toObservable(),
@@ -89,8 +89,7 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     private fun validateNewlyMovies(newly: Resource<List<Moviee>>){
         when(newly){
             is Resource.Success -> {
-                val homeFeed = HomeFeed(getMyStringResource(R.string.tv_newly_movies),
-                    getMyStringResource(R.string.tv2_recommend_movies), newly.data, 1)
+                val homeFeed = HomeFeed(MovieeHomeFeed.NEWLY_MOVIES, newly.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -102,8 +101,8 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     private fun validateUpcoming(upcoming: Resource<List<Moviee>>){
         when(upcoming){
             is Resource.Success -> {
-                val homeFeed = HomeFeed(getMyStringResource(R.string.tv_upcoming_movies),
-                    getMyStringResource(R.string.tv2_upcoming_movies), upcoming.data, 2)
+                val homeFeed = HomeFeed(
+                    MovieeHomeFeed.UPCOMING_MOVIES, upcoming.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -115,8 +114,9 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     private fun validatePopular(popular: Resource<List<Moviee>>){
         when(popular){
             is Resource.Success -> {
-                val homeFeed = HomeFeed(getMyStringResource(R.string.tv_popular_movies),
-                    getMyStringResource(R.string.tv2_popular_movies), popular.data, 3)
+                val homeFeed = HomeFeed(
+                    MovieeHomeFeed.POPULAR_MOVIES, popular.data)
+
                 _listFeed.add(homeFeed)
             }
             is Resource.Error ->  _errorState.postValue(popular.errorMessage)
@@ -127,8 +127,8 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     private fun validateTopRated(top: Resource<List<Moviee>>){
         when(top){
             is Resource.Success -> {
-                val homeFeed = HomeFeed(getMyStringResource(R.string.tv_toprated_movies),
-                    getMyStringResource(R.string.tv2_toprated_movies), top.data, 4)
+                val homeFeed = HomeFeed(
+                    MovieeHomeFeed.TOP_RATED_MOVIES, top.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -140,8 +140,8 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
     private fun validateNowPLaying(now: Resource<List<Moviee>>){
         when(now){
             is Resource.Success -> {
-                val homeFeed = HomeFeed(getMyStringResource(R.string.tv_nowplaying_movies),
-                    getMyStringResource(R.string.tv2_nowplaying_movies), now.data, 5)
+                val homeFeed = HomeFeed(
+                    MovieeHomeFeed.NOW_PLAYING_MOVIES, now.data)
 
                 _listFeed.add(homeFeed)
             }
@@ -149,7 +149,6 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
             is Resource.Empty ->  _emptyState.postValue(true)
         }
     }
-
 
     private fun getBannerMovies(){
         useCase.getAllMovies()
@@ -172,6 +171,5 @@ class MainViewModel(private val useCase: MovieeUseCase, application: Application
         super.onCleared()
         mCompositeDisposable.clear()
     }
-
 
 }

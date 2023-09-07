@@ -154,3 +154,5 @@ sealed class DetailEmptyState {
     data class CastEmptyState(val state: Boolean): DetailEmptyState()
 
 }
+
+

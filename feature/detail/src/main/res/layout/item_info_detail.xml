@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:id="@+id/tv_title_information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_information_header"
+        android:textStyle="bold"
+        style="@style/Text.Header1"
+        android:textSize="@dimen/_16ssp"
+        android:layout_marginStart="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_information_subheader"
+        style="@style/Text.SubHeader"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_information"
+        app:layout_constraintStart_toStartOf="@id/tv_title_information"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_sub">
+
+        <TableRow
+            android:id="@+id/tr_original_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_original_title"
+                android:text="@string/tv_original_title"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_original_title"
+                tools:text="Elemental"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:text="@string/tv_status"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_status"
+                tools:text="Released"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_release_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_release_date"
+                android:text="@string/tv_release_date"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_release_date"
+                tools:text="Jun 2020"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_runtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_runtime"
+                android:text="@string/tv_runtime"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_runtime"
+                tools:text="1Hr 20Mins"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_oriiginal_language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_original_language"
+                android:text="@string/tv_original_language"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_original_language"
+                tools:text="English"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_production_countries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_production_countries"
+                android:text="@string/tv_production_countries"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_production_countries"
+                tools:text="United States America"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_budget"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_budget"
+                android:text="@string/tv_budget"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_budget"
+                tools:text="$2000.000.000"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_revenue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_revenue"
+                android:text="@string/tv_revenue"
+                android:minWidth="@dimen/_100sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_revenue"
+                tools:text="$432.123.545"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tr_production_companies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv_production_companies"
+                android:text="@string/tv_companies"
+                android:minWidth="@dimen/_200sdp"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/gray"/>
+
+            <TextView
+                android:id="@+id/v_production_companies"
+                tools:text="Warner Bros\nPixar"
+                style="@style/Text.SubHeader"
+                android:layout_weight="1"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"/>
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
