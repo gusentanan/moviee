@@ -23,7 +23,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bagusmerta.core.domain.model.MovieeSearch
-import com.bagusmerta.feature.search.R
 import com.bagusmerta.feature.search.databinding.ActivitySearchBinding
 import com.bagusmerta.search.presentation.SearchGridAdapter
 import com.bagusmerta.utility.datasource.RecyclerViewEnum

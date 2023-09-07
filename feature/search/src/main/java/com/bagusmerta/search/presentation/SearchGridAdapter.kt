@@ -7,12 +7,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bagusmerta.common_ui.databinding.ItemAllmovieComponentBinding
-import com.bagusmerta.common_ui.databinding.ItemAllmovieHorizontalComponentBinding
 import com.bagusmerta.core.domain.model.MovieeSearch
-import com.bagusmerta.core.utils.DataMapper
 import com.bagusmerta.feature.detail.presentation.DetailActivity
-import com.bagusmerta.utility.extensions.formatMediaDateYear
-import com.bagusmerta.utility.extensions.joinToGenreString
 import com.bagusmerta.utility.extensions.loadCoilImage
 
 class SearchGridAdapter(private val context: Context): RecyclerView.Adapter<SearchGridAdapter.ViewHolder>() {
