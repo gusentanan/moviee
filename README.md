@@ -22,11 +22,11 @@
   </tr>
   <tr>
     <td><img src="arts/main.jpg" width=280 ></td>
-    <td><img src="arts/detail.jpg" width=280 ></td>
+    <td><img src="arts/detail-1.jpg" width=280 ></td>
     <td><img src="arts/allmovie.jpg" width=280 ></td>
   </tr>
   <tr>
-    <td><img src="arts/search.jpg" width=280 ></td>
+    <td><img src="arts/search-2.jpg" width=280 ></td>
     <td><img src="arts/favoritee.jpg" width=280 ></td>
   </tr>
    <td>Search</td>
