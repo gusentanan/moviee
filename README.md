@@ -49,14 +49,15 @@ The architecture of this app is complies with each of 3 following points:
 
 ## Modules
 <table>
-  <td><img src="https://github.com/gusentanan/moviee/assets/68723002/c195e347-59cc-4109-9735-a5a76b69e056"></td>
+  <td><img src="https://github.com/gusentanan/moviee/assets/68723002/4e6fa048-95bc-4ca1-8884-614aa501fdf1" width=380></td>
 </table>
 
+
 Above graph shows the app modular structure.
-- The `:app` module has a direct dependency on the `:core` module. Additionally, `:app` indirectly depends on the `:feature` module 
-- `:feature` modules depends on `:core`, and `utility`.
+- The `:app` module has a direct dependency on the `:core` and `:common-ui` module. Additionally, `:app` indirectly depends on the `:feature` module 
+- `:feature` modules depends on `:core`, `:common-ui` and `utility`.
 - Both `:core` and `:app` modules may have dependencies on the `:utility` module, but only if there is a need for specific utilities.
-- The `:utility` module does not have any external dependencies.
+- The `:utility` and `:common-ui` module does not have any external dependencies.
 <br></br>
 This architecture promotes modularity and encapsulation by separating functionality into distinct modules. It allows for easier maintenance, reuse of modules across projects, and better management of dependencies between modules.
 
