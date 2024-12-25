@@ -49,13 +49,12 @@ The architecture of this app is complies with each of 3 following points:
 
 ## Modules
 <table>
-  <td><img src="https://github.com/gusentanan/moviee/assets/68723002/4e6fa048-95bc-4ca1-8884-614aa501fdf1" width=380></td>
+  <td><img src="https://github.com/user-attachments/assets/935d9ed5-abcf-41da-9ef9-e1d535971457" width=380></td>
 </table>
 
-
 Above graph shows the app modular structure.
-- The `:app` module has a direct dependency on the `:core` and `:common-ui` module. Additionally, `:app` indirectly depends on the `:feature` module 
-- `:feature` modules depends on `:core`, `:common-ui` and `utility`.
+- The `:app` module has a direct dependency on the `:core` and `:common-ui` module. Additionally, `:app` directly depends on the `:feature` module 
+- `:feature` modules depends on `:core`, `:common-ui` and indirectly depends on `utility`.
 - Both `:core` and `:app` modules may have dependencies on the `:utility` module, but only if there is a need for specific utilities.
 - The `:utility` and `:common-ui` module does not have any external dependencies.
 <br></br>
